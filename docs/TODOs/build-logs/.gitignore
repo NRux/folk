@@ -1,0 +1,2 @@
+# Ephemeral console logs only. Stage .status files and this .gitignore ARE committed.
+*.log
