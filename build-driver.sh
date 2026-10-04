@@ -14,6 +14,7 @@ set -u
 set -o pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+NATIVE_ROOT="$(cygpath -m "$REPO_ROOT" 2>/dev/null || echo "$REPO_ROOT")"
 TODO_DIR="$REPO_ROOT/docs/TODOs"
 LOG_DIR="$TODO_DIR/build-logs"
 mkdir -p "$LOG_DIR"
@@ -69,11 +70,12 @@ for (( i = IDX; i < ${#STAGES[@]}; i++ )); do
   # Fresh checkout state for the stage (best effort; never lose commits).
   git pull --ff-only origin master >/dev/null 2>&1 || true
 
-  if codex exec --sandbox workspace-write --cd "$REPO_ROOT" "$(cat "$PROMPT")" 2>&1 | tee "$LOG_FILE"; then
+  if codex exec --sandbox workspace-write --cd "$NATIVE_ROOT" "$(cat "$PROMPT")" 2>&1 | tee "$LOG_FILE"; then
     :
   else
     echo "[driver] $STAGE: codex exited nonzero (see $LOG_FILE)" >&2
-    break
+    echo "[driver] Chain halted at stage $(( i + 1 )). Fix the blocker, then re-run: build-driver.sh $(( i + 1 ))" >&2
+    exit 1
   fi
 
   if [[ -f "$STATUS_FILE" ]]; then
