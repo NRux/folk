@@ -11,6 +11,7 @@
 # Each stage prompt itself enforces: status file + BUILD-STATE.md update + git commit.
 
 set -u
+set -o pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TODO_DIR="$REPO_ROOT/docs/TODOs"
