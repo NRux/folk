@@ -1,0 +1,772 @@
+{
+  "captured_at": "2026-10-04T21:37:41.848877+00:00",
+  "base_url": "https://folkly-journal.nrapp.chatgpt.site",
+  "sites_project_id": "appgprj_6abfc9a424f881918070e39a237ecc83",
+  "sites_tools_available": false,
+  "routes": {
+    "/": {
+      "route": "/",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/",
+      "error": null,
+      "title": "Culture takes place | Folkly",
+      "metas": {
+        "description": "Folkly is a cultural journal exploring the practices, places, and histories that shape distinctive identities.",
+        "og:title": "Culture takes place | Folkly",
+        "og:description": "Folkly is a cultural journal exploring the practices, places, and histories that shape distinctive identities."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "Culture takes place."
+        ],
+        [
+          2,
+          "The city that dances together."
+        ],
+        [
+          2,
+          "Elsewhere in the journal"
+        ],
+        [
+          3,
+          "A city finds its voice."
+        ],
+        [
+          3,
+          "A living language of color."
+        ],
+        [
+          2,
+          "The future had a Detroit frequency."
+        ],
+        [
+          2,
+          "Start with a place"
+        ],
+        [
+          2,
+          "What makesa place itself?"
+        ]
+      ],
+      "images": [
+        [
+          "assets/new-orleans.jpg",
+          "Hot 8 Brass Band playing in a second-line parade in New Orleans"
+        ],
+        [
+          "assets/lisbon.jpg",
+          "A quiet street in Lisbon’s Alfama neighborhood"
+        ],
+        [
+          "assets/oaxaca.jpg",
+          "A loom and skeins of naturally dyed wool in Teotitlán del Valle"
+        ]
+      ],
+      "text_len": 2191,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/perspective": {
+      "route": "/perspective",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/perspective",
+      "error": null,
+      "title": "Identity is something we keep making | Folkly",
+      "metas": {
+        "description": "The adaptive identity framework behind Folkly’s cultural journalism: struggle, creativity, belonging, and change.",
+        "og:title": "Identity is something we keep making | Folkly",
+        "og:description": "The adaptive identity framework behind Folkly’s cultural journalism: struggle, creativity, belonging, and change."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "Identity is somethingwe keep making."
+        ],
+        [
+          2,
+          "The adaptive identity cycle"
+        ],
+        [
+          2,
+          "What struggle contributes"
+        ],
+        [
+          2,
+          "Creativity across human needs"
+        ],
+        [
+          2,
+          "How this becomes a journal"
+        ],
+        [
+          3,
+          "Begin with the particular."
+        ],
+        [
+          3,
+          "Ask what made it possible."
+        ],
+        [
+          3,
+          "Keep people in the story."
+        ],
+        [
+          3,
+          "Let the story test the lens."
+        ]
+      ],
+      "images": [],
+      "text_len": 3939,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/perspective.html": {
+      "route": "/perspective.html",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/perspective",
+      "error": null,
+      "title": "Identity is something we keep making | Folkly",
+      "metas": {
+        "description": "The adaptive identity framework behind Folkly’s cultural journalism: struggle, creativity, belonging, and change.",
+        "og:title": "Identity is something we keep making | Folkly",
+        "og:description": "The adaptive identity framework behind Folkly’s cultural journalism: struggle, creativity, belonging, and change."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "Identity is somethingwe keep making."
+        ],
+        [
+          2,
+          "The adaptive identity cycle"
+        ],
+        [
+          2,
+          "What struggle contributes"
+        ],
+        [
+          2,
+          "Creativity across human needs"
+        ],
+        [
+          2,
+          "How this becomes a journal"
+        ],
+        [
+          3,
+          "Begin with the particular."
+        ],
+        [
+          3,
+          "Ask what made it possible."
+        ],
+        [
+          3,
+          "Keep people in the story."
+        ],
+        [
+          3,
+          "Let the story test the lens."
+        ]
+      ],
+      "images": [],
+      "text_len": 3939,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/about": {
+      "route": "/about",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/about",
+      "error": null,
+      "title": "About the journal | Folkly",
+      "metas": {
+        "description": "Folkly celebrates distinctive cultural practices and explores the histories and conditions that shape them.",
+        "og:title": "About the journal | Folkly",
+        "og:description": "Folkly celebrates distinctive cultural practices and explores the histories and conditions that shape them."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "A closer look atthe culture of place."
+        ],
+        [
+          2,
+          "The first issue: The things we carry"
+        ],
+        [
+          2,
+          "Our editorial approach"
+        ],
+        [
+          2,
+          "Photography"
+        ],
+        [
+          2,
+          "The question we keep returning to"
+        ]
+      ],
+      "images": [],
+      "text_len": 2593,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/about.html": {
+      "route": "/about.html",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/about",
+      "error": null,
+      "title": "About the journal | Folkly",
+      "metas": {
+        "description": "Folkly celebrates distinctive cultural practices and explores the histories and conditions that shape them.",
+        "og:title": "About the journal | Folkly",
+        "og:description": "Folkly celebrates distinctive cultural practices and explores the histories and conditions that shape them."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "A closer look atthe culture of place."
+        ],
+        [
+          2,
+          "The first issue: The things we carry"
+        ],
+        [
+          2,
+          "Our editorial approach"
+        ],
+        [
+          2,
+          "Photography"
+        ],
+        [
+          2,
+          "The question we keep returning to"
+        ]
+      ],
+      "images": [],
+      "text_len": 2593,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/new-orleans-second-line": {
+      "route": "/new-orleans-second-line",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/new-orleans-second-line",
+      "error": null,
+      "title": "The city that dances together. | Folkly",
+      "metas": {
+        "description": "Behind New Orleans’ second lines is a remarkable social invention: a community that turns looking after one another into a public celebration.",
+        "og:title": "The city that dances together. | Folkly",
+        "og:description": "Behind New Orleans’ second lines is a remarkable social invention: a community that turns looking after one another into a public celebration."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "The city that dances together."
+        ],
+        [
+          2,
+          "A parade with a social foundation"
+        ],
+        [
+          2,
+          "How the street became a stage"
+        ],
+        [
+          2,
+          "The work behind the joy"
+        ],
+        [
+          2,
+          "Through the Folkly lens"
+        ],
+        [
+          2,
+          "Sources & further reading"
+        ],
+        [
+          2,
+          "A city finds its voice."
+        ]
+      ],
+      "images": [
+        [
+          "assets/new-orleans.jpg",
+          "Hot 8 Brass Band musicians playing in a New Orleans street during the Single Ladies second-line parade"
+        ]
+      ],
+      "text_len": 4655,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/new-orleans-second-line.html": {
+      "route": "/new-orleans-second-line.html",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/new-orleans-second-line",
+      "error": null,
+      "title": "The city that dances together. | Folkly",
+      "metas": {
+        "description": "Behind New Orleans’ second lines is a remarkable social invention: a community that turns looking after one another into a public celebration.",
+        "og:title": "The city that dances together. | Folkly",
+        "og:description": "Behind New Orleans’ second lines is a remarkable social invention: a community that turns looking after one another into a public celebration."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "The city that dances together."
+        ],
+        [
+          2,
+          "A parade with a social foundation"
+        ],
+        [
+          2,
+          "How the street became a stage"
+        ],
+        [
+          2,
+          "The work behind the joy"
+        ],
+        [
+          2,
+          "Through the Folkly lens"
+        ],
+        [
+          2,
+          "Sources & further reading"
+        ],
+        [
+          2,
+          "A city finds its voice."
+        ]
+      ],
+      "images": [
+        [
+          "assets/new-orleans.jpg",
+          "Hot 8 Brass Band musicians playing in a New Orleans street during the Single Ladies second-line parade"
+        ]
+      ],
+      "text_len": 4655,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/lisbon-fado": {
+      "route": "/lisbon-fado",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/lisbon-fado",
+      "error": null,
+      "title": "A city finds its voice. | Folkly",
+      "metas": {
+        "description": "Fado carries the intimacy of Lisbon’s neighborhoods into a much larger world. Its history reveals how a local form can change and still sound unmistakably like home.",
+        "og:title": "A city finds its voice. | Folkly",
+        "og:description": "Fado carries the intimacy of Lisbon’s neighborhoods into a much larger world. Its history reveals how a local form can change and still sound unmistakably like home."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "A city finds its voice."
+        ],
+        [
+          2,
+          "An urban song, made in company"
+        ],
+        [
+          2,
+          "Distinctive does not mean isolated"
+        ],
+        [
+          2,
+          "What travels, and what stays"
+        ],
+        [
+          2,
+          "Through the Folkly lens"
+        ],
+        [
+          2,
+          "Sources & further reading"
+        ],
+        [
+          2,
+          "A living language of color."
+        ]
+      ],
+      "images": [
+        [
+          "assets/lisbon.jpg",
+          "A narrow street lined with pastel buildings and a wall lantern in Alfama, Lisbon"
+        ]
+      ],
+      "text_len": 4723,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/lisbon-fado.html": {
+      "route": "/lisbon-fado.html",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/lisbon-fado",
+      "error": null,
+      "title": "A city finds its voice. | Folkly",
+      "metas": {
+        "description": "Fado carries the intimacy of Lisbon’s neighborhoods into a much larger world. Its history reveals how a local form can change and still sound unmistakably like home.",
+        "og:title": "A city finds its voice. | Folkly",
+        "og:description": "Fado carries the intimacy of Lisbon’s neighborhoods into a much larger world. Its history reveals how a local form can change and still sound unmistakably like home."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "A city finds its voice."
+        ],
+        [
+          2,
+          "An urban song, made in company"
+        ],
+        [
+          2,
+          "Distinctive does not mean isolated"
+        ],
+        [
+          2,
+          "What travels, and what stays"
+        ],
+        [
+          2,
+          "Through the Folkly lens"
+        ],
+        [
+          2,
+          "Sources & further reading"
+        ],
+        [
+          2,
+          "A living language of color."
+        ]
+      ],
+      "images": [
+        [
+          "assets/lisbon.jpg",
+          "A narrow street lined with pastel buildings and a wall lantern in Alfama, Lisbon"
+        ]
+      ],
+      "text_len": 4723,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/oaxaca-living-color": {
+      "route": "/oaxaca-living-color",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/oaxaca-living-color",
+      "error": null,
+      "title": "A living language of color. | Folkly",
+      "metas": {
+        "description": "In Oaxaca’s Zapotec weaving traditions, color carries knowledge of land, family, and material. Keeping that knowledge alive also means finding new things to say with it.",
+        "og:title": "A living language of color. | Folkly",
+        "og:description": "In Oaxaca’s Zapotec weaving traditions, color carries knowledge of land, family, and material. Keeping that knowledge alive also means finding new things to say with it."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "A living language of color."
+        ],
+        [
+          2,
+          "A place where knowledge is practiced"
+        ],
+        [
+          2,
+          "The landscape enters the palette"
+        ],
+        [
+          2,
+          "Continuity has room for invention"
+        ],
+        [
+          2,
+          "Through the Folkly lens"
+        ],
+        [
+          2,
+          "Sources & further reading"
+        ],
+        [
+          2,
+          "The future had a Detroit frequency."
+        ]
+      ],
+      "images": [
+        [
+          "assets/oaxaca.jpg",
+          "Wooden loom and skeins of colored wool in the Porfirio Gutierrez family workshop in Teotitlán del Valle"
+        ]
+      ],
+      "text_len": 4914,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/oaxaca-living-color.html": {
+      "route": "/oaxaca-living-color.html",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/oaxaca-living-color",
+      "error": null,
+      "title": "A living language of color. | Folkly",
+      "metas": {
+        "description": "In Oaxaca’s Zapotec weaving traditions, color carries knowledge of land, family, and material. Keeping that knowledge alive also means finding new things to say with it.",
+        "og:title": "A living language of color. | Folkly",
+        "og:description": "In Oaxaca’s Zapotec weaving traditions, color carries knowledge of land, family, and material. Keeping that knowledge alive also means finding new things to say with it."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "A living language of color."
+        ],
+        [
+          2,
+          "A place where knowledge is practiced"
+        ],
+        [
+          2,
+          "The landscape enters the palette"
+        ],
+        [
+          2,
+          "Continuity has room for invention"
+        ],
+        [
+          2,
+          "Through the Folkly lens"
+        ],
+        [
+          2,
+          "Sources & further reading"
+        ],
+        [
+          2,
+          "The future had a Detroit frequency."
+        ]
+      ],
+      "images": [
+        [
+          "assets/oaxaca.jpg",
+          "Wooden loom and skeins of colored wool in the Porfirio Gutierrez family workshop in Teotitlán del Valle"
+        ]
+      ],
+      "text_len": 4914,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/detroit-future-frequency": {
+      "route": "/detroit-future-frequency",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/detroit-future-frequency",
+      "error": null,
+      "title": "The future had a Detroit frequency. | Folkly",
+      "metas": {
+        "description": "A radio signal, a circle of friends, and a willingness to hear connections: the cultural conditions behind Detroit techno reach beyond the familiar story of machines.",
+        "og:title": "The future had a Detroit frequency. | Folkly",
+        "og:description": "A radio signal, a circle of friends, and a willingness to hear connections: the cultural conditions behind Detroit techno reach beyond the familiar story of machines."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "The future had a Detroit frequency."
+        ],
+        [
+          2,
+          "Begin with the people listening"
+        ],
+        [
+          2,
+          "Radio as cultural infrastructure"
+        ],
+        [
+          2,
+          "Making a future in your own language"
+        ],
+        [
+          2,
+          "Through the Folkly lens"
+        ],
+        [
+          2,
+          "Sources & further reading"
+        ],
+        [
+          2,
+          "The city that dances together."
+        ]
+      ],
+      "images": [],
+      "text_len": 4699,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/detroit-future-frequency.html": {
+      "route": "/detroit-future-frequency.html",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/detroit-future-frequency",
+      "error": null,
+      "title": "The future had a Detroit frequency. | Folkly",
+      "metas": {
+        "description": "A radio signal, a circle of friends, and a willingness to hear connections: the cultural conditions behind Detroit techno reach beyond the familiar story of machines.",
+        "og:title": "The future had a Detroit frequency. | Folkly",
+        "og:description": "A radio signal, a circle of friends, and a willingness to hear connections: the cultural conditions behind Detroit techno reach beyond the familiar story of machines."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "The future had a Detroit frequency."
+        ],
+        [
+          2,
+          "Begin with the people listening"
+        ],
+        [
+          2,
+          "Radio as cultural infrastructure"
+        ],
+        [
+          2,
+          "Making a future in your own language"
+        ],
+        [
+          2,
+          "Through the Folkly lens"
+        ],
+        [
+          2,
+          "Sources & further reading"
+        ],
+        [
+          2,
+          "The city that dances together."
+        ]
+      ],
+      "images": [],
+      "text_len": 4699,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    },
+    "/index.html": {
+      "route": "/index.html",
+      "status": 200,
+      "final_url": "https://folkly-journal.nrapp.chatgpt.site/",
+      "error": null,
+      "title": "Culture takes place | Folkly",
+      "metas": {
+        "description": "Folkly is a cultural journal exploring the practices, places, and histories that shape distinctive identities.",
+        "og:title": "Culture takes place | Folkly",
+        "og:description": "Folkly is a cultural journal exploring the practices, places, and histories that shape distinctive identities."
+      },
+      "jsonld_count": 0,
+      "jsonld": [],
+      "headings": [
+        [
+          1,
+          "Culture takes place."
+        ],
+        [
+          2,
+          "The city that dances together."
+        ],
+        [
+          2,
+          "Elsewhere in the journal"
+        ],
+        [
+          3,
+          "A city finds its voice."
+        ],
+        [
+          3,
+          "A living language of color."
+        ],
+        [
+          2,
+          "The future had a Detroit frequency."
+        ],
+        [
+          2,
+          "Start with a place"
+        ],
+        [
+          2,
+          "What makesa place itself?"
+        ]
+      ],
+      "images": [
+        [
+          "assets/new-orleans.jpg",
+          "Hot 8 Brass Band playing in a second-line parade in New Orleans"
+        ],
+        [
+          "assets/lisbon.jpg",
+          "A quiet street in Lisbon’s Alfama neighborhood"
+        ],
+        [
+          "assets/oaxaca.jpg",
+          "A loom and skeins of naturally dyed wool in Teotitlán del Valle"
+        ]
+      ],
+      "text_len": 2191,
+      "content_type": "text/html",
+      "server": "cloudflare"
+    }
+  },
+  "all_assets": [
+    "assets/lisbon.jpg",
+    "assets/new-orleans.jpg",
+    "assets/oaxaca.jpg",
+    "style.css"
+  ],
+  "assets": {
+    "assets/lisbon.jpg": {
+      "status": 200,
+      "content_type": "image/jpeg",
+      "content_length": "2002620"
+    },
+    "assets/new-orleans.jpg": {
+      "status": 200,
+      "content_type": "image/jpeg",
+      "content_length": "1305156"
+    },
+    "assets/oaxaca.jpg": {
+      "status": 200,
+      "content_type": "image/jpeg",
+      "content_length": "4524198"
+    },
+    "style.css": {
+      "status": 200,
+      "content_type": "text/css",
+      "content_length": "11630"
+    }
+  }
+}

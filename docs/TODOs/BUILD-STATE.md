@@ -13,8 +13,14 @@ Existing articles carry real source footers and a standard AI-essay disclosure.
 Evidence: repo commit history.
 
 ## Stage 01 — Inspect & preserve
-Status: PENDING
-Evidence: (stage fills: docs/preservation/inventory.md)
+Status: DONE (2026-10-04)
+Evidence: docs/preservation/inventory.md, inventory.json, pages/*.md (9 captures), raw/*.html
++ raw/style.css (captured stylesheet), NOTES.md; capture script scripts/stage01_capture.py.
+Notes: 13 routes captured (both URL forms; .html canonicalizes to extensionless with 200).
+Assets: 3 lead images + style.css (11.6 KB, full design system). Sites tools NOT available
+in this environment (HTTP baseline only) — recorded per protocol. Divergences logged in
+NOTES.md: canonicals point at a different subdomain (owner question), no JSON-LD, historical
+"Folkly editorial" bylines to preserve, Detroit article is the no-photograph exemplar.
 
 ## Stage 02 — Platform & content migration
 Status: PENDING

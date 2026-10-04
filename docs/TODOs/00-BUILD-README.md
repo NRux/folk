@@ -30,16 +30,15 @@ master spec first and defers to it on any conflict.
 4. Never fake success. A missing credential, plugin connection, or unsupported platform
    capability is a BLOCKED status with the precise reason, not a workaround that claims success.
 
-## Autonomous runner
+## Execution
 
-`build-driver.sh [start-stage]` (default 1) runs the stages sequentially with the Codex CLI:
+The stages are executed directly by the Hermes agent (the user directed that the Codex CLI
+not be used for this build). `build-driver.sh` is retained for reference only and is NOT the
+active runner.
 
-```
-codex exec --sandbox workspace-write "$(cat docs/TODOs/<stage>.md)"
-```
-
-Each stage's full console output is logged to `build-logs/<stage>.log` (gitignored). The chain
-stops on a nonzero exit or a `BLOCKED` status file; resume with `build-driver.sh <N>`.
+Per-stage protocol (unchanged): read the master spec in full; do the stage's work; verify its
+exit criteria; write `build-logs/<stage>.status` (`DONE` or `BLOCKED: <reason>`); update only
+the stage's section in `BUILD-STATE.md`; commit on master. Never fake success.
 
 ## State
 
