@@ -34,8 +34,18 @@ All 4 articles + perspective + about migrated with bylines, figure credits (Wiki
 D1/R2/scheduler deployment path documented for stage 06/08.
 
 ## Stage 03 — Personas & rendering
-Status: PENDING
-Evidence: (stage fills: docs/verification/stage-03-personas.md)
+Status: DONE (2026-10-04)
+Evidence: docs/verification/stage-03-personas.md — 26/26 checks pass (5 author pages with
+exact disclosure + distinct briefs/voice/tags; disclosure + legacy byline + valid Article
+JSON-LD on all 4 articles; archive index + place + topic archives; related stories on every
+article; homepage cover style retained; all stage-02 routes regression-clean).
+Notes: web/scripts/seed-personas.js seeds the 5 spec personas verbatim (hash-guarded,
+idempotent). Author pages /author/<id>; archives /archive, /archive/place/<slug>,
+/archive/topic/<slug>. Legacy articles keep their "Folkly editorial" bylines and show the
+Folkly disclosure. Reading time + dates computed from real body HTML in America/Los_Angeles.
+Avatars are typographic initials (no fabricated headshots). Ops note: a stale node server
+(PID 35960) from stage 02 still holds port 8787; the verified stage-03 server runs on
+FOLKLY_PORT=8788. Reclaim 8787 by killing PID 35960, then `node web/server.js`.
 
 ## Stage 04 — Research pipeline & gates
 Status: PENDING
