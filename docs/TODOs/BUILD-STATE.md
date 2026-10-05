@@ -23,8 +23,15 @@ NOTES.md: canonicals point at a different subdomain (owner question), no JSON-LD
 "Folkly editorial" bylines to preserve, Detroit article is the no-photograph exemplar.
 
 ## Stage 02 — Platform & content migration
-Status: PENDING
-Evidence: (stage fills: docs/verification/stage-02-url-check.md)
+Status: DONE (2026-10-04)
+Evidence: docs/verification/stage-02-url-check.md (14/14 routes exact text match, both URL
+forms; idempotent re-run recorded), docs/platform/ARCHITECTURE.md.
+Notes: zero-dependency Node 24 server (web/server.js, port 8787) + SQLite store (web/folkly.db,
+gitignored; rebuild: node web/scripts/migrate.js). SQLite = D1 stand-in, static assets = R2
+stand-in, adapter boundary in web/lib/db.js per spec. style.css md5-identical to live capture.
+All 4 articles + perspective + about migrated with bylines, figure credits (Wikimedia CC BY
+2.0 links), sources, and home composition preserved. Sites tools still unavailable — real
+D1/R2/scheduler deployment path documented for stage 06/08.
 
 ## Stage 03 — Personas & rendering
 Status: PENDING

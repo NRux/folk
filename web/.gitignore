@@ -1,0 +1,5 @@
+# generated data (rebuild with: node web/scripts/migrate.js)
+folkly.db
+folkly.db-wal
+folkly.db-shm
+server.log
