@@ -73,8 +73,17 @@ Notes: Added persisted one-shot publication and reserve-replenishment runners wi
 
 
 ## Stage 07 — Acceptance verification & seeding
-Status: PENDING
-Evidence: (stage fills: docs/verification/acceptance-report.md)
+Status: BLOCKED (2026-10-06)
+Evidence: docs/verification/acceptance-report.md; component evidence from Stages 02–06.
+Notes: Local component checks pass for the real Tokushima research article, Stage 04 rejection
+fixtures, Stage 05 admin authorization/edit controls, and Stage 06 DST/concurrency/timeout/
+provider-failure fixtures. A fresh Stage 03 verifier run on the available disposable audit copy
+failed four archive/related-story checks; that copy is incomplete and cannot establish whether
+the failures reproduce against the canonical migrated database. The production Site has no MCP
+publishing endpoint and its runtime has no provider environment variables. The reserve remains
+1/7, so the real-provider reserve fill and unattended Site write/readback cannot be verified.
+Case 09 expired authorization, case 10 full reader/feed/cache draft-leak checks, and case 11
+mobile viewport checks also remain incomplete. No production schedule was activated.
 
 ## Stage 08 — Operations doc, activation & delivery
 Status: PENDING
