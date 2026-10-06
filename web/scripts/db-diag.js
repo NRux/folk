@@ -1,0 +1,12 @@
+"use strict";
+const { openDb } = require("../lib/db");
+const db = openDb(process.argv[2] || "folkly.db");
+const art = db.prepare("SELECT * FROM articles WHERE slug='tokushima-aizome'").get();
+console.log("article:", art && art.id, "state=" + (art && art.pipeline_state));
+console.log("jobs:");
+for (const j of db.prepare("SELECT id, job_type, status, error FROM jobs ORDER BY id DESC LIMIT 4").all()) console.log("  ", j.id, j.job_type, j.status, j.error || "");
+console.log("steps for last job:");
+const lastJob = db.prepare("SELECT id FROM jobs ORDER BY id DESC LIMIT 1").get();
+for (const s of db.prepare("SELECT step_name, status, detail FROM job_steps WHERE job_id=? ORDER BY id").all(lastJob.id)) console.log("  ", s.step_name, s.status, (s.detail || "").slice(0, 150));
+console.log("audit (last 10):");
+for (const a of db.prepare("SELECT action, entity_id, reason FROM audit_events ORDER BY id DESC LIMIT 10").all()) console.log("  ", a.action, a.entity_id, (a.reason || "").slice(0, 120));

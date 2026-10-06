@@ -48,8 +48,20 @@ Avatars are typographic initials (no fabricated headshots). Ops note: a stale no
 FOLKLY_PORT=8788. Reclaim 8787 by killing PID 35960, then `node web/server.js`.
 
 ## Stage 04 — Research pipeline & gates
-Status: PENDING
+Status: IN PROGRESS (implementation done 2026-10-05; live run executing)
 Evidence: (stage fills: docs/verification/stage-04-pipeline-run.md)
+Notes: Staged workflow engine in web/lib/pipeline.js (16 states, strict transitions with
+reason+actor audit, deterministic gate suite, claim_citations + editorial_checks ledgers,
+spend_ledger budget accounting, resumable jobs/job_steps, image clearance with real CC0
+download + metadata + NC refusal). web/lib/calendar.js (local slot/hold/release model).
+web/lib/search.js (DuckDuckGo HTML search hardened against markup drift + page fetch with
+excerpts). web/lib/provider.js (protocol-aware http/https transport; budgetGate/recordSpend).
+server.js (live /api/research + /api/draft endpoints). Scripts: seed-pitches.js,
+run-pipeline.js (durable state-machine runner), smoke-stage04.js, verify-stage04.js.
+Live smoke (2026-10-05): DDG search returns 5 real Tokushima aizome results; page fetch
+200/159KB/2713 words; Ollama qwen3.8:latest responds (JSON mode, usage+cost accounting).
+Seed article (p-tokushima-aizome) running through the full staged workflow; two
+gate-failure fixtures (unsupported-claim, image-rights) queued to prove gates block ready.
 
 ## Stage 05 — Admin control room
 Status: PENDING

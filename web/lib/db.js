@@ -188,9 +188,36 @@ CREATE INDEX IF NOT EXISTS idx_audit_at ON audit_events(at);
 function openDb(file) {
   const db = new DatabaseSync(file);
   db.exec("PRAGMA journal_mode = WAL;");
+  db.exec("PRAGMA busy_timeout = 10000;"); // concurrent pipeline runs: wait for writes instead of failing
   db.exec("PRAGMA foreign_keys = ON;");
   db.exec(SCHEMA);
+  ensureColumns(db);
   return db;
+}
+
+// Additive migration (idempotent): stage 04 pipeline fields.
+function ensureColumns(db) {
+  const articleCols = db.prepare("PRAGMA table_info(articles)").all().map((r) => r.name);
+  const wants = [
+    ["pipeline_state", "TEXT NOT NULL DEFAULT 'pitch'"],
+    ["revision_attempts", "INTEGER NOT NULL DEFAULT 0"],
+    ["hold_reason", "TEXT"],
+    ["score", "REAL"],
+    ["score_reason", "TEXT"],
+  ];
+  for (const [col, def] of wants) {
+    if (!articleCols.includes(col)) db.exec(`ALTER TABLE articles ADD COLUMN ${col} ${def}`);
+  }
+  // Stage 04: pitch slug (stable article slug) + country (geographic balance).
+  const pitchCols = db.prepare("PRAGMA table_info(pitches)").all().map((r) => r.name);
+  const pitchWants = [
+    ["slug", "TEXT"],
+    ["country", "TEXT"],
+    ["deck", "TEXT"],
+  ];
+  for (const [col, def] of pitchWants) {
+    if (!pitchCols.includes(col)) db.exec(`ALTER TABLE pitches ADD COLUMN ${col} ${def}`);
+  }
 }
 
 const DEFAULTS = {
