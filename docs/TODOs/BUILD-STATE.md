@@ -48,20 +48,18 @@ Avatars are typographic initials (no fabricated headshots). Ops note: a stale no
 FOLKLY_PORT=8788. Reclaim 8787 by killing PID 35960, then `node web/server.js`.
 
 ## Stage 04 — Research pipeline & gates
-Status: IN PROGRESS (implementation done 2026-10-05; live run executing)
-Evidence: (stage fills: docs/verification/stage-04-pipeline-run.md)
-Notes: Staged workflow engine in web/lib/pipeline.js (16 states, strict transitions with
-reason+actor audit, deterministic gate suite, claim_citations + editorial_checks ledgers,
-spend_ledger budget accounting, resumable jobs/job_steps, image clearance with real CC0
-download + metadata + NC refusal). web/lib/calendar.js (local slot/hold/release model).
-web/lib/search.js (DuckDuckGo HTML search hardened against markup drift + page fetch with
-excerpts). web/lib/provider.js (protocol-aware http/https transport; budgetGate/recordSpend).
-server.js (live /api/research + /api/draft endpoints). Scripts: seed-pitches.js,
-run-pipeline.js (durable state-machine runner), smoke-stage04.js, verify-stage04.js.
-Live smoke (2026-10-05): DDG search returns 5 real Tokushima aizome results; page fetch
-200/159KB/2713 words; Ollama qwen3.8:latest responds (JSON mode, usage+cost accounting).
-Seed article (p-tokushima-aizome) running through the full staged workflow; two
-gate-failure fixtures (unsupported-claim, image-rights) queued to prove gates block ready.
+Status: IN PROGRESS (implementation committed 2026-10-06; completion verification not recorded)
+Evidence: docs/verification/stage-04-pipeline-run.md (not present in the current repository snapshot; add after verification).
+Implementation commit: 016ba3b (staged pipeline, research records, verification, gates, calendar).
+Notes: The commit adds the 16-state workflow with strict transitions and audit data,
+deterministic gates, claim citation and editorial check ledgers, resumable jobs, image-rights
+clearance, search and provider adapters, budget accounting, calendar slots, and pipeline
+verification/smoke scripts. The prior 2026-10-05 notes reported a DDG search smoke, page
+fetch, Ollama response, and a seeded pipeline run in progress; those results do not have a
+committed run report in this repository snapshot. GitHub currently contains status markers
+for stages 01–03 only; it has no stage-04 status marker. Console logs matching *.log are
+ignored, so the live run outcome cannot be established from GitHub alone. Keep this stage
+IN PROGRESS until verification results are committed and the stage status marker is written.
 
 ## Stage 05 — Admin control room
 Status: PENDING
