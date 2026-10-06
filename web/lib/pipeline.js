@@ -58,11 +58,11 @@ function transition(db, articleId, to, actor, reason) {
     (from === "editorial-revision" && to === "blocked") ||
     (from === "image-clearance" && to === "needs-review") ||
     (from === "image-clearance" && to === "blocked") ||
-    (["source-research", "evidence-dossier", "outline", "draft", "verification"].includes(from) && to === "retryable-failure") ||
+    (["source-research", "evidence-dossier", "outline", "draft", "verification", "editorial-revision", "image-clearance"].includes(from) && to === "retryable-failure") ||
     (["source-research", "evidence-dossier", "outline", "draft", "verification", "editorial-revision", "image-clearance"].includes(from) && to === "withdrawn") ||
     (from === "needs-review" && ["source-research", "draft", "verification", "image-clearance", "ready"].includes(to)) ||
     (from === "blocked" && ["source-research", "draft", "verification", "image-clearance", "withdrawn"].includes(to)) ||
-    (from === "retryable-failure" && ["source-research", "evidence-dossier", "outline", "draft", "verification", "withdrawn"].includes(to));
+    (from === "retryable-failure" && ["source-research", "evidence-dossier", "outline", "draft", "verification", "editorial-revision", "image-clearance", "withdrawn"].includes(to));
   if (!legal) throw new Error(`illegal transition ${from} -> ${to}`);
   if (to === "editorial-revision") db.prepare("UPDATE articles SET revision_attempts = revision_attempts + 1 WHERE id = ?").run(articleId);
   db.prepare("UPDATE articles SET pipeline_state = ?, hold_reason = ?, updated_at = ? WHERE id = ?")

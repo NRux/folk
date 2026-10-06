@@ -261,9 +261,15 @@ function releaseBudget(db, reservationId) {
 function settleBudget(db, reservationId, { runId, articleSlug, step, model, usage, costUsd }) {
   ensureBudgetTables(db);
   const now = new Date().toISOString();
-  const cost = Number.isFinite(costUsd) && costUsd >= 0 ? costUsd : 0;
+  let cost;
+  const costKnown = Number.isFinite(costUsd) && costUsd >= 0;
   db.exec("BEGIN IMMEDIATE");
   try {
+    const reservation = db.prepare("SELECT reserved_usd FROM spend_ledger WHERE reservation_id = ? AND reserved_usd > 0").get(reservationId);
+    if (!reservation) throw new Error("budget reservation missing or already settled");
+    // When a provider omits cost data, retain the estimate as a conservative charge
+    // instead of releasing the entire reservation as zero spend.
+    cost = costKnown ? costUsd : reservation.reserved_usd;
     const result = db.prepare(
       "UPDATE spend_ledger SET reserved_usd = 0, model = ?, prompt_tokens = ?, completion_tokens = ?, cost_usd = ?, at = ?, run_id = COALESCE(?, run_id) WHERE reservation_id = ? AND reserved_usd > 0"
     ).run(model ?? null, usage?.prompt_tokens ?? null, usage?.completion_tokens ?? null, cost, now, runId ?? null, reservationId);
@@ -273,9 +279,9 @@ function settleBudget(db, reservationId, { runId, articleSlug, step, model, usag
     db.exec("ROLLBACK");
     throw e;
   }
-  audit(db, "budget", "settle", "spend", articleSlug, `${step} ${cost.toFixed(4)} USD`);
+  audit(db, "budget", "settle", "spend", articleSlug, `${step} ${cost.toFixed(4)} USD${costKnown ? "" : " (estimated; provider cost unavailable)"}`);
   const status = budgetStatus(db);
-  if (status.exhausted) audit(db, "budget", "cap-reached", "spend", articleSlug, `actual cost reached or exceeded configured cap after ${step}`);
+  if (status.exhausted) audit(db, "budget", "cap-reached", "spend", articleSlug, `actual or estimated cost reached or exceeded configured cap after ${step}`);
 }
 
 function budgetStatus(db) {

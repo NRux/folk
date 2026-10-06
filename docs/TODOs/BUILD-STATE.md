@@ -56,7 +56,7 @@ deterministic gates, claim citation and editorial check ledgers, resumable jobs,
 clearance, search and provider adapters, budget accounting, calendar slots, and pipeline
 verification/smoke scripts. A security and debug audit found and addressed SSRF DNS rebinding/IP parsing weaknesses,
 unbounded and insufficiently validated image downloads, non-atomic concurrent budget
-reservations, claim citation index loss across SQLite persistence, retry resumption gaps,
+reservations and missing-cost undercounting, claim citation index loss across SQLite persistence, retry resumption gaps,
 a placeholder disclosure gate, a public unauthenticated admin stub, and a reserve-pitch handoff that still requires queue/scheduler support. See the audit report
 for details and residual constraints. The available GitHub snapshot does not include the
 local SQLite database or ignored runtime logs, and no connected execution environment is
