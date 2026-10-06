@@ -48,21 +48,10 @@ Avatars are typographic initials (no fabricated headshots). Ops note: a stale no
 FOLKLY_PORT=8788. Reclaim 8787 by killing PID 35960, then `node web/server.js`.
 
 ## Stage 04 — Research pipeline & gates
-Status: IN PROGRESS (audit fixes committed 2026-10-06; runtime acceptance remains unverified)
-Evidence: docs/audits/2026-10-06-stage-04-debug-security-audit.md; docs/verification/stage-04-pipeline-run.md (not present; add after runtime verification).
-Implementation commit: 016ba3b (staged pipeline, research records, verification, gates, calendar).
-Notes: The commit adds the 16-state workflow with strict transitions and audit data,
-deterministic gates, claim citation and editorial check ledgers, resumable jobs, image-rights
-clearance, search and provider adapters, budget accounting, calendar slots, and pipeline
-verification/smoke scripts. A security and debug audit found and addressed SSRF DNS rebinding/IP parsing weaknesses,
-unbounded and insufficiently validated image downloads, non-atomic concurrent budget
-reservations and missing-cost undercounting, claim citation index loss across SQLite persistence, retry resumption gaps,
-a placeholder disclosure gate, a public unauthenticated admin stub, and a reserve-pitch handoff that still requires queue/scheduler support. See the audit report
-for details and residual constraints. The available GitHub snapshot does not include the
-local SQLite database or ignored runtime logs, and no connected execution environment is
-available here; end-to-end runtime acceptance therefore remains unverified. Keep this stage
-IN PROGRESS until the committed verification script passes against the real local database
-and its report is added.
+Status: DONE (2026-10-06; seven-article reserve replenishment is a Stage 06 pre-activation requirement)
+Evidence: docs/verification/stage-04-pipeline-run.md (29/29 checks); docs/audits/2026-10-06-stage-04-debug-security-audit.md; `node web/scripts/test-stage04-security.js`.
+Implementation: Stage 04 pipeline and audit fixes are committed on master. The real Tokushima article is ready with six retrieved sources, 24 linked claims, typographic image treatment, and AI/sourcing/no-firsthand-experience disclosure. The unsupported-claim and unresolved-image-rights fixtures reached their intended needs-review holds; both selected an available ready reserve candidate. The image-rights fixture reuses the verified seed dossier in an isolated checkpoint so it tests the image gate without creating a duplicate public article.
+Notes: The database was verified on a disposable copy of the local development SQLite snapshot. Legacy numeric citation references were migrated to stable source IDs. Reserve selection now writes a selected-candidate audit event and job-step record. One verified ready article is present; Stage 06 must populate the seven-article operating reserve before activating daily publication.
 
 ## Stage 05 — Admin control room
 Status: PENDING

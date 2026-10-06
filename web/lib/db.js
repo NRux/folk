@@ -183,6 +183,10 @@ CREATE INDEX IF NOT EXISTS idx_articles_status ON articles(status);
 CREATE INDEX IF NOT EXISTS idx_sources_av ON sources(article_version_id);
 CREATE INDEX IF NOT EXISTS idx_checks_av ON editorial_checks(article_version_id);
 CREATE INDEX IF NOT EXISTS idx_audit_at ON audit_events(at);
+CREATE TABLE IF NOT EXISTS schema_migrations (
+  id TEXT PRIMARY KEY,
+  applied_at TEXT NOT NULL
+);
 `;
 
 function openDb(file) {
@@ -192,7 +196,62 @@ function openDb(file) {
   db.exec("PRAGMA foreign_keys = ON;");
   db.exec(SCHEMA);
   ensureColumns(db);
+  migrateLegacyCitationOrdinals(db);
   return db;
+}
+
+
+// Stage 04: older runs stored 1-based source ordinals in claim_citations.source_ids.
+// Normalize those legacy rows to the source table's stable IDs so resumed runs and
+// audits can resolve citations consistently. Invalid references are left untouched
+// for the publication gates to reject.
+// Stage 04: older runs stored 1-based source ordinals in claim_citations.source_ids.
+// Normalize those legacy rows once, so resumed runs and audits can resolve citations
+// consistently. Invalid references are left untouched for the publication gates to reject.
+function migrateLegacyCitationOrdinals(db) {
+  const migrationId = "stage04.claim-citations-stable-ids.v1";
+  db.exec("BEGIN IMMEDIATE");
+  try {
+    if (db.prepare("SELECT 1 FROM schema_migrations WHERE id = ?").get(migrationId)) {
+      db.exec("COMMIT");
+      return 0;
+    }
+    const sourceRows = db.prepare("SELECT id, article_version_id, ord FROM sources ORDER BY article_version_id, ord").all();
+    const sourcesByVersion = new Map();
+    for (const source of sourceRows) {
+      if (!sourcesByVersion.has(source.article_version_id)) sourcesByVersion.set(source.article_version_id, []);
+      sourcesByVersion.get(source.article_version_id).push(source);
+    }
+    const updates = [];
+    const claims = db.prepare("SELECT id, article_version_id, source_ids FROM claim_citations").all();
+    for (const claim of claims) {
+      let refs;
+      try { refs = JSON.parse(claim.source_ids || "[]"); } catch { continue; }
+      if (!Array.isArray(refs) || !refs.length) continue;
+      const sources = sourcesByVersion.get(claim.article_version_id) || [];
+      const idSet = new Set(sources.map((source) => source.id));
+      if (refs.every((ref) => typeof ref === "string" && idSet.has(ref))) continue;
+      const byOrd = new Map(sources.map((source) => [source.ord, source.id]));
+      const converted = refs.map((ref) => {
+        if (typeof ref === "string" && idSet.has(ref)) return ref;
+        if (typeof ref !== "number" && !(typeof ref === "string" && /^\d+$/.test(ref))) return null;
+        const ord = Number(ref);
+        return Number.isSafeInteger(ord) ? byOrd.get(ord) || null : null;
+      });
+      if (converted.every(Boolean)) updates.push({ id: claim.id, source_ids: JSON.stringify(converted) });
+    }
+    const update = db.prepare("UPDATE claim_citations SET source_ids = ? WHERE id = ?");
+    for (const row of updates) update.run(row.source_ids, row.id);
+    if (updates.length) {
+      audit(db, "schema-migration", "claim-citations-ordinals-to-ids", "claim_citations", null, `converted ${updates.length} legacy citation rows`);
+    }
+    db.prepare("INSERT INTO schema_migrations (id, applied_at) VALUES (?, ?)").run(migrationId, new Date().toISOString());
+    db.exec("COMMIT");
+    return updates.length;
+  } catch (e) {
+    db.exec("ROLLBACK");
+    throw e;
+  }
 }
 
 // Additive migration (idempotent): stage 04 pipeline fields.

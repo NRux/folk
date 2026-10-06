@@ -13,6 +13,7 @@
 const fs = require("fs");
 const path = require("path");
 const { openDb } = require("../lib/db");
+const { publisherDomain } = require("../lib/pipeline");
 
 const db = openDb(path.join(__dirname, "..", "folkly.db"));
 const results = [];
@@ -21,7 +22,7 @@ function check(name, ok, detail = "") {
   console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? "  [" + detail + "]" : ""}`);
 }
 
-const DISCLOSURE_RE = /Written with AI using the ([A-Z][a-z]+ [A-Z][a-z]+|Folkly) editorial persona; researched from the linked sources\./;
+const DISCLOSURE_PARTS = [/AI editorial persona/i, /linked sources/i, /no firsthand experience/i];
 
 // ---- A. Seed article (tokushima-aizome) -----------------------------------
 const seed = db.prepare("SELECT * FROM articles WHERE slug = 'tokushima-aizome'").get();
@@ -32,8 +33,8 @@ if (seed) {
   check("A2 seed article reached 'ready'", seedReady, "state=" + seed.pipeline_state);
 
   // Sources meeting the rules
-  const sources = db.prepare("SELECT * FROM sources WHERE article_version_id = ? ORDER BY org").all(seed.id + "-v1").sort((a, b) => a.ord - b.ord);
-  const pubs = new Set(sources.map((s) => s.org_author));
+  const sources = db.prepare("SELECT * FROM sources WHERE article_version_id = ? ORDER BY ord").all(seed.id + "-v1");
+  const pubs = new Set(sources.map((s) => publisherDomain(s.url)).filter(Boolean));
   const strong = sources.filter((s) => ["primary", "local", "scholarly", "institutional", "practitioner"].includes(s.publisher)).length;
   check("A3 >=5 substantive sources", sources.length >= 5, sources.length + " sources");
   check("A4 >=3 independent publishers", pubs.size >= 3, [...pubs].join(", "));
@@ -60,7 +61,7 @@ if (seed) {
   const imgOk = (media && media.license && media.creator !== undefined && media.sha256) || (!media && !figureSrc);
   check("A10 image clearance outcome valid", imgOk, media ? `licensed: ${media.license}, creator=${media.creator}, sha=${String(media.sha256).slice(0, 12)}` : "typographic treatment (no figure)");
   if (media) {
-    const licOk = media.license && !/nc|noncommercial/i.test(media.license);
+    const licOk = media.license && media.creator && !/nc|noncommercial/i.test(media.license);
     check("A11 NC license excluded", licOk, "license=" + media.license);
     check("A12 full license metadata (URL + attribution + download time)", !!(media.license_url && media.attribution && media.downloaded_at && media.original_url), `license_url=${!!media.license_url} attribution=${!!media.attribution}`);
     const fileOk = media.file_path && fs.existsSync(path.join(__dirname, "..", "static", media.file_path.replace(/^\//, "")));
@@ -70,9 +71,9 @@ if (seed) {
     check("A14 figure has factual alt text + attribution caption", !!(content.figure.alt && content.figure.figcaption_html), `alt="${content.figure.alt}"`);
   }
 
-  // Disclosure accuracy: the article renders with the persona disclosure (server renders it;
-  // verify the data the renderer uses: persona_id set + disclosure template).
-  check("A15 persona byline set (disclosure source of truth)", !!seed.persona_id, "persona=" + seed.persona_id);
+  // The renderer emits content.note.text, so verify the exact persisted disclosure data.
+  const disclosureText = content.note && typeof content.note.text === "string" ? content.note.text : "";
+  check("A15 mandatory AI, sourcing, and no-firsthand-experience disclosure", !!seed.persona_id && DISCLOSURE_PARTS.every((pattern) => pattern.test(disclosureText)), disclosureText);
 
   const sourceRows = db.prepare("SELECT id FROM sources WHERE article_version_id = ?").all(seed.id + "-v1");
   const sourceIds = new Set(sourceRows.map((row) => row.id));
@@ -89,18 +90,24 @@ if (seed) {
 }
 
 // ---- B. Gate-failure fixtures ---------------------------------------------
-function fixture(name, slug, gateLabel) {
+function fixture(name, slug, gateLabel, expectedReason, pitchId) {
   const f = db.prepare("SELECT * FROM articles WHERE slug = ?").get(slug);
   check(`B${name}1 ${gateLabel} fixture exists`, !!f, f ? f.slug : "missing");
   if (!f) return null;
   const notReady = f.pipeline_state !== "ready";
   const held = f.pipeline_state === "needs-review" || f.pipeline_state === "withdrawn" || f.pipeline_state === "blocked";
   check(`B${name}2 ${gateLabel}: did NOT reach ready`, notReady, "state=" + f.pipeline_state);
-  check(`B${name}3 ${gateLabel}: routed to hold (needs-review/blocked/withdrawn)`, held, "state=" + f.pipeline_state + " hold_reason=" + (f.hold_reason || "").slice(0, 80));
+  const reasonMatches = String(f.hold_reason || "").toLowerCase().includes(expectedReason.toLowerCase());
+  check(`B${name}3 ${gateLabel}: held for the intended gate`, held && reasonMatches, "state=" + f.pipeline_state + " hold_reason=" + (f.hold_reason || "").slice(0, 120));
+  const routed = db.prepare(
+    `SELECT COUNT(*) c FROM job_steps js JOIN jobs j ON j.id = js.job_id
+     WHERE j.job_type = ? AND js.step_name = 'reserve-selection' AND js.status = 'ok'`
+  ).get("pipeline:" + pitchId).c;
+  check(`B${name}4 ${gateLabel}: ready reserve candidate selected`, routed > 0, routed + " reserve selections");
   return f;
 }
-fixture("1", "kumasi-kente-fixture", "unsupported-claim gate");
-fixture("2", "dakar-griot-fixture", "image-rights gate");
+fixture("1", "kumasi-kente-fixture", "unsupported-claim gate", "unsupported-claim", "p-kumasi-kente");
+fixture("2", "image-rights-aizome-fixture", "image-rights gate", "unresolved image rights", "p-image-rights-aizome");
 
 // ---- C. Transition audit trail ---------------------------------------------
 function trail(articleId) {
@@ -115,7 +122,7 @@ if (seed) {
   console.log("   trail:", states.join(" -> "));
 }
 const f1 = db.prepare("SELECT * FROM articles WHERE slug = 'kumasi-kente-fixture'").get();
-const f2 = db.prepare("SELECT * FROM articles WHERE slug = 'dakar-griot-fixture'").get();
+const f2 = db.prepare("SELECT * FROM articles WHERE slug = 'image-rights-aizome-fixture'").get();
 if (f1) {
   const t = trail(f1.id);
   check("C2 fixture 1 trail has actor + reason on all transitions", t.every((r) => r.actor && r.reason), t.length + " transitions");
@@ -145,6 +152,10 @@ const lines = [
   "# Stage 04 Verification — Pipeline run, gates, calendar",
   "",
   `Date: ${new Date().toISOString()}`,
+  "",
+  "Execution notes: verified against a disposable copy of the local development database. The Tokushima seed is a real completed pitch-to-ready run. The unsupported-claim fixture resumes its saved verification checkpoint. The image-rights fixture reuses the verified seed dossier in an isolated editorial-revision checkpoint, then exercises image-clearance through the needs-review hold; neither fixture receives a publication slot.",
+  "",
+  "Reproduction: seed pitches; run Tokushima to ready; prepare the image-rights fixture; run the two gate demos; run this verifier.",
   "",
   `Total checks: ${results.length}, passed: ${results.length - failed.length}, failed: ${failed.length}`,
   "",

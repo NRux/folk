@@ -36,17 +36,17 @@ const PITCHES = [
       "forced unsupported-claim gate failure to demonstrate the hard-gate hold + reserve routing.",
   },
   {
-    id: "p-dakar-griot",
-    title: "The griot's memory: history told by voice",
-    persona_id: "sasha-wren",
-    place: "Dakar, Senegal",
-    practice: "griot (gewel) oral tradition and praise poetry",
-    slug: "dakar-griot-fixture",
-    country: "Senegal",
+    id: "p-image-rights-aizome",
+    title: "Aizome image-rights gate fixture",
+    persona_id: "mira-sol",
+    place: "Tokushima Prefecture, Japan",
+    practice: "indigo dyeing (aizome) and craft economies",
+    slug: "image-rights-aizome-fixture",
+    country: "Japan",
     status: "new",
     reason:
-      "STAGE-04 GATE-DEMO FIXTURE (isolated from real publication slots). Runs the full pipeline with a " +
-      "forced image-rights gate failure to demonstrate unresolved image rights preventing 'ready'.",
+      "STAGE-04 GATE-DEMO FIXTURE. Reuses the verified seed dossier in an isolated local test database " +
+      "to exercise the unresolved-image-rights hold without publication-slot side effects.",
   },
 ];
 

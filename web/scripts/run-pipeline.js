@@ -41,6 +41,24 @@ const briefsMap = (() => {
   return new Map(rows.map((r) => [r.persona_id, JSON.parse(r.brief_json)]));
 })();
 
+
+function selectReadyReserve(db, jobId, failedArticleId, reason) {
+  const reserve = db.prepare(
+    `SELECT id, slug, title FROM articles
+     WHERE pipeline_state = 'ready' AND status NOT IN ('scheduled', 'published') AND id <> ?
+     ORDER BY updated_at ASC, id ASC LIMIT 1`
+  ).get(failedArticleId);
+  if (!reserve) {
+    stepRecord(db, jobId, "reserve-selection", "fail", "no eligible ready reserve article; " + reason);
+    audit(db, "pipeline-runner", "reserve-selection-empty", "article", failedArticleId, reason);
+    return null;
+  }
+  const detail = `candidate=${reserve.slug} (${reserve.id}); failed=${failedArticleId}; ${reason}`;
+  stepRecord(db, jobId, "reserve-selection", "ok", detail);
+  audit(db, "pipeline-runner", "reserve-selected", "article", reserve.id, detail);
+  return reserve;
+}
+
 function jobRow(jobType, status = "running") {
   const id = "job-" + crypto.randomBytes(6).toString("hex");
   db.prepare("INSERT INTO jobs (id, job_type, status, next_run_at, last_run_at) VALUES (?,?,?,?,?)").run(id, jobType, status, nowIso(), nowIso());
@@ -294,7 +312,7 @@ async function main() {
         if (!research) {
           const ctx = { query: `${pitch.place} ${pitch.practice} ${pitch.title}`, place: pitch.place, topic: pitch.practice };
           console.log(`[run] researching (persona=${art.persona_id})...`);
-          research = await runResearch(ctx, db, art);
+          research = await runResearch(ctx, db, art, { runId: jobId });
           persistResearch(db, art.id, research);
           stepRecord(db, jobId, "source-research", "ok", `${research.sources.length} sources, ${research.claims.length} claims, ${research.namedLocalVoices.length} local voices`);
           console.log(`[run] research complete: ${research.sources.length} sources, ${research.claims.length} claims`);
@@ -302,8 +320,9 @@ async function main() {
           const src = sourceRulesCheck(research);
           if (research.sources.length < 5) {
             transition(db, art.id, "withdrawn", "pipeline-runner", "evidence too thin: " + src.issues.join("; "));
+            selectReadyReserve(db, jobId, art.id, "evidence too thin");
             finishJob(jobId, "withdrawn", "evidence too thin");
-            console.log(`[run] WITHDRAWN: evidence too thin (${research.sources.length} sources). Route to reserve selection.`);
+            console.log(`[run] WITHDRAWN: evidence too thin (${research.sources.length} sources); reserve candidate selected if available.`);
             return;
           }
         } else {
@@ -328,7 +347,7 @@ async function main() {
         const brief = briefsMap.get(art.persona_id) || { beat: "", central_question: "", voice: "", story_structure: "", research_emphasis: "", blind_spot: "" };
         console.log(`[run] drafting as ${persona.name}...`);
         const ctx = { query: `${pitch.place} ${pitch.practice}`, place: pitch.place, topic: pitch.practice, deck: pitch.deck || "" };
-        const draft = await runDraft(ctx, db, art, persona, brief, research, { revisionNotes });
+        const draft = await runDraft(ctx, db, art, persona, brief, research, { revisionNotes, runId: jobId });
         const { body_html, toc } = mdToArticleHtml(draft.markdown, research.sources);
         const titleMatch = draft.markdown.match(/^#\s+(.+)$/m);
         if (titleMatch && !revisionNotes) {
@@ -362,7 +381,7 @@ async function main() {
         console.log(`[run] verifying (deterministic + independent review)...`);
         const detChecks = deterministicChecks(db, art, content, research);
         const ctx = { place: pitch.place, topic: pitch.practice };
-        review = await independentReview(ctx, db, art, content, research);
+        review = await independentReview(ctx, db, art, content, research, { runId: jobId });
         persistReview(db, art.id, review);
         stepRecord(db, jobId, "verification", "ok", `verdict=${review.verdict} findings=${(review.findings || []).length}`);
         console.log(`[run] verification verdict=${review.verdict}, findings=${(review.findings || []).length}`);
@@ -389,9 +408,9 @@ async function main() {
           const reason = "gates failed [" + gates.failures.map((f) => f.gate).join(", ") + "] attempts=" + attempts;
           transition(db, art.id, "needs-review", "pipeline-runner", reason);
           stepRecord(db, jobId, "gates-failed", "fail", reason);
+          selectReadyReserve(db, jobId, art.id, reason);
           finishJob(jobId, "needs-review", reason);
           console.log(`[run] GATES FAILED (hard) -> needs-review. ${reason}`);
-          console.log(`[run] (stage-06 would select a ready reserve article to keep the slot filled.)`);
           return;
         }
         if (!gates.ok) {
@@ -460,9 +479,9 @@ async function main() {
           const reason = `revision cap reached (attempts=${attempts} > ${MAX_REVISIONS}); reviewer still verdict=${review.verdict}`;
           transition(db, art.id, "needs-review", "pipeline-runner", reason);
           stepRecord(db, jobId, "revision-cap", "fail", reason);
+          selectReadyReserve(db, jobId, art.id, "automatic revision cap: " + reason);
           finishJob(jobId, "needs-review", reason);
           console.log(`[run] REVISION CAP reached -> needs-review. ${reason}`);
-          console.log(`[run] (stage-06 would select a ready reserve article to keep the slot filled.)`);
           return;
         }
         console.log(`[run] revising (attempt ${attempts})...`);
@@ -514,8 +533,9 @@ async function main() {
         if (image.outcome !== "licensed" && image.outcome !== "typographic") {
           transition(db, art.id, "needs-review", "pipeline-runner", "unresolved image rights: " + (image.reason || ""));
           stepRecord(db, jobId, "image-gate", "fail", image.reason || "no clearance outcome");
+          selectReadyReserve(db, jobId, art.id, "unresolved image rights");
           finishJob(jobId, "needs-review", "image rights unresolved");
-          console.log(`[run] IMAGE-RIGHTS GATE FAILED -> needs-review. Route to reserve selection.`);
+          console.log(`[run] IMAGE-RIGHTS GATE FAILED -> needs-review; reserve candidate selected if available.`);
           return;
         }
         transition(db, art.id, "ready", "pipeline-runner", "image cleared; article ready for scheduling");

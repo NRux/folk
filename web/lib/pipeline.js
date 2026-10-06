@@ -91,11 +91,13 @@ async function bounded(fn, { attempts = 2, delayMs = 4000 } = {}) {
 
 // ---- Research (spec section 4) --------------------------------------------
 const PUBLISHER_CLASS = {
-  primary: /(^|\.)?(nih\.gov|nature\.com|sciencedirect\.com|springer\.com|wiley\.com|cambridge\.org|oup\.com|jstor\.org|acm\.org|ieee\.org)/,
-  local: /(^|\.)?(tokushima|shikoku|japan\.go\.jp|pref\.tokushima|aizome|indigo)/,
-  institutional: /(^|\.)?(museum|metmuseum|vam|britishmuseum| Smithsonian|smithsonian|library\.congress|unesco|who\.org|un\.org|britannica)/,
-  scholarly: /(^|\.)?(wikipedia|wikimedia|academia\.edu|researchgate|arxiv|journals)/,
-  practitioner: /(^|\.)?(ruafu|atelier|workshop|studio|guild|crafts|maker)/,
+  // Public records and government archives are primary; journal and university
+  // publishers are scholarly/institutional rather than automatically "primary".
+  primary: /(^|\.)(archives\.gov|nationalarchives\.gov\.uk|loc\.gov|congress\.gov|legislation\.gov\.uk|data\.gov|govinfo\.gov)$/,
+  local: /(^|\.)(tokushima\.jp|pref\.tokushima\.lg\.jp|city\.tokushima\.tokushima\.jp|shikoku-tourism\.com|shikoku\.or\.jp|japan\.go\.jp)$/,
+  institutional: /(^|\.)(unesco\.org|who\.int|un\.org|smithsonian\.gov|metmuseum\.org|vam\.ac\.uk|britishmuseum\.org|[a-z0-9-]+\.gov|[a-z0-9-]+\.edu|[a-z0-9-]+\.int|[a-z0-9-]+\.go\.jp|[a-z0-9-]+\.ac\.uk)$/,
+  scholarly: /(^|\.)(nature\.com|sciencedirect\.com|springer\.com|wiley\.com|cambridge\.org|oup\.com|jstor\.org|acm\.org|ieee\.org|arxiv\.org|journals\.[a-z.]+)$/,
+  practitioner: /(^|\.)(ruafu|atelier|workshop|studio|guild|crafts|maker)(\.|$)/,
 };
 
 function classifyPublisher(host) {
@@ -107,9 +109,9 @@ function classifyPublisher(host) {
 // record sources + per-source claims. Rules: >=5 substantive sources, >=3 independent
 // publishers (syndication does not count), >=2 primary/local/scholarly/institutional/
 // practitioner, >=1 named local or practitioner perspective.
-async function runResearch(ctx, db, art, { budgetEstUsd = 2 } = {}) {
+async function runResearch(ctx, db, art, { budgetEstUsd = 2, runId = null } = {}) {
   const { query, place, topic } = ctx;
-  const res = await reserveBudget(db, budgetEstUsd, { articleSlug: art.slug, step: "research" });
+  const res = await reserveBudget(db, budgetEstUsd, { runId, articleSlug: art.slug, step: "research" });
   if (!res.ok) throw new Error("budget: " + res.reason);
   const out = { sources: [], claims: [], uncertainties: [], disagreements: [], namedLocalVoices: [], rejected: [] };
   const cfg = providerConfig(db);
@@ -173,7 +175,7 @@ async function runResearch(ctx, db, art, { budgetEstUsd = 2 } = {}) {
       { role: "system", content: prompt.system },
       { role: "user", content: prompt.user },
     ], { temperature: 0.2, maxTokens: 3000 });
-    settleBudget(db, res.reservationId, { articleSlug: art.slug, step: "research", model: llm.model, usage: llm.usage, costUsd: llm.costUsd });
+    settleBudget(db, res.reservationId, { runId, articleSlug: art.slug, step: "research", model: llm.model, usage: llm.usage, costUsd: llm.costUsd });
     const parsed = extractJson(llm.text);
     if (!parsed) throw new Error("research LLM returned no JSON: " + llm.text.slice(0, 200));
     out.claims = (parsed.claims || []).slice(0, 60);
@@ -235,7 +237,8 @@ function sourceRulesCheck(out) {
 async function runDraft(ctx, db, art, persona, brief, research, opts = {}) {
   const cfg = providerConfig(db);
   const budgetEst = 4;
-  const res = await reserveBudget(db, budgetEst, { articleSlug: art.slug, step: "draft" });
+  const runId = opts.runId || null;
+  const res = await reserveBudget(db, budgetEst, { runId, articleSlug: art.slug, step: "draft" });
   if (!res.ok) throw new Error("budget: " + res.reason);
   try {
     const s = settingsGetAll(db);
@@ -259,7 +262,7 @@ async function runDraft(ctx, db, art, persona, brief, research, opts = {}) {
       ],
       { temperature: 0.55, maxTokens: 4200, timeoutMs: 900000 }
     );
-    settleBudget(db, res.reservationId, { articleSlug: art.slug, step: "draft", model: llm.model, usage: llm.usage, costUsd: llm.costUsd });
+    settleBudget(db, res.reservationId, { runId, articleSlug: art.slug, step: "draft", model: llm.model, usage: llm.usage, costUsd: llm.costUsd });
     return { markdown: llm.text, model: llm.model };
   } catch (e) {
     releaseBudget(db, res.reservationId);
@@ -365,10 +368,10 @@ function deterministicChecks(db, art, content, research) {
   return checks;
 }
 
-async function independentReview(ctx, db, art, content, research) {
+async function independentReview(ctx, db, art, content, research, { runId = null } = {}) {
   const cfg = providerConfig(db);
   const budgetEst = 2;
-  const res = await reserveBudget(db, budgetEst, { articleSlug: art.slug, step: "verification" });
+  const res = await reserveBudget(db, budgetEst, { runId, articleSlug: art.slug, step: "verification" });
   if (!res.ok) throw new Error("budget: " + res.reason);
   try {
     // The reviewer must see AT LEAST as much evidence as the draft writer did:
@@ -389,7 +392,7 @@ async function independentReview(ctx, db, art, content, research) {
       ],
       { temperature: 0.1, maxTokens: 2500, timeoutMs: 600000 }
     );
-    settleBudget(db, res.reservationId, { articleSlug: art.slug, step: "verification", model: llm.model, usage: llm.usage, costUsd: llm.costUsd });
+    settleBudget(db, res.reservationId, { runId, articleSlug: art.slug, step: "verification", model: llm.model, usage: llm.usage, costUsd: llm.costUsd });
     const parsed = extractJson(llm.text);
     if (!parsed || !["pass", "revise", "fail"].includes(parsed.verdict) || !Array.isArray(parsed.findings)) throw new Error("verification LLM returned invalid schema");
     const allowedTypes = new Set(["unsupported-claim","fabricated-reporting","chronology","conflict","misleading-cause","close-paraphrase","interpretation-as-fact","voice"]);
@@ -515,6 +518,6 @@ function runGates(db, art, { research, review, detChecks, image, draftWords, con
 
 module.exports = {
   STATES, FLOW, MAX_REVISIONS, transition, stepRecord, runResearch, sourceRulesCheck,
-  runDraft, mdToArticleHtml, deterministicChecks, independentReview, runImageClearance, runGates, publisherDomain,
+  runDraft, mdToArticleHtml, deterministicChecks, independentReview, runImageClearance, runGates, publisherDomain, classifyPublisher,
   extractJson, nowIso,
 };
