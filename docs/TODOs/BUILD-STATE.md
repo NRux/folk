@@ -67,8 +67,10 @@ preserve/remap citations, invalidate verification, and queue revalidation. Publi
 but not executed before Stage 06 installs the publisher. Verification: docs/verification/stage-05-admin.md.
 
 ## Stage 06 — Scheduling & publication
-Status: PENDING
-Evidence: (stage fills: docs/platform/SCHEDULING.md + docs/verification/stage-06-scheduling.md)
+Status: DONE (2026-10-06)
+Evidence: docs/platform/SCHEDULING.md; docs/verification/stage-06-scheduling.md; web/scripts/test-stage06-scheduler.js.
+Notes: Added persisted one-shot publication and reserve-replenishment runners with Pacific local-date resolution, unique daily slots, serialized publication, latest-version eligibility rechecks, timeout-safe retries, delay tracking, separate content readback, five-minute retry backoff, and admin-visible failures/alerts. Provider budget reservations remain atomic under the existing daily/monthly caps. The owner control room now shows scheduler state, failures, and alerts. Verification passes across spring/fall DST offsets, two concurrent worker threads, timeout after commit, provider failure, empty reserve, backoff, and late same-day delay. The existing public Site has no MCP endpoint; the runner deliberately treats its publisher as unavailable and no recurring schedule was created. The transaction tests verify SQLite behavior only, not a live Site update. Stage 08 documents the MCP publisher and linked-schedule deployment path; activation remains gated on Stage 07.
+
 
 ## Stage 07 — Acceptance verification & seeding
 Status: PENDING
