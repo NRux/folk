@@ -28,6 +28,7 @@ const {
 const DB_FILE = process.env.FOLKLY_DB || path.join(__dirname, "folkly.db");
 const STATIC = path.join(__dirname, "static");
 const PORT = parseInt(process.env.FOLKLY_PORT || "8787", 10);
+const HOST = process.env.FOLKLY_HOST || "127.0.0.1";
 
 const db = openDb(DB_FILE);
 
@@ -228,16 +229,17 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // Admin UI is not implemented or authenticated yet; do not expose a public stub.
-  if (p === "/admin" || p.startsWith("/admin/")) {
-    return send(res, 404, "text/plain; charset=utf-8", "not found");
+  // Protected owner control room and JSON actions. Every route authorizes server-side.
+  if (p === "/admin" || p.startsWith("/admin/") || p === "/api/admin" || p.startsWith("/api/admin/")) {
+    const { handleAdminRequest } = require("./lib/admin");
+    return handleAdminRequest(req, res, db, url);
   }
 
   return send(res, 404, "text/plain", "not found");
 });
 
 if (require.main === module) {
-  server.listen(PORT, () => console.log(`Folkly server listening on http://localhost:${PORT} (db: ${DB_FILE})`));
+  server.listen(PORT, HOST, () => console.log(`Folkly server listening on http://${HOST}:${PORT} (db: ${DB_FILE})`));
 }
 
 module.exports = { server, db };

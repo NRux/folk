@@ -115,6 +115,13 @@ function inter(a, b) {
 // Score a pitch (spec section 3 criteria). Returns { score, reasons[] }.
 function scorePitch(db, pitch) {
   const reasons = [];
+  const exclusionRaw = settingsGetAll(db)["topic.exclusions"] || "[]";
+  let exclusions;
+  try { exclusions = JSON.parse(exclusionRaw); } catch { throw new Error("topic.exclusions is invalid JSON; refusing topic selection"); }
+  if (!Array.isArray(exclusions)) throw new Error("topic.exclusions must be an array; refusing topic selection");
+  const candidateFields = [norm(pitch.title), norm(pitch.place), norm(pitch.practice)];
+  const matchedExclusion = exclusions.map(norm).find((e) => e && candidateFields.some((field) => (" " + field + " ").includes(" " + e + " ")));
+  if (matchedExclusion) return { score: -1, reasons: ["excluded by owner: " + matchedExclusion], dedupe: { ok: false, hits: [{ why: "owner exclusion" }] } };
   let score = 0;
   const dedupe = dedupeCheck(db, { place: pitch.place, practice: pitch.practice, title: pitch.title });
   if (!dedupe.ok) {

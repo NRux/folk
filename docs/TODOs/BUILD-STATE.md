@@ -54,8 +54,17 @@ Implementation: Stage 04 pipeline and audit fixes are committed on master. The r
 Notes: The database was verified on a disposable copy of the local development SQLite snapshot. Legacy numeric citation references were migrated to stable source IDs. Reserve selection now writes a selected-candidate audit event and job-step record. One verified ready article is present; Stage 06 must populate the seven-article operating reserve before activating daily publication.
 
 ## Stage 05 — Admin control room
-Status: PENDING
-Evidence: (stage fills: docs/verification/stage-05-admin.md)
+Status: DONE (2026-10-06)
+Evidence: docs/verification/stage-05-admin.md
+Notes: Protected admin pages and APIs check the Sites-authenticated user ID against the configured
+owner ID on every request; anonymous callers are rejected and signed-in non-owners receive 403.
+Background job authorization uses a distinct scoped bearer credential. The dashboard reads the
+calendar, pipeline, reserve, failures, and spend data; it reports scheduler state as unavailable
+until Stage 06 installs the live registry. Owner controls persist audited edits, settings, topic
+assignments/exclusions, pause state, failed-step retries, tomorrow replacements, version restores,
+unpublishes, corrections, and explicit publish-now requests. Factual edits create a new version,
+preserve/remap citations, invalidate verification, and queue revalidation. Publish-now is recorded
+but not executed before Stage 06 installs the publisher. Verification: docs/verification/stage-05-admin.md.
 
 ## Stage 06 — Scheduling & publication
 Status: PENDING
