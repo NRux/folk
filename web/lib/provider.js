@@ -238,6 +238,9 @@ function reserveBudget(db, estUsd, { runId, articleSlug, step }) {
     const settings = settingsGetAll(db);
     const effDay = parseFloat(settings["budget.daily_usd"] || "5");
     const effMonth = parseFloat(settings["budget.monthly_usd"] || "100");
+    if (!Number.isFinite(effDay) || effDay <= 0 || !Number.isFinite(effMonth) || effMonth <= 0) {
+      throw new Error("budget configuration invalid; refusing provider spend");
+    }
     if (d.spent + d.reserved + estUsd > effDay) throw new Error(`daily budget exhausted (${(d.spent + d.reserved).toFixed(3)}/${effDay} USD)`);
     if (m.spent + m.reserved + estUsd > effMonth) throw new Error(`monthly budget exhausted (${(m.spent + m.reserved).toFixed(3)}/${effMonth} USD)`);
     db.prepare("INSERT INTO spend_ledger (at, run_id, article_slug, step, reserved_usd, reservation_id) VALUES (?,?,?,?,?,?)")
@@ -246,7 +249,7 @@ function reserveBudget(db, estUsd, { runId, articleSlug, step }) {
     return { ok: true, reservationId };
   } catch (e) {
     db.exec("ROLLBACK");
-    if (/budget exhausted/.test(e.message)) return { ok: false, reason: e.message };
+    if (/budget (exhausted|configuration invalid)/.test(e.message)) return { ok: false, reason: e.message };
     throw e;
   }
 }
@@ -293,7 +296,9 @@ function budgetStatus(db) {
   return {
     day: { spent: +d.spent.toFixed(4), reserved: +d.reserved.toFixed(4), cap: parseFloat(s["budget.daily_usd"] || "5") },
     month: { spent: +m.spent.toFixed(4), reserved: +m.reserved.toFixed(4), cap: parseFloat(s["budget.monthly_usd"] || "100") },
-    exhausted: d.spent + d.reserved >= parseFloat(s["budget.daily_usd"] || "5") || m.spent + m.reserved >= parseFloat(s["budget.monthly_usd"] || "100"),
+    exhausted: !Number.isFinite(parseFloat(s["budget.daily_usd"] || "5")) || parseFloat(s["budget.daily_usd"] || "5") <= 0 ||
+      !Number.isFinite(parseFloat(s["budget.monthly_usd"] || "100")) || parseFloat(s["budget.monthly_usd"] || "100") <= 0 ||
+      d.spent + d.reserved >= parseFloat(s["budget.daily_usd"] || "5") || m.spent + m.reserved >= parseFloat(s["budget.monthly_usd"] || "100"),
   };
 }
 
