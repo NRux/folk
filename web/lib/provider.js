@@ -7,6 +7,7 @@
 const https = require("https");
 const { URL } = require("url");
 const http = require("http");
+const crypto = require("crypto");
 const { openDb, settingsGetAll, audit } = require("./db");
 
 // Resolve provider config. Order: env vars, then settings table, then defaults.
@@ -204,52 +205,77 @@ function ensureBudgetTables(db) {
   prompt_tokens INTEGER,
   completion_tokens INTEGER,
   cost_usd REAL,
-  reserved_usd REAL
+  reserved_usd REAL,
+  reservation_id TEXT
 )`);
-  db.exec(`CREATE INDEX IF NOT EXISTS idx_spend_at ON spend_ledger(at)`);
+  const cols = db.prepare("PRAGMA table_info(spend_ledger)").all().map((r) => r.name);
+  if (!cols.includes("reservation_id")) db.exec("ALTER TABLE spend_ledger ADD COLUMN reservation_id TEXT");
+  db.exec("CREATE INDEX IF NOT EXISTS idx_spend_at ON spend_ledger(at)");
+  db.exec("CREATE INDEX IF NOT EXISTS idx_spend_reservation ON spend_ledger(reservation_id)");
 }
 
-function dayUtc(atIso) {
-  return atIso.slice(0, 10);
-}
-function monthUtc(atIso) {
-  return atIso.slice(0, 7);
-}
+function dayUtc(atIso) { return atIso.slice(0, 10); }
+function monthUtc(atIso) { return atIso.slice(0, 7); }
 
 function spendSince(db, sinceIso) {
   const r = db.prepare("SELECT COALESCE(SUM(cost_usd),0) s, COALESCE(SUM(reserved_usd),0) r FROM spend_ledger WHERE at >= ?").get(sinceIso);
   return { spent: r.s, reserved: r.r };
 }
 
-// Atomically reserve up to `estUsd` against both caps. Returns { ok, reason }.
+// The reservation and both cap checks run under an immediate SQLite write lock,
+// so concurrent jobs cannot all pass the same stale balance check.
 function reserveBudget(db, estUsd, { runId, articleSlug, step }) {
   ensureBudgetTables(db);
-  const now = new Date().toISOString();
-  const dayStart = dayUtc(now) + "T00:00:00.000Z";
-  const monthStart = monthUtc(now) + "-01T00:00:00.000Z";
-  const d = spendSince(db, dayStart);
-  const m = spendSince(db, monthStart);
-  const dayCap = 5; // from settings default; overridden in settings at call sites
-  const monthCap = 100;
-  const effDay = parseFloat(settingsGetAll(db)["budget.daily_usd"] || "5");
-  const effMonth = parseFloat(settingsGetAll(db)["budget.monthly_usd"] || "100");
-  if (d.spent + d.reserved + estUsd > effDay) return { ok: false, reason: `daily budget exhausted (${(d.spent + d.reserved).toFixed(3)}/${effDay} USD)` };
-  if (m.spent + m.reserved + estUsd > effMonth) return { ok: false, reason: `monthly budget exhausted (${(m.spent + m.reserved).toFixed(3)}/${effMonth} USD)` };
-  db.prepare("INSERT INTO spend_ledger (at, run_id, article_slug, step, reserved_usd) VALUES (?,?,?,?,?)").run(now, runId ?? null, articleSlug ?? null, step ?? null, estUsd);
-  return { ok: true };
+  if (!Number.isFinite(estUsd) || estUsd <= 0) return { ok: false, reason: "invalid budget reservation" };
+  const reservationId = crypto.randomBytes(16).toString("hex");
+  db.exec("BEGIN IMMEDIATE");
+  try {
+    const now = new Date().toISOString();
+    const dayStart = dayUtc(now) + "T00:00:00.000Z";
+    const monthStart = monthUtc(now) + "-01T00:00:00.000Z";
+    const d = spendSince(db, dayStart);
+    const m = spendSince(db, monthStart);
+    const settings = settingsGetAll(db);
+    const effDay = parseFloat(settings["budget.daily_usd"] || "5");
+    const effMonth = parseFloat(settings["budget.monthly_usd"] || "100");
+    if (d.spent + d.reserved + estUsd > effDay) throw new Error(`daily budget exhausted (${(d.spent + d.reserved).toFixed(3)}/${effDay} USD)`);
+    if (m.spent + m.reserved + estUsd > effMonth) throw new Error(`monthly budget exhausted (${(m.spent + m.reserved).toFixed(3)}/${effMonth} USD)`);
+    db.prepare("INSERT INTO spend_ledger (at, run_id, article_slug, step, reserved_usd, reservation_id) VALUES (?,?,?,?,?,?)")
+      .run(now, runId ?? null, articleSlug ?? null, step ?? null, estUsd, reservationId);
+    db.exec("COMMIT");
+    return { ok: true, reservationId };
+  } catch (e) {
+    db.exec("ROLLBACK");
+    if (/budget exhausted/.test(e.message)) return { ok: false, reason: e.message };
+    throw e;
+  }
 }
 
-// Settle a reservation: record actual usage; the reserved row is updated in place.
-function settleBudget(db, reservationEstUsd, { runId, articleSlug, step, model, usage, costUsd }) {
+function releaseBudget(db, reservationId) {
+  if (!reservationId) return;
+  db.prepare("UPDATE spend_ledger SET reserved_usd = 0 WHERE reservation_id = ? AND reserved_usd > 0").run(reservationId);
+}
+
+// Settlement attaches actual usage to its exact reservation. A provider charge can
+// exceed an estimate, so record the overrun and let subsequent reservations fail.
+function settleBudget(db, reservationId, { runId, articleSlug, step, model, usage, costUsd }) {
   ensureBudgetTables(db);
   const now = new Date().toISOString();
-  db.prepare(
-    "UPDATE spend_ledger SET reserved_usd = 0 WHERE reserved_usd > 0 AND article_slug = ? AND step = ? AND at = (SELECT MAX(at) FROM spend_ledger WHERE article_slug = ? AND step = ? AND reserved_usd > 0)"
-  ).run(articleSlug, step, articleSlug, step);
-  db.prepare(
-    "INSERT INTO spend_ledger (at, run_id, article_slug, step, model, prompt_tokens, completion_tokens, cost_usd) VALUES (?,?,?,?,?,?,?,?)"
-  ).run(now, runId ?? null, articleSlug ?? null, step ?? null, model ?? null, usage?.prompt_tokens ?? null, usage?.completion_tokens ?? null, costUsd ?? 0);
-  audit(db, "budget", "settle", "spend", articleSlug, `${step} ${costUsd.toFixed(4)} USD`);
+  const cost = Number.isFinite(costUsd) && costUsd >= 0 ? costUsd : 0;
+  db.exec("BEGIN IMMEDIATE");
+  try {
+    const result = db.prepare(
+      "UPDATE spend_ledger SET reserved_usd = 0, model = ?, prompt_tokens = ?, completion_tokens = ?, cost_usd = ?, at = ?, run_id = COALESCE(?, run_id) WHERE reservation_id = ? AND reserved_usd > 0"
+    ).run(model ?? null, usage?.prompt_tokens ?? null, usage?.completion_tokens ?? null, cost, now, runId ?? null, reservationId);
+    if (result.changes !== 1) throw new Error("budget reservation missing or already settled");
+    db.exec("COMMIT");
+  } catch (e) {
+    db.exec("ROLLBACK");
+    throw e;
+  }
+  audit(db, "budget", "settle", "spend", articleSlug, `${step} ${cost.toFixed(4)} USD`);
+  const status = budgetStatus(db);
+  if (status.exhausted) audit(db, "budget", "cap-reached", "spend", articleSlug, `actual cost reached or exceeded configured cap after ${step}`);
 }
 
 function budgetStatus(db) {
@@ -265,4 +291,4 @@ function budgetStatus(db) {
   };
 }
 
-module.exports = { providerConfig, chat, ensureBudgetTables, reserveBudget, settleBudget, budgetStatus };
+module.exports = { providerConfig, chat, ensureBudgetTables, reserveBudget, releaseBudget, settleBudget, budgetStatus };

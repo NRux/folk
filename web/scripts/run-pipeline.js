@@ -74,6 +74,7 @@ function loadResearch(db, articleId) {
   const sources = db.prepare("SELECT * FROM sources WHERE article_version_id = ? ORDER BY ord").all(verId);
   if (!sources.length) return null;
   const claims = db.prepare("SELECT * FROM claim_citations WHERE article_version_id = ?").all(verId);
+  const sourceOrdById = new Map(sources.map((s, i) => [s.id, i + 1]));
   // The dossier (named local voices, uncertainties, disagreements) round-trips via the
   // persist-dossier audit event — durable even after persistDraft overwrites the
   // version row's content_json. Gates read namedLocalVoices, so it must survive resume.
@@ -99,7 +100,11 @@ function loadResearch(db, articleId) {
       pub_date: s.pub_date, retrieved_at: s.retrieved_at, lang: s.lang,
       words: null, text_excerpt: s.excerpt || "", supports_claims: s.supports_claims,
     })),
-    claims: claims.map((c) => ({ claim: c.claim, kind: c.kind, source_indices: JSON.parse(c.source_ids || "[]"), verified: c.verified })),
+    claims: claims.map((c) => ({
+      claim: c.claim, kind: c.kind,
+      source_indices: JSON.parse(c.source_ids || "[]").map((id) => sourceOrdById.get(id)).filter(Number.isInteger),
+      verified: c.verified,
+    })),
     namedLocalVoices: dossier.namedLocalVoices,
     uncertainties: dossier.uncertainties,
     disagreements: dossier.disagreements,
@@ -118,9 +123,10 @@ function persistResearch(db, articleId, research) {
   const insClaim = db.prepare(
     "INSERT INTO claim_citations (id, article_version_id, claim, source_ids, kind, verified) VALUES (?,?,?,?,?,0)"
   );
+  const sourceIds = research.sources.map(() => "src-" + crypto.randomBytes(5).toString("hex"));
   research.sources.forEach((s, i) => {
     insSrc.run(
-      "src-" + crypto.randomBytes(5).toString("hex"), verId, i + 1,
+      sourceIds[i], verId, i + 1,
       String(s.title || "Untitled source"), String(s.org || "Unknown publisher"), String(s.url || ""),
       s.pub_date || null, s.retrieved_at || nowIso(), s.lang || "en",
       s.publisher_class || "secondary", "retrieved-page", i + 1,
@@ -128,9 +134,12 @@ function persistResearch(db, articleId, research) {
     );
   });
   research.claims.forEach((c) => {
+    const sourceIdsForClaim = (c.source_indices || [])
+      .filter((index) => Number.isInteger(index) && index >= 1 && index <= sourceIds.length)
+      .map((index) => sourceIds[index - 1]);
     insClaim.run(
       "claim-" + crypto.randomBytes(5).toString("hex"), verId,
-      String(c.claim || "unparsed claim"), JSON.stringify(c.source_indices || []),
+      String(c.claim || "unparsed claim"), JSON.stringify(sourceIdsForClaim),
       String(c.kind || "fact")
     );
   });
@@ -201,7 +210,7 @@ function persistImage(db, articleId, image) {
   if (image.outcome === "licensed" && image.asset) {
     db.prepare(
       "INSERT INTO media_assets (id, file_path, original_url, creator, license, license_url, attribution, downloaded_at, sha256, caption, alt_text, asset_kind, notes) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"
-    ).run("media-" + crypto.randomBytes(5).toString("hex"), image.asset.file_path, image.asset.original_url, image.asset.creator, image.asset.license, image.asset.license_url, image.asset.attribution, image.asset.downloaded_at, image.asset.sha256, image.asset.caption, image.asset.alt_text, image.asset.asset_kind, "article=" + articleId);
+    ).run("media-" + crypto.randomBytes(5).toString("hex"), image.asset.file_path, image.asset.original_url, image.asset.creator, image.asset.license, image.asset.license_url, image.asset.attribution, image.asset.downloaded_at, image.asset.sha256, image.asset.caption, image.asset.alt_text, image.asset.asset_kind, "article=" + articleId + (image.asset.notes ? "; " + image.asset.notes : ""));
   } else {
     audit(db, "pipeline-runner", "image-typographic", "article", articleId, image.reason || "typographic treatment");
   }
@@ -227,7 +236,7 @@ function finalizeArticle(db, art, content, research, image) {
 }
 
 // Gate names that mean "hard failure: hold, do not auto-revise".
-const HARD_GATES = new Set(["unsupported-claim", "verification-failure", "image-rights", "source-rules", "word-count-band"]);
+const HARD_GATES = new Set(["unsupported-claim", "verification-failure", "image-rights", "source-rules", "word-count-band", "mandatory-disclosure"]);
 
 async function main() {
   const startedAt = Date.now();
@@ -367,6 +376,7 @@ async function main() {
           detChecks,
           image: { outcome: "deferred" }, // image rights gate evaluated at image-clearance
           draftWords,
+          content,
         });
         if (GATE_DEMO && GATE_DEMO !== "image-rights") {
           gates.ok = false;
@@ -419,6 +429,7 @@ async function main() {
           detChecks,
           image: { outcome: "deferred" }, // image rights gate evaluated at image-clearance
           draftWords,
+          content,
         });
         const hardFail = gates.failures.some((f) => HARD_GATES.has(f.gate));
         const attempts = art.revision_attempts || 0;
@@ -516,7 +527,13 @@ async function main() {
         console.log(`[run] done in ${Math.round((Date.now() - startedAt) / 1000)}s`);
         return;
       }
-      if (["ready", "scheduled", "published", "withdrawn", "needs-review", "blocked", "retryable-failure"].includes(state)) {
+      if (state === "retryable-failure") {
+        const resumeState = image ? "image-clearance" : content ? (review ? "editorial-revision" : "verification") : research ? "evidence-dossier" : "source-research";
+        transition(db, art.id, resumeState, "pipeline-runner", "resuming transient failure from last durable checkpoint");
+        art = db.prepare("SELECT * FROM articles WHERE id = ?").get(art.id);
+        continue;
+      }
+      if (["ready", "scheduled", "published", "withdrawn", "needs-review", "blocked"].includes(state)) {
         console.log(`[run] terminal/hold state ${state}; nothing to do`);
         finishJob(jobId, "done", null);
         return;

@@ -48,18 +48,21 @@ Avatars are typographic initials (no fabricated headshots). Ops note: a stale no
 FOLKLY_PORT=8788. Reclaim 8787 by killing PID 35960, then `node web/server.js`.
 
 ## Stage 04 — Research pipeline & gates
-Status: IN PROGRESS (implementation committed 2026-10-06; completion verification not recorded)
-Evidence: docs/verification/stage-04-pipeline-run.md (not present in the current repository snapshot; add after verification).
+Status: IN PROGRESS (audit fixes committed 2026-10-06; runtime acceptance remains unverified)
+Evidence: docs/audits/2026-10-06-stage-04-debug-security-audit.md; docs/verification/stage-04-pipeline-run.md (not present; add after runtime verification).
 Implementation commit: 016ba3b (staged pipeline, research records, verification, gates, calendar).
 Notes: The commit adds the 16-state workflow with strict transitions and audit data,
 deterministic gates, claim citation and editorial check ledgers, resumable jobs, image-rights
 clearance, search and provider adapters, budget accounting, calendar slots, and pipeline
-verification/smoke scripts. The prior 2026-10-05 notes reported a DDG search smoke, page
-fetch, Ollama response, and a seeded pipeline run in progress; those results do not have a
-committed run report in this repository snapshot. GitHub currently contains status markers
-for stages 01–03 only; it has no stage-04 status marker. Console logs matching *.log are
-ignored, so the live run outcome cannot be established from GitHub alone. Keep this stage
-IN PROGRESS until verification results are committed and the stage status marker is written.
+verification/smoke scripts. A security and debug audit found and addressed SSRF DNS rebinding/IP parsing weaknesses,
+unbounded and insufficiently validated image downloads, non-atomic concurrent budget
+reservations, claim citation index loss across SQLite persistence, retry resumption gaps,
+a placeholder disclosure gate, a public unauthenticated admin stub, and a reserve-pitch handoff that still requires queue/scheduler support. See the audit report
+for details and residual constraints. The available GitHub snapshot does not include the
+local SQLite database or ignored runtime logs, and no connected execution environment is
+available here; end-to-end runtime acceptance therefore remains unverified. Keep this stage
+IN PROGRESS until the committed verification script passes against the real local database
+and its report is added.
 
 ## Stage 05 — Admin control room
 Status: PENDING

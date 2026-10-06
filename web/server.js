@@ -228,10 +228,9 @@ const server = http.createServer((req, res) => {
     }
   }
 
-  // admin (stub until stage 05)
+  // Admin UI is not implemented or authenticated yet; do not expose a public stub.
   if (p === "/admin" || p.startsWith("/admin/")) {
-    return send(res, 200, "text/html; charset=utf-8",
-      `<!doctype html><html><head><meta charset="utf-8"><title>Admin | Folkly</title></head><body><h1>Folkly control room</h1><p>Under construction (stage 05).</p></body></html>`);
+    return send(res, 404, "text/plain; charset=utf-8", "not found");
   }
 
   return send(res, 404, "text/plain", "not found");

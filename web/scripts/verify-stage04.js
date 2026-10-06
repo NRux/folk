@@ -74,6 +74,14 @@ if (seed) {
   // verify the data the renderer uses: persona_id set + disclosure template).
   check("A15 persona byline set (disclosure source of truth)", !!seed.persona_id, "persona=" + seed.persona_id);
 
+  const sourceRows = db.prepare("SELECT id FROM sources WHERE article_version_id = ?").all(seed.id + "-v1");
+  const sourceIds = new Set(sourceRows.map((row) => row.id));
+  const claimRows = db.prepare("SELECT source_ids FROM claim_citations WHERE article_version_id = ?").all(seed.id + "-v1");
+  const citationsResolve = claimRows.every((row) => {
+    try { return JSON.parse(row.source_ids || "[]").every((id) => sourceIds.has(id)); } catch { return false; }
+  });
+  check("A15b claim citations resolve to persisted source IDs", claimRows.length > 0 && citationsResolve, `${claimRows.length} claim records / ${sourceRows.length} sources`);
+
   // Deterministic checks present
   const checks = db.prepare("SELECT check_name, result FROM editorial_checks WHERE article_version_id = ?").all(seed.id + "-v1");
   const names = checks.map((c) => c.check_name);
