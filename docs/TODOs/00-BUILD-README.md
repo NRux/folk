@@ -43,7 +43,7 @@ the stage's section in `BUILD-STATE.md`; commit on master. Never fake success.
 ## State
 
 - `BUILD-STATE.md` — single source of truth for progress (committed).
-- `build-logs/` — ephemeral console logs + status markers (gitignored).
+- `build-logs/` — console logs matching `*.log` and `*.pid` are ignored; per-stage `.status` markers are committed. GitHub therefore shows stage markers, not the ephemeral console logs.
 - `docs/preservation/` — stage 01 baseline captures.
-- `docs/verification/` — per-stage verification evidence (stages 02+).
+- `docs/verification/` — committed per-stage verification evidence (stages 02+).
 - `docs/platform/` — architecture + scheduling documentation (stages 02, 06).
