@@ -2,6 +2,12 @@
 
 Stage 7 remains BLOCKED. No article generation, publication, or schedule enabled.
 
+Deployed source: 0f7695765cec0b285f7e71653974698fcf4a2866. Both main and master
+Vercel deployments READY. Public reader passed 38 live checks. `/owner` returned
+200 with the sign-in form; unauthenticated `/api/owner` returned 401; cross-origin
+POST returned 403. Actual owner OTP remains untested until provisioning.
+Readback also confirmed all three old Site switches remain false.
+
 ## Completed and verified
 
 - Applied three migrations to the newly connected healthy Supabase folk project
