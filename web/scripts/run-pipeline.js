@@ -27,6 +27,7 @@ const PITCH_ID = process.argv[3];
 const args = process.argv.slice(4);
 const gateDemoIdx = args.indexOf("--gate-demo");
 const GATE_DEMO = gateDemoIdx >= 0 ? args[gateDemoIdx + 1] : null;
+const REFRESH_RESEARCH = args.includes("--refresh-research");
 const ASSETS_DIR = path.join(__dirname, "..", "static", "assets");
 
 const db = openDb(DB_FILE);
@@ -280,6 +281,13 @@ async function main() {
       console.log(`[run] created article ${art.slug} (id=${art.id})`);
     }
 
+    if (REFRESH_RESEARCH) {
+      if (art.pipeline_state !== "source-research") throw new Error("--refresh-research requires source-research state");
+      const versionId = art.id + "-v1";
+      db.prepare("DELETE FROM claim_citations WHERE article_version_id=?").run(versionId);
+      db.prepare("DELETE FROM sources WHERE article_version_id=?").run(versionId);
+      audit(db, "pipeline-runner", "refresh-research", "article", art.id, "operator requested fresh source retrieval; previous research invalidated");
+    }
     let research = loadResearch(db, art.id);
     let content = loadDraft(db, art.id);
     let review = null;
@@ -314,19 +322,31 @@ async function main() {
           console.log(`[run] researching (persona=${art.persona_id})...`);
           research = await runResearch(ctx, db, art, { runId: jobId });
           persistResearch(db, art.id, research);
+          // Persist the voice/uncertainty checkpoint before any source gate can
+          // hold this article, so owner-directed research retries are resumable.
+          persistDossier(db, art.id, research);
           stepRecord(db, jobId, "source-research", "ok", `${research.sources.length} sources, ${research.claims.length} claims, ${research.namedLocalVoices.length} local voices`);
           console.log(`[run] research complete: ${research.sources.length} sources, ${research.claims.length} claims`);
-          // Evidence too thin -> pick another story (route to reserve), never fabricate depth.
-          const src = sourceRulesCheck(research);
-          if (research.sources.length < 5) {
-            transition(db, art.id, "withdrawn", "pipeline-runner", "evidence too thin: " + src.issues.join("; "));
-            selectReadyReserve(db, jobId, art.id, "evidence too thin");
-            finishJob(jobId, "withdrawn", "evidence too thin");
-            console.log(`[run] WITHDRAWN: evidence too thin (${research.sources.length} sources); reserve candidate selected if available.`);
-            return;
-          }
         } else {
           console.log(`[run] resumed; research already present (${research.sources.length} sources)`);
+        }
+        // Recheck even a resumed dossier: owner corrections never bypass the gate.
+        const src = sourceRulesCheck(research);
+        if (research.sources.length < 5) {
+          transition(db, art.id, "withdrawn", "pipeline-runner", "evidence too thin: " + src.issues.join("; "));
+          selectReadyReserve(db, jobId, art.id, "evidence too thin");
+          finishJob(jobId, "withdrawn", "evidence too thin");
+          console.log(`[run] WITHDRAWN: evidence too thin (${research.sources.length} sources); reserve candidate selected if available.`);
+          return;
+        }
+        if (!src.ok) {
+          const reason = "source rules need review: " + src.issues.join("; ");
+          transition(db, art.id, "needs-review", "pipeline-runner", reason);
+          stepRecord(db, jobId, "source-rules", "fail", reason);
+          selectReadyReserve(db, jobId, art.id, reason);
+          finishJob(jobId, "needs-review", reason);
+          console.log("[run] SOURCE GATE HELD before drafting: " + reason);
+          return;
         }
         transition(db, art.id, "evidence-dossier", "pipeline-runner", "claim ledger persisted");
         persistDossier(db, art.id, research);
@@ -381,7 +401,9 @@ async function main() {
         console.log(`[run] verifying (deterministic + independent review)...`);
         const detChecks = deterministicChecks(db, art, content, research);
         const ctx = { place: pitch.place, topic: pitch.practice };
-        review = await independentReview(ctx, db, art, content, research, { runId: jobId });
+        // A malformed provider response is transient; each attempt acquires its
+        // own budget reservation and a failed response never passes a gate.
+        review = await bounded(() => independentReview(ctx, db, art, content, research, { runId: jobId }), { attempts: 1, delayMs: 1500 });
         persistReview(db, art.id, review);
         stepRecord(db, jobId, "verification", "ok", `verdict=${review.verdict} findings=${(review.findings || []).length}`);
         console.log(`[run] verification verdict=${review.verdict}, findings=${(review.findings || []).length}`);

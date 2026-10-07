@@ -1,0 +1,77 @@
+"use strict";
+// Curated starting URLs; every page still passes the normal fetch, provenance,
+// claim linkage, independent review, and publication gates. Never a claim source
+// merely because it appears in this list.
+module.exports = {
+  "essaouira-gnaoua": [
+    "https://ich.unesco.org/en/RL/gnawa-01170",
+    "https://ias.um6p.ma/ias-events/transitions-chair-at-gnaoua-festival-2026/",
+    "https://www.okayafrica.com/72-hours-at-the-gnaoua-and-world-music-festival/1434147",
+    "https://www.lebrief.ma/interview-montari-lhumilite-maalem-essaouira-100157788/",
+    "https://if-maroc.org/essaouira/evenements/arbre-a-palabres-festival-gnaoua/",
+    "https://aujourdhui.ma/culture/entretien-avec-maalem-said-kouyou-tagnaouite-nest-pas-de-la-sorcellerie",
+  ],
+  "kimjang-seoul": [
+    "https://ich.unesco.org/en/RL/kimjang-making-and-sharing-kimchi-in-the-republic-of-korea-00881",
+    "https://www.hansik.or.kr/magazines/list/magazineDetail/66/3473?menuSn=429",
+    "https://english.seoul.go.kr/seoul-kimchi-festival-to-be-held-for-sharing-and-mutual-prosperity/",
+    "https://english.visitkorea.or.kr/svc/thingsToDo/foodTrip/special_view.do?vcontsId=189628",
+    "https://www.ajupress.com/view/20251117161544107",
+    "https://www.korea.net/NewsFocus/Opinion/view?articleId=194453",
+  ],
+  "castells-tarragona": [
+    "https://ich.unesco.org/en/RL/human-towers-castells-00364",
+    "https://castellsciencia.urv.cat/en/the-project/",
+    "https://www.tarragona.cat/cultura/agenda/2026/tcc/jove-tarragona-ciutat-de-castells-1-juliol",
+    "https://www.diaridetarragona.com/tarragona/249575/entrevista-gina-fort-primera-cap-colla-d-colla-tarragonina.html",
+    "https://dillums.cat/2026/07/13/retrats-castellers-miquel-ferre-i-levolucio-dels-xiquets-del-serrallo/",
+    "https://arxiv.org/abs/2010.14248",
+    "https://cadenaser.com/cataluna/2026/09/24/les-colles-castelleres-de-tarragona-estrenen-el-nou-casc-i-el-protector-facial-de-la-canalla-per-la-diada-de-la-merce-ser-tarragona/",
+  ],
+  "xochimilco-chinampas": [
+    "https://www.fao.org/giahs/giahs-around-the-world/mexico-chinampas-agricultural-system/en",
+    "https://unamglobal.unam.mx/global_tv/doctoras-de-los-suelos-de-la-unam-curan-chinampas/",
+    "https://www.gaceta.unam.mx/sumate-al-rescate-de-ajolotes-y-de-xochimilco/",
+    "https://fundaciontortilla.org/Agricultura/la_riqueza_de_la_chinampa_a_traves_de_arca_tierra",
+    "https://heraldodemexico.com.mx/edicion-impresa/2024/1/22/escuela-campesina-ocupan-espacios-entre-los-cultivos-571512.html",
+  ],
+  "havana-rumba": [
+    "https://ich.unesco.org/en/RL/rumba-in-cuba-a-festive-combination-of-music-and-dances-and-all-the-practices-associated-01185",
+    "https://artbabble.org/video/interview-rumba-singer-amada-izquierdo-bonora-location-cuba",
+    "https://umsi580.lsait.lsa.umich.edu/s/kinetic-conversations-dance-music-communication-in-afro-cuban-folklore/page/the-performers",
+    "https://havanatimes.org/interviews/yoruba-andabo-past-future-cuban-rumba/",
+    "https://www.cuba.travel/destinos/la-habana/sobre-la-habana/escenario-cultural/musica",
+  ],
+  "nowruz-tajikistan": [
+    "https://ich.unesco.org/en/RL/nowruz-02097",
+    "https://ich.unesco.org/en/RL/culture-of-sumanak-sumalak-cooking-02336",
+    "https://www.un.org/en/observances/international-nowruz-day",
+    "https://khovar.tj/rus/2023/03/sumanak-vesennee-blyudo-obedinyayushhee-pokoleniya-tadzhikov/",
+    "https://your.tj/kak-gotovjat-sumanak-v-tadzhikistane/",
+    "https://en.avesta.tj/2026/03/21/this-morning-the-navruz-caravan-brought-the-joyful-news-of-the-arrival-of-spring-to-residents-and-visitors-of-the-capital/",
+  ],
+  "bonwire-kente": [
+    "https://ich.unesco.org/en/RL/craftsmanship-of-traditional-woven-textile-kente-02130",
+    "https://festival.si.edu/2018/crafts-african-fashion",
+    "https://www.myjoyonline.com/bonwire-kente-weavers-call-for-establishment-of-local-thread-factory-for-sustainability/",
+    "https://informationr.net/ir/22-4/rails/rails1620.html",
+    "https://www.citinewsroom.com/2026/02/bonwire-kente-weavers-call-for-national-kente-day-to-preserve-heritage/",
+    "https://gna.org.gh/2024/10/mtn-supports-2024-bonwire-kente-festival/",
+    "https://visitghana.com/bonwire-kente/",
+  ],
+  "matariki-puanga": [
+    "https://www.auckland.ac.nz/en/news/2025/06/16/tkmp-puanga-2025.html",
+    "https://www.tepapa.govt.nz/digital-museum/explore-digital-museum/matariki-maori-new-year/matariki-regional-variations/difference",
+    "https://www.matariki.com/stories/puanga-to-be-star-of-matariki-2025",
+    "https://matariki.twoa.ac.nz/the-matariki-ceremony/",
+    "https://www.auckland.ac.nz/en/news/2026/07/01/ayla-hoeta-maramataka-matariki.html",
+    "https://www.tepapa.govt.nz/digital-museum/explore-digital-museum/matariki-maori-new-year/hautapu-ceremonial-oven-and-offerings-1",
+  ],
+  "tnalak-lake-sebu": [
+    "https://rights.culturalsurvival.org/en/defence-indigenous-intellectual-rights-case-tboli-women",
+    "https://www.ejournals.ph/article.php?id=35070",
+    "https://vogue.ph/lifestyle/culture/the-rich-cultural-history-of-the-tnalak-fabric-weaved-by-the-tboli-people/",
+    "https://philstarlife.com/geeky/501818-proudly-t-boli-proudly-filipino",
+    "https://goodnewspilipinas.com/culture-and-adventure-exploring-lake-sebus-heritage-and-natural-wonders-atom-pornel/",
+  ],
+};
