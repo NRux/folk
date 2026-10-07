@@ -2,6 +2,14 @@
 
 ## Current Vercel acceptance, 2026-10-07
 
+Reader follow-up: the shared public build adds the supplied AdSense loader once
+inside every HTML head, including Subscribe and 404. Photo captions are shortened
+while retaining attribution/license links and crop metadata. All three music
+stories include verified artist/label/archive listening examples. Local build
+and focused reader/subscription/Supabase suites pass. Stage 7 implementation order
+and hosted failure cases are documented in docs/platform/STAGE-7-PLAN.md; these
+presentation changes do not satisfy the pending hosted editorial gates.
+
 Result: **BLOCKED**. Vercel is the required host, superseding the old Sites hosting
 requirement. The historical results below are retained as evidence, not current
 Vercel backend acceptance. The public reader and subscriber endpoint are deployed;

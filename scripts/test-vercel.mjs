@@ -23,6 +23,20 @@ for (const route of Object.keys(routes)) {
   }
 }
 const files = await readdir('dist', { recursive: true });
+for (const file of files.filter(p => p.endsWith('.html'))) {
+  const html = await readFile(`dist/${file}`, 'utf8');
+  const head = html.match(/<head>[\s\S]*?<\/head>/)?.[0] || '';
+  assert.equal((html.match(/adsbygoogle\.js/g) || []).length, 1, file);
+  assert(head.includes('client=ca-pub-6358670448023938'), file);
+  assert(head.includes('crossorigin="anonymous"'), file);
+  assert(!html.includes('Neighborhood context, not a pictured'));
+  assert(!html.includes('. Displayed with a responsive crop; original image retained.'));
+}
+for (const slug of ['new-orleans-second-line', 'lisbon-fado', 'detroit-future-frequency']) {
+  const html = await readFile(`dist/${slug}.html`, 'utf8');
+  assert(html.includes('class="music-examples"'), slug);
+  assert.match(html, /https:\/\/(?:smithsonianfolkways\.bandcamp\.com|arquivosonoro\.museudofado\.pt|planetecommunications\.bandcamp\.com)/);
+}
 assert(!files.some(p => /\.db$|\.json$|\.sql$|\.mjs$|\.ts$|reserve|admin|mcp/.test(p)));
 const config = JSON.parse(await readFile('vercel.json', 'utf8'));
 assert.equal(config.outputDirectory, 'dist');

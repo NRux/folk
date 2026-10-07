@@ -81,6 +81,11 @@ Notes: Added persisted one-shot publication and reserve-replenishment runners wi
 
 
 ## Stage 07 — Acceptance verification & seeding
+Implementation plan: docs/platform/STAGE-7-PLAN.md covers verified storage, owner
+authentication, scoped unattended publishing/model configuration, and hosted
+recovery tests. AdSense, concise image credits, and listening examples are now
+included in the public reader. Music examples are required in future music or
+singing article review, including reserve review before publication.
 Status: BLOCKED (2026-10-07)
 Current Vercel prerequisite pass: public author pages and linked topic archives restored;
 Supabase follow-up: connection variables are present in Vercel; secure server client
