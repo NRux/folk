@@ -81,6 +81,11 @@ Notes: Added persisted one-shot publication and reserve-replenishment runners wi
 
 
 ## Stage 07 — Acceptance verification & seeding
+Latest progress: Supabase folk project connected, three migrations applied,
+hosted default-deny/RPC permission/paused-switch checks pass. Owner OTP read-only
+screen, scoped lease RPC, and guarded model adapter implemented and locally tested.
+See docs/verification/stage-7-progress-2026-10-07.md for remaining export, owner,
+credential, and isolated recovery blockers. Stage 7 remains blocked.
 Implementation plan: docs/platform/STAGE-7-PLAN.md covers verified storage, owner
 authentication, scoped unattended publishing/model configuration, and hosted
 recovery tests. AdSense, concise image credits, and listening examples are now

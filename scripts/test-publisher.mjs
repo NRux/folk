@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {PGlite} from '@electric-sql/pglite';
+import {pacificDate,triggerAuthorized,publisherClient} from '../server/publisher.js';
+assert.equal(pacificDate(new Date('2026-03-08T14:00:00Z')),'2026-03-08');
+assert.equal(pacificDate(new Date('2026-11-01T15:00:00Z')),'2026-11-01');
+assert.equal(triggerAuthorized(new Request('https://www.folkly.com'),undefined),false);
+const secret='a'.repeat(32);assert(triggerAuthorized(new Request('https://www.folkly.com',{headers:{authorization:`Bearer ${secret}`}}),secret));
+assert.throws(()=>publisherClient({}),/missing/);
+const db=new PGlite();
+await db.exec("CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role BYPASSRLS; CREATE ROLE authenticator; CREATE SCHEMA auth; CREATE TABLE auth.users(id uuid PRIMARY KEY); CREATE FUNCTION auth.jwt() RETURNS jsonb LANGUAGE sql AS $$ SELECT coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb $$;");
+await db.exec(await readFile('supabase/migrations/20261007220625_folkly_editorial.sql','utf8'));
+await db.exec(await readFile('supabase/migrations/20261007223002_publisher_leases.sql','utf8'));
+const today=(await db.query("SELECT (now() AT TIME ZONE 'America/Los_Angeles')::date::text AS date")).rows[0].date;
+const key='00000000-0000-0000-0000-000000000001', other='00000000-0000-0000-0000-000000000002';
+async function claim(k){return (await db.query('SELECT public.folkly_claim_slot($1::date,$2::uuid) AS value',[today,k])).rows[0].value;}
+await db.exec("SET ROLE folkly_publisher; SET request.jwt.claims='{"+'"role":"folkly_publisher"'+"}';");
+assert.equal((await claim(key)).state,'paused');
+await assert.rejects(db.query('SELECT * FROM public.folkly_articles'),/permission denied/);
+await db.exec("RESET ROLE; UPDATE public.folkly_settings SET value='true' WHERE key IN ('publication.autonomous_enabled','schedule.enabled'); SET ROLE folkly_publisher;");
+const first=await claim(key);assert.equal(first.state,'claimed');
+assert.equal((await claim(key)).lease_token,first.lease_token);assert.equal((await claim(other)).state,'busy');
+await db.exec("RESET ROLE; UPDATE public.folkly_publication_slots SET lease_expires_at=now()-interval '1 second'; SET ROLE folkly_publisher;");
+const recovered=await claim(other);assert.equal(recovered.state,'claimed');assert.notEqual(recovered.lease_token,first.lease_token);
+await db.exec("RESET ROLE; UPDATE public.folkly_publication_slots SET status='published',readback_hash='fixture-hash'; SET ROLE folkly_publisher;");
+assert.equal((await claim(key)).state,'published');
+await db.exec("RESET ROLE; SET ROLE anon;");await assert.rejects(claim(key),/permission denied/);
+await db.close();console.log('Local publisher passed: scoped RPC-only role, paused gate, unique slot, idempotent retry, competing worker denial, lease recovery/fencing, committed-state reconciliation, DST dates. Hosted concurrency remains pending.');

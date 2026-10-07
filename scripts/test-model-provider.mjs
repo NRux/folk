@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {generateDraft} from '../server/model-provider.js';
+const sources=Array.from({length:5},(_,i)=>({id:`s${i}`,url:`https://example.com/${i}`,excerpt:'Reviewed source'}));
+const env={FOLKLY_MODEL_ID:'fixture/model',AI_GATEWAY_API_KEY:'fixture',FOLKLY_MAX_JOB_DOLLARS:'1'};
+let called=0,ledger=[];
+const params={brief:{persona:'fixture'},sources,settings:{'production.autonomous_enabled':'true'},reserveBudget:async()=>({id:'reservation'}),recordUsage:async r=>ledger.push(r)};
+const output={title:'Fixture title',deck:'Fixture',sections:[{heading:'First',text:'Fixture'},{heading:'Second',text:'Fixture'}],claims:[{claim:'Fixture',sourceIds:['s0']}],musicExamples:[]};
+const fake=async args=>{called++;assert.equal(args.maxRetries,0);assert.equal(args.maxOutputTokens,6000);assert.equal(args.timeout,45000);return {output,usage:{totalTokens:20}};};
+await assert.rejects(generateDraft({...params,settings:{}},env,fake),/paused/);assert.equal(called,0);
+await assert.rejects(generateDraft({...params,reserveBudget:async()=>null},env,fake),/exhausted/);assert.equal(called,0);
+assert.equal((await generateDraft(params,env,fake)).draft.title,output.title);
+await assert.rejects(generateDraft({...params,musicRequired:true},env,fake),/validation/);
+await assert.rejects(generateDraft(params,env,async()=>({output:{...output,claims:[{claim:'Unsupported',sourceIds:['unknown']}]}})),/validation/);
+assert.equal(ledger.at(-1).status,'failed');
+console.log('Model adapter passed: paused/no-spend guard, durable budget required, strict output schema, source-ID/music validation, bounded call, failed-usage record. No live model calls.');

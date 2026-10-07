@@ -2,6 +2,15 @@
 
 ## Current Vercel acceptance, 2026-10-07
 
+Latest Stage 7 progress: the Folkly Supabase project is now connected and three
+migrations are applied. Hosted RLS/client denial, rolled-back server write/readback,
+active-session RPC permissions, and paused scoped publisher claims pass. Owner OTP
+and model/lease foundations are locally tested. No content or owner imported.
+Lossless old Site export, owner provisioning, provider/worker credentials and an
+isolated hosted recovery database still block completion. See
+docs/verification/stage-7-progress-2026-10-07.md for current evidence; earlier
+connection-blocker text below describes the previous state.
+
 Reader follow-up: the shared public build adds the supplied AdSense loader once
 inside every HTML head, including Subscribe and 404. Photo captions are shortened
 while retaining attribution/license links and crop metadata. All three music
