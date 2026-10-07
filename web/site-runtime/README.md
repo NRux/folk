@@ -12,6 +12,7 @@ For a private migration rehearsal, from the repository root:
 
 ```text
 node web/site-runtime/test-import.mjs
+node web/site-runtime/test-reader.mjs
 node web/site-runtime/export-snapshot.cjs web/folkly.db <private path outside the Site and Git>
 ```
 
@@ -28,7 +29,11 @@ production import. Site settings, credentials, owner identity, schedules, and cu
 spend must be configured and verified independently after migration.
 
 The D1 data transfer is one part of the port. The Node HTTP renderer, admin actions,
-pipeline, and scheduler still use synchronous `node:sqlite`; they must be adapted to
-the Worker/D1 runtime. Preserve the Site ID and its public audience, verify all old
-URLs and credits in the deployed Site, enforce owner/job authorization, and test
+pipeline, and scheduler still use synchronous `node:sqlite`. `reader.mjs` is a read-only
+Worker/D1 fetch boundary reusing the existing HTML renderer. An isolated D1-shape
+adapter checks legacy URLs, author pages, and unpublished reserve isolation, but this
+is not a deployed Worker test. The Site source still needs to package this module,
+ship its assets, and bind D1. Admin and the publisher need their own authenticated
+Worker/D1 implementations. Preserve the Site ID and its public audience, verify all
+old URLs and credits in the deployed Site, enforce owner/job authorization, and test
 private draft isolation and production readback before enabling publication.

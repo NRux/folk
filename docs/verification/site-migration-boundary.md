@@ -13,6 +13,12 @@ published. Repeat import, changed-snapshot checksum rejection, and public asset
 path rejection passed. The test used an in-memory SQLite adapter for the D1 interface;
 it did **not** execute against hosted D1.
 
+A read-only Worker/D1 reader boundary now reuses the Folkly renderer. Its isolated
+D1-shape fixture passed both forms of all four legacy article URLs, seven index and
+static page paths, five persona pages, and exclusion of an unpublished ready draft
+from reader routes and metadata. Admin/API paths return no editorial data. This is
+local fixture evidence, not a deployed Site parity or mobile check.
+
 No production data was imported, no Site version was saved or deployed, and no schedule
 was created. The Node renderer/admin/pipeline/publisher still need an asynchronous
 Worker/D1 port and an authenticated unattended writer. Production provider access,

@@ -90,6 +90,8 @@ On 2026-10-07 a schema-only D1 transfer artifact and a private content exporter/
 were added. An isolated SQLite round trip passed with 16 articles, 19 versions, 88 sources,
 including seven unpublished ready drafts. See docs/verification/site-migration-boundary.md.
 This advances data portability but does not change the BLOCKED deployed acceptance result.
+A read-only D1-shape reader fixture also passed legacy URL forms, five author pages,
+and private reserve isolation. Its Worker packaging and live D1 binding remain pending.
 
 ## Stage 08 — Operations doc, activation & delivery
 Status: PENDING
