@@ -84,12 +84,16 @@ the default port. Seven locally researched and reviewed articles now pass the re
 the portable unpublished bundle is tracked for migration. Three other pitches remain held.
 The existing public Site was subsequently migrated to Worker/D1, with four legacy articles
 published and seven reviewed reserve stories private. Its owner-gated admin and MCP publisher
-are deployed at Site version 3 (`appgver_c8dbffa7d204819190627864fcbbf250`), source
-`f2cf470865ee4e5e07c186826fec3fdc9e1d82c9`. Two consecutive hosted reader/access passes
-each passed 60 checks. An isolated Worker/D1 fixture verified concurrent publish, retry and
-separate readback. Production-authenticated write/readback, unattended connection, model
-provider, full hosted failure suite, and mobile viewport remain incomplete. No schedule was
-activated; production and publication switches are off.
+are deployed. Site version 4 (`appgver_5f3600578d98819183e629fe4c3991b4`), source
+`62c6f55044c5b7dff9605000fe9c52af0b56b98d`, adds an owner-only story evidence view
+with the latest version, source and claim ledgers, checks, disclosure, and image rights.
+The local authenticated fixture passed, including anonymous/non-owner denial and private
+reader isolation. Hosted anonymous review denial and another 60-check reader regression passed.
+Earlier two consecutive hosted reader/access passes each passed 60 checks. An isolated Worker/D1
+fixture verified concurrent publish, retry and separate readback. Production-authenticated
+write/readback, real hosted owner session, unattended connection, model provider, full hosted
+failure suite, and mobile viewport remain incomplete. No schedule was activated; production
+and publication switches are off.
 On 2026-10-07 a schema-only D1 transfer artifact and a private content exporter/importer
 were added. An isolated SQLite round trip passed with 16 articles, 19 versions, 88 sources,
 including seven unpublished ready drafts. See docs/verification/site-migration-boundary.md.

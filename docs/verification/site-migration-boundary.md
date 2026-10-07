@@ -2,6 +2,20 @@
 
 ## Current deployed state
 
+Site version 4 `appgver_5f3600578d98819183e629fe4c3991b4` deployed from source
+`62c6f55044c5b7dff9605000fe9c52af0b56b98d` adds an owner-only
+`/admin/story?slug=...` evidence view. It shows the latest version, source and
+claim links, verification results, disclosure, and media-rights record without
+exposing raw article HTML. Ready and held stories link to it from `/admin`.
+The local fixture used the Site's mock sign-in, verified anonymous 401, signed-in
+non-owner 403, owner 200 with evidence, invalid slug 404, no-store/CSP, dashboard
+link and private reader 404. The real hosted owner session remains untested.
+After deployment, anonymous hosted review access returned 401, a private story
+returned 404, an original article returned 200, and the 60-check hosted reader
+regression passed. The publication schedule and autonomous switches remain off.
+
+### Earlier Worker/D1 migration
+
 The same public Site now runs a Worker/D1 reader and owner-gated admin/MCP routes.
 Version 3 `appgver_c8dbffa7d204819190627864fcbbf250` was deployed from Site source
 `f2cf470865ee4e5e07c186826fec3fdc9e1d82c9` with additive migrations applied.
