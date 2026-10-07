@@ -5,6 +5,17 @@ Result: **BLOCKED**. The public Worker/D1 reader and owner-gated publisher are d
 the authenticated unattended connection, production provider, hosted publication/readback,
 mobile verification, and complete failure suite are not accepted. No hosted article was published.
 
+Site version 5, deployed on 2026-10-07 from source
+`b61561338efa18c49759b4d5fb35b44fa89ac5ea`, closes a post-review evidence-mutation
+gap. Each reserve story is now attested to its source, claim, check, and applicable
+image-rights records, and the Worker repeats those gates atomically when claiming a slot.
+The focused fixture passed twice; all seven live reserve evidence digests matched before
+deployment. The deployed database still has four published stories, seven private ready
+stories, zero publication slots, and false production, publication, and schedule switches.
+This improves cases 3, 6, 7, 8, and 10 but does not clear the remaining authenticated,
+provider, failure-recovery, or mobile gates. See
+`docs/audits/2026-10-07-site-evidence-attestation.md`.
+
 The 2026-10-07 local scheduler review closed a publication-gate bypass in the
 Node/SQLite runner: missing deterministic checks, missing or adverse independent
 review, and dangling cited source IDs now hold a candidate. The scheduler

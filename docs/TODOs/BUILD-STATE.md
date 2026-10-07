@@ -90,6 +90,13 @@ are deployed. Site version 4 (`appgver_5f3600578d98819183e629fe4c3991b4`), sourc
 with the latest version, source and claim ledgers, checks, disclosure, and image rights.
 The local authenticated fixture passed, including anonymous/non-owner denial and private
 reader isolation. Hosted anonymous review denial and another 60-check reader regression passed.
+Site version 5 (`appgver_bd0ec9d35f188191a5bf66903ce046d9`), source
+`b61561338efa18c49759b4d5fb35b44fa89ac5ea`, binds every reviewed reserve story to
+its complete evidence ledger and repeats mutable evidence checks atomically when claiming
+the daily slot. The focused gate fixture passed twice, the production build passed, and all
+seven live evidence digests matched before deployment. Post-deployment checks retained four
+public stories, seven private reserve stories, zero publication slots, and all three switches off.
+See docs/audits/2026-10-07-site-evidence-attestation.md.
 Earlier two consecutive hosted reader/access passes each passed 60 checks. An isolated Worker/D1
 fixture verified concurrent publish, retry and separate readback. Production-authenticated
 write/readback, real hosted owner session, unattended connection, model provider, full hosted
