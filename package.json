@@ -7,9 +7,14 @@
   },
   "scripts": {
     "build": "node scripts/build-vercel.mjs",
-    "test": "node scripts/test-vercel.mjs && node scripts/test-subscribe.mjs"
+    "test": "node scripts/test-vercel.mjs && node scripts/test-subscribe.mjs",
+    "test:hosted": "node scripts/verify-vercel-reader.mjs",
+    "test:mobile": "node scripts/test-mobile.cjs"
   },
   "dependencies": {
     "@vercel/blob": "2.6.1"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
   }
 }

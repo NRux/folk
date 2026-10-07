@@ -9,6 +9,8 @@ for (const slug of ['new-orleans-second-line', 'lisbon-fado', 'oaxaca-living-col
   assert.match(html, /Sources|sources/);
   assert(!html.includes('chatgpt.site'));
   assert(!html.includes('<p class="ai-disclosure">'));
+  assert(!html.includes('Through the Folkly lens'));
+  assert(!html.includes('class="reading-lens"'));
   assert(html.includes('href="/subscribe"'));
 }
 for (const item of reserve) assert(!routes[`/${item.slug}`], `Reserve leaked: ${item.slug}`);

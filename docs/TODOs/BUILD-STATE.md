@@ -82,6 +82,14 @@ Notes: Added persisted one-shot publication and reserve-replenishment runners wi
 
 ## Stage 07 — Acceptance verification & seeding
 Status: BLOCKED (2026-10-07)
+Current Vercel prerequisite pass: public author pages and linked topic archives restored;
+requested reading-lens boxes removed; 59-route build and focused reader/subscription
+checks pass. Added `npm run test:hosted` and `npm run test:mobile`. Chromium download
+failed, so mobile acceptance remains unverified. Durable Vercel editorial SQL storage,
+owner auth, scoped unattended publisher, production model/research provider, and
+deployed concurrency/retry/failure/edit/restore checks remain missing. The historical
+Sites/D1 results below do not clear Vercel acceptance. See the current matrix in
+docs/verification/acceptance-report.md. No article schedule was enabled.
 Evidence: docs/verification/acceptance-report.md; docs/verification/reserve-fill.md;
 web/scripts/verify-reserve.js; web/scripts/test-stage07-reader.js;
 docs/verification/stage-03-personas.md; component evidence from Stages 02-06.
