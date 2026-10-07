@@ -86,6 +86,10 @@ The live Site remains static and separate from this Node/SQLite repository; Work
 a scoped publisher, and production provider configuration are still unimplemented. Production
 write/readback, expired authorization, full deployed leak checks and mobile viewport checks
 remain incomplete. No schedule was activated.
+On 2026-10-07 a schema-only D1 transfer artifact and a private content exporter/importer
+were added. An isolated SQLite round trip passed with 16 articles, 19 versions, 88 sources,
+including seven unpublished ready drafts. See docs/verification/site-migration-boundary.md.
+This advances data portability but does not change the BLOCKED deployed acceptance result.
 
 ## Stage 08 — Operations doc, activation & delivery
 Status: PENDING
