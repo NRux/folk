@@ -1,6 +1,6 @@
 // Read-only Worker/D1 reader. No editorial data is exposed through an API.
 // The Site adapter passes its DB and static asset binding to this fetch handler.
-import renderer from "../lib/render.js";
+import * as renderer from "./render.mjs";
 const {
   Page, renderArticle, renderHome, renderSimplePage, renderAuthorPage,
   renderArchivePage, renderArchivesIndex, relatedStories, slugify,

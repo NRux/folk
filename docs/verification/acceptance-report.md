@@ -1,36 +1,37 @@
 # Stage 07 — Acceptance report
 
 Date: 2026-10-07
-Result: **BLOCKED**. The full acceptance suite cannot pass until the production provider and
-Site publishing path are available. This report records both passing evidence and remaining
-gaps without treating local transaction tests as a live Site publication.
+Result: **BLOCKED**. The public Worker/D1 reader and owner-gated publisher are deployed, but
+the authenticated unattended connection, production provider, hosted publication/readback,
+mobile verification, and complete failure suite are not accepted. No hosted article was published.
 
 ## Acceptance matrix
 
 | Case | Result | Method and evidence |
 |---|---|---|
-| 1. Existing URLs and credits | PASS locally | Stage 02 preserved the original content and credits. `node web/scripts/test-stage07-reader.js` creates a fresh migrated database and confirms both URL forms serve identical content for all four stories; see also `docs/verification/stage-02-url-check.md`. Live Site parity still needs a deployment check. |
-| 2. Five author profiles and distinct voices | PASS locally | A fresh `verify-stage03.js` run against an isolated server on port 18787 passed 26/26 checks, including all five profiles and archives. The previous four failures came from the default port serving a different process, not this database. See `docs/verification/stage-03-personas.md`. |
+| 1. Existing URLs and credits | PASS deployed | Four published stories retain both URL forms, main content and figure credits. `node web/scripts/verify-hosted-reader.js` passed twice against the deployed Site, 60 checks per pass. Stage 02 and the local reader fixture provide the original baseline. |
+| 2. Five author profiles and distinct voices | PASS locally; profiles deployed | A fresh `verify-stage03.js` run against an isolated server on port 18787 passed 26/26 checks, including voice distinctions. All five author URLs return 200 on the deployed Site. See `docs/verification/stage-03-personas.md`. |
 | 3. Real researched article through gates | PASS locally | `node web/scripts/verify-reserve.js web/folkly.db` reports seven eligible articles, each with a version hash, at least five retrieved sources, linked claims, deterministic checks, and an independent pass without major or critical findings. Tokushima was revised to 1,222 words after removing a duplicated source list; its six sources, 24 claims, typographic treatment, and disclosure remain. The earlier Stage 04 gate fixtures also passed. See `docs/verification/reserve-fill.md`. |
-| 4. Unattended production credentials and independent readback | BLOCKED | A configured local Ollama model produced the reserve at zero metered provider cost. The production Site has no configured model access or declared MCP publisher and remains a separate static source. The local runner is hard-disabled for live publishing. No production-authenticated write or Site readback was attempted. |
+| 4. Unattended production credentials and independent readback | BLOCKED | A local Ollama model produced the reserve at zero metered provider cost. The deployed Site declares `/mcp` with `folkly_publish_today`, but its connection and a hosted production model are unavailable. A local D1 publisher fixture read back a single article/version/hash; no authenticated hosted write/readback occurred. |
 | 5. 07:00 Pacific across DST | PASS (time-resolution logic) | `node web/scripts/test-stage06-scheduler.js` verifies 2026-03-07/09 and 2026-10-31/11-02 at 07:00 Pacific with the expected GMT-8/GMT-7 offsets. This verifies the scheduler calculation, not an active platform schedule. |
-| 6. Two simultaneous publishers | PASS (SQLite transaction fixture only) | Two Node worker threads and independent SQLite connections yield exactly one published slot. No live Site publisher is installed, so this is not a production endpoint test. See `docs/verification/stage-06-scheduling.md`. |
-| 7. Timeout after publication | PASS (SQLite transaction fixture only) | A simulated post-commit timeout followed by retry returns `already-published`; separate readback confirms the same version/hash and no second slot article. No live Site publisher is installed. |
+| 6. Two simultaneous publishers | PASS in isolated fixtures; hosted BLOCKED | Two Node worker threads and independent SQLite connections yield one slot. A local Worker/D1 fixture also gave one published Kimjang article under two concurrent calls. Hosted concurrency was not exercised. See `docs/verification/stage-06-scheduling.md`. |
+| 7. Timeout after publication | PASS in isolated fixtures; hosted BLOCKED | A simulated post-commit timeout followed by retry returns `already-published` in SQLite. The local Worker/D1 fixture retry returned the same slot after publication and readback. Hosted timeout/retry remains untested. |
 | 8. Unsupported claims and uncleared images | PASS | The Stage 04 verifier confirms both fixtures stop at `needs-review`, fail their intended gates, and select a ready reserve candidate. |
-| 9. Pause, budget, provider failure, empty reserve, expired authorization, missed schedule | BLOCKED as a complete case | Stage 05 admin controls and Stage 06 provider-failure, empty-reserve, retry-backoff, and late same-day delay fixtures pass. Expired production authorization and a platform-triggered missed schedule cannot be verified without the Site publisher/scheduler connection. |
-| 10. Private reads/writes and draft-leak prevention | PASS locally; BLOCKED deployed | `test-stage05-admin.js` covers anonymous/non-owner reads and writes, owner controls and sanitization. `test-stage07-reader.js` migrates a fresh isolated database, inserts a private draft canary, tests all current reader routes, metadata-bearing pages, absent feed/API endpoints and no-store cache headers. The deployed Site's auth, cache and draft isolation still require verification after its runtime migration. |
+| 9. Pause, budget, provider failure, empty reserve, expired authorization, missed schedule | BLOCKED as a complete case | Local Stage 05/06 failure fixtures pass. A synthetic owner request paused the hosted-style admin fixture; budget input validation and cross-origin rejection passed. Deployed anonymous access passed, but authenticated hosted owner, expired OAuth, provider failures, and platform-triggered missed schedule remain untested. |
+| 10. Private reads/writes and draft-leak prevention | PASS for anonymous deployed reads; owner BLOCKED | The hosted reader check confirms all seven ready slugs return 404, do not appear on the home page, and use no-store. `/admin`, `/api/admin`, and MCP calls reject anonymous requests; the removed bootstrap route returns 404. Forged owner headers were rejected by the Sites boundary. Local owner/non-owner tests pass; authenticated hosted owner access and mutations remain untested. |
 | 11. Mobile, restore, edit, correction | BLOCKED as a complete case | Stage 05 tests restore, versioned edits, and correction notes. No mobile viewport/browser acceptance test was available or run. |
 
 The reader fixture is repeatable from a clean checkout and does not alter the operational database.
-The full eleven-case integration suite cannot pass yet: live publisher, provider, schedule,
-deployed authorization and mobile verification are still release gates.
+The full eleven-case integration suite cannot pass yet: hosted owner identity and publisher,
+provider, schedule, failure recovery and mobile verification remain release gates.
 
 On 2026-10-07, two consecutive local debug/security passes ran `test-stage04-security.js`,
 `test-stage05-admin.js`, `test-stage06-scheduler.js`, and `test-stage07-reader.js`; all four
 passed in both rounds after the reserve pipeline changes.
 These checks exercise owner authorization, stored-content sanitization, publication concurrency
-and retry, and draft isolation. They do not constitute two clean production security audits:
-deployed Site auth, storage and publishing are still absent.
+and retry, and draft isolation. Two later hosted reader/access passes each passed 60 checks,
+covering public content and anonymous access. These do not constitute two clean production
+security audits: authenticated writes and the production pipeline remain unverified.
 
 ## Post-seed snapshot
 
@@ -47,15 +48,15 @@ article. The earliest not-past local slot is 2026-10-07, but it is not an activa
 first publication date. No article is assigned to an upcoming slot, so a 30-day theme
 or persona sequence cannot yet be measured. The local model's metered cost was $0;
 budget reservations were released. The SQLite database is ignored by git; a
-credential-free, unpublished content bundle is tracked at `web/data/reserve-seed.json`
-for the future Site data migration. Neither is deployed production state.
+credential-free, unpublished content bundle is tracked at `web/data/reserve-seed.json`.
+The seven reviewed stories are also private records in hosted D1. None is publicly released.
 
 ## Required to unblock
 
-Port the Node HTTP/synchronous SQLite implementation to the existing Site's Worker/D1 runtime,
-migrate the preserved site and unpublished reserve data, connect and verify a scoped unattended
-publisher, and configure a supported server-side model provider. The current static Site does not
-declare an MCP server; adding one is a possible authenticated invocation path, not a substitute
-for the runtime/data migration. Then run the eleven cases against the deployed Site and verify
-an independent production readback.
-Keep the recurring schedule inactive until those checks pass.
+Connect and verify the deployed Site's scoped MCP publisher under the real owner identity,
+configure a supported server-side model provider, and port the Node research/replenishment
+pipeline and remaining owner editorial controls into the hosted runtime. Then run the eleven
+cases against the deployed Site, including a controlled authenticated write and independent
+production readback, OAuth expiry, failure recovery, and mobile viewport checks. The Site
+connection and model-provider plugin were surfaced for connection; a suggestion is not a
+connection. Keep both autonomous switches and the recurring schedule inactive until accepted.

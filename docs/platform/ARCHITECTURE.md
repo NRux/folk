@@ -2,6 +2,16 @@
 
 ## Overview
 
+As of 2026-10-07 the existing public Site at
+`https://folkly-journal.nrapp.chatgpt.site` runs an asynchronous Worker with D1 storage.
+It contains four published legacy stories and seven unpublished reviewed reserve stories.
+The Site source is separately versioned at `f2cf470865ee4e5e07c186826fec3fdc9e1d82c9`;
+the Node/SQLite repository remains the pipeline development and test implementation.
+The Site's owner-gated `/admin`, `/api/admin`, and `/mcp` are deployed, but the model provider,
+hosted replenishment, authenticated unattended connection and recurring schedule are not active.
+
+### Local Node implementation
+
 Folkly now runs as a zero-dependency Node.js server (Node 24, `node:sqlite` built-in) backed
 by a SQLite content store. All reader-facing content is rendered from durable records —
 nothing generated per-request from git-tracked prose. Routine publication updates content
@@ -23,20 +33,18 @@ records in the database; no git commit or full-site redeploy is required per art
 
 ## Local implementation versus the live Site
 
-| Component | Repository implementation | Required live Site migration |
+| Component | Repository implementation | Deployed Site and remaining work |
 |-----------|------------------|----------------------------------|
-| Content store | Synchronous `node:sqlite` in a local DB ignored by git | D1 async queries, schema/data migration, transactional publication equivalent |
-| Image assets | Files under `web/static/assets/` | Static assets or R2 with verified credit/permission mapping |
-| Server runtime | Node HTTP listener on a configurable port | Cloudflare-compatible ESM Worker `fetch` handler in the separate existing Site source repository |
-| Scheduling | Persisted local one-shot runners, production publisher unavailable | Site-linked triggers and a deployed authenticated publisher with independent readback |
-| Auth / owner role | Server-side checks in Node, with a trusted-proxy setting | Verified Site identity propagation and owner/job scope enforcement in deployed runtime |
+| Content store | Synchronous `node:sqlite` in a local DB ignored by git | D1 schema and filtered content deployed; conditional batch publication locally verified, hosted write/readback still open |
+| Image assets | Files under `web/static/assets/` | Existing images and CSS served as static assets with preserved credits; no R2 binding used |
+| Server runtime | Node HTTP listener on a configurable port | Worker reader and owner/MCP routes deployed from separate Site source |
+| Scheduling | Persisted local one-shot runners | No linked automation; hosted pipeline and production model still need implementation |
+| Auth / owner role | Server-side checks in Node, with a trusted-proxy setting | Deployed anonymous/forged-header denial verified; authenticated owner session and unattended MCP connection still need verification |
 
-The current live Site is a separate static source repository and does not run this Node server.
-`web/server.js` uses Node HTTP and synchronous SQLite calls throughout rendering, pipeline,
-admin, and scheduling. D1 is asynchronous, so changing `db.js` alone cannot deploy it. A real
-port must adapt request handling and all database call sites, migrate the preserved content and
-version/claim ledgers, bind Site storage and auth, and run the same acceptance tests against the
-deployed Worker. No production deployment or autonomous publication is implied by local tests.
+The live Site has a separate source repository and does not run this Node server.
+Its reader and limited admin/publisher port uses async D1 calls. The Node research pipeline,
+full owner editorial controls, and scheduler have not been ported. A deployed runtime is not
+evidence of autonomous publication; see `docs/verification/acceptance-report.md`.
 
 ## Data model (web/lib/db.js SCHEMA)
 
@@ -89,5 +97,5 @@ requirement is enforced via `site.canonical_domain` — see NOTES.md stage 01, o
    `editorial_checks`; sets `articles.status = 'ready'`.
 2. Scheduler (stage 06) resolves today's America/Los_Angeles slot, atomically claims the
    `publication_slots` row for that date, rechecks gates, flips `status='published'`.
-3. The local server renders from the store on the next request. A live Site will need its own
-   verified runtime and storage migration before it can exhibit this behavior.
+3. The local server renders from the store on the next request. The Site reader now renders
+   D1 published records; a hosted authenticated publication has not been executed.

@@ -8,14 +8,13 @@ durable scheduler. It does not start an in-memory timer, browser poller, local c
 background process. A developer can run it manually for verification, but manual execution is
 not unattended scheduling.
 
-The production Site currently has no declared MCP server endpoint (the Sites read returned
-“published Site does not declare an MCP server”). The one-shot runner’s default provider adapter
-is deliberately unavailable: its SQLite transaction is a tested persistence boundary, not a claim
-that the public static Site has been updated. Sites exposes a linked-schedule capability, but
-there is not yet a Site MCP tool that can invoke a publishing adapter. Therefore the recurring
-production schedule remains inactive and the runner refuses to claim a live release. Stage 08 must publish the MCP-enabled Site version and
-connect a Sites-linked schedule only after Stage 07 acceptance passes. Keep the current Site
-ID, public audience, and URL unchanged.
+As of 2026-10-07 the existing Site declares `/mcp` with `folkly_status` and
+`folkly_publish_today`. The Site plugin is not connected, no linked automation exists, and
+hosted owner-authenticated invocation/readback is unverified. The Site's production,
+publication, and schedule switches are off. The Node runner's default provider adapter
+remains unavailable for live publication. The recurring schedule must remain inactive
+until Stage 07's full deployed acceptance passes. Keep the current Site ID, public audience,
+and URL unchanged.
 
 The durable trigger should invoke two isolated jobs: (1) `web/scripts/run-replenishment.js` early
 enough to prepare validated articles without blocking release, and (2) the publisher at
@@ -75,15 +74,15 @@ code and persisted retryable state are not a successful publication.
 
 ## Stage 08 deployment path
 
-1. Preserve the existing Site identity and audience. Add the stateless `/mcp` publishing
-   endpoint to the Site source, declare MCP in the hosting manifest, and use the supported
-   Sites OAuth identity. Keep the editorial publisher scope separate from owner administration.
+1. Preserve the existing Site identity and audience. The deployed `/mcp` endpoint declares
+   tools and uses the Sites identity boundary; verify its real owner and scheduled-task scope.
 2. Verify a read-only MCP initialize/tool-list call and a harmless source-read call before
    creating any recurring task. Verify the trigger's source authorization separately from
    checking that the public website URL is reachable: a public HTTP 200 proves website
    reachability only, not scheduler source access.
-3. Save and deploy the exact verified Site source version. Read the deployment state and test
-   public content readback with no browser session.
+3. The current deployed Site source is `f2cf470865ee4e5e07c186826fec3fdc9e1d82c9`.
+   Any later implementation must be saved/deployed and its public content read back without
+   a browser session.
 4. Only after Stage 07 acceptance is green, create a Sites-linked, America/Los_Angeles daily
    publication schedule at 07:00 and a separate early replenishment schedule. Read back both
    persisted schedule records and perform a controlled one-shot invocation. Do not make

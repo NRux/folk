@@ -69,7 +69,7 @@ but not executed before Stage 06 installs the publisher. Verification: docs/veri
 ## Stage 06 — Scheduling & publication
 Status: DONE (2026-10-06)
 Evidence: docs/platform/SCHEDULING.md; docs/verification/stage-06-scheduling.md; web/scripts/test-stage06-scheduler.js.
-Notes: Added persisted one-shot publication and reserve-replenishment runners with Pacific local-date resolution, unique daily slots, serialized publication, latest-version eligibility rechecks, timeout-safe retries, delay tracking, separate content readback, five-minute retry backoff, and admin-visible failures/alerts. Provider budget reservations remain atomic under the existing daily/monthly caps. The owner control room now shows scheduler state, failures, and alerts. Verification passes across spring/fall DST offsets, two concurrent worker threads, timeout after commit, provider failure, empty reserve, backoff, and late same-day delay. The existing public Site has no MCP endpoint; the runner deliberately treats its publisher as unavailable and no recurring schedule was created. The transaction tests verify SQLite behavior only, not a live Site update. Stage 08 documents the MCP publisher and linked-schedule deployment path; activation remains gated on Stage 07.
+Notes: Added persisted one-shot publication and reserve-replenishment runners with Pacific local-date resolution, unique daily slots, serialized publication, latest-version eligibility rechecks, timeout-safe retries, delay tracking, separate content readback, five-minute retry backoff, and admin-visible failures/alerts. Provider budget reservations remain atomic under the existing daily/monthly caps. The owner control room now shows scheduler state, failures, and alerts. Verification passes across spring/fall DST offsets, two concurrent worker threads, timeout after commit, provider failure, empty reserve, backoff, and late same-day delay. At the Stage 06 milestone the public Site had no MCP endpoint; its local runner deliberately treated the publisher as unavailable. The Site now declares MCP, but remains unconnected and unscheduled. Transaction tests verify SQLite behavior only, not a live Site update. Activation remains gated on Stage 07.
 
 
 ## Stage 07 — Acceptance verification & seeding
@@ -82,17 +82,22 @@ Stage 06 scheduler fixtures, and a clean-checkout reader/draft-isolation fixture
 run on an isolated current server passes 26/26; the previous four failures hit a stale process on
 the default port. Seven locally researched and reviewed articles now pass the reserve gate;
 the portable unpublished bundle is tracked for migration. Three other pitches remain held.
-The live Site remains static and separate from this Node/SQLite repository; Worker/D1 migration,
-a scoped publisher, and production provider configuration are still unimplemented. Production
-write/readback, expired authorization, full deployed leak checks and mobile viewport checks
-remain incomplete. No schedule was activated.
+The existing public Site was subsequently migrated to Worker/D1, with four legacy articles
+published and seven reviewed reserve stories private. Its owner-gated admin and MCP publisher
+are deployed at Site version 3 (`appgver_c8dbffa7d204819190627864fcbbf250`), source
+`f2cf470865ee4e5e07c186826fec3fdc9e1d82c9`. Two consecutive hosted reader/access passes
+each passed 60 checks. An isolated Worker/D1 fixture verified concurrent publish, retry and
+separate readback. Production-authenticated write/readback, unattended connection, model
+provider, full hosted failure suite, and mobile viewport remain incomplete. No schedule was
+activated; production and publication switches are off.
 On 2026-10-07 a schema-only D1 transfer artifact and a private content exporter/importer
 were added. An isolated SQLite round trip passed with 16 articles, 19 versions, 88 sources,
 including seven unpublished ready drafts. See docs/verification/site-migration-boundary.md.
 This advances data portability but does not change the BLOCKED deployed acceptance result.
 A read-only D1-shape reader fixture also passed legacy URL forms, five author pages,
-and private reserve isolation. Its Worker packaging and live D1 binding remain pending.
+and private reserve isolation. Its Worker packaging and live D1 binding are now deployed.
 
 ## Stage 08 — Operations doc, activation & delivery
-Status: PENDING
-Evidence: (stage fills: docs/OPERATIONS.md + docs/DELIVERY.md)
+Status: BLOCKED (2026-10-07)
+Evidence: docs/verification/acceptance-report.md; docs/verification/site-migration-boundary.md.
+Notes: Stage 07 is not fully green. The linked schedule stays inactive by the Stage 08 gate.
