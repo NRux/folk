@@ -41,8 +41,8 @@ See docs/platform/SUPABASE.md.
 | 3. Researched article through gates | Historical reserve retained; Vercel BLOCKED | Seven reviewed reserve stories remain private in the existing store. Vercel pipeline and editorial evidence storage are absent. |
 | 4. Unattended article write and independent readback | BLOCKED | Subscriber Blob writes do not satisfy this gate. Need scoped editorial writer credentials and durable article storage. |
 | 5. 07:00 Pacific across DST | Local calculation evidence retained | No Vercel article schedule configured or enabled. |
-| 6. Simultaneous publishers | BLOCKED hosted | Need transactional SQL publication slots and Vercel publisher before isolated deployed concurrency checks. |
-| 7. Timeout/retry deduplication | BLOCKED hosted | Same publisher/storage prerequisite; old SQLite/D1 fixtures are not Vercel deployment evidence. |
+| 6. Simultaneous publishers | Hosted DB component PASS; full gate BLOCKED | Private synthetic schema: five simultaneous claims yielded one lease, four busy, and one slot. Vercel trigger and article commit still pending. |
+| 7. Timeout/retry deduplication | Hosted DB component PASS; full gate BLOCKED | Committed-claim retry kept its lease; expiry recovered with a new token; synthetic published state reconciled its hash. Vercel timeout/served-content readback remains pending. |
 | 8. Claim/image hard gates | Focused local fixture passes | `node web/site-runtime/hosted/scripts/test-publication-gates.mjs`; port and exercise these checks in the Vercel publisher. |
 | 9. Failure recovery | BLOCKED hosted | Need deployed owner controls, provider, unattended authorization, and isolated failure fixtures. |
 | 10. Private reads/writes | Anonymous reader checks PASS; owner BLOCKED | Hosted regression confirms admin/MCP and all seven reserve slugs return 404. No Vercel owner write endpoints exist. |

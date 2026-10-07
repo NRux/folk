@@ -42,11 +42,12 @@ export async function generateDraft({brief,sources,musicRequired=false,settings,
     if(draft.claims.some(c=>c.sourceIds.some(id=>!ids.has(id))))throw Error('Unsupported claim source');
     const urls=new Set(sources.map(s=>s.url));
     if((musicRequired&&!draft.musicExamples.length)||draft.musicExamples.some(m=>!urls.has(m.url)))throw Error('Music evidence missing');
-    await recordUsage({reservation,model:env.FOLKLY_MODEL_ID,status:'draft',usage:result.usage});
-    return {draft,model:env.FOLKLY_MODEL_ID,usage:result.usage};
+    const modelSnapshot = result.response?.modelId || env.FOLKLY_MODEL_ID;
+    await recordUsage({reservation,model:env.FOLKLY_MODEL_ID,modelSnapshot,status:'draft',usage:result.usage});
+    return {draft,model:env.FOLKLY_MODEL_ID,modelSnapshot,usage:result.usage};
   }catch{
     // Do not refund unknown provider charges on timeout. Reconcile in the ledger.
-    await recordUsage({reservation,model:env.FOLKLY_MODEL_ID,status:'failed',usage:result?.usage||null});
+    await recordUsage({reservation,model:env.FOLKLY_MODEL_ID,modelSnapshot:result?.response?.modelId || env.FOLKLY_MODEL_ID,status:'failed',usage:result?.usage||null});
     throw Error('Draft generation failed editorial validation or provider request');
   }
 }
