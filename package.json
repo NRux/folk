@@ -1,0 +1,10 @@
+{
+  "name": "folkly",
+  "private": true,
+  "version": "0.1.0",
+  "engines": { "node": "24.x" },
+  "scripts": {
+    "build": "node scripts/build-vercel.mjs",
+    "test": "node scripts/test-vercel.mjs"
+  }
+}

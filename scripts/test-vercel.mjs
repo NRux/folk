@@ -1,0 +1,26 @@
+import assert from 'node:assert/strict';
+import { readFile, readdir } from 'node:fs/promises';
+const routes = JSON.parse(await readFile('web/vercel/routes.json', 'utf8'));
+const reserve = JSON.parse(await readFile('web/site-runtime/hosted/lib/reviewed-reserve.json', 'utf8'));
+for (const slug of ['new-orleans-second-line', 'lisbon-fado', 'oaxaca-living-color', 'detroit-future-frequency']) {
+  assert(routes[`/${slug}`]);
+  const html = await readFile(`dist/${slug}.html`, 'utf8');
+  assert.match(html, /application\/ld\+json/);
+  assert.match(html, /Sources|sources/);
+  assert(!html.includes('chatgpt.site'));
+}
+for (const item of reserve) assert(!routes[`/${item.slug}`], `Reserve leaked: ${item.slug}`);
+for (const route of Object.keys(routes)) {
+  assert(!/^\/(admin|api|mcp)(\/|$)/.test(route));
+  const html = await readFile(route === '/' ? 'dist/index.html' : `dist${route}.html`, 'utf8');
+  for (const [, href] of html.matchAll(/href="(\/[^"]*)"/g)) {
+    const path = href.split(/[?#]/)[0].replace(/\.html$/, '');
+    if (path && !path.startsWith('/assets/') && path !== '/style.css') assert(routes[path], `Broken link: ${href} on ${route}`);
+  }
+}
+const files = await readdir('dist', { recursive: true });
+assert(!files.some(p => /\.db$|\.json$|\.sql$|\.mjs$|\.ts$|reserve|admin|mcp/.test(p)));
+const config = JSON.parse(await readFile('vercel.json', 'utf8'));
+assert.equal(config.outputDirectory, 'dist');
+assert(!config.crons && !config.rewrites);
+console.log(`Vercel checks passed: ${Object.keys(routes).length} public routes, four stories, links, private reserve exclusion, no editorial code or cron in output.`);

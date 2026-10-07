@@ -1,0 +1,18 @@
+{
+  "/": "index.html",
+  "/about": "about.html",
+  "/archive": "archive.html",
+  "/archive/place/detroit-belleville-united-states": "archive__place__detroit-belleville-united-states.html",
+  "/archive/place/lisbon-portugal": "archive__place__lisbon-portugal.html",
+  "/archive/place/new-orleans-united-states": "archive__place__new-orleans-united-states.html",
+  "/archive/place/teotitla-n-del-valle-mexico": "archive__place__teotitla-n-del-valle-mexico.html",
+  "/archive/topic/making-inheritance": "archive__topic__making-inheritance.html",
+  "/archive/topic/ritual-belonging": "archive__topic__ritual-belonging.html",
+  "/archive/topic/sound-invention": "archive__topic__sound-invention.html",
+  "/archive/topic/sound-memory": "archive__topic__sound-memory.html",
+  "/detroit-future-frequency": "detroit-future-frequency.html",
+  "/lisbon-fado": "lisbon-fado.html",
+  "/new-orleans-second-line": "new-orleans-second-line.html",
+  "/oaxaca-living-color": "oaxaca-living-color.html",
+  "/perspective": "perspective.html"
+}
