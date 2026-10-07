@@ -69,13 +69,20 @@ function eligible(db,article) {
   if(sources.length<5||domains.size<3) return false;
   const strong=sources.filter(x=>["primary","local","scholarly","institutional","practitioner"].includes(String(x.publisher||x.source_type||"").toLowerCase())).length;
   if(strong<2) return false;
+  const sourceIds=new Set(sources.map(s=>s.id));
   const claims=db.prepare("SELECT source_ids FROM claim_citations WHERE article_version_id=?").all(ver.id);
-  if(!claims.length||claims.some(c=>{try{return !JSON.parse(c.source_ids||"[]").length}catch{return true}})) return false;
-  const content=JSON.parse(ver.content_json||"{}");
+  if(!claims.length||claims.some(c=>{try{const ids=JSON.parse(c.source_ids);return !Array.isArray(ids)||!ids.length||ids.some(id=>!sourceIds.has(id))}catch{return true}})) return false;
+  let content;
+  try{content=JSON.parse(ver.content_json||"{}")}catch{return false;}
   if(!/AI editorial persona/i.test(content.note?.text||"")||!/linked sources/i.test(content.note?.text||"")||!/no firsthand experience/i.test(content.note?.text||"")) return false;
   const checks=db.prepare("SELECT check_name,result FROM editorial_checks WHERE article_version_id=?").all(ver.id);
-  const fails=checks.some(c=>c.result==="fail");
-  if(fails) return false;
+  if(!checks.length||checks.some(c=>c.result==="fail")) return false;
+  const review=db.prepare("SELECT reason FROM audit_events WHERE entity='article' AND entity_id=? AND action='persist-review' ORDER BY id DESC LIMIT 1").get(article.id);
+  if(!review) return false;
+  try{
+    const result=JSON.parse(review.reason);
+    if(result.verdict!=="pass"||!Array.isArray(result.findings)||result.findings.some(f=>f.severity==="major"||f.severity==="critical")) return false;
+  }catch{return false;}
   return {article,version:ver};
 }
 function choose(db,slotDate) {
@@ -165,3 +172,4 @@ function retryDue(db,{at=new Date(),providerAvailable=true}={}) {
   return publishToday(db,{at,providerAvailable});
 }
 module.exports={TZ,localDate,zonedInstant,ensure,opsState,eligible,publishToday,retryDue,readback};
+

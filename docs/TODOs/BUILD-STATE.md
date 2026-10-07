@@ -69,6 +69,7 @@ but not executed before Stage 06 installs the publisher. Verification: docs/veri
 ## Stage 06 — Scheduling & publication
 Status: DONE (2026-10-06)
 Evidence: docs/platform/SCHEDULING.md; docs/verification/stage-06-scheduling.md; web/scripts/test-stage06-scheduler.js.
+2026-10-07 follow-up: the local publisher now requires deterministic checks, an independent passing review without major/critical findings, and claim citations to existing source IDs. The scheduler regression passed with four new hold fixtures. See docs/audits/2026-10-07-scheduler-publication-gate.md. The deployed Worker/D1 publisher is unchanged.
 Notes: Added persisted one-shot publication and reserve-replenishment runners with Pacific local-date resolution, unique daily slots, serialized publication, latest-version eligibility rechecks, timeout-safe retries, delay tracking, separate content readback, five-minute retry backoff, and admin-visible failures/alerts. Provider budget reservations remain atomic under the existing daily/monthly caps. The owner control room now shows scheduler state, failures, and alerts. Verification passes across spring/fall DST offsets, two concurrent worker threads, timeout after commit, provider failure, empty reserve, backoff, and late same-day delay. At the Stage 06 milestone the public Site had no MCP endpoint; its local runner deliberately treated the publisher as unavailable. The Site now declares MCP, but remains unconnected and unscheduled. Transaction tests verify SQLite behavior only, not a live Site update. Activation remains gated on Stage 07.
 
 
@@ -105,3 +106,4 @@ and private reserve isolation. Its Worker packaging and live D1 binding are now 
 Status: BLOCKED (2026-10-07)
 Evidence: docs/verification/acceptance-report.md; docs/verification/site-migration-boundary.md.
 Notes: Stage 07 is not fully green. The linked schedule stays inactive by the Stage 08 gate.
+

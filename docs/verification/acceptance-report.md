@@ -5,6 +5,13 @@ Result: **BLOCKED**. The public Worker/D1 reader and owner-gated publisher are d
 the authenticated unattended connection, production provider, hosted publication/readback,
 mobile verification, and complete failure suite are not accepted. No hosted article was published.
 
+The 2026-10-07 local scheduler review closed a publication-gate bypass in the
+Node/SQLite runner: missing deterministic checks, missing or adverse independent
+review, and dangling cited source IDs now hold a candidate. The scheduler
+regression passed with four new negative fixtures. This repository change is
+not yet deployed to the Worker/D1 Site and does not alter the blocked result.
+See `docs/audits/2026-10-07-scheduler-publication-gate.md`.
+
 ## Acceptance matrix
 
 | Case | Result | Method and evidence |
@@ -60,3 +67,4 @@ cases against the deployed Site, including a controlled authenticated write and 
 production readback, OAuth expiry, failure recovery, and mobile viewport checks. The Site
 connection and model-provider plugin were surfaced for connection; a suggestion is not a
 connection. Keep both autonomous switches and the recurring schedule inactive until accepted.
+
