@@ -1,5 +1,10 @@
 import assert from 'node:assert/strict';
-import {generateDraft} from '../server/model-provider.js';
+import {generateDraft,resolveModel,DEFAULT_MODEL_ID} from '../server/model-provider.js';
+assert.equal(DEFAULT_MODEL_ID,'openai/chat-latest');
+assert.throws(()=>resolveModel({}),/OpenAI.*credentials missing/);
+const latest=resolveModel({OPENAI_API_KEY:'fixture'});
+assert.equal(latest.id,DEFAULT_MODEL_ID);
+assert.equal(latest.model.modelId,'chat-latest');
 const sources=Array.from({length:5},(_,i)=>({id:`s${i}`,url:`https://example.com/${i}`,excerpt:'Reviewed source'}));
 const env={FOLKLY_MODEL_ID:'fixture/model',AI_GATEWAY_API_KEY:'fixture',FOLKLY_MAX_JOB_DOLLARS:'1'};
 let called=0,ledger=[];
