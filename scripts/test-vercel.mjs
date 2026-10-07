@@ -8,6 +8,8 @@ for (const slug of ['new-orleans-second-line', 'lisbon-fado', 'oaxaca-living-col
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /Sources|sources/);
   assert(!html.includes('chatgpt.site'));
+  assert(!html.includes('<p class="ai-disclosure">'));
+  assert(html.includes('href="/subscribe"'));
 }
 for (const item of reserve) assert(!routes[`/${item.slug}`], `Reserve leaked: ${item.slug}`);
 for (const route of Object.keys(routes)) {
@@ -15,7 +17,7 @@ for (const route of Object.keys(routes)) {
   const html = await readFile(route === '/' ? 'dist/index.html' : `dist${route}.html`, 'utf8');
   for (const [, href] of html.matchAll(/href="(\/[^"]*)"/g)) {
     const path = href.split(/[?#]/)[0].replace(/\.html$/, '');
-    if (path && !path.startsWith('/assets/') && path !== '/style.css') assert(routes[path], `Broken link: ${href} on ${route}`);
+    if (path && !path.startsWith('/assets/') && !['/style.css', '/subscribe.css', '/subscribe'].includes(path)) assert(routes[path], `Broken link: ${href} on ${route}`);
   }
 }
 const files = await readdir('dist', { recursive: true });

@@ -2,8 +2,10 @@
 
 ## Priority TODO
 
-1. Add a subscribe button to the top of the public journal, with an accessible signup flow and verified subscription storage.
+1. Subscribe button and signup flow implemented; connect a private Vercel Blob store and verify a real signup before marking storage acceptance complete. Email delivery and unsubscribe processing remain pending.
 2. Complete Vercel hosting migration: public reader first, then durable editorial storage and owner authentication. Keep publication and scheduling off until deployed acceptance passes.
+3. Add a contact form in the About section, with a reason-for-contact field and an option to express interest in becoming a contributor.
+4. Update the About section to say Folkly is seeking contributors and link to the contributor contact option.
 
 Master spec: `Folkly_Autonomous_Publishing_Codex_Prompt.txt` (this directory).
 Each stage updates ONLY its own section. Status values: PENDING / IN PROGRESS / DONE / BLOCKED.
