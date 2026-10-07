@@ -21,19 +21,22 @@ records in the database; no git commit or full-site redeploy is required per art
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## Real vs stand-in
+## Local implementation versus the live Site
 
-| Component | This environment | Real Sites deployment (stage 08) |
+| Component | Repository implementation | Required live Site migration |
 |-----------|------------------|----------------------------------|
-| Content store (structured records) | SQLite via `node:sqlite` (WAL mode, FKs on) | Sites D1 (same relational model; swap in db.js) |
-| Image assets | Files under `web/static/assets/` (git-tracked originals) | R2 buckets (swap file reads in server static handler) |
-| Server runtime | Node http server, port 8787 (config: FOLKLY_PORT) | Sites server runtime (same server.js entry) |
-| Scheduling | Not yet (stage 06 builds durable job runner) | Verified supported Sites scheduler |
-| Auth / owner role | Not yet (stage 05) | Platform auth + owner role verification |
+| Content store | Synchronous `node:sqlite` in a local DB ignored by git | D1 async queries, schema/data migration, transactional publication equivalent |
+| Image assets | Files under `web/static/assets/` | Static assets or R2 with verified credit/permission mapping |
+| Server runtime | Node HTTP listener on a configurable port | Cloudflare-compatible ESM Worker `fetch` handler in the separate existing Site source repository |
+| Scheduling | Persisted local one-shot runners, production publisher unavailable | Site-linked triggers and a deployed authenticated publisher with independent readback |
+| Auth / owner role | Server-side checks in Node, with a trusted-proxy setting | Verified Site identity propagation and owner/job scope enforcement in deployed runtime |
 
-**db.js is the adapter boundary**: schema SQL, settings defaults, and audit writes are
-isolated there. When D1/R2 become available, the content code (render.js, pipeline, admin)
-stays unchanged; only db.js's openDb and the static asset handler change.
+The current live Site is a separate static source repository and does not run this Node server.
+`web/server.js` uses Node HTTP and synchronous SQLite calls throughout rendering, pipeline,
+admin, and scheduling. D1 is asynchronous, so changing `db.js` alone cannot deploy it. A real
+port must adapt request handling and all database call sites, migrate the preserved content and
+version/claim ledgers, bind Site storage and auth, and run the same acceptance tests against the
+deployed Worker. No production deployment or autonomous publication is implied by local tests.
 
 ## Data model (web/lib/db.js SCHEMA)
 
@@ -86,4 +89,5 @@ requirement is enforced via `site.canonical_domain` — see NOTES.md stage 01, o
    `editorial_checks`; sets `articles.status = 'ready'`.
 2. Scheduler (stage 06) resolves today's America/Los_Angeles slot, atomically claims the
    `publication_slots` row for that date, rechecks gates, flips `status='published'`.
-3. Server renders from the store on the next request. No git, no redeploy.
+3. The local server renders from the store on the next request. A live Site will need its own
+   verified runtime and storage migration before it can exhibit this behavior.

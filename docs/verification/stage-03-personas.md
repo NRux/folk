@@ -1,7 +1,7 @@
 # Stage 03 Verification — Personas, rendering, archives, metadata
 
-Date: 2026-10-05T04:29:42.951Z
-Base: http://localhost:8788
+Date: 2026-10-07T05:27:56.264Z
+Base: http://127.0.0.1:18787
 
 Total checks: 26, passed: 26, failed: 0
 

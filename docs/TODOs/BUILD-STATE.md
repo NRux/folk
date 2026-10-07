@@ -73,17 +73,16 @@ Notes: Added persisted one-shot publication and reserve-replenishment runners wi
 
 
 ## Stage 07 — Acceptance verification & seeding
-Status: BLOCKED (2026-10-06)
-Evidence: docs/verification/acceptance-report.md; component evidence from Stages 02–06.
-Notes: Local component checks pass for the real Tokushima research article, Stage 04 rejection
-fixtures, Stage 05 admin authorization/edit controls, and Stage 06 DST/concurrency/timeout/
-provider-failure fixtures. A fresh Stage 03 verifier run on the available disposable audit copy
-failed four archive/related-story checks; that copy is incomplete and cannot establish whether
-the failures reproduce against the canonical migrated database. The production Site has no MCP
-publishing endpoint and its runtime has no provider environment variables. The reserve remains
-1/7, so the real-provider reserve fill and unattended Site write/readback cannot be verified.
-Case 09 expired authorization, case 10 full reader/feed/cache draft-leak checks, and case 11
-mobile viewport checks also remain incomplete. No production schedule was activated.
+Status: BLOCKED (2026-10-07)
+Evidence: docs/verification/acceptance-report.md; web/scripts/test-stage07-reader.js;
+docs/verification/stage-03-personas.md; component evidence from Stages 02-06.
+Notes: Local component checks pass for Tokushima, Stage 04 gate fixtures, Stage 05 owner controls,
+Stage 06 scheduler fixtures, and a clean-checkout reader/draft-isolation fixture. A fresh Stage 03
+run on an isolated current server passes 26/26; the previous four failures hit a stale process on
+the default port. The live Site remains static and separate from this Node/SQLite repository;
+Worker/D1 migration and a scoped publisher are still unimplemented, with no production provider
+configuration. Reserve remains 1/7. Production write/readback, expired authorization, full
+deployed leak checks and mobile viewport checks remain incomplete. No schedule was activated.
 
 ## Stage 08 — Operations doc, activation & delivery
 Status: PENDING
