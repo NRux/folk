@@ -17,3 +17,16 @@ The static Vercel reader is independent of Sites at runtime. Full autonomous
 backend migration is pending durable SQL storage and owner authentication;
 existing reserve remains in its current store and publication stays disabled.
 Deployed acceptance must be rerun on Vercel before activation.
+
+## Hosted reader result
+
+Source commit f93f20c was synchronized to main and master. Vercel deployment
+dpl_2pfxJ5zWSQLy1itaqBcuBRcqJoPD reached READY for that exact source.
+On https://www.folkly.com, home and all four published stories returned 200;
+style.css and assets/lisbon.jpg returned 200; /admin and /bonwire-kente returned
+404. Homepage SHA-256 matched the local built output exactly:
+ffa98bdffc1ddd1066237f44ae9174e6b3d9f7cf9afd78ceee7db9d8372de2df.
+Build and focused checks passed twice; the existing publisher evidence fixture
+also passed. Protected preview verification was denied at the Vercel connection
+permission boundary (403); protection was retained. Mobile UI and the editorial
+backend acceptance remain pending. No activation switch was changed.
