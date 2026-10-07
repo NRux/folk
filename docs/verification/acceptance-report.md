@@ -7,6 +7,16 @@ requirement. The historical results below are retained as evidence, not current
 Vercel backend acceptance. The public reader and subscriber endpoint are deployed;
 the autonomous editorial backend has not been migrated to Vercel.
 
+Supabase follow-up: Vercel now lists Supabase connection variables for production
+and preview. A pinned SDK, server-only client, verified owner-membership helper,
+and 19-table PostgreSQL migration are prepared. Local PGlite checks verify RLS,
+client-role denials, server write/readback, identity IDs, foreign keys, unique
+daily slots, and disabled switches. These are local Postgres checks, not hosted
+acceptance. The Supabase MCP currently exposes a different older application's
+project; it has not been modified. Authorize the Folkly project's Supabase
+connection before applying the migration and importing the private reserve.
+See docs/platform/SUPABASE.md.
+
 | Case | Current Vercel result | Evidence / next prerequisite |
 |---|---|---|
 | 1. Existing URLs and credits | PASS deployed Vercel | `npm run test:hosted` passed 38 checks covering both URL forms and exact built article HTML, including source and rights credits. |

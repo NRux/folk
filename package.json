@@ -7,14 +7,17 @@
   },
   "scripts": {
     "build": "node scripts/build-vercel.mjs",
-    "test": "node scripts/test-vercel.mjs && node scripts/test-subscribe.mjs",
+    "test": "node scripts/test-vercel.mjs && node scripts/test-subscribe.mjs && node scripts/test-supabase.mjs && node scripts/test-supabase-schema.mjs",
     "test:hosted": "node scripts/verify-vercel-reader.mjs",
     "test:mobile": "node scripts/test-mobile.cjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "2.117.3",
     "@vercel/blob": "2.6.1"
   },
   "devDependencies": {
-    "playwright": "1.62.1"
+    "@electric-sql/pglite": "0.5.8",
+    "playwright": "1.62.1",
+    "supabase": "2.120.0"
   }
 }

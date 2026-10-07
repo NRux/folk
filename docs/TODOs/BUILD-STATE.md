@@ -83,6 +83,10 @@ Notes: Added persisted one-shot publication and reserve-replenishment runners wi
 ## Stage 07 — Acceptance verification & seeding
 Status: BLOCKED (2026-10-07)
 Current Vercel prerequisite pass: public author pages and linked topic archives restored;
+Supabase follow-up: connection variables are present in Vercel; secure server client
+and 19-table Postgres migration prepared and locally tested. Hosted migration and
+private reserve import are blocked until the Supabase connection exposes the Folkly
+project rather than the older unrelated project. See docs/platform/SUPABASE.md.
 requested reading-lens boxes removed; 59-route build and focused reader/subscription
 checks pass. Added `npm run test:hosted` and `npm run test:mobile`. Chromium download
 failed, so mobile acceptance remains unverified. Durable Vercel editorial SQL storage,
