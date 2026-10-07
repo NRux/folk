@@ -29,6 +29,8 @@ for (const file of files.filter(p => p.endsWith('.html'))) {
   assert.equal((html.match(/adsbygoogle\.js/g) || []).length, 1, file);
   assert(head.includes('client=ca-pub-6358670448023938'), file);
   assert(head.includes('crossorigin="anonymous"'), file);
+  assert.equal((html.match(/googletagmanager\.com\/gtag\/js\?id=G-RQJD3XG35C/g) || []).length, 1, file);
+  assert.equal((head.match(/gtag\('config', 'G-RQJD3XG35C'\)/g) || []).length, 1, file);
   assert(!html.includes('Neighborhood context, not a pictured'));
   assert(!html.includes('. Displayed with a responsive crop; original image retained.'));
 }

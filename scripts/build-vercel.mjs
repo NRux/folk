@@ -7,9 +7,17 @@ const routes = JSON.parse(await readFile('web/vercel/routes.json', 'utf8'));
 const extraPages = JSON.parse(gunzipSync(await readFile('web/vercel/extra-pages.json.gz')).toString('utf8'));
 const origin = process.env.FOLKLY_PUBLIC_ORIGIN || 'https://www.folkly.com';
 const adsense = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6358670448023938" crossorigin="anonymous"></script>';
+const analytics = `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQJD3XG35C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RQJD3XG35C');
+</script>`;
 function addAdsense(html) {
   if (!html.includes('</head>')) throw new Error('Public page is missing its head');
-  return html.replace('</head>', `${adsense}</head>`);
+  return html.replace('</head>', `${adsense}${analytics}</head>`);
 }
 const canonical = new URL(origin);
 if (canonical.protocol !== 'https:' || canonical.pathname !== '/' || canonical.search || canonical.hash || canonical.username || canonical.password) {
