@@ -12,13 +12,20 @@ or storage credential is exposed in HTML or logs. The endpoint validates request
 origin, body size, email, consent, and honeypot. It reports success only after a
 successful private write (or an existing record); storage failures return 503.
 
-Vercel has no storage environment configured. Creating the private Blob store
-was rejected by the Vercel API with 403: permission to create Blob denied.
-No Vercel CLI is available with independent credentials. Noah must connect a
-private Blob store to the existing folk project, for production and preview,
-using BLOB_STORE_ID/OIDC or BLOB_READ_WRITE_TOKEN. Do not share tokens in chat.
+Initial provisioning was rejected by the Vercel API with 403. Noah subsequently
+connected Blob to the existing folk project for production and preview; verified
+BLOB_STORE_ID and BLOB_READ_WRITE_TOKEN environment metadata without decrypting
+credentials. The SDK was already installed at version 2.6.1. No Vercel CLI with
+independent credentials is available here, so the Vercel connector was used.
 
-Signup persistence remains blocked until that connection is made and a real
-write/readback is verified. This collects a subscriber list; sending newsletters,
+Redeployed source a1524c with the new environment through the existing Vercel
+project. Deployment dpl_H6jvEHnrWnGxEjp6ni1ycCr2AURv reached READY and assigned
+www.folkly.com and folkly.com. Live POST /api/subscribe with the reserved test
+address acceptance-test@example.com returned 200 after the private SDK write.
+No email was sent. Exclude this test address from future delivery imports.
+Independent authenticated readback remains pending; the storage management API
+returned 404 through the connector even though the function's private write worked.
+
+This collects a subscriber list; sending newsletters,
 confirmation email, distributed abuse limits, and unsubscribe email processing
 are not enabled. Publication and recurring article scheduling remain off.

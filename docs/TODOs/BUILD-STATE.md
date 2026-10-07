@@ -2,7 +2,7 @@
 
 ## Priority TODO
 
-1. Subscribe button and signup flow implemented; connect a private Vercel Blob store and verify a real signup before marking storage acceptance complete. Email delivery and unsubscribe processing remain pending.
+1. Subscribe button and signup flow deployed; private Blob connected and live signup returned 200 after storage write on 2026-10-07. Independent readback, email delivery, and unsubscribe processing remain pending. Exclude acceptance-test@example.com from any delivery import.
 2. Complete Vercel hosting migration: public reader first, then durable editorial storage and owner authentication. Keep publication and scheduling off until deployed acceptance passes.
 3. Add a contact form in the About section, with a reason-for-contact field and an option to express interest in becoming a contributor.
 4. Update the About section to say Folkly is seeking contributors and link to the contributor contact option.
