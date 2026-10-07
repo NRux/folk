@@ -9,7 +9,7 @@ the autonomous editorial backend has not been migrated to Vercel.
 
 | Case | Current Vercel result | Evidence / next prerequisite |
 |---|---|---|
-| 1. Existing URLs and credits | Reader regression implemented | `npm run test:hosted` checks both URL forms and exact built article HTML, including source and rights credits. |
+| 1. Existing URLs and credits | PASS deployed Vercel | `npm run test:hosted` passed 38 checks covering both URL forms and exact built article HTML, including source and rights credits. |
 | 2. Five editable author profiles and distinct voices | Public profiles restored; editing BLOCKED | Five public profiles and linked topic archives are included in the reader build. Protected editable profiles and versioned briefs need the Vercel editorial backend. |
 | 3. Researched article through gates | Historical reserve retained; Vercel BLOCKED | Seven reviewed reserve stories remain private in the existing store. Vercel pipeline and editorial evidence storage are absent. |
 | 4. Unattended article write and independent readback | BLOCKED | Subscriber Blob writes do not satisfy this gate. Need scoped editorial writer credentials and durable article storage. |
@@ -18,7 +18,7 @@ the autonomous editorial backend has not been migrated to Vercel.
 | 7. Timeout/retry deduplication | BLOCKED hosted | Same publisher/storage prerequisite; old SQLite/D1 fixtures are not Vercel deployment evidence. |
 | 8. Claim/image hard gates | Focused local fixture passes | `node web/site-runtime/hosted/scripts/test-publication-gates.mjs`; port and exercise these checks in the Vercel publisher. |
 | 9. Failure recovery | BLOCKED hosted | Need deployed owner controls, provider, unattended authorization, and isolated failure fixtures. |
-| 10. Private reads/writes | Anonymous reader checks implemented; owner BLOCKED | Hosted regression checks admin/MCP and all seven reserve slugs are unavailable. No Vercel owner write endpoints exist. |
+| 10. Private reads/writes | Anonymous reader checks PASS; owner BLOCKED | Hosted regression confirms admin/MCP and all seven reserve slugs return 404. No Vercel owner write endpoints exist. |
 | 11. Mobile, restore, edits, corrections | BLOCKED | Mobile runner added for 375/390/768 px; Chromium download failed with truncated archive. Cloud browser has no viewport control. Restore/edit/correction backend is absent on Vercel. |
 
 Changes in this pass: removed the requested reading-lens comment boxes from all
@@ -27,6 +27,16 @@ author profiles and 38 linked topic archives, and added repeatable hosted/mobile
 reader checks. Build and local reader/subscription checks pass for 59 public routes.
 The user's requested removal of the repeated article disclaimer is an explicit
 presentation override; no evidence, claim, media-rights, or publication gate was disabled.
+
+Hosted verification: Vercel deployment dpl_5LAYJ2YnVM8NDwxVVhaaZiKhZ3gz reached
+READY for source d571ab35943850644abaf13e9edea2d7877be169. The public custom domain
+passed 38 live reader checks. All four articles matched the tested build byte for
+byte, both URL forms resolved, five authors and signup navigation worked, lens
+boxes were absent, and private routes returned 404. Build/local checks passed
+twice; publication evidence fixture passed; npm production audit found zero
+vulnerabilities. Mobile runner failed to launch because Chromium was unavailable,
+and its attempted official download returned a truncated archive. No mobile PASS
+is claimed. This evidence closes reader prerequisites only, not Stage 7 overall.
 
 To unblock: connect a Vercel-compatible durable SQL database (for example Neon or
 Turso), an owner authentication provider with verified owner authorization, and a
