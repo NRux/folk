@@ -183,3 +183,10 @@ Protected cursor pagination now reaches messages beyond the first 20, with
 first/next controls, per-page owner/session verification, cursor bounds and
 stale-response suppression after sign-out. Full hosted authenticated paging
 remains pending. See verification/contact-pagination-2026-10-08.md.
+
+## Direct editorial wording, 2026-10-08 UTC
+
+Recorded Noah’s preference in platform/EDITORIAL-STYLE.md, updated two public
+paragraphs to remove “Folkly reads…” framing, and added the rule to the model
+system prompt. Private reserve evidence is untouched. Mobile acceptance retry
+remains under verification; publication/schedules remain off.
