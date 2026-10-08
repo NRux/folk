@@ -2,6 +2,17 @@
 
 Stage 7 remains BLOCKED. No article generation, publication, or schedule enabled.
 
+Confirmed owner-login root cause, 2026-10-08 01:47 UTC: the deployed Vercel
+SUPABASE_URL does not match vxmyggasjgsiohqzzwzh, the verified Folkly project.
+The deployed project guard returns the explicit wrong-project response. Noah's
+account is email-confirmed and has audited private owner membership in the correct
+database. Reconnect the Vercel folk Supabase integration to this project, replace
+the URL and all corresponding keys together, then redeploy. Do not change only
+the URL while retaining credentials from the older unrelated project.
+Provider log access through Vercel MCP returned 403; the safe project-match check
+provided the diagnosis without exposing credentials. Empty-code browser
+validation and safe auth error handling are deployed on main/master.
+
 Owner follow-up, 2026-10-08 UTC: noah@then.tv now has a confirmed Supabase Auth
 account and audited private owner membership. A current email-code request still
 returned 503, so account provisioning alone did not fix delivery. Added safe
