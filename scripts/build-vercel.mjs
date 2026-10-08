@@ -6,7 +6,7 @@ import { gunzipSync } from 'node:zlib';
 const routes = JSON.parse(await readFile('web/vercel/routes.json', 'utf8'));
 const extraPages = JSON.parse(gunzipSync(await readFile('web/vercel/extra-pages.json.gz')).toString('utf8'));
 const origin = process.env.FOLKLY_PUBLIC_ORIGIN || 'https://www.folkly.com';
-const adsense = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6358670448023938" crossorigin="anonymous"></script>';
+const adsense = '<meta name="google-adsense-account" content="ca-pub-6358670448023938"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6358670448023938" crossorigin="anonymous"></script>';
 const analytics = `<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RQJD3XG35C"></script>
 <script>
