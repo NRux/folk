@@ -30,3 +30,9 @@ credentials and deployed recovery blockers.
 Browser-script VM race fixture passed twice: late status and inbox responses
 after sign-out cannot restore private UI. This supports, but does not replace,
 a live authenticated browser acceptance check.
+
+Deployed evidence: implementation e94fa1de69f3662c781c7ebee25fa3bf1e80a23a
+synced main/master. Production dpl_4jdixt5qXQJ6sN9N1NYeBRtU4RjA and preview
+dpl_3smX8yckNXHCoBNrgwDQWeGnmaiH reported READY. Hosted reader regression
+passed 38 checks; anonymous paginated inbox GET returned 401. No authenticated
+production inbox read was performed.
