@@ -420,3 +420,5 @@ addresses and blank names before any `mailto:` target can be rendered; message
 content remains text-only. Focused contact and full regression checks pass. See
 verification/contact-reply-2026-10-08.md. No mail credentials, subscriber state,
 publication controls or autonomous switches changed.
+The implementation deployed successfully; production serves the reply workflow,
+while anonymous contact-inbox access remains 401 with no-store caching.

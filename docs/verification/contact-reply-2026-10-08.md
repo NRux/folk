@@ -23,6 +23,11 @@ reply draft.
 - `npm run build`: passed with 73 public routes and the owner-only reply client.
 - `npm test`: passed the complete regression suite.
 
+The implementation commit deployed successfully through Vercel. At 2026-10-08
+23:53 UTC, the production `/owner.js` returned 200 and contained the fixed reply
+subject and `mailto:` workflow. An anonymous `/api/owner?view=contacts` request
+returned 401 with `Cache-Control: no-store`; no private contact data was read.
+
 ## Limits
 
 The action depends on the owner's local email application. There is no provider
