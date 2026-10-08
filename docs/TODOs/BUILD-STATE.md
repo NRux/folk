@@ -407,3 +407,6 @@ verification/subscriber-readback-2026-10-08.md. This closes the code-side
 authenticated readback gap, but hosted owner-session readback and Resend delivery
 acceptance still require the existing Vercel project connection and configured
 provider secrets. NEWSLETTER_ENABLED and all three autonomous switches remain off.
+The implementation deployment succeeded; public owner HTML includes the section,
+and an anonymous subscriber-view request returned 401/no-store. Authenticated
+record readback was deliberately not attempted without Noah's owner session.

@@ -38,9 +38,14 @@ subscriptions, suppression records, delivery claims or newsletter settings.
 
 ## Remaining hosted acceptance
 
+Vercel reported the implementation commit successful. At 2026-10-08 23:47 UTC,
+`https://www.folkly.com/owner` returned 200 and contained the generated
+Subscribers section; an anonymous request to
+`/api/owner?view=subscribers` returned 401 with `Cache-Control: no-store`.
+
 This run did not decrypt production secrets, list real subscribers or send mail.
-Hosted readback still requires the connected Vercel project to expose Folkly to
-the tool session and a real owner session. Resend sender/domain configuration,
-provider receipt, unsubscribe readback and bounce/complaint operations remain
-separate acceptance items. `NEWSLETTER_ENABLED`, autonomous production,
-publication and the recurring article schedule remain disabled.
+Authenticated production readback still requires a real owner session. Resend
+sender/domain configuration, provider receipt, unsubscribe readback and
+bounce/complaint operations remain separate acceptance items.
+`NEWSLETTER_ENABLED`, autonomous production, publication and the recurring
+article schedule remain disabled.
