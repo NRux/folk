@@ -20,6 +20,14 @@ for(const item of items){
  assert.equal(schema.publisher.name,'Folkly');
  if(item.authorSlug)assert(schema.creditText.includes('editorial persona'));
  assert(html.includes('class="related-stories"'));
+ const related = html.match(/<section class="related-stories"[\s\S]*?<\/section>/)[0];
+ assert.equal((related.match(/class="related-card"/g)||[]).length,4);
+ assert.equal((related.match(/<img /g)||[]).length,4);
+ assert(!related.includes(`href="/${item.slug}"`));
+ assert.equal(new Set([...related.matchAll(/class="related-card" href="([^"]+)"/g)].map(m=>m[1])).size,4);
+ assert(html.includes('Stories about the intersection of Culture and Place.'));
+ assert(html.includes('A Then Media inc. project.'));
+ assert(!html.includes('A project by Noah Rappaport'));
  for(const link of item.related)assert(html.includes(`href="/${link.slug}"`));
  if(item.authorSlug){const author=await readFile(`dist/author/${item.authorSlug}.html`,'utf8');assert(author.includes(`href="/${item.slug}"`));assert(!author.includes('In the queue'));assert(!author.includes('Nothing published yet'));}
 }

@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "node scripts/build-vercel.mjs",
-    "test": "node scripts/test-vercel.mjs && node scripts/test-subscribe.mjs && node scripts/test-supabase.mjs && node scripts/test-supabase-schema.mjs && node scripts/test-owner-auth.mjs && node scripts/test-publisher.mjs && node scripts/test-model-provider.mjs && node scripts/test-model-ledger.mjs && node scripts/test-owner-dashboard.mjs && node scripts/test-analytics.mjs && node scripts/test-analytics-evidence.mjs && node scripts/test-contact.mjs && node scripts/test-owner-response-race.mjs && node scripts/test-public-articles.mjs && node scripts/test-article-discovery.mjs && node scripts/test-responsive-images.mjs && node scripts/test-article-layout.mjs && node scripts/test-article-filters.mjs",
+    "test": "node scripts/test-vercel.mjs && node scripts/test-subscribe.mjs && node scripts/test-supabase.mjs && node scripts/test-supabase-schema.mjs && node scripts/test-owner-auth.mjs && node scripts/test-publisher.mjs && node scripts/test-model-provider.mjs && node scripts/test-model-ledger.mjs && node scripts/test-owner-dashboard.mjs && node scripts/test-analytics.mjs && node scripts/test-analytics-evidence.mjs && node scripts/test-contact.mjs && node scripts/test-owner-response-race.mjs && node scripts/test-public-articles.mjs && node scripts/test-article-discovery.mjs && node scripts/test-responsive-images.mjs && node scripts/test-article-layout.mjs && node scripts/test-article-filters.mjs && node scripts/test-reader-context.mjs",
     "test:hosted": "node scripts/verify-vercel-reader.mjs",
     "test:mobile": "node scripts/test-mobile.cjs"
   },

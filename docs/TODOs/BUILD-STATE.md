@@ -293,3 +293,16 @@ The model fixture confirms the new instructions reach the generation request;
 no live generation or semantic quality acceptance is claimed. Build and public
 article layout checks pass. Published articles/private attestations and disabled
 production/publication/schedule settings remain unchanged.
+
+## Existing-story context and related cards, 2026-10-08
+
+All eleven published stories now introduce unfamiliar cultural/geographic and
+technical terms within the prose. Regional Puanga/Matariki visibility wording is
+corrected and linked to Te Papa/Te Aka evidence. Every story is at least the
+revised Tokushima length of 1,228 narrative words and retains exact two-paragraph
+image cadence (93 images). Related panels show four distinct public image cards,
+with curated links first and deterministic topic/place fallback. Detroit uses
+its credited inline portrait as a preview. Shared footer subtitle/project text
+matches the owner's supplied wording. See verification/reader-context-related-stories-
+2026-10-08.md and its JSON for hashes, counts and checks. Release manifest/private
+reserve and paused switches remain unchanged. Hosted acceptance is still pending.

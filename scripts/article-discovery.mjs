@@ -36,9 +36,23 @@ export function discoveryPage(template, route, group, origin) {
   html=html.replace(/<meta property="og:[^"]*" content="[^"]*">/g,'');
   return html.replace(/<main id="main" class="shell">[\s\S]*?<\/main>/,`<main id="main" class="shell"><div class="intro"><h1>${escapeHtml(group.label)}</h1><p>${group.items.length} published ${group.items.length===1?'story':'stories'}. <a href="/archive">Browse all archives</a>.</p></div><div class="story-grid" data-published-grid>${renderGrid(group.items)}</div></main>`);
 }
-export function relatedStories(items, item) {
-  const published=new Map(items.map(story=>[story.slug,story]));
-  const related=(item.related||[]).filter(link=>link.slug!==item.slug && published.has(link.slug));
+export function relatedStories(items, item, media = {}) {
+  const published = new Map(items.map(story => [story.slug, story]));
+  const links = new Map();
+  for (const link of item.related || []) {
+    if (link.slug !== item.slug && published.has(link.slug)) links.set(link.slug, link.reason);
+  }
+  const candidates = items.filter(story => story.slug !== item.slug).sort((a,b) => {
+    const score = story => story.topics.filter(topic => item.topics.includes(topic)).length + (story.placeSlug === item.placeSlug ? 2 : 0);
+    return score(b) - score(a) || a.slug.localeCompare(b.slug);
+  });
+  for (const story of candidates) if (!links.has(story.slug)) links.set(story.slug, story.summary || story.description || `Explore ${story.placeName}.`);
+  const related = [...links].slice(0,4);
   if (!related.length) return '';
-  return `<section class="related-stories" aria-labelledby="related-${item.slug}"><h2 id="related-${item.slug}">Related stories</h2><ul>${related.map(link=>`<li><a href="/${link.slug}">${escapeHtml(published.get(link.slug).title)}</a><p>${escapeHtml(link.reason)}</p></li>`).join('')}</ul></section>`;
+  return `<section class="related-stories" aria-labelledby="related-${escapeHtml(item.slug)}"><h2 id="related-${escapeHtml(item.slug)}">Related stories</h2><ul>${related.map(([slug,reason]) => {
+    const story = published.get(slug);
+    const image = story.image || media[slug]?.[0];
+    const preview = image ? `<img class="related-image" src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}"${image.width ? ` width="${image.width}" height="${image.height}"` : ''} loading="lazy" decoding="async">` : '';
+    return `<li><a class="related-card" href="/${escapeHtml(slug)}">${preview}<span>${escapeHtml(story.title)}</span></a><p>${escapeHtml(reason)}</p>${image?.creator ? `<small>Photo: <a href="${escapeHtml(image.source)}">${escapeHtml(image.creator)}</a>${image.licenseUrl ? ` / <a href="${escapeHtml(image.licenseUrl)}">${escapeHtml(image.license)}</a>` : ''}</small>` : ''}</li>`;
+  }).join('')}</ul></section>`;
 }

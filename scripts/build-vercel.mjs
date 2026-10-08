@@ -28,6 +28,9 @@ const analytics = `<!-- Google tag (gtag.js) -->
 </script>`;
 function addAdsense(html) {
   if (!html.includes('</head>')) throw new Error('Public page is missing its head');
+  html = html.replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/g, footer => footer
+    .replace(/Culture takes place\.<br\s*\/?>Stories about what makes a place itself\./g, 'Stories about the intersection of Culture and Place.')
+    .replace(/A project by Noah Rappaport(?:\s*(?:&middot;|·)\s*October 2026)?/g, 'A Then Media inc. project.'));
   return html.replace('</head>', `${adsense}${analytics}</head>`);
 }
 const canonical = new URL(origin);
@@ -53,7 +56,7 @@ for (const [route, file] of Object.entries(routes)) {
   if (article) {
     html = decorateArticle(html, article, canonical.origin);
     if (!html.includes('</article>')) throw new Error(`Missing article boundary: ${article.slug}`);
-    html = html.replace('</article>', `</article>${relatedStories(articles,article)}`);
+    html = html.replace('</article>', `</article>${relatedStories(articles,article,articleMedia)}`);
   }
   html = html.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${canonical.origin}${route}">`);
   html = html.replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${canonical.origin}${route}">`);

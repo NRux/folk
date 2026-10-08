@@ -5,7 +5,7 @@ import { publishedArticles } from './public-articles.mjs';
 const json=async path=>JSON.parse(await readFile(path,'utf8'));
 const articles=publishedArticles(await json('web/vercel/articles.json'),await json('web/vercel/routes.json'));
 const media=await json('web/vercel/article-media.json');
-assert.equal(articleWordCount(await readFile(`web/vercel/pages/${ARTICLE_REFERENCE}.html`,'utf8')),ARTICLE_MIN_WORDS);
+assert(articleWordCount(await readFile(`web/vercel/pages/${ARTICLE_REFERENCE}.html`,'utf8')) >= ARTICLE_MIN_WORDS);
 const credits=await readFile('dist/image-credits.html','utf8');
 let total=0;
 for(const item of articles){
