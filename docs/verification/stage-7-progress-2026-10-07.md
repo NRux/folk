@@ -108,3 +108,13 @@ when sizing the instance. Reference: https://supabase.com/docs/guides/deployment
    before hosted concurrency, forced failures, and restore acceptance.
 5. Full Vercel end-to-end acceptance, responsive browser checks, and second full
    deployed debug/security pass remain pending. Local tests do not close them.
+
+
+## Durable model budget update, 2026-10-08 UTC
+
+See [model-budget-2026-10-08.md](model-budget-2026-10-08.md) for applied migration,
+scoped RPCs, hosted concurrency evidence and remaining dependencies. Vercel's
+Supabase project mismatch cleared after redeploy. Noah's confirmed Auth account
+and owner membership exist. Email template includes {{ .Token }}; sign-in is
+deferred due to SMTP quota. OPENAI_API_KEY is present in Vercel metadata but no
+live model evaluation ran. Budgets and all autonomous switches remain off.
