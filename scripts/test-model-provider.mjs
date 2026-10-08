@@ -10,7 +10,7 @@ const env={FOLKLY_MODEL_ID:'fixture/model',AI_GATEWAY_API_KEY:'fixture',FOLKLY_M
 let called=0,ledger=[];
 const params={brief:{persona:'fixture'},sources,settings:{'production.autonomous_enabled':'true'},reserveBudget:async()=>({id:'reservation'}),recordUsage:async r=>ledger.push(r)};
 const output={title:'Fixture title',deck:'Fixture',sections:[{heading:'First',text:'Fixture'},{heading:'Second',text:'Fixture'}],claims:[{claim:'Fixture',sourceIds:['s0']}],musicExamples:[]};
-const fake=async args=>{called++;assert.equal(args.maxRetries,0);assert.equal(args.maxOutputTokens,6000);assert.equal(args.timeout,45000);return {output,usage:{totalTokens:20},response:{modelId:'fixture/snapshot'}};};
+const fake=async args=>{called++;assert(args.system.includes('On first use'));assert(args.system.includes('cultural or geographic context'));assert(args.system.includes('never invent etymologies'));assert(args.system.includes('Preserve local names and diacritics'));assert.equal(args.maxRetries,0);assert.equal(args.maxOutputTokens,6000);assert.equal(args.timeout,45000);return {output,usage:{totalTokens:20},response:{modelId:'fixture/snapshot'}};};
 await assert.rejects(generateDraft({...params,settings:{}},env,fake),/paused/);assert.equal(called,0);
 await assert.rejects(generateDraft({...params,reserveBudget:async()=>null},env,fake),/exhausted/);assert.equal(called,0);
 assert.equal((await generateDraft(params,env,fake)).draft.title,output.title);

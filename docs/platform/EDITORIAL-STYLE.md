@@ -40,3 +40,42 @@ verification and decoded-download evidence are recorded separately; metadata
 alone does not establish image-byte availability or browser performance.
 Private drafts/reserve and their historical attestations stay unchanged until
 normal owner review and evidence/version reconciliation.
+
+
+## Give readers a way into unfamiliar words
+
+Owner preference, October 8, 2026: preserve the writing's cadence while making
+unfamiliar words intelligible. On first use, introduce the term's meaning and the
+context needed to understand its role. This includes non-English words, local
+place names, community names, unfamiliar craft/music vocabulary and scientific
+names. Do not assume readers recognize a term merely because it is familiar to
+its writer. “Aotearoam” in the request refers to **Aotearoa**.
+
+Weave explanation into an apposition, a nearby sentence, or the action of the
+paragraph rather than a string of dictionary parentheses. Keep original names,
+spelling and diacritics. After introducing a term, use it naturally; repeat a
+brief orientation only after a substantial gap or where meanings change.
+Do not italicize a word solely because it is not English. Avoid “exotic”,
+“primitive”, generic mysticism, or treating a living community as homogeneous.
+
+Context itself can carry the prose. Where the evidence supports it, explain how
+a word relates to kinship, landscape, work, memory, seasonal knowledge or local
+practice. A translation is an entry point, not a complete account of a concept.
+Attribute beliefs and meanings to the named people, community or source that
+expresses them. Never manufacture an etymology, ancestral relationship, spiritual
+meaning, sensory scene or quotation to make the prose richer. Treat translations,
+geographic orientation and cultural explanations as factual claims needing
+sources, just like the rest of the article.
+
+Before review, list unfamiliar terms and check their first appearances: can a
+reader understand what or whom they refer to and why they matter without leaving
+the story? Spread introductions across sentences if a paragraph contains many
+new terms. Preserve regional differences and name the specific community where
+sources allow. Avoid unnecessary rankings or exact timing claims that add
+verification burden without helping understanding. These are editorial review
+instructions, not an automatic semantic acceptance test.
+
+See `../TODOs/READER-CONTEXT-WRITING-PROMPTS.md` for drafting, revision and review
+prompts, plus a source-checked Matariki/Puanga example. The shared model system
+prompt includes this guidance; existing published prose and private reserve
+attestations are unchanged by this prompt-only update.

@@ -279,3 +279,17 @@ metadata populate automatically from each grid's published entries. Build and
 regression evidence is in verification/article-filters-2026-10-08.md. Full browser
 visual/deployed acceptance remains pending; private reserve and paused switches
 are unchanged.
+
+## First-use reader context, 2026-10-08
+
+Owner requested contextual introductions for unfamiliar/non-English vocabulary.
+Drafting, revision and review instructions now require sourced meaning and
+geographic/cultural orientation woven into the prose. Shared model instructions
+preserve names/diacritics, allow evidence-supported lyrical/anthropological depth,
+and prohibit invented etymologies, symbolism and homogenized cultural claims.
+See platform/EDITORIAL-STYLE.md and TODOs/READER-CONTEXT-WRITING-PROMPTS.md for
+term-by-term orientation and a source-checked Matariki/Puanga teaching example.
+The model fixture confirms the new instructions reach the generation request;
+no live generation or semantic quality acceptance is claimed. Build and public
+article layout checks pass. Published articles/private attestations and disabled
+production/publication/schedule settings remain unchanged.
