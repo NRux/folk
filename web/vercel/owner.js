@@ -2,7 +2,7 @@ const el = id => document.getElementById(id);
 const status = el('owner-status');
 function signedIn(value) {
   el('owner-login').hidden=value; el('owner-dashboard').hidden=!value; el('owner-logout').hidden=!value;
-  if (!value) for(const id of ['owner-articles','owner-jobs','owner-reservations','owner-budget','owner-switches','owner-updated','owner-migration']) el(id).replaceChildren();
+  if (!value) for(const id of ['owner-articles','owner-jobs','owner-reservations','owner-budget','owner-switches','owner-updated','owner-migration','owner-contacts','owner-contact-note']) el(id).replaceChildren();
 }
 function table(id,section,columns,empty) {
   const target=el(id);target.replaceChildren();
@@ -22,6 +22,8 @@ function render(data) {
   el('owner-updated').textContent=`Updated ${new Date(d.generatedAt).toLocaleString()}`;
   table('owner-articles',s.articles,[['title','Title'],['status','Status'],['pipeline_state','Editorial stage'],['updated_at','Updated']],'No editorial records have been migrated yet. Existing public stories remain in the archive.');
   table('owner-jobs',s.jobs,[['job_type','Type'],['status','Status'],['attempt','Attempts'],['last_run_at','Last run']],'No jobs recorded.');
+  table('owner-contacts',s.contacts,[['name','Name'],['email','Email'],['reason','Reason'],['contributor','Contributor interest'],['message','Message'],['receivedAt','Received']],'No contact messages saved.');
+  el('owner-contact-note').textContent=s.contacts?.hasMore?'Showing 20 stored messages. More are available in private storage; pagination is pending.':'Up to 20 stored messages. Replies are handled separately.';
   table('owner-reservations',s.reservations,[['model','Model'],['reserved_usd','Reserved USD'],['state','Outcome'],['budget_date','Budget date']],'No model reservations recorded.');
 }
 async function loadStatus() {

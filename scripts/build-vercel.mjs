@@ -42,7 +42,7 @@ for (const [route, file] of Object.entries(routes)) {
 }
 await cp('web/static/assets', 'dist/assets', { recursive: true });
 await cp('web/static/style.css', 'dist/style.css');
-for (const file of ['subscribe.css', 'subscribe.js', 'owner.js']) await cp(`web/vercel/${file}`, `dist/${file}`);
+for (const file of ['subscribe.css', 'subscribe.js', 'owner.js', 'contact.js', 'contact.css']) await cp(`web/vercel/${file}`, `dist/${file}`);
 await writeFile('dist/owner.html', addAdsense(await readFile('web/vercel/owner.html', 'utf8')));
 await writeFile('dist/subscribe.html', addAdsense(await readFile('web/vercel/subscribe.html', 'utf8')));
 await writeFile('dist/404.html', addAdsense('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Page not found | Folkly</title></head><body><h1>Page not found</h1><a href="/">Return to Folkly</a></body></html>'));
