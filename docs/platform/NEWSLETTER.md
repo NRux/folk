@@ -26,7 +26,7 @@ Private Blob lists are paginated and bounded before any delivery. The initial
 worker supports up to 200 subscriber records; larger lists fail closed and need
 queued/batched fanout rather than silently omitting readers. Private records are
 read without cache, email/hash/consent are checked, and the historical acceptance
-address is excluded. The provider-neutral worker prepares a separate email for each reader, HTML and
+address is excluded. The worker sends a separate Resend API email for each reader, HTML and
 plain text, story links, a signed unsubscribe link and List-Unsubscribe headers.
 No recipient addresses or tokens are returned in job responses or logged.
 
@@ -48,11 +48,8 @@ be recalled. Unsubscribe failures display a retry message, never false success.
 
 ## Required setup in the existing Vercel production project
 
-0. Approve the proposed Resend delivery provider, or name the existing preferred
-   sending service. Automatic approval review rejected the provider adapter because
-   it would transmit private subscriber addresses to an unapproved destination.
-   The deployed API has no production transport and cannot send, even if enabled.
-   After owner approval, add the provider adapter and run hosted delivery tests.
+Owner approved Resend on 2026-10-08. The production adapter is now implemented.
+
 1. Create/use a Resend account and verify the Folkly sending domain using its DNS
    instructions. Add `RESEND_API_KEY` as a server-only production secret.
 2. Set `NEWSLETTER_FROM` to a verified sender, such as

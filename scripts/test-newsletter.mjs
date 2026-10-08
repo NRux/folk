@@ -55,3 +55,18 @@ assert(await privateStore.claim('newsletter/delivery/test.json',{state:'claimed'
 assert(!await privateStore.claim('newsletter/delivery/test.json',{state:'claimed'}));
 await privateStore.suppress(id);assert(await privateStore.suppressed(id));
 console.log('Private newsletter adapter passed: paginated prefix, validated path IDs, cache bypass, private/create-only writes and suppression readback. Fixture only.');
+
+const {createResendSender}=await import('../server/resend.js');
+let providerRequests=0;
+const resend=createResendSender(async(url,options)=>{
+ providerRequests++;assert.equal(url,'https://api.resend.com/emails');
+ assert.equal(options.method,'POST');assert.equal(options.headers.Authorization,'Bearer fixture');
+ assert.equal(options.headers['Idempotency-Key'],'weekly/fixture');assert(options.signal);
+ const payload=JSON.parse(options.body);assert.deepEqual(payload.to,['reader@example.com']);
+ return Response.json({id:'receipt',ignoredPrivateField:'private'});
+});
+assert.deepEqual(await resend({to:['reader@example.com']},'weekly/fixture','fixture'),{id:'receipt'});
+assert.equal(providerRequests,1);
+await assert.rejects(createResendSender(async()=>new Response('private failure',{status:429}))({},'key','fixture'),/Delivery unavailable/);
+await assert.rejects(createResendSender(async()=>Response.json({}))({},'key','fixture'),/Missing receipt/);
+console.log('Resend adapter passed: fixed approved HTTPS destination, bearer/idempotency headers, bounded request, receipt allowlist and fail-closed errors. Mock only.');

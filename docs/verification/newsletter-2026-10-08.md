@@ -26,3 +26,15 @@ Vercel environment metadata access was attempted without decrypting secrets;
 both the project name and known ID returned 404 in the known team. GitHub remains
 available for deployment. Noah needs sending-service setup and project access;
 SMTP configured in Supabase Auth alone does not connect this mailer.
+
+## Owner-approved Resend follow-up
+
+Noah explicitly approved Resend on 2026-10-08 after the earlier review rejection.
+The production transport now uses the fixed `https://api.resend.com/emails` URL,
+server-only bearer credentials, bounded timeout and per-recipient idempotency key.
+Response handling accepts only the provider receipt ID. Mock transport checks
+verify destination, headers, payload, response allowlist and rejection behavior.
+Newsletter/storage tests and public regressions pass. No live email was sent.
+Prior transport-blocked evidence above describes the earlier state. Provider
+approval is resolved; verified sender, credentials/address/secrets and hosted
+delivery/unsubscribe acceptance are still required. Delivery defaults paused.

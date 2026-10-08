@@ -330,3 +330,10 @@ production/publication/schedule switches enabled. Google Cloud remains deferred.
 Automatic approval review rejected the proposed Resend adapter for transmitting
 private subscriber addresses to an unapproved provider. The committed newsletter
 API has no sending transport and fails closed even if NEWSLETTER_ENABLED is true.
+
+Resend follow-up: Noah explicitly approved the sending provider on 2026-10-08.
+The adapter is implemented with fixed HTTPS destination, bearer/idempotency
+headers, bounded timeout and receipt-only responses. Mock provider and newsletter
+checks pass; no real mail sent. The prior approval blocker is resolved. Sender,
+credentials/address/secrets, Vercel project access and hosted acceptance remain
+pending; NEWSLETTER_ENABLED still defaults off.
