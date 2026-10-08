@@ -225,3 +225,16 @@ and private boundaries remain intact. Build and full tests pass; see
 verification/responsive-images-2026-10-08.md for download-byte evidence and limits.
 No model calls, migrations, credentials, releases, or autonomous switches changed.
 Measured mobile performance and the separate deployed Stage 7 gates remain pending.
+
+### Responsive image deployment follow-up — October 8, 2026
+
+Implementation commit 2daa1d26613f7acb421e59891c16eedf4a584517 is synced to main
+and master and has a successful Vercel GitHub status. Live acceptance is pending:
+16 public routes returned 200, but all 14 affected pages still lacked srcset and
+differed from the verified local output, including a cache-busted homepage probe.
+Scoped Vercel deployment/alias reads returned 404/not_found. Noah needs to reconnect
+Vercel with access to optagens-projects / folk and verify the main production
+branch, npm run build command, dist output, and custom-domain deployment. See the
+responsive image verification report and its live JSON evidence. The observation
+is not attributed to a specific build/caching cause without deployment access.
+Autonomous switches, release manifest, article bodies, and licenses are unchanged.

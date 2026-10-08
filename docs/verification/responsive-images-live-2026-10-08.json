@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-08",
+  "origin": "https://www.folkly.com",
+  "implementationCommit": "2daa1d26613f7acb421e59891c16eedf4a584517",
+  "githubVercelStatus": {
+    "state": "success",
+    "description": "Deployment has completed",
+    "createdAt": "2026-10-08T19:58:21Z",
+    "targetUrl": "https://vercel.com/optagens-projects/folk/8A38zcvV1piqosjLfbQ8FsLYUR5B"
+  },
+  "probePasses": 2,
+  "routes": [
+    {
+      "path": "/",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 14174
+    },
+    {
+      "path": "/new-orleans-second-line",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 11475
+    },
+    {
+      "path": "/lisbon-fado",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 11415
+    },
+    {
+      "path": "/oaxaca-living-color",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 11533
+    },
+    {
+      "path": "/detroit-future-frequency",
+      "status": 200,
+      "matchesBuild": true,
+      "srcsetCount": 0,
+      "bytes": 10343
+    },
+    {
+      "path": "/bonwire-kente",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 14189
+    },
+    {
+      "path": "/castells-tarragona",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 18193
+    },
+    {
+      "path": "/kimjang-seoul",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 19082
+    },
+    {
+      "path": "/matariki-puanga",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 15424
+    },
+    {
+      "path": "/nowruz-tajikistan",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 15289
+    },
+    {
+      "path": "/tokushima-aizome",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 15229
+    },
+    {
+      "path": "/xochimilco-chinampas",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 16564
+    },
+    {
+      "path": "/archive",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 15508
+    },
+    {
+      "path": "/archive/topic/textiles",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 5005
+    },
+    {
+      "path": "/archive/place/bonwire-ghana",
+      "status": 200,
+      "matchesBuild": false,
+      "srcsetCount": 0,
+      "bytes": 3439
+    },
+    {
+      "path": "/image-credits",
+      "status": 200,
+      "matchesBuild": true,
+      "srcsetCount": 0,
+      "bytes": 6875
+    }
+  ],
+  "cacheBustedHomepage": {
+    "checkedAt": "2026-10-08T20:02:08Z",
+    "path": "/?verify=2daa1d2",
+    "status": 200,
+    "srcsetCount": 0,
+    "bytes": 14174,
+    "xVercelCache": "HIT",
+    "ageSeconds": 231,
+    "lastModified": "2026-10-08T19:58:16Z"
+  },
+  "serviceInspection": {
+    "scope": "team_QufgodCsuoarDSEhOJyWbUJF / prj_d93TLitMYu8uYjqfgvgANuwsRJVK",
+    "deploymentRead": "404/not_found",
+    "aliasRead": "404/not_found"
+  },
+  "acceptance": "pending; successful GitHub status does not prove expected custom-domain output",
+  "changesToHostingOrPublication": "none",
+  "limitations": [
+    "Served commit and deployment identity could not be established.",
+    "No measured mobile/Core Web Vitals result.",
+    "No cache or build-settings root cause asserted."
+  ]
+}

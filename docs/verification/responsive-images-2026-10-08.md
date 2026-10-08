@@ -34,13 +34,21 @@ These are measured file sizes, not a measured page-speed or Core Web Vitals resu
 - Responsive checks cover all ten photos and 29 candidate URLs, retained original fallbacks, eager hero/lazy cards, oriented Oaxaca dimensions, unsupported/private/credential-bearing URL rejection, duplicate widths, invalid dimensions/aspect ratios, evidence requirements, and idempotent HTML decoration.
 - Existing checks confirm the seven approved article bodies/source lists are unchanged and no private reserve/editorial code is copied into the public output.
 - Actual candidate URLs returned successful image downloads and hashes are recorded in [download evidence](responsive-image-downloads-2026-10-08.json).
-- Post-deployment public verification is recorded separately. No mobile-rendering, field performance, ranking improvement, or full Stage 7 acceptance is claimed.
+- Public verification on October 8 is recorded below and in the live evidence file. No mobile-rendering, field performance, ranking improvement, or full Stage 7 acceptance is claimed.
 
 No database migrations, model calls, credential changes, article releases, or autonomous switch changes were made. Google Cloud remains deferred. Stage 7 activation remains blocked on its existing deployed acceptance gates.
 
+## Public deployment verification: pending
+
+Implementation commit `2daa1d26613f7acb421e59891c16eedf4a584517` was synced to both main and master without force updates. Its GitHub Vercel status reported “Deployment has completed” at 2026-10-08 19:58:21 UTC, linking to [the Vercel deployment](https://vercel.com/optagens-projects/folk/8A38zcvV1piqosjLfbQ8FsLYUR5B). A successful status does not establish that the custom domain serves the expected output.
+
+Two GET probe passes checked the homepage, all eleven stories, archive, textile topic, Bonwire place archive, and image credits. All sixteen returned HTTP 200. The fourteen pages affected by responsive image decoration still contained zero srcset attributes and did not match the locally built HTML. Detroit and image credits, whose output was unchanged, matched. A further homepage request with `?verify=2daa1d2` at 20:02:08 UTC also contained zero srcset attributes; Vercel returned cache HIT, age 231 seconds, and Last-Modified 19:58:16 UTC. These observations do not identify the served commit or prove a cache or build-settings cause.
+
+The scoped Vercel deployment and alias reads returned 404/not_found, so the connected service could not confirm the source branch, deployment identity, build logs, or alias assignment. No promotion, cache change, configuration mutation, or alternative hosting project was attempted. Live responsive-image acceptance remains open. [Live HTTP evidence](responsive-images-live-2026-10-08.json) records the result and scope.
+
 ## Remaining prerequisites
 
-Responsive JPEG selection is implemented; owned-hosting/modern-format variants, a relevant licensed Detroit photograph, a better-resolution Tokushima process photograph, measured mobile performance, Search Console indexing evidence, and source-checked editorial corrections remain separate tasks. No credential action is required for this image update. Search Console evidence needs authorized property access; Vercel build-log inspection needs access to the existing Folkly project through its connector.
+Responsive JPEG selection is implemented; owned-hosting/modern-format variants, a relevant licensed Detroit photograph, a better-resolution Tokushima process photograph, measured mobile performance, Search Console indexing evidence, and source-checked editorial corrections remain separate tasks. Local implementation does not require new credentials. Live rollout diagnosis needs the Vercel connection to resolve the existing Folkly project, its deployment, and the www.folkly.com alias. Noah should reconnect Vercel using an account with access to optagens-projects / folk (project prj_d93TLitMYu8uYjqfgvgANuwsRJVK), then verify that the production branch is main and its build runs npm run build with dist output. Search Console evidence separately needs authorized property access.
 
 ## References
 
