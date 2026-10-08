@@ -3,3 +3,7 @@
 .credited-figure img{max-height:850px;min-height:0;object-fit:contain}@media(max-width:700px){.credited-figure img{max-height:550px;min-height:0}}
 
 .related-stories{max-width:1000px;margin:48px auto 60px;border-top:1px solid var(--line,#cecec4);padding-top:26px}.related-stories h2{font:36px/1.2 Georgia,serif}.related-stories ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;list-style:none;padding:0}.related-stories li>a{font:26px/1.25 Georgia,serif}.related-stories li p{font-size:15px;color:var(--muted,#66665d)}@media(max-width:700px){.related-stories ul{grid-template-columns:1fr;gap:22px}}
+/* In-article documentary images retain the complete source-provided frame. */
+.article-body .article-inline-image { margin: 2rem 0; width: 100%; }
+.article-body .article-inline-image img { display: block; width: 100%; height: auto; max-height: none; object-fit: contain; border-radius: 4px; }
+.article-body .article-inline-image figcaption { margin-top: .6rem; font-size: .8rem; line-height: 1.5; color: var(--muted, #665d63); overflow-wrap: anywhere; }

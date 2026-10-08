@@ -251,3 +251,19 @@ verification/xochimilco-editorial-revision-2026-10-08.json. No private reserve
 records, new releases, migrations, or autonomous settings were changed.
 Build (73 routes), full regression suite, and focused correction/provenance checks
 passed. Deployed readback remains pending.
+
+## Owner-requested article length and image rhythm, 2026-10-08
+
+All eleven public stories meet the Tokushima reference's 1,187 narrative-word
+minimum. Seven shorter stories have substantive source-linked expansions;
+longer prose and all linked source sections are retained. The offline export
+inserts 93 credited lazy images after every second narrative paragraph, updates
+reading times and Article wordCount/dateModified, and includes inline credits in
+the image index. Future public exports fail on short prose or missing/duplicate
+media. See verification/article-length-images-2026-10-08.md and its revision JSON.
+Build and full regressions pass. Thirty-six selected image downloads have decoded
+byte/hash evidence; 57 are Commons-metadata-only after network timeouts. Remaining
+image downloads/visual checks, browser mobile checks and deployed readback are
+pending. The Vercel project is known to Noah as folkly; inspect that existing
+project when the connection exposes it. Historical manual releases/private
+reserve remain unchanged; production/publication/schedule remain off.

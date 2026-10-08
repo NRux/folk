@@ -25,7 +25,8 @@ for(const item of released){
  const image=articles.find(a=>a.slug===item.slug).image;
  assert(html.includes(image.source));assert(html.includes(image.licenseUrl));
  const source=await readFile(`web/vercel/pages/${routes['/'+item.slug]}`,'utf8');
- assert.equal(html.split('<div class="article-layout">')[1].split('</article>')[0],source.split('<div class="article-layout">')[1].split('</article>')[0]);
+ const withoutInline=html.replace(/<figure class="article-inline-image[\s\S]*?<\/figure>/g,'');
+ assert.equal(withoutInline.split('<div class="article-layout">')[1].split('</article>')[0],source.split('<div class="article-layout">')[1].split('</article>')[0]);
 }
 const draft={slug:'secret-reserve-canary',status:'draft',title:'PRIVATE_CANARY'};
 assert.deepEqual(publishedArticles([...catalog,draft],routes),articles);

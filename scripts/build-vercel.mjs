@@ -1,3 +1,4 @@
+import { decorateArticleLayout, inlineImageCredits } from './article-layout.mjs';
 import { applyResponsiveImages } from './responsive-images.mjs';
 import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { dirname } from 'node:path';
@@ -10,6 +11,7 @@ import { discoveryGroups, discoveryRouteFiles, decorateArchive, decorateAuthor, 
 const routes = JSON.parse(await readFile('web/vercel/routes.json', 'utf8'));
 const extraPages = JSON.parse(gunzipSync(await readFile('web/vercel/extra-pages.json.gz')).toString('utf8'));
 const catalog = JSON.parse(await readFile('web/vercel/articles.json', 'utf8'));
+const articleMedia = JSON.parse(await readFile('web/vercel/article-media.json', 'utf8'));
 const articles = publishedArticles(catalog, routes);
 await verifyImageFiles(articles);
 Object.assign(routes, discoveryRouteFiles(articles));
@@ -57,6 +59,7 @@ for (const [route, file] of Object.entries(routes)) {
   if (route.startsWith('/archive/topic/') && !groups.has(route)) html = html.replace('</head>', '<meta name="robots" content="noindex,follow"></head>');
   html = html.replace('</head>', '<link rel="stylesheet" href="/subscribe.css"><link rel="stylesheet" href="/article-grid.css"></head>');
   html = applyResponsiveImages(html, articles, route);
+  if (article) html = decorateArticleLayout(html, article, articleMedia);
   html = addAdsense(html);
   html = html.replace('</nav>', '<a class="subscribe-button" href="/subscribe">Subscribe</a></nav>');
   const target = route === '/' ? 'dist/index.html' : `dist${route}.html`;
@@ -67,7 +70,7 @@ await cp('web/static/assets', 'dist/assets', { recursive: true });
 await cp('web/static/style.css', 'dist/style.css');
 await cp('web/vercel/ads.txt', 'dist/ads.txt');
 await cp('web/vercel/article-grid.css', 'dist/article-grid.css');
-await writeFile('dist/image-credits.html', addAdsense(imageCreditsPage(articles, canonical.origin)));
+await writeFile('dist/image-credits.html', addAdsense(imageCreditsPage(articles, canonical.origin).replace('</main>', `${inlineImageCredits(articles, articleMedia)}</main>`)));
 // Sitemap includes curated discovery pages and explicitly published articles only.
 const indexed = ['/', '/about', '/perspective', '/archive', ...articles.map(item => `/${item.slug}`), ...groups.keys()];
 await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${indexed.map(route => `<url><loc>${escapeHtml(canonical.origin + route)}</loc></url>`).join('')}</urlset>`);
