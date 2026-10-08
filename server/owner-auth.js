@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { readOwnerDashboard } from './owner-dashboard.js';
 import { createEditorialClient } from './supabase.js';
 
 const COOKIE = '__Host-folkly-owner';
@@ -9,7 +10,7 @@ export function sessionToken(request) {
   if (values.length !== 1) return '';
   try { return decodeURIComponent(values[0].slice(COOKIE.length + 1)); } catch { return ''; }
 }
-export function createOwnerHandlers({ env = process.env, authClient, editorialClient } = {}) {
+export function createOwnerHandlers({ env = process.env, authClient, editorialClient, readDashboard = readOwnerDashboard } = {}) {
   function clients() {
     if (!env.FOLKLY_OWNER_EMAIL || !env.SUPABASE_URL || !(env.SUPABASE_PUBLISHABLE_KEY || env.SUPABASE_ANON_KEY)) throw Error('Configuration missing');
     if (new URL(env.SUPABASE_URL).hostname !== 'vxmyggasjgsiohqzzwzh.supabase.co') throw Error('Supabase project mismatch');
@@ -89,7 +90,8 @@ export function createOwnerHandlers({ env = process.env, authClient, editorialCl
         const result = await db.from('folkly_settings').select('key,value');
         if (result.error) throw Error('Storage unavailable');
         const switches = ['production.autonomous_enabled', 'publication.autonomous_enabled', 'schedule.enabled'];
-        return Response.json({ owner: true, settings: Object.fromEntries(result.data.filter(r => switches.includes(r.key)).map(r => [r.key, r.value])) }, { headers: { 'Cache-Control': 'no-store' } });
+        const dashboard = await readDashboard(db);
+        return Response.json({ owner: true, dashboard, settings: Object.fromEntries(result.data.filter(r => switches.includes(r.key)).map(r => [r.key, r.value])) }, { headers: { 'Cache-Control': 'no-store' } });
       } catch { console.error('Owner status unavailable'); return reply(503, 'Owner status unavailable.'); }
     },
   };

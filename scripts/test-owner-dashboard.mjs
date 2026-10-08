@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { readOwnerDashboard } from '../server/owner-dashboard.js';
+const queried=[];
+const db={from(name){const q={select(columns){queried.push({name,columns});return q;},order(){return q;},limit(limit){assert(limit<=25);return name==='folkly_jobs'?Promise.resolve({error:{message:'secret failure'}}):Promise.resolve({data:name==='folkly_model_budget'?[{daily_usd:0,job_usd:0}]:[]});}};return q;}};
+const result=await readOwnerDashboard(db);
+assert.equal(result.publicationLocked,true);
+assert.equal(result.sections.jobs.available,false);
+assert.equal(result.sections.articles.available,true);
+assert.equal(result.sections.budget.rows[0].daily_usd,0);
+assert(!JSON.stringify(result).includes('secret failure'));
+assert(queried.every(q=>!/(content_json|error|evidence|email|secret|\*)/.test(q.columns)));
+const outage=await readOwnerDashboard({from(){throw Error('credential details');}});
+assert(Object.values(outage.sections).every(s=>!s.available));
+assert(!JSON.stringify(outage).includes('credential details'));
+console.log('Owner dashboard passed: bounded metadata only, no private source/error/credential payloads, partial outage distinguished from empty records, publishing locked.');
