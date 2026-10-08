@@ -337,3 +337,17 @@ headers, bounded timeout and receipt-only responses. Mock provider and newslette
 checks pass; no real mail sent. The prior approval blocker is resolved. Sender,
 credentials/address/secrets, Vercel project access and hosted acceptance remain
 pending; NEWSLETTER_ENABLED still defaults off.
+
+## Header alignment and multilingual design, 2026-10-08
+
+The owner's screenshot identified compact navigation links aligned to the top of
+the padded Subscribe action. Shared CSS now centers all header links/actions,
+provides 44px targets, wraps narrow headers and retains Archives on small screens.
+The seven-language architecture and implementation backlog are documented in
+platform/MULTILINGUAL.md and TODOs/MULTILINGUAL-IMPLEMENTATION.md: translate public
+approved content once per revision, cache in Git and serve static Vercel locale
+pages, sharing image assets. Arabic RTL, script-aware context, approval/stale
+hashes, locale SEO and budgeted review are included. No translations or paid calls
+were run. Vercel inspection still returns 404 for the known project/team; GitHub
+remains the deployment path. Browser installation was unavailable due invalid
+Chromium downloads, so full visual/mobile acceptance is not claimed.
