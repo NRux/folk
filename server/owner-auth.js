@@ -33,6 +33,10 @@ export function createOwnerHandlers({ env = process.env, authClient, editorialCl
     return !active.error && active.data === true;
   }
   return {
+    async authorize(request) {
+      const token=sessionToken(request);if(!token)return null;
+      const {auth,db}=clients();return await owner(token,auth,db)?{db}:null;
+    },
     async POST(request) {
       if (request.headers.get('origin') !== new URL(request.url).origin) return reply(403, 'Use the Folkly owner page.');
       try {

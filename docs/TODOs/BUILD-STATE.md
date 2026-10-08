@@ -351,3 +351,14 @@ hashes, locale SEO and budgeted review are included. No translations or paid cal
 were run. Vercel inspection still returns 404 for the known project/team; GitHub
 remains the deployment path. Browser installation was unavailable due invalid
 Chromium downloads, so full visual/mobile acceptance is not claimed.
+
+## Owner workspace and translation prompts, 2026-10-08
+
+Added seven sequential implementation prompts in
+TODOs/MULTILINGUAL-IMPLEMENTATION-PROMPTS.md. Owner navigation now connects
+Overview, Editor chat, Article ideas, Drafts and Inbox. Private ideas have explicit
+row saves and optimistic revisions. A protected draft viewer reads the latest
+migrated Supabase version. Editor chat uses the existing OpenAI provider, defaults
+off, has durable attempt claims and a 20-request UTC daily reservation limit.
+See platform/OWNER-WORKSPACE.md for storage, configuration and hosted checks.
+No draft migration, model call, paid translation or publication occurred.

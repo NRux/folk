@@ -3,6 +3,7 @@ const status = el('owner-status');
 let sessionGeneration=0, nextContactCursor=null;
 function signedIn(value) {
   if(!value){sessionGeneration++;nextContactCursor=null;el('owner-contact-next').disabled=true;}
+  typeof document.dispatchEvent==='function'&&document.dispatchEvent(new CustomEvent('owner-session',{detail:{signedIn:value,generation:sessionGeneration}}));
   el('owner-login').hidden=value; el('owner-dashboard').hidden=!value; el('owner-logout').hidden=!value;
   if (!value) for(const id of ['owner-articles','owner-jobs','owner-reservations','owner-budget','owner-switches','owner-updated','owner-migration','owner-contacts','owner-contact-note']) el(id).replaceChildren();
 }
@@ -22,6 +23,7 @@ function render(data) {
   el('owner-budget').textContent=s.budget.available&&s.budget.rows[0]?`Daily cap: $${Number(s.budget.rows[0].daily_usd).toFixed(2)} · Per-attempt cap: $${Number(s.budget.rows[0].job_usd).toFixed(2)}`:'Budget status unavailable.';
   el('owner-migration').textContent=d.migration.message;
   el('owner-updated').textContent=`Updated ${new Date(d.generatedAt).toLocaleString()}`;
+  typeof document.dispatchEvent==='function'&&document.dispatchEvent(new CustomEvent('owner-drafts',{detail:s.articles}));
   table('owner-articles',s.articles,[['title','Title'],['status','Status'],['pipeline_state','Editorial stage'],['updated_at','Updated']],'No editorial records have been migrated yet. Existing public stories remain in the archive.');
   table('owner-jobs',s.jobs,[['job_type','Type'],['status','Status'],['attempt','Attempts'],['last_run_at','Last run']],'No jobs recorded.');
   renderContacts(s.contacts);

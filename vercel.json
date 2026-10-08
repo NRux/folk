@@ -33,6 +33,9 @@
     "api/newsletter.js": {
       "maxDuration": 300,
       "includeFiles": "web/vercel/{articles,routes}.json"
+    },
+    "api/owner-workspace.js": {
+      "maxDuration": 60
     }
   }
 }

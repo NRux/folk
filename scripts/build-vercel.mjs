@@ -88,3 +88,5 @@ await writeFile('dist/404.html', addAdsense('<!doctype html><html lang="en"><hea
 console.log(`Built ${Object.keys(routes).length} public pages and journal assets for Vercel; publisher disabled.`);
 
 await cp('web/vercel/article-filters.mjs', 'dist/article-filters.js');
+
+await cp('web/vercel/owner-workspace.js', 'dist/owner-workspace.js');
