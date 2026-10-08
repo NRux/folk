@@ -371,3 +371,14 @@ choices expire after 180 days and withdrawal reloads. Owner pages have no tags.
 Advertising is blocked until certified CMP account setup and deployed consent
 acceptance pass. See verification/privacy-consent-2026-10-08.md for exact AdSense
 and GA4 account actions, sources and tests. No new service, mail or publication.
+
+## Stage 7 transactional content import, 2026-10-08
+
+Hosted Supabase read confirms zero article, version and source rows and all three
+switches false. The original Site reader still truncates version JSON to 2,000
+characters at limit 1. No partial import was attempted. Added an offline private
+SQL compiler with independent source checksum/counts, complete-column and version
+checks, current manual-release classification, transactional readback and conflict
+rejection. See platform/SUPABASE-CONTENT-IMPORT.md. The old seven releases are public
+and cannot be counted as reserve. Full source export remains the required owner
+artifact; no schema change, publisher activation or private content commit.
