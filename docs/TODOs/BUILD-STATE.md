@@ -190,3 +190,12 @@ Recorded Noah’s preference in platform/EDITORIAL-STYLE.md, updated two public
 paragraphs to remove “Folkly reads…” framing, and added the rule to the model
 system prompt. Private reserve evidence is untouched. Mobile acceptance retry
 remains under verification; publication/schedules remain off.
+
+## Owner-authorized manual release, 2026-10-08 UTC
+
+Noah requested publishing the seven reviewed extra articles. Seven Vercel public
+routes and homepage/archive links are prepared from the hash-verified original
+bundle. See verification/manual-seven-release-2026-10-08.md and the manual
+release manifest. Original Site records remain unchanged, but these stories
+are now designated public and no longer constitute an unpublished reserve for
+a future migrated pipeline. All autonomous switches remain off.

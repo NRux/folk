@@ -6,20 +6,21 @@ const run = promisify(execFile);
 const origin = process.env.FOLKLY_VERIFY_ORIGIN || 'https://www.folkly.com';
 assert.equal(new URL(origin).protocol, 'https:');
 const routes = JSON.parse(await readFile('web/vercel/routes.json', 'utf8'));
-const reserve = JSON.parse(await readFile('web/site-runtime/hosted/lib/reviewed-reserve.json', 'utf8'));
+const released = JSON.parse(await readFile('web/vercel/manual-releases.json', 'utf8')).articles;
+const reserve = JSON.parse(await readFile('web/site-runtime/hosted/lib/reviewed-reserve.json', 'utf8')).filter(r=>!released.some(a=>a.slug===r.slug));
 let checks = 0;
 async function request(path) {
   const { stdout } = await run('curl', ['-sS', '-L', '--max-time', '30', '-w', '\n%{http_code}', origin + path], { maxBuffer: 2_000_000 });
   const at = stdout.lastIndexOf('\n');
   return { status: Number(stdout.slice(at + 1)), body: stdout.slice(0, at) };
 }
-const paths = ['/', '/new-orleans-second-line', '/lisbon-fado', '/oaxaca-living-color', '/detroit-future-frequency', '/about', '/perspective', '/archive', '/subscribe', ...Object.keys(routes).filter(p => p.startsWith('/author/'))];
+const paths = ['/', '/new-orleans-second-line', '/lisbon-fado', '/oaxaca-living-color', '/detroit-future-frequency', '/about', '/perspective', '/archive', '/subscribe', ...released.map(a=>'/'+a.slug), ...Object.keys(routes).filter(p => p.startsWith('/author/'))];
 const tasks = paths.flatMap(path => (path === '/' ? [path] : [path, path + '.html']).map(variant => async () => {
     const result = await request(variant);
     assert.equal(result.status, 200, variant);
     assert(!result.body.includes('Through the Folkly lens'), variant);
     if (path !== '/subscribe') assert(result.body.includes('href="/subscribe"'), variant);
-    if (['/new-orleans-second-line', '/lisbon-fado', '/oaxaca-living-color', '/detroit-future-frequency'].includes(path)) {
+    if (['/new-orleans-second-line', '/lisbon-fado', '/oaxaca-living-color', '/detroit-future-frequency',...released.map(a=>'/'+a.slug)].includes(path)) {
       const expected = await readFile(`dist${path}.html`, 'utf8');
       assert.equal(result.body, expected, `Published content/credits changed: ${variant}`);
     }
