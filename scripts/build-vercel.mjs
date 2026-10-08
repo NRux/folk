@@ -48,6 +48,7 @@ for (const [route, file] of Object.entries(routes)) {
   let html = groups.has(route) ? discoveryPage(archiveTemplate, route, groups.get(route), canonical.origin) : extraPages[file] ?? await readFile(`web/vercel/pages/${file}`, 'utf8');
   html = html.replace(/https:\/\/folkly-journal\.[a-z0-9.-]+\.site/g, canonical.origin);
   html = html.replace(/<p class="ai-disclosure">Written with AI using the Folkly editorial persona; researched from the linked sources\.<\/p>/g, '');
+  html = html.replace(/<p class="editorial-note">[\s\S]*?<\/p>/g, '');
   html = html.replace(/<section class="reading-lens">[\s\S]*?<\/section>/g, '');
   if (route === '/archive') html = decorateArchive(html, articles);
   if (route.startsWith('/author/')) html = decorateAuthor(html, articles, route.split('/')[2]);

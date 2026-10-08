@@ -10,6 +10,7 @@ const reserve = JSON.parse(await readFile('web/site-runtime/hosted/lib/reviewed-
 for (const slug of ['new-orleans-second-line', 'lisbon-fado', 'oaxaca-living-color', 'detroit-future-frequency']) {
   assert(routes[`/${slug}`]);
   const html = await readFile(`dist/${slug}.html`, 'utf8');
+  assert(!html.includes('class="editorial-note"'));
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /Sources|sources/);
   assert(!html.includes('chatgpt.site'));
@@ -48,11 +49,13 @@ for (const file of files.filter(p => p.endsWith('.html'))) {
 }
 for (const slug of ['new-orleans-second-line', 'lisbon-fado', 'detroit-future-frequency']) {
   const html = await readFile(`dist/${slug}.html`, 'utf8');
+  assert(!html.includes('class="editorial-note"'));
   assert(html.includes('class="music-examples"'), slug);
   assert.match(html, /https:\/\/(?:smithsonianfolkways\.bandcamp\.com|arquivosonoro\.museudofado\.pt|planetecommunications\.bandcamp\.com)/);
 }
 assert(!files.some(p => /\.db$|\.json$|\.sql$|\.mjs$|\.ts$|reserve|admin|mcp/.test(p)));
 const config = JSON.parse(await readFile('vercel.json', 'utf8'));
 assert.equal(config.outputDirectory, 'dist');
-assert(!config.crons && !config.rewrites);
-console.log(`Vercel checks passed: ${Object.keys(routes).length} public routes, 11 stories, links, private reserve exclusion, no editorial code or cron in output.`);
+assert.deepEqual(config.crons,[{path:'/api/newsletter',schedule:'0 16 * * 5'}]);
+assert(!config.rewrites);
+console.log(`Vercel checks passed: ${Object.keys(routes).length} public routes, 11 stories, links, private reserve exclusion, no editorial code or article cron in output; weekly newsletter cron only.`);

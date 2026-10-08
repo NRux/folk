@@ -311,3 +311,22 @@ Public follow-up: implementation 2ba61c4 is live on Vercel. All eleven articles,
 homepage and archive match the verified build byte for byte; About matches apart
 from its final newline, with both new footer strings verified. Live evidence is
 in verification/reader-context-related-stories-live-2026-10-08.json.
+
+## Subscriber automation and weekly digest, 2026-10-08
+
+Existing subscribers are automatically stored in private Vercel Blob JSON records.
+Weekly newsletter code now reuses that list, adds Friday 16:00 UTC digest cron,
+private duplicate-send claims, provider-neutral worker and signed unsubscribe/suppression.
+Article disclaimers are removed from public build output; sources/licenses remain.
+Focused/full regression evidence is in verification/newsletter-2026-10-08.md.
+Activation is blocked on owner approval of a sending provider, its adapter,
+verified sending domain, RESEND_API_KEY, NEWSLETTER_FROM,
+NEWSLETTER_POSTAL_ADDRESS, CRON_SECRET, NEWSLETTER_SECRET and enabling the separate
+NEWSLETTER_ENABLED flag after a hosted test. See platform/NEWSLETTER.md. Connected
+Vercel project metadata access returns 404; reconnect project access or configure
+its dashboard directly. No emails sent, subscriber records changed or article
+production/publication/schedule switches enabled. Google Cloud remains deferred.
+
+Automatic approval review rejected the proposed Resend adapter for transmitting
+private subscriber addresses to an unapproved provider. The committed newsletter
+API has no sending transport and fails closed even if NEWSLETTER_ENABLED is true.
