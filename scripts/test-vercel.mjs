@@ -27,7 +27,7 @@ for (const route of Object.keys(routes)) {
   const html = await readFile(route === '/' ? 'dist/index.html' : `dist${route}.html`, 'utf8');
   for (const [, href] of html.matchAll(/href="(\/[^"]*)"/g)) {
     const path = href.split(/[?#]/)[0].replace(/\.html$/, '');
-    if (path && !path.startsWith('/assets/') && !['/style.css', '/subscribe.css', '/contact.css', '/subscribe'].includes(path)) assert(routes[path], `Broken link: ${href} on ${route}`);
+    if (path && !path.startsWith('/assets/') && !['/style.css', '/subscribe.css', '/contact.css', '/article-grid.css', '/image-credits', '/subscribe'].includes(path)) assert(routes[path], `Broken link: ${href} on ${route}`);
   }
 }
 const files = await readdir('dist', { recursive: true });

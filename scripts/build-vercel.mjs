@@ -1,10 +1,14 @@
 import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { gunzipSync } from 'node:zlib';
+import { publishedArticles, verifyImageFiles, populateHomepage, decorateArticle, imageCreditsPage, escapeHtml } from './public-articles.mjs';
 
 // Public-only, offline build. Never copy the repository, DB, or reserve into dist.
 const routes = JSON.parse(await readFile('web/vercel/routes.json', 'utf8'));
 const extraPages = JSON.parse(gunzipSync(await readFile('web/vercel/extra-pages.json.gz')).toString('utf8'));
+const catalog = JSON.parse(await readFile('web/vercel/articles.json', 'utf8'));
+const articles = publishedArticles(catalog, routes);
+await verifyImageFiles(articles);
 const origin = process.env.FOLKLY_PUBLIC_ORIGIN || 'https://www.folkly.com';
 const adsense = '<meta name="google-adsense-account" content="ca-pub-6358670448023938"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6358670448023938" crossorigin="anonymous"></script>';
 const analytics = `<!-- Google tag (gtag.js) -->
@@ -33,7 +37,10 @@ for (const [route, file] of Object.entries(routes)) {
   html = html.replace(/https:\/\/folkly-journal\.[a-z0-9.-]+\.site/g, canonical.origin);
   html = html.replace(/<p class="ai-disclosure">Written with AI using the Folkly editorial persona; researched from the linked sources\.<\/p>/g, '');
   html = html.replace(/<section class="reading-lens">[\s\S]*?<\/section>/g, '');
-  html = html.replace('</head>', '<link rel="stylesheet" href="/subscribe.css"></head>');
+  if (route === '/') html = populateHomepage(html, articles);
+  const article = articles.find(item => route === `/${item.slug}`);
+  if (article) html = decorateArticle(html, article, canonical.origin);
+  html = html.replace('</head>', '<link rel="stylesheet" href="/subscribe.css"><link rel="stylesheet" href="/article-grid.css"></head>');
   html = addAdsense(html);
   html = html.replace('</nav>', '<a class="subscribe-button" href="/subscribe">Subscribe</a></nav>');
   const target = route === '/' ? 'dist/index.html' : `dist${route}.html`;
@@ -43,6 +50,12 @@ for (const [route, file] of Object.entries(routes)) {
 await cp('web/static/assets', 'dist/assets', { recursive: true });
 await cp('web/static/style.css', 'dist/style.css');
 await cp('web/vercel/ads.txt', 'dist/ads.txt');
+await cp('web/vercel/article-grid.css', 'dist/article-grid.css');
+await writeFile('dist/image-credits.html', addAdsense(imageCreditsPage(articles, canonical.origin)));
+// Sitemap includes curated discovery pages and explicitly published articles only.
+const indexed = ['/', '/about', '/perspective', '/archive', ...articles.map(item => `/${item.slug}`)];
+await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${indexed.map(route => `<url><loc>${escapeHtml(canonical.origin + route)}</loc></url>`).join('')}</urlset>`);
+await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /owner\nDisallow: /api/\nDisallow: /admin\nDisallow: /mcp\nSitemap: ${canonical.origin}/sitemap.xml\n`);
 for (const file of ['subscribe.css', 'subscribe.js', 'owner.js', 'contact.js', 'contact.css']) await cp(`web/vercel/${file}`, `dist/${file}`);
 await writeFile('dist/owner.html', addAdsense(await readFile('web/vercel/owner.html', 'utf8')));
 await writeFile('dist/subscribe.html', addAdsense(await readFile('web/vercel/subscribe.html', 'utf8')));
