@@ -1,3 +1,4 @@
+import { validateImageVariants } from './responsive-images.mjs';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 export const escapeHtml = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -20,6 +21,7 @@ export function publishedArticles(catalog, routes) {
       const localImage = /^\/assets\/[a-z0-9-]+\.jpg$/.test(image.src);
       const creditedImage = imageUrl.protocol === 'https:' && !imageUrl.username && !imageUrl.password && ['thumb.wikimedia.org','upload.wikimedia.org'].includes(imageUrl.hostname) && image.sha256;
       if ((!localImage && !creditedImage) || !Number.isSafeInteger(image.width) || image.width < 1 || !Number.isSafeInteger(image.height) || image.height < 1 || !image.alt) throw new Error('Invalid public image');
+      validateImageVariants(image);
       if (image.sha256) {
         if (!/^[a-f0-9]{64}$/.test(image.sha256)) throw new Error('Invalid image digest');
         for (const field of ['caption','creator','license','changes']) if (!image[field]) throw new Error('Missing image rights record');

@@ -1,3 +1,4 @@
+import { applyResponsiveImages } from './responsive-images.mjs';
 import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { gunzipSync } from 'node:zlib';
@@ -55,6 +56,7 @@ for (const [route, file] of Object.entries(routes)) {
   html = html.replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${canonical.origin}${route}">`);
   if (route.startsWith('/archive/topic/') && !groups.has(route)) html = html.replace('</head>', '<meta name="robots" content="noindex,follow"></head>');
   html = html.replace('</head>', '<link rel="stylesheet" href="/subscribe.css"><link rel="stylesheet" href="/article-grid.css"></head>');
+  html = applyResponsiveImages(html, articles, route);
   html = addAdsense(html);
   html = html.replace('</nav>', '<a class="subscribe-button" href="/subscribe">Subscribe</a></nav>');
   const target = route === '/' ? 'dist/index.html' : `dist${route}.html`;

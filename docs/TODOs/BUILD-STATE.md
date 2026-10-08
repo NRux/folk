@@ -214,3 +214,14 @@ seo/audit-2026-10-08.md. Build and full tests pass. Article H1s and researched
 bodies/source lists remain unchanged. Search Console, responsive image work,
 mobile measurements, duplicate-host redirects, and source-checked editorial
 revisions remain pending. No autonomous switches or acceptance gates changed.
+
+
+## Responsive public images, 2026-10-08 UTC
+
+All ten illustrated public stories now have verified smaller JPEG candidates,
+srcset/sizes selection, and reserved dimensions across hero/cards/article images.
+Oaxaca's EXIF portrait dimensions are corrected; originals, credits, article text,
+and private boundaries remain intact. Build and full tests pass; see
+verification/responsive-images-2026-10-08.md for download-byte evidence and limits.
+No model calls, migrations, credentials, releases, or autonomous switches changed.
+Measured mobile performance and the separate deployed Stage 7 gates remain pending.
