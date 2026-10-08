@@ -204,3 +204,10 @@ docs/platform/GA4-CONNECTION.md. Prompt 1/3/4 foundations are partial; do not
 mark the complete prompts or live acceptance passed. Google token wiring,
 property verification, sync-run checkpoints and substantive confidence checks
 are still required. No collector cron, model call or publication was enabled.
+
+### Evidence safeguard progress, 2026-10-08 UTC
+
+Prompt 4 has per-article exposure/day thresholds, verified-property matching,
+window freshness and malformed/qualified-data holds. Full cohorts, release
+mapping, consent coverage and baseline comparisons remain pending; keep the
+complete prompt unchecked. See verification/analytics-evidence-2026-10-08.md.

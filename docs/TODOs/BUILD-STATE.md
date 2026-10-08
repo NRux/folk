@@ -153,10 +153,18 @@ read-only dashboard is deployed. Durable model budgets and scoped RPCs are
 installed and verified with isolated hosted concurrency; caps remain zero.
 GA4 read-only collector/private snapshot foundations now exist, disabled by
 default. See verification/analytics-foundation-2026-10-08.md for tests and limits.
-Numeric GA4 property ID, read-only Google token wiring and scoped analytics
-credential remain missing. No live Google report/model calls or new cron ran.
+GA4 property 558035708 is configured, disabled, in Supabase and production
+Vercel. Read-only Google token wiring and scoped analytics credential remain
+missing. Property/stream matching and timezone verification remain pending. No live Google report/model calls or new cron ran.
 Complete old Site export, content migration/commit/readback, worker credentials,
 MFA, restore/recovery and full deployed acceptance remain pending. Security
 advisor still reports disabled leaked-password protection in Supabase Auth.
 All autonomous production/publication/schedule switches remain false.
 
+
+## Analytics evidence safeguards, 2026-10-08 UTC
+
+Per-article evaluation now requires 100 views and 14 observed days, both
+conservative heuristics. Stale/immature windows, malformed observations and
+qualified reports remain observe-only. See verification/analytics-evidence-2026-10-08.md.
+No live Google access or automatic content revision was enabled.

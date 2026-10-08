@@ -58,11 +58,48 @@ export async function collectAnalytics({env=process.env,tokenProvider,client,fet
   if(saved.error||saved.data!==true)throw Error('Analytics snapshot not persisted; collection disabled or unavailable');
   return {state:'collected',rows:snapshot.report.rows.length,startDate:window.startDate,endDate:window.endDate};
 }
-export function analyticsEvidence(snapshot,{minimumViews=100}={}) {
-  const reasons=[];
-  if(!snapshot?.report?.rows?.length)reasons.push('No observed article data');
-  if(snapshot?.report?.quality?.some(q=>q.thresholded||q.sampled||q.otherRows||q.truncated||q.emptyReason))reasons.push('Incomplete or qualified report');
-  const rows=snapshot?.report?.rows||[],views=rows.reduce((n,r)=>n+r.views,0);
-  if(views<minimumViews)reasons.push('Insufficient exposure');
-  return {state:reasons.length?'observe_only':'descriptive_only',views,reasons,canPublish:false,note:'Aggregate observations do not establish causal effects or authorize revisions.'};
+function civilDate(value) {
+  if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value))return null;
+  const stamp=Date.parse(value+'T00:00:00Z');
+  return Number.isFinite(stamp)&&new Date(stamp).toISOString().slice(0,10)===value?stamp:null;
+}
+export function analyticsEvidence(snapshot,{minimumViews=100,minimumDays=14,expectedPropertyId,at=new Date()}={}) {
+  const reasons=[],articles=[];
+  const hold=reason=>{if(!reasons.includes(reason))reasons.push(reason);};
+  if(!Number.isSafeInteger(minimumViews)||minimumViews<100||!Number.isSafeInteger(minimumDays)||minimumDays<14||minimumDays>60)throw Error('Unsafe analytics evidence thresholds');
+  const start=civilDate(snapshot?.startDate),end=civilDate(snapshot?.endDate);
+  let latest;
+  try{latest=analyticsWindow(at,snapshot?.report?.timeZone).endDate;if(!snapshot?.report?.timeZone)throw Error();}catch{hold('Invalid property timezone');}
+  if(start===null||end===null||end<start||end-start>59*86400000)hold('Invalid report window');
+  else {
+    if((end-start)/86400000+1<minimumDays)hold('Insufficient observation window');
+    if(latest&&snapshot.endDate!==latest)hold(snapshot.endDate>latest?'Report includes immature data':'Stale report window');
+  }
+  if(!/^[0-9]{1,20}$/.test(snapshot?.propertyId||'')||expectedPropertyId===undefined||snapshot.propertyId!==expectedPropertyId)hold('Unverified reporting property');
+  if(snapshot?.version!=='page-daily-v1')hold('Unsupported report version');
+  const quality=snapshot?.report?.quality;
+  if(!Array.isArray(quality)||!quality.length||quality.some(q=>!q||['thresholded','sampled','otherRows','truncated'].some(k=>typeof q[k]!=='boolean')||q.thresholded||q.sampled||q.otherRows||q.truncated||q.emptyReason))hold('Incomplete or qualified report');
+  const rows=snapshot?.report?.rows,seen=new Set(),byPath=new Map();
+  if(!Array.isArray(rows)||!rows.length)hold('No observed article data');
+  if(Array.isArray(rows)&&rows.length>10000)hold('Report exceeds bound');
+  let views=0;
+  for(const row of Array.isArray(rows)?rows.slice(0,10000):[]) {
+    const date=civilDate(row?.date),path=canonicalArticlePath(row?.path);
+    if(!path||path!==row.path||date===null||start===null||end===null||date<start||date>end||!Number.isSafeInteger(row.views)||row.views<0||!Number.isFinite(row.engagementSeconds)||row.engagementSeconds<0||seen.has(row.date+path)) {hold('Invalid or duplicate article observations');continue;}
+    seen.add(row.date+path);
+    const item=byPath.get(path)||{path,views:0,engagementSeconds:0,observedDays:0};
+    item.views+=row.views;item.engagementSeconds+=row.engagementSeconds;if(row.views>0)item.observedDays++;
+    views+=row.views;
+    if(!Number.isSafeInteger(views)||!Number.isSafeInteger(item.views)||!Number.isFinite(item.engagementSeconds))hold('Aggregate exceeds bound');
+    byPath.set(path,item);
+  }
+  for(const path of PUBLIC_ARTICLES.map(slug=>'/'+slug)) {
+    const item=byPath.get(path)||{path,views:0,engagementSeconds:0,observedDays:0};
+    const local=[];
+    if(item.views<minimumViews)local.push('Insufficient article exposure');
+    if(item.observedDays<minimumDays)local.push('Insufficient observed article days');
+    articles.push({...item,state:reasons.length||local.length?'observe_only':'descriptive_only',reasons:[...reasons,...local],engagementSecondsPerView:item.views>0&&Number.isFinite(item.engagementSeconds/item.views)?item.engagementSeconds/item.views:null});
+  }
+  if(!articles.some(a=>a.state==='descriptive_only'))hold('No article meets observation thresholds');
+  return {state:reasons.length?'observe_only':'descriptive_only',views:Number.isSafeInteger(views)?views:null,reasons,articles,canPublish:false,thresholds:{minimumViews,minimumDays,heuristic:true},note:'Missing days are not zero observations. Engagement per view is descriptive, not a user conversion rate. Cohorts, release mapping and consent coverage remain unverified; observations do not establish causation or authorize revisions.'};
 }
