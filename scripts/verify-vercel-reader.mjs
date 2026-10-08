@@ -40,4 +40,4 @@ await bounded(['/admin', '/admin/story', '/api/admin', '/mcp', ...reserve.map(r 
   assert(!home.includes(path), `Private link leaked: ${path}`);
   checks++;
 }));
-console.log(`Vercel hosted reader passed ${checks} checks: both URL forms, four exact articles, five authors, subscription navigation, removed lens boxes, private routes excluded.`);
+console.log(`Vercel hosted reader passed ${checks} checks: both URL forms, 11 exact articles, five authors, subscription navigation, removed lens boxes, private routes excluded.`);

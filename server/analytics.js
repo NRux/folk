@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { createClient } from '@supabase/supabase-js';
-export const PUBLIC_ARTICLES=['new-orleans-second-line','lisbon-fado','oaxaca-living-color','detroit-future-frequency'];
+export const PUBLIC_ARTICLES=['new-orleans-second-line','lisbon-fado','oaxaca-living-color','detroit-future-frequency','bonwire-kente','castells-tarragona','kimjang-seoul','matariki-puanga','nowruz-tajikistan','tokushima-aizome','xochimilco-chinampas'];
 const paths=PUBLIC_ARTICLES.flatMap(slug=>['/'+slug,'/'+slug+'.html']);
 export function canonicalArticlePath(value) {
   if(typeof value!=='string')return null;

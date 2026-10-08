@@ -12,5 +12,5 @@ export async function readOwnerDashboard(db, { readContacts=readContactInbox }={
     catch { return [key,{available:false,rows:[]}]; }
   })));
   sections.contacts=await readContacts();
-  return { sections, publicationLocked:true, analytics:{state:'foundation'}, migration:{state:'pending',message:'The public reader serves four existing stories. The seven-story private reserve remains in the original Site until a verified migration is complete.'}, generatedAt:new Date().toISOString() };
+  return { sections, publicationLocked:true, analytics:{state:'foundation'}, migration:{state:'pending',message:'The public reader serves 11 stories, including seven manually released reviewed articles. Original Site records are retained for verified migration; those seven stories must not be republished as reserve fallback.'}, generatedAt:new Date().toISOString() };
 }
