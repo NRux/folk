@@ -25,3 +25,37 @@ Verify the destination project identity and existing migrations through the auth
 The SQL takes write-conflicting table locks, requires all three switches false, imports and compares all rows/counts in one transaction, refuses changed/conflicting records, preserves existing data and permits exact retries. It never imports credentials, owner identities, settings, publication slots, operational spend or schedules. Identity sequences advance past imported IDs; sequence advancement may survive rollback as normal PostgreSQL behavior, without creating editorial records. No automatic overwrite/delete is performed.
 
 After commit, use an independent connection to compare each table's counts, article status/content hashes and exact version/evidence data with the receipt/snapshot. Confirm client-role denial and all switches false; open private drafts using a real owner session and verify anonymous access is denied. Re-run security advisors. Then exercise the separate recovery/publication acceptance gates in an isolated environment. A local compiler test is not hosted acceptance.
+
+## Preferred Blob-backed import (October 8 follow-up)
+
+Run the preparation command with --blob after validating the complete source and
+configuring the existing private Vercel Blob connection securely:
+
+    node scripts/prepare-supabase-import.mjs /private/snapshot.json /private/source-receipt.json /private/import.sql --blob
+
+This first validates the source, then uploads a private immutable snapshot backup
+under editorial/backups/<file-checksum>.json and each exact version JSON under
+editorial/versions/<content-checksum>.json. Uploads are create-only; a retry verifies
+an existing object rather than overwriting it. Every version is independently read
+back and checksum/byte-size verified before its Supabase reference is compiled.
+The backup file checksum covers the entire serialized snapshot; the source receipt
+checksum covers its payload, so those two hashes intentionally differ.
+
+Apply both private-content migrations before the generated SQL. In this mode,
+article_versions.content_json is an empty compatibility field; bodies live in
+Blob and folkly_content_objects holds private pathname, SHA-256, byte size and
+verification time. The compiler includes those references in the same transaction
+as article metadata/evidence, refusing missing, conflicting or extra references.
+The owner draft endpoint checks owner authorization before fetching a private
+object, enforces bounded streaming and verifies the stored checksum. Missing or
+corrupt files fail closed without using an older body. Existing SQL-backed versions
+remain readable only when no Blob reference exists; no existing body is deleted.
+
+An interrupted upload leaves unreferenced private objects, not a partially public
+article. Retry the exact snapshot to verify/reuse them. If SQL fails, retain objects
+for investigation/retry; do not automatically delete possible referenced content.
+Future orphan cleanup must compare the full reference index and backups before
+owner-approved deletion. A metadata commit is not proof that Blob and Postgres
+share a transaction. Independent hosted readback and interruption tests remain
+acceptance gates. Existing credited public images stay on their current static/CDN
+paths; no image replacement or new public Blob exposure was performed.

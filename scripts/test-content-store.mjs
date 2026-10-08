@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {createContentStore,createSnapshotStore,contentHash} from '../server/content-store.js';
+import {readDraft} from '../server/owner-workspace.js';
+const records=new Map();let writes=0,reads=0,ambiguous=false;
+const blob={put:async(path,text,options)=>{assert.equal(options.access,'private');assert.equal(options.allowOverwrite,false);assert.equal(options.addRandomSuffix,false);writes++;if(records.has(path))throw Error('exists');records.set(path,text);if(ambiguous)throw Error('Ambiguous upload');},get:async(path,options)=>{assert.equal(options.access,'private');assert.equal(options.useCache,false);reads++;return records.has(path)?{statusCode:200,stream:new Response(records.get(path)).body}:null;}};
+const store=createContentStore(blob),text=JSON.stringify({body_html:'<p>Private 東京 draft</p>'});const reference=await store.upload(text);assert.equal(reference.sha256,contentHash(text));assert.equal(await store.read(reference),text);assert.equal((await store.upload(text)).sha256,reference.sha256);assert.equal(writes,2);
+await assert.rejects(store.read({...reference,pathname:'https://evil.example/file'}),/reference/);await assert.rejects(store.read({...reference,byte_size:1}),/size/);records.set(reference.pathname,text.replace('Private','Changed'));await assert.rejects(store.read(reference),/checksum|size/);
+records.delete(reference.pathname);await assert.rejects(store.read(reference),/unavailable/);ambiguous=true;assert.equal((await store.upload(text)).sha256,reference.sha256);
+const db={from:table=>({select(){return this;},eq(){return this;},order(){return this;},maybeSingle:async()=>({data:table==='folkly_articles'?{title:'Draft',status:'draft'}:reference}),limit:async()=>({data:[{id:'v1',version:1,content_json:'',created_at:'now'}]})})};assert.equal((await readDraft(db,'a1',store)).content,text);
+records.delete(reference.pathname);await assert.rejects(readDraft(db,'a1',store),/unavailable/);assert.equal(writes,3);
+const backup=await createSnapshotStore(blob).upload(JSON.stringify({snapshot:'a'.repeat(250000)}));assert(backup.pathname.startsWith('editorial/backups/'));await assert.rejects(store.read(backup),/reference/);
+console.log('Private content passed: create-only immutable paths, verified readback/retry, UTF-8 bytes, missing/corrupt/oversize/path denial, ambiguous upload recovery and protected draft Blob resolution. Mocks only.');

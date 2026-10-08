@@ -1,3 +1,4 @@
+import {createContentStore} from './content-store.js';
 import {randomUUID} from 'node:crypto';
 const uuid=value=>/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(value||'');
 const reply=(status,data)=>Response.json(data,{status,headers:{'Cache-Control':'no-store'}});
@@ -43,10 +44,15 @@ export function createWorkspaceHandlers({authorize,store,drafts,chat,configured,
  }
  };
 }
-export async function readDraft(db,id){
+export async function readDraft(db,id,contentStore=createContentStore()){
  const article=await db.from('folkly_articles').select('id,title,status').eq('id',id).maybeSingle();if(article.error||!article.data)throw Error('Draft unavailable');
  const versions=await db.from('folkly_article_versions').select('id,version,content_json,created_at').eq('article_id',id).order('version',{ascending:false}).limit(1);
  if(versions.error||!versions.data?.length)throw Error('Draft content not migrated');
- const version=versions.data[0];if(typeof version.content_json!=='string'||Buffer.byteLength(version.content_json)>200000)throw Error('Invalid draft');
- return {title:article.data.title,status:article.data.status,version:version.version,content:version.content_json};
+ const version=versions.data[0];
+ const pointer=await db.from('folkly_content_objects').select('pathname,sha256,byte_size,verified_at').eq('article_version_id',version.id).maybeSingle();
+ if(pointer.error)throw Error('Private content index unavailable');
+ const content=pointer.data?await contentStore.read(pointer.data):version.content_json;
+ if(typeof content!=='string'||!content.length||Buffer.byteLength(content)>200000)throw Error('Invalid draft');
+ JSON.parse(content);
+ return {title:article.data.title,status:article.data.status,version:version.version,content};
 }

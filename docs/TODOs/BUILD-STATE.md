@@ -382,3 +382,14 @@ checks, current manual-release classification, transactional readback and confli
 rejection. See platform/SUPABASE-CONTENT-IMPORT.md. The old seven releases are public
 and cannot be counted as reserve. Full source export remains the required owner
 artifact; no schema change, publisher activation or private content commit.
+
+## Blob-backed editorial content, 2026-10-08
+
+Owner-approved hybrid implemented: private immutable version JSON and snapshot
+backups in existing Vercel Blob, transaction/review metadata in Supabase. New
+folkly_content_objects reference table is applied; RLS/client denial and server
+append-only grants verified live. Owner draft reads verify private Blob checksums
+and sizes, preserving SQL compatibility without fallback on corrupt references.
+The --blob import path uploads/readbacks first, then compiles one metadata/reference
+transaction. No real content uploaded or imported; complete original export remains
+required. Tests and limits: verification/blob-editorial-content-2026-10-08.md.

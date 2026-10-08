@@ -15,3 +15,10 @@ In the existing Vercel project, configure funded OPENAI_API_KEY, the existing pr
 Requests allow at most 6,000 message bytes, 12,000 total prompt/history bytes and 800 output tokens. The provider timeout is 30 seconds, function duration 60 seconds and SDK retries are disabled. A durable create-only attempt prevents a repeated request ID from charging twice. Twenty daily UTC create-only budget slots reserve $0.15 each ($3/day reservations). Failed/ambiguous attempts retain their slot. These are conservative application limits, not a provider invoice guarantee; review current model rates and configure provider-side spending controls before activation. A pending attempt does not claim a completed reply.
 
 Hosted acceptance still requires authenticated idea save/readback, concurrent edit conflicts, session revocation, actual private draft retrieval, a funded chat response, duplicate paid-attempt denial and interruption recovery. Local mocks do not satisfy those gates. Production/publication/article-schedule controls stay disabled.
+
+Blob follow-up: latest versions may resolve through the private
+folkly_content_objects index. The server verifies file path, byte size, SHA-256 and
+JSON before returning text through the existing owner endpoint. There is no public
+Blob URL or arbitrary file-access route. SQL-backed versions remain compatible;
+indexed but missing/corrupt Blob files fail closed. Hosted authenticated viewing
+still requires the complete content migration.
