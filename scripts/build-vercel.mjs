@@ -42,6 +42,7 @@ for (const [route, file] of Object.entries(routes)) {
 }
 await cp('web/static/assets', 'dist/assets', { recursive: true });
 await cp('web/static/style.css', 'dist/style.css');
+await cp('web/vercel/ads.txt', 'dist/ads.txt');
 for (const file of ['subscribe.css', 'subscribe.js', 'owner.js', 'contact.js', 'contact.css']) await cp(`web/vercel/${file}`, `dist/${file}`);
 await writeFile('dist/owner.html', addAdsense(await readFile('web/vercel/owner.html', 'utf8')));
 await writeFile('dist/subscribe.html', addAdsense(await readFile('web/vercel/subscribe.html', 'utf8')));
