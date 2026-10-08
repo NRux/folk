@@ -11,6 +11,13 @@ are reused; no import, new database or loss of consent history is required.
 The signup form alone does not send mail. Supabase Auth SMTP sends login emails;
 it is not wired to this newsletter service.
 
+The authenticated owner dashboard has a read-only Subscribers section. It reads
+at most 20 private records per page, revalidates the owner session for each page,
+and reports whether a matching suppression record exists. It does not expose
+Blob path hashes or unsubscribe tokens, and it cannot subscribe, unsubscribe,
+delete or send to anyone. Any malformed record or incomplete storage read makes
+the page unavailable instead of guessing at delivery status.
+
 ## Implemented delivery
 
 Vercel cron invokes `/api/newsletter` on Fridays at **16:00 UTC** (09:00 Pacific

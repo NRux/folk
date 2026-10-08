@@ -1,11 +1,11 @@
 const el = id => document.getElementById(id);
 const status = el('owner-status');
-let sessionGeneration=0, nextContactCursor=null;
+let sessionGeneration=0, nextContactCursor=null, nextSubscriberCursor=null;
 function signedIn(value) {
-  if(!value){sessionGeneration++;nextContactCursor=null;el('owner-contact-next').disabled=true;}
+  if(!value){sessionGeneration++;nextContactCursor=null;nextSubscriberCursor=null;el('owner-contact-next').disabled=true;el('owner-subscriber-next').disabled=true;}
   typeof document.dispatchEvent==='function'&&document.dispatchEvent(new CustomEvent('owner-session',{detail:{signedIn:value,generation:sessionGeneration}}));
   el('owner-login').hidden=value; el('owner-dashboard').hidden=!value; el('owner-logout').hidden=!value;
-  if (!value) for(const id of ['owner-articles','owner-jobs','owner-reservations','owner-budget','owner-switches','owner-updated','owner-migration','owner-contacts','owner-contact-note']) el(id).replaceChildren();
+  if (!value) for(const id of ['owner-articles','owner-jobs','owner-reservations','owner-budget','owner-switches','owner-updated','owner-migration','owner-contacts','owner-contact-note','owner-subscriber-list','owner-subscriber-note']) el(id).replaceChildren();
 }
 function table(id,section,columns,empty) {
   const target=el(id);target.replaceChildren();
@@ -27,7 +27,29 @@ function render(data) {
   table('owner-articles',s.articles,[['title','Title'],['status','Status'],['pipeline_state','Editorial stage'],['updated_at','Updated']],'No editorial records have been migrated yet. Existing public stories remain in the archive.');
   table('owner-jobs',s.jobs,[['job_type','Type'],['status','Status'],['attempt','Attempts'],['last_run_at','Last run']],'No jobs recorded.');
   renderContacts(s.contacts);
+  loadSubscribers();
   table('owner-reservations',s.reservations,[['model','Model'],['reserved_usd','Reserved USD'],['state','Outcome'],['budget_date','Budget date']],'No model reservations recorded.');
+}
+function renderSubscribers(section) {
+  table('owner-subscriber-list',section,[['email','Email'],['status','Status'],['subscribedAt','Subscribed'],['consentVersion','Consent version'],['source','Source']],'No subscriber records saved.');
+  nextSubscriberCursor=section?.available?section.nextCursor:null;
+  el('owner-subscriber-next').disabled=!nextSubscriberCursor;
+  el('owner-subscriber-note').textContent=section?.available?(section.hasMore?'Showing one private page in storage order. Use Next page to see more.':'End of subscriber records. Delivery remains paused until hosted acceptance passes.'):'Subscriber records unavailable. No delivery state has been changed.';
+}
+async function loadSubscribers(cursor) {
+  const generation=sessionGeneration;
+  el('owner-subscriber-next').disabled=true;el('owner-subscriber-first').disabled=true;
+  try {
+    const query=cursor?'&cursor='+encodeURIComponent(cursor):'';
+    const response=await fetch('/api/owner?view=subscribers'+query,{cache:'no-store'});
+    const data=await response.json();
+    if(generation!==sessionGeneration||el('owner-dashboard').hidden)return;
+    if(response.status===401){signedIn(false);status.textContent='Session expired. Sign in again.';return;}
+    if(!response.ok||!data.owner||!data.subscribers?.available)throw Error();
+    renderSubscribers(data.subscribers);
+  }catch {
+    if(generation===sessionGeneration&&!el('owner-dashboard').hidden){renderSubscribers({available:false});status.textContent='Subscriber records unavailable. Return to the first page to retry.';}
+  }finally{el('owner-subscriber-first').disabled=false;}
 }
 function renderContacts(section) {
   table('owner-contacts',section,[['name','Name'],['email','Email'],['reason','Reason'],['contributor','Contributor interest'],['message','Message'],['receivedAt','Received']],'No contact messages saved.');
@@ -52,6 +74,8 @@ async function loadContacts(cursor) {
 }
 el('owner-contact-next').addEventListener('click',()=>{if(nextContactCursor)loadContacts(nextContactCursor);});
 el('owner-contact-first').addEventListener('click',()=>loadContacts());
+el('owner-subscriber-next').addEventListener('click',()=>{if(nextSubscriberCursor)loadSubscribers(nextSubscriberCursor);});
+el('owner-subscriber-first').addEventListener('click',()=>loadSubscribers());
 async function loadStatus() {
   const generation=sessionGeneration;
   const response=await fetch('/api/owner',{cache:'no-store'});const data=await response.json();

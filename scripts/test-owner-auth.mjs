@@ -49,3 +49,12 @@ assert.equal((await inboxHandlers.GET(new Request(pageReq.url))).status,401);ass
 const invalid=new Request(req.url+'?view=contacts&cursor=bad%0Avalue',{headers:{cookie:cookies}});
 assert.equal((await inboxHandlers.GET(invalid)).status,400);assert.equal(inboxCalls,1);
 console.log('Inbox paging authentication passed: per-request membership/session validation, anonymous and revoked denial, cursor validation before storage.');
+let subscriberCalls=0;
+const subscriberHandlers=createOwnerHandlers({env,authClient,editorialClient,readSubscribers:async args=>{subscriberCalls++;assert.equal(args.cursor,'page2');return {available:true,rows:[],nextCursor:null};}});
+const subscriberReq=new Request(req.url+'?view=subscribers&cursor=page2',{headers:{cookie:cookies}});
+assert.equal((await subscriberHandlers.GET(subscriberReq)).status,200);assert.equal(subscriberCalls,1);
+active=false;assert.equal((await subscriberHandlers.GET(subscriberReq)).status,401);active=true;
+assert.equal((await subscriberHandlers.GET(new Request(subscriberReq.url))).status,401);assert.equal(subscriberCalls,1);
+const badSubscriberCursor=new Request(req.url+'?view=subscribers&cursor=bad%0Avalue',{headers:{cookie:cookies}});
+assert.equal((await subscriberHandlers.GET(badSubscriberCursor)).status,400);assert.equal(subscriberCalls,1);
+console.log('Subscriber paging authentication passed: each private page revalidates owner session and rejects unsafe cursors before Blob access.');

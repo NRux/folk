@@ -393,3 +393,17 @@ and sizes, preserving SQL compatibility without fallback on corrupt references.
 The --blob import path uploads/readbacks first, then compiles one metadata/reference
 transaction. No real content uploaded or imported; complete original export remains
 required. Tests and limits: verification/blob-editorial-content-2026-10-08.md.
+
+## Protected subscriber readback, 2026-10-08
+
+The owner dashboard now includes a private paginated Subscribers section backed by
+the existing Vercel Blob records. It shows email, consent version/source, signup
+time and current subscribed/unsubscribed state without exposing Blob paths or
+unsubscribe tokens. Every page revalidates the owner session and membership;
+records, path hashes, sizes and continuation cursors are bounded and validated.
+Malformed or partially readable pages fail closed rather than reporting a false
+delivery state. Full regression and focused security fixtures pass. See
+verification/subscriber-readback-2026-10-08.md. This closes the code-side
+authenticated readback gap, but hosted owner-session readback and Resend delivery
+acceptance still require the existing Vercel project connection and configured
+provider secrets. NEWSLETTER_ENABLED and all three autonomous switches remain off.
