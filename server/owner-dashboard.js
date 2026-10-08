@@ -10,5 +10,5 @@ export async function readOwnerDashboard(db) {
     try { const result = await query(); if (result.error) throw Error(); return [key,{available:true,rows:result.data || []}]; }
     catch { return [key,{available:false,rows:[]}]; }
   })));
-  return { sections, publicationLocked:true, analytics:{state:'planned'}, migration:{state:'pending',message:'The public reader serves four existing stories. The seven-story private reserve remains in the original Site until a verified migration is complete.'}, generatedAt:new Date().toISOString() };
+  return { sections, publicationLocked:true, analytics:{state:'foundation'}, migration:{state:'pending',message:'The public reader serves four existing stories. The seven-story private reserve remains in the original Site until a verified migration is complete.'}, generatedAt:new Date().toISOString() };
 }

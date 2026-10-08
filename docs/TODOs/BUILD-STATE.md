@@ -143,3 +143,20 @@ Status: BLOCKED (2026-10-07)
 Evidence: docs/verification/acceptance-report.md; docs/verification/site-migration-boundary.md.
 Notes: Stage 07 is not fully green. The linked schedule stays inactive by the Stage 08 gate.
 
+
+
+## Vercel progress, 2026-10-08 UTC
+
+All recent work is synced to main/master; branch inventory contains only those
+two branches. Owner sign-in has user-reported live success and the protected
+read-only dashboard is deployed. Durable model budgets and scoped RPCs are
+installed and verified with isolated hosted concurrency; caps remain zero.
+GA4 read-only collector/private snapshot foundations now exist, disabled by
+default. See verification/analytics-foundation-2026-10-08.md for tests and limits.
+Numeric GA4 property ID, read-only Google token wiring and scoped analytics
+credential remain missing. No live Google report/model calls or new cron ran.
+Complete old Site export, content migration/commit/readback, worker credentials,
+MFA, restore/recovery and full deployed acceptance remain pending. Security
+advisor still reports disabled leaked-password protection in Supabase Auth.
+All autonomous production/publication/schedule switches remain false.
+

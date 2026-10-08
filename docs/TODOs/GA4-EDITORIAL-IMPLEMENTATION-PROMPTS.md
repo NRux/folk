@@ -195,3 +195,12 @@ Recheck current documentation before coding:
 - [ ] 6. Owner review/versioned releases
 - [ ] 7. Evaluation/diversity
 - [ ] 8. Hosted acceptance
+
+### Foundation progress, 2026-10-08 UTC
+
+A bounded read-only Data API collector and disabled scoped snapshot RPC now exist.
+See docs/verification/analytics-foundation-2026-10-08.md and
+docs/platform/GA4-CONNECTION.md. Prompt 1/3/4 foundations are partial; do not
+mark the complete prompts or live acceptance passed. Google token wiring,
+property verification, sync-run checkpoints and substantive confidence checks
+are still required. No collector cron, model call or publication was enabled.
