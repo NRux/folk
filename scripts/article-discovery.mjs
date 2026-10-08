@@ -1,6 +1,5 @@
-import { escapeHtml, renderGrid } from './public-articles.mjs';
-const topicLabels = {'making-inheritance':'Making & inheritance','ritual-belonging':'Ritual & belonging','sound-invention':'Sound & invention','sound-memory':'Sound & memory','mutual-aid':'Mutual aid','material-knowledge':'Material knowledge','craft-economies':'Craft economies','community-kitchens':'Community kitchens','urban-space':'Urban space'};
-export const topicLabel = slug => topicLabels[slug] || slug.replaceAll('-', ' ').replace(/^./, c=>c.toUpperCase());
+import { escapeHtml, renderGrid, topicLabel } from './public-articles.mjs';
+export { topicLabel } from './public-articles.mjs';
 export function discoveryGroups(items) {
   const groups = new Map();
   const add = (route,label,item) => { if (!groups.has(route)) groups.set(route,{label,items:[]}); groups.get(route).items.push(item); };

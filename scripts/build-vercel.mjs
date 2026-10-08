@@ -1,3 +1,4 @@
+import { addArticleFilters } from './article-filters.mjs';
 import { decorateArticleLayout, inlineImageCredits } from './article-layout.mjs';
 import { applyResponsiveImages } from './responsive-images.mjs';
 import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
@@ -60,6 +61,7 @@ for (const [route, file] of Object.entries(routes)) {
   html = html.replace('</head>', '<link rel="stylesheet" href="/subscribe.css"><link rel="stylesheet" href="/article-grid.css"></head>');
   html = applyResponsiveImages(html, articles, route);
   if (article) html = decorateArticleLayout(html, article, articleMedia);
+  html = addArticleFilters(html, articles);
   html = addAdsense(html);
   html = html.replace('</nav>', '<a class="subscribe-button" href="/subscribe">Subscribe</a></nav>');
   const target = route === '/' ? 'dist/index.html' : `dist${route}.html`;
@@ -80,3 +82,5 @@ await writeFile('dist/owner.html', addAdsense(await readFile('web/vercel/owner.h
 await writeFile('dist/subscribe.html', addAdsense(await readFile('web/vercel/subscribe.html', 'utf8')));
 await writeFile('dist/404.html', addAdsense('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Page not found | Folkly</title></head><body><h1>Page not found</h1><a href="/">Return to Folkly</a></body></html>'));
 console.log(`Built ${Object.keys(routes).length} public pages and journal assets for Vercel; publisher disabled.`);
+
+await cp('web/vercel/article-filters.mjs', 'dist/article-filters.js');

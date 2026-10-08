@@ -267,3 +267,15 @@ image downloads/visual checks, browser mobile checks and deployed readback are
 pending. The Vercel project is known to Noah as folkly; inspect that existing
 project when the connection exposes it. Historical manual releases/private
 reserve remain unchanged; production/publication/schedule remain off.
+
+## Public article tags and filters, 2026-10-08
+
+Published catalog tags now appear as topic links on grid cards. Homepage/archive
+and active topic/place grids add any-tag selection, place narrowing, newest/oldest
+and title sorting, live counts, empty state and clear/reset. Shareable URL state
+preserves unrelated query parameters. Native accessible controls enhance otherwise
+complete static grids; no-JavaScript topic navigation works. Options/new article
+metadata populate automatically from each grid's published entries. Build and
+regression evidence is in verification/article-filters-2026-10-08.md. Full browser
+visual/deployed acceptance remains pending; private reserve and paused switches
+are unchanged.

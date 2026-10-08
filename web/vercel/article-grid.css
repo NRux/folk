@@ -7,3 +7,18 @@
 .article-body .article-inline-image { margin: 2rem 0; width: 100%; }
 .article-body .article-inline-image img { display: block; width: 100%; height: auto; max-height: none; object-fit: contain; border-radius: 4px; }
 .article-body .article-inline-image figcaption { margin-top: .6rem; font-size: .8rem; line-height: 1.5; color: var(--muted, #665d63); overflow-wrap: anywhere; }
+
+/* Public story filters: native keyboard controls and readable tag links. */
+.article-filter-panel{margin:24px 0 32px;border:1px solid var(--line,#cecec4);padding:20px;border-radius:6px}
+.article-filter-row{display:flex;flex-wrap:wrap;gap:16px;align-items:end}
+.article-filter-row label{display:grid;gap:6px;font-size:14px}
+.article-filter-row select,.article-filter-row button{font:inherit;padding:10px;max-width:100%;border:1px solid var(--line,#cecec4);border-radius:4px;background:var(--paper,#faf7f0);color:inherit}
+.article-filter-panel details{margin-top:18px}.article-filter-panel summary{cursor:pointer}.filter-hint{font-size:14px}
+.article-filter-panel fieldset{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.filter-tag{min-height:44px;box-sizing:border-box;display:flex;gap:6px;align-items:center;padding:8px 10px;border:1px solid var(--line,#cecec4);border-radius:20px;font-size:13px;cursor:pointer}
+.filter-tag:has(input:checked){background:#e5eadf;border-color:#596b50}
+.article-tags{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}.article-tags a{display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;font-size:12px;padding:5px 9px;border:1px solid var(--line,#cecec4);border-radius:18px;text-decoration:none}
+.article-filter-panel :focus-visible,.article-tags a:focus-visible{outline:2px solid #596b50;outline-offset:3px}
+.filter-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.story-grid>[hidden],.article-filter-panel[hidden],.article-filter-panel [hidden]{display:none!important}
+@media(max-width:600px){.article-filter-panel{padding:14px}.article-filter-row label{width:100%;min-width:0}.article-filter-row select{width:100%}}
