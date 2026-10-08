@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 const routes = JSON.parse(await readFile('web/vercel/routes.json', 'utf8'));
+const { discoveryRouteFiles } = await import('./article-discovery.mjs');
+const { publishedArticles } = await import('./public-articles.mjs');
+const catalog = JSON.parse(await readFile('web/vercel/articles.json', 'utf8'));
+Object.assign(routes, discoveryRouteFiles(publishedArticles(catalog, routes)));
 const released = JSON.parse(await readFile('web/vercel/manual-releases.json', 'utf8')).articles;
 const reserve = JSON.parse(await readFile('web/site-runtime/hosted/lib/reviewed-reserve.json', 'utf8')).filter(r=>!released.some(a=>a.slug===r.slug));
 for (const slug of ['new-orleans-second-line', 'lisbon-fado', 'oaxaca-living-color', 'detroit-future-frequency']) {

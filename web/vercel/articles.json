@@ -11,7 +11,25 @@
       "alt": "Hot 8 Brass Band musicians playing in a New Orleans street during the Single Ladies second-line parade",
       "width": 3840,
       "height": 2560
-    }
+    },
+    "searchTitle": "New Orleans Second Lines: Community, Music, and Mutual Aid",
+    "placeSlug": "new-orleans-united-states",
+    "placeName": "New Orleans, United States",
+    "topics": [
+      "ritual-belonging",
+      "music",
+      "mutual-aid"
+    ],
+    "related": [
+      {
+        "slug": "detroit-future-frequency",
+        "reason": "Radio, friendship, and the communities behind Detroit techno."
+      },
+      {
+        "slug": "castells-tarragona",
+        "reason": "The collective trust and organizing behind Catalan human towers."
+      }
+    ]
   },
   {
     "slug": "lisbon-fado",
@@ -25,7 +43,25 @@
       "alt": "A narrow street lined with pastel buildings and a wall lantern in Alfama, Lisbon",
       "width": 3897,
       "height": 2919
-    }
+    },
+    "searchTitle": "Lisbon Fado: Neighborhoods, History, and Belonging",
+    "placeSlug": "lisbon-portugal",
+    "placeName": "Lisbon, Portugal",
+    "topics": [
+      "sound-memory",
+      "music",
+      "memory"
+    ],
+    "related": [
+      {
+        "slug": "new-orleans-second-line",
+        "reason": "Brass-band music and community care in New Orleans."
+      },
+      {
+        "slug": "detroit-future-frequency",
+        "reason": "How another city developed its own musical language."
+      }
+    ]
   },
   {
     "slug": "oaxaca-living-color",
@@ -39,7 +75,25 @@
       "alt": "Wooden loom and skeins of colored wool in the Porfirio Gutierrez family workshop in Teotitlán del Valle",
       "width": 3872,
       "height": 2592
-    }
+    },
+    "searchTitle": "Zapotec Weaving in Teotitlán del Valle, Oaxaca",
+    "placeSlug": "teotitla-n-del-valle-mexico",
+    "placeName": "Teotitlán del Valle, Mexico",
+    "topics": [
+      "making-inheritance",
+      "textiles",
+      "material-knowledge"
+    ],
+    "related": [
+      {
+        "slug": "bonwire-kente",
+        "reason": "Kente weaving, inherited knowledge, and livelihoods in Ghana."
+      },
+      {
+        "slug": "tokushima-aizome",
+        "reason": "The materials and labor behind Tokushima indigo dyeing."
+      }
+    ]
   },
   {
     "slug": "detroit-future-frequency",
@@ -47,7 +101,25 @@
     "title": "The future had a Detroit frequency.",
     "summary": "A radio signal, a circle of friends, and a willingness to hear connections: the cultural conditions behind Detroit techno reach beyond the familiar story of machines.",
     "place": "Detroit & Belleville, United States · Sound & invention",
-    "publishedAt": "2026-10-07"
+    "publishedAt": "2026-10-07",
+    "searchTitle": "Detroit Techno: Radio, Belleville, and a New Musical Language",
+    "placeSlug": "detroit-belleville-united-states",
+    "placeName": "Detroit & Belleville, United States",
+    "topics": [
+      "sound-invention",
+      "music",
+      "radio"
+    ],
+    "related": [
+      {
+        "slug": "lisbon-fado",
+        "reason": "A musical tradition shaped by Lisbon’s neighborhoods."
+      },
+      {
+        "slug": "new-orleans-second-line",
+        "reason": "Music and collective belonging in New Orleans."
+      }
+    ]
   },
   {
     "slug": "bonwire-kente",
@@ -70,7 +142,26 @@
       "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Bonwire_man_weaving.jpg/1920px-Bonwire_man_weaving.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "sha256": "5d8d0501fc6a410c1a99ef0f1dbf09cd7b31319dc36d3a806ee61303f7d025eb",
       "changes": "Wikimedia-provided resized copy where available; homepage thumbnail cropped with CSS. Article image displayed without cropping."
-    }
+    },
+    "searchTitle": "Kente Weaving in Bonwire, Ghana: Identity and Livelihood",
+    "placeSlug": "bonwire-ghana",
+    "placeName": "Bonwire, Ghana",
+    "topics": [
+      "textiles",
+      "making",
+      "craft-economies"
+    ],
+    "authorSlug": "lena-march",
+    "related": [
+      {
+        "slug": "oaxaca-living-color",
+        "reason": "Family knowledge and textile invention in Oaxaca."
+      },
+      {
+        "slug": "tokushima-aizome",
+        "reason": "Skilled labor and the economics of indigo dyeing."
+      }
+    ]
   },
   {
     "slug": "castells-tarragona",
@@ -93,7 +184,26 @@
       "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Concurs_castells_1.jpg/1920px-Concurs_castells_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "sha256": "e7bee2ff7a355fa75172632f8a1539fe3a295e21a566918837bfbe97d6b74d59",
       "changes": "Wikimedia-provided resized copy where available; homepage thumbnail cropped with CSS. Article image displayed without cropping."
-    }
+    },
+    "searchTitle": "Castells in Tarragona: Catalan Human Towers and Community",
+    "placeSlug": "tarragona-spain",
+    "placeName": "Tarragona, Spain",
+    "topics": [
+      "ritual",
+      "festivals",
+      "mutual-aid"
+    ],
+    "authorSlug": "sasha-wren",
+    "related": [
+      {
+        "slug": "new-orleans-second-line",
+        "reason": "Another public practice built through collective participation."
+      },
+      {
+        "slug": "kimjang-seoul",
+        "reason": "The communal work of making and sharing winter food."
+      }
+    ]
   },
   {
     "slug": "kimjang-seoul",
@@ -116,7 +226,26 @@
       "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Gimjang_in_Gaemi_Village%2C_1_December_2012.jpg/1920px-Gimjang_in_Gaemi_Village%2C_1_December_2012.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "sha256": "4a9ac06d6360bdf4f5c55b9ddd6721552e2a993f852eb8a05aa141cd0238f8e0",
       "changes": "Wikimedia-provided resized copy where available; homepage thumbnail cropped with CSS. Article image displayed without cropping."
-    }
+    },
+    "searchTitle": "Kimjang in Seoul: Making and Sharing Winter Kimchi",
+    "placeSlug": "seoul-south-korea",
+    "placeName": "Seoul, South Korea",
+    "topics": [
+      "food",
+      "community-kitchens",
+      "recipes"
+    ],
+    "authorSlug": "lena-march",
+    "related": [
+      {
+        "slug": "nowruz-tajikistan",
+        "reason": "Spring food preparation and shared labor in Tajikistan."
+      },
+      {
+        "slug": "matariki-puanga",
+        "reason": "Distinct regional traditions of seasonal renewal."
+      }
+    ]
   },
   {
     "slug": "matariki-puanga",
@@ -139,7 +268,26 @@
       "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/0/06/The_Pleiades_%28b11%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "sha256": "5c4840c861db529671d8f602ee83d4af533c857068b33f8e3119cc6d2dcfaff9",
       "changes": "Wikimedia-provided resized copy where available; homepage thumbnail cropped with CSS. Article image displayed without cropping."
-    }
+    },
+    "searchTitle": "Matariki and Puanga: Regional Māori New Year Traditions",
+    "placeSlug": "aotearoa-new-zealand",
+    "placeName": "Aotearoa New Zealand",
+    "topics": [
+      "ceremony",
+      "renewal",
+      "memory"
+    ],
+    "authorSlug": "rowan-pike",
+    "related": [
+      {
+        "slug": "nowruz-tajikistan",
+        "reason": "Spring renewal and belonging around a shared pot."
+      },
+      {
+        "slug": "kimjang-seoul",
+        "reason": "Seasonal food knowledge passed between neighbors."
+      }
+    ]
   },
   {
     "slug": "nowruz-tajikistan",
@@ -162,7 +310,26 @@
       "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Sumanak_-_traditional_Nawruz_food_in_Tajikistan.jpg/1920px-Sumanak_-_traditional_Nawruz_food_in_Tajikistan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "sha256": "30b434b4b6715c1ee20a091320f3caa902bccbc41221aa41c927ccf4ec6bd5e5",
       "changes": "Wikimedia-provided resized copy where available; homepage thumbnail cropped with CSS. Article image displayed without cropping."
-    }
+    },
+    "searchTitle": "Navruz in Tajikistan: Sumanak and Spring in Dushanbe",
+    "placeSlug": "dushanbe-tajikistan",
+    "placeName": "Dushanbe, Tajikistan",
+    "topics": [
+      "food",
+      "ritual",
+      "renewal"
+    ],
+    "authorSlug": "sasha-wren",
+    "related": [
+      {
+        "slug": "kimjang-seoul",
+        "reason": "Making winter kimchi through communal work."
+      },
+      {
+        "slug": "matariki-puanga",
+        "reason": "Remembrance and renewal in Māori new year traditions."
+      }
+    ]
   },
   {
     "slug": "tokushima-aizome",
@@ -185,7 +352,26 @@
       "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/9/91/Furusyo_aizome.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "sha256": "9ec12ed0e661df69b6d5a063176ef67c83423ad01b0c1032df8e78d92d50b985",
       "changes": "Wikimedia-provided resized copy where available; homepage thumbnail cropped with CSS. Article image displayed without cropping."
-    }
+    },
+    "searchTitle": "Tokushima Aizome: Japanese Indigo Dyeing and Skilled Labor",
+    "placeSlug": "tokushima-japan",
+    "placeName": "Tokushima Prefecture, Japan",
+    "topics": [
+      "textiles",
+      "dyeing",
+      "material-knowledge"
+    ],
+    "authorSlug": "mira-sol",
+    "related": [
+      {
+        "slug": "bonwire-kente",
+        "reason": "The relationship between textile skill and local livelihoods."
+      },
+      {
+        "slug": "oaxaca-living-color",
+        "reason": "Natural dyes and weaving knowledge in Teotitlán del Valle."
+      }
+    ]
   },
   {
     "slug": "xochimilco-chinampas",
@@ -208,6 +394,25 @@
       "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Paisaje_del_canal_y_chinampas_en_Xochimilco.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "sha256": "54da0230e60699f18f31f09964939d73cafa45a1c9121127a72e234af953e5e5",
       "changes": "Wikimedia-provided resized copy where available; homepage thumbnail cropped with CSS. Article image displayed without cropping."
-    }
+    },
+    "searchTitle": "Xochimilco Chinampas: Canal Farming and Living Soil",
+    "placeSlug": "xochimilco-mexico",
+    "placeName": "Xochimilco, Mexico City, Mexico",
+    "topics": [
+      "agriculture",
+      "urban-space",
+      "repair"
+    ],
+    "authorSlug": "rowan-pike",
+    "related": [
+      {
+        "slug": "oaxaca-living-color",
+        "reason": "A different Mexican tradition connecting material knowledge and livelihoods."
+      },
+      {
+        "slug": "bonwire-kente",
+        "reason": "How local knowledge and economic pressure shape a living practice."
+      }
+    ]
   }
 ]

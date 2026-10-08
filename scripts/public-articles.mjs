@@ -8,12 +8,17 @@ export function publishedArticles(catalog, routes) {
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.slug) || seen.has(item.slug) || !routes[`/${item.slug}`]) throw new Error('Invalid or duplicate published article route');
     seen.add(item.slug);
     for (const field of ['title','summary','place']) if (typeof item[field] !== 'string' || !item[field].trim()) throw new Error(`Missing article ${field}`);
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(item.publishedAt) || Number.isNaN(Date.parse(item.publishedAt))) throw new Error('Invalid article publication date');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(item.publishedAt) || Number.isNaN(Date.parse(item.publishedAt)) || new Date(item.publishedAt).toISOString().slice(0,10) !== item.publishedAt) throw new Error('Invalid article publication date');
+    const validSlug = value => typeof value === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value);
+    if (!validSlug(item.placeSlug) || typeof item.placeName !== 'string' || !item.placeName.trim() || !Array.isArray(item.topics) || !item.topics.every(validSlug) || new Set(item.topics).size !== item.topics.length) throw new Error('Invalid article discovery metadata');
+    if (item.authorSlug && (!validSlug(item.authorSlug) || !routes[`/author/${item.authorSlug}`])) throw new Error('Unknown editorial persona');
+    if (item.searchTitle && typeof item.searchTitle !== 'string') throw new Error('Invalid search title');
+    if (item.related && (!Array.isArray(item.related) || !item.related.every(link=>validSlug(link.slug) && typeof link.reason === 'string' && link.reason.trim()))) throw new Error('Invalid related article metadata');
     if (item.image) {
       const image = item.image;
       const imageUrl = new URL(image.src, 'https://www.folkly.com');
       const localImage = /^\/assets\/[a-z0-9-]+\.jpg$/.test(image.src);
-      const creditedImage = imageUrl.protocol === 'https:' && ['thumb.wikimedia.org','upload.wikimedia.org'].includes(imageUrl.hostname) && image.sha256;
+      const creditedImage = imageUrl.protocol === 'https:' && !imageUrl.username && !imageUrl.password && ['thumb.wikimedia.org','upload.wikimedia.org'].includes(imageUrl.hostname) && image.sha256;
       if ((!localImage && !creditedImage) || !Number.isSafeInteger(image.width) || image.width < 1 || !Number.isSafeInteger(image.height) || image.height < 1 || !image.alt) throw new Error('Invalid public image');
       if (image.sha256) {
         if (!/^[a-f0-9]{64}$/.test(image.sha256)) throw new Error('Invalid image digest');
@@ -32,7 +37,7 @@ export async function verifyImageFiles(items) {
 }
 const credit = image => `${escapeHtml(image.caption)} Photo: <a href="${escapeHtml(image.source)}">${escapeHtml(image.creator)}</a> / <a href="${escapeHtml(image.licenseUrl)}">${escapeHtml(image.license)}</a>.`;
 export function renderGrid(items) {
-  return items.map(item => `<article class="story-card" data-article="${item.slug}"><a class="picture${item.image ? '' : ' text-picture'}" href="/${item.slug}" aria-label="Read ${escapeHtml(item.title)}">${item.image ? `<img src="${item.image.src}" alt="${escapeHtml(item.image.alt)}" width="${item.image.width}" height="${item.image.height}" loading="lazy" decoding="async">` : `<span>${escapeHtml(item.place.split(' · ')[0])}<br>Cultural essay</span>`}</a>${item.image?.sha256 ? `<small class="grid-credit"><a href="/image-credits#${item.slug}">Photo: ${escapeHtml(item.image.creator)}</a></small>` : ''}<p class="eyebrow">${escapeHtml(item.place)}</p><h3><a href="/${item.slug}">${escapeHtml(item.title)}</a></h3><p>${escapeHtml(item.summary)}</p><div class="meta">Cultural essay</div></article>`).join('\n');
+  return items.map(item => `<article class="story-card" data-article="${item.slug}"><a class="picture${item.image ? '' : ' text-picture'}" href="/${item.slug}" aria-label="Read ${escapeHtml(item.title)}">${item.image ? `<img src="${escapeHtml(item.image.src)}" alt="${escapeHtml(item.image.alt)}" width="${item.image.width}" height="${item.image.height}" loading="lazy" decoding="async">` : `<span>${escapeHtml(item.place.split(' · ')[0])}<br>Cultural essay</span>`}</a>${item.image?.sha256 ? `<small class="grid-credit"><a href="/image-credits#${item.slug}">Photo: ${escapeHtml(item.image.creator)}</a></small>` : ''}<p class="eyebrow">${escapeHtml(item.place)}</p><h3><a href="/${item.slug}">${escapeHtml(item.title)}</a></h3><p>${escapeHtml(item.summary)}</p><div class="meta">Cultural essay</div></article>`).join('\n');
 }
 export function populateHomepage(html, items) {
   const start = html.indexOf('<div class="story-grid">');
@@ -44,6 +49,7 @@ export function populateHomepage(html, items) {
 }
 export function decorateArticle(html, item, origin) {
   const url = `${origin}/${item.slug}`;
+  if (item.searchTitle) html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(item.searchTitle)} | Folkly</title>`);
   html = html.replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${url}">`);
   html = html.replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${escapeHtml(item.summary)}">`);
   html = html.replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${url}">`);
@@ -52,7 +58,7 @@ export function decorateArticle(html, item, origin) {
     const image = item.image;
     const marker = '</header><div class="article-layout">';
     if (!html.includes(marker)) throw new Error(`Article image insertion point missing: ${item.slug}`);
-    html = html.replace(marker, `</header><figure class="article-figure credited-figure"><img src="${image.src}" alt="${escapeHtml(image.alt)}" width="${image.width}" height="${image.height}" decoding="async" fetchpriority="high"><figcaption>${credit(image)} <a class="image-details" href="/image-credits#${item.slug}" aria-label="Image use details">Details</a></figcaption></figure><div class="article-layout">`);
+    html = html.replace(marker, `</header><figure class="article-figure credited-figure"><img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}" width="${image.width}" height="${image.height}" decoding="async" fetchpriority="high"><figcaption>${credit(image)} <a class="image-details" href="/image-credits#${item.slug}" aria-label="Image use details">Details</a></figcaption></figure><div class="article-layout">`);
     html = html.replace(/<p class="article-deck">[\s\S]*?<\/p>/, `<p class="article-deck">${escapeHtml(item.summary)}</p>`);
   }
   html = html.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g, (match, raw) => {
@@ -60,6 +66,10 @@ export function decorateArticle(html, item, origin) {
     if (data['@type'] !== 'Article') return match;
     data.mainEntityOfPage = url;
     data.url = url;
+    // Editorial personas are not human people. Attribute responsibility to Folkly.
+    data.author = {'@type':'Organization', name:'Folkly editorial', url:`${origin}/about`};
+    data.publisher = {'@type':'Organization', name:'Folkly', url:origin};
+    if (item.authorSlug) data.creditText = `${item.authorSlug.split('-').map(word=>word[0].toUpperCase()+word.slice(1)).join(' ')} (Folkly editorial persona)`;
     if (item.image) data.image = new URL(item.image.src, origin).href;
     return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g,'\\u003c')}</script>`;
   });

@@ -199,3 +199,18 @@ bundle. See verification/manual-seven-release-2026-10-08.md and the manual
 release manifest. Original Site records remain unchanged, but these stories
 are now designated public and no longer constitute an unpublished reserve for
 a future migrated pipeline. All autonomous switches remain off.
+
+
+## Public discovery and SEO, 2026-10-08 UTC
+
+The 11 published stories now have descriptive search titles and contextual
+related-story links. Homepage/archive cards, place/topic lists and counts,
+and persona publication histories derive from the published catalog. Seven
+missing place routes are generated, with active discovery pages in the sitemap;
+empty topic pages stay accessible but noindex. Article metadata credits Folkly
+editorial as an Organization and preserves persona credits without claiming
+human authors. See verification/seo-discovery-progress-2026-10-08.md and
+seo/audit-2026-10-08.md. Build and full tests pass. Article H1s and researched
+bodies/source lists remain unchanged. Search Console, responsive image work,
+mobile measurements, duplicate-host redirects, and source-checked editorial
+revisions remain pending. No autonomous switches or acceptance gates changed.

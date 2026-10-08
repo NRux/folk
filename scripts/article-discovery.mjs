@@ -1,0 +1,45 @@
+import { escapeHtml, renderGrid } from './public-articles.mjs';
+const topicLabels = {'making-inheritance':'Making & inheritance','ritual-belonging':'Ritual & belonging','sound-invention':'Sound & invention','sound-memory':'Sound & memory','mutual-aid':'Mutual aid','material-knowledge':'Material knowledge','craft-economies':'Craft economies','community-kitchens':'Community kitchens','urban-space':'Urban space'};
+export const topicLabel = slug => topicLabels[slug] || slug.replaceAll('-', ' ').replace(/^./, c=>c.toUpperCase());
+export function discoveryGroups(items) {
+  const groups = new Map();
+  const add = (route,label,item) => { if (!groups.has(route)) groups.set(route,{label,items:[]}); groups.get(route).items.push(item); };
+  for (const item of items) {
+    add(`/archive/place/${item.placeSlug}`,item.placeName,item);
+    for (const topic of item.topics) add(`/archive/topic/${topic}`,topicLabel(topic),item);
+  }
+  return groups;
+}
+export function discoveryRouteFiles(items) {
+  return Object.fromEntries([...discoveryGroups(items).keys()].map(route=>[route,`generated-${route.slice(1).replaceAll('/','-')}.html`]));
+}
+function list(items, kind) {
+  if (!items.length) return '<p>No published stories yet.</p>';
+  return `<ul>${items.map(item=>`<li><a href="/${item.slug}">${escapeHtml(item.title)}</a>${kind==='history'?` <time datetime="${item.publishedAt}">${item.publishedAt}</time>`:''}</li>`).join('')}</ul>`;
+}
+export function decorateAuthor(html, items, slug) {
+  const stories=items.filter(item=>item.authorSlug===slug);
+  html=html.replace(/<section class="author-work">[\s\S]*?<\/section>/, `<section class="author-work"><div class="section-head"><h2>Published stories</h2><span>${stories.length} published</span></div>${list(stories)}</section>`);
+  return html.replace(/<section class="history">[\s\S]*?<\/section>/,`<section class="history"><h2>Publication history</h2>${list(stories,'history')}</section>`);
+}
+export function decorateArchive(html, items) {
+  const groups=discoveryGroups(items);
+  const grouped=(prefix)=>[...groups].filter(([route])=>route.startsWith(prefix)).sort((a,b)=>a[1].label.localeCompare(b[1].label)).map(([route,group])=>`<li><a href="${route}">${escapeHtml(group.label)} <span class="count">${group.items.length}</span></a></li>`).join('');
+  const authors=[...new Set(items.map(item=>item.authorSlug).filter(Boolean))].sort();
+  const content=`<div class="intro"><h1>The archives</h1><p>Every published story, organized by place, topic, and editorial persona.</p></div><section class="archive-columns"><section class="archive-col"><h2>By place</h2><ul>${grouped('/archive/place/')}</ul></section><section class="archive-col"><h2>By topic</h2><ul>${grouped('/archive/topic/')}</ul></section><section class="archive-col"><h2>By editorial persona</h2><ul>${authors.map(slug=>`<li><a href="/author/${slug}">${escapeHtml(slug.split('-').map(word=>word[0].toUpperCase()+word.slice(1)).join(' '))} <span class="count">${items.filter(item=>item.authorSlug===slug).length}</span></a></li>`).join('')}</ul></section></section><section class="section-head"><h2>All stories</h2><span>${items.length} in the archive</span></section><div class="story-grid" data-published-grid>${renderGrid(items)}</div>`;
+  return html.replace(/<main id="main" class="shell">[\s\S]*?<\/main>/,`<main id="main" class="shell">${content}</main>`);
+}
+export function discoveryPage(template, route, group, origin) {
+  let html=template.replace(/<title>[\s\S]*?<\/title>/,`<title>${escapeHtml(group.label)} Stories | Folkly</title>`);
+  html=html.replace(/<link rel="canonical" href="[^"]*">/,`<link rel="canonical" href="${origin}${route}">`);
+  html=html.replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="Explore ${escapeHtml(group.label)} through researched cultural stories from Folkly.">`);
+  html=html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'');
+  html=html.replace(/<meta property="og:[^"]*" content="[^"]*">/g,'');
+  return html.replace(/<main id="main" class="shell">[\s\S]*?<\/main>/,`<main id="main" class="shell"><div class="intro"><h1>${escapeHtml(group.label)}</h1><p>${group.items.length} published ${group.items.length===1?'story':'stories'}. <a href="/archive">Browse all archives</a>.</p></div><div class="story-grid" data-published-grid>${renderGrid(group.items)}</div></main>`);
+}
+export function relatedStories(items, item) {
+  const published=new Map(items.map(story=>[story.slug,story]));
+  const related=(item.related||[]).filter(link=>link.slug!==item.slug && published.has(link.slug));
+  if (!related.length) return '';
+  return `<section class="related-stories" aria-labelledby="related-${item.slug}"><h2 id="related-${item.slug}">Related stories</h2><ul>${related.map(link=>`<li><a href="/${link.slug}">${escapeHtml(published.get(link.slug).title)}</a><p>${escapeHtml(link.reason)}</p></li>`).join('')}</ul></section>`;
+}
