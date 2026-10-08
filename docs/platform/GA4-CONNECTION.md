@@ -10,11 +10,15 @@ provider integration is pending. Preferred identity is a dedicated service accou
 with Viewer access to only the Folkly property; prefer supported federation over
 long-lived keys. Verify actual provider/platform support before choosing wiring.
 
-Required server configuration, currently unset/disabled:
+Owner-supplied reporting property ID: 558035708 (recorded 2026-10-08).
+Saved in the private Supabase analytics configuration and production Vercel
+configuration. The match to G-RQJD3XG35C has not yet been verified.
+
+Server configuration; collection remains disabled:
 
 ```dotenv
 FOLKLY_ANALYTICS_ENABLED=false
-GA4_PROPERTY_ID=
+GA4_PROPERTY_ID=558035708
 GA4_TIME_ZONE=
 SUPABASE_ANALYTICS_TOKEN=
 ```
@@ -24,8 +28,9 @@ SUPABASE_ANALYTICS_TOKEN must be an expiring JWT with role folkly_analytics;
 never substitute the service-role key, Google token, publisher JWT or owner session.
 The client pre-check is not signature validation; Supabase validates the JWT.
 
-An operator must set the private folkly_analytics_config property and enabled
-state only after the property/stream match and read access are verified. Neither
+The private folkly_analytics_config property is 558035708 with enabled=false.
+Enable collection only after the property/stream match, property timezone and
+read access are verified. Neither
 that config nor the environment collection switch enables AI generation,
 publication or article scheduling. Keep all autonomous switches false.
 
