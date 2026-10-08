@@ -18,6 +18,9 @@ const post = (body, origin='https://www.folkly.com', cookies='') => new Request(
 assert.equal((await handlers.POST(post({action:'login',email:env.FOLKLY_OWNER_EMAIL},'https://evil.example'))).status,403);
 assert.equal((await handlers.POST(post({action:'login',email:'other@example.com'}))).status,200); assert.equal(calls,0);
 assert.equal((await handlers.POST(post({action:'login',email:env.FOLKLY_OWNER_EMAIL}))).status,200);assert.equal(calls,1);
+assert.equal((await handlers.POST(post({action:'verify',email:env.FOLKLY_OWNER_EMAIL,code:''}))).status,400);
+const rateLimited=createOwnerHandlers({env,editorialClient,authClient:{auth:{signInWithOtp:async()=>({error:{code:'over_email_send_rate_limit',status:429}})}}});
+assert.equal((await rateLimited.POST(post({action:'login',email:env.FOLKLY_OWNER_EMAIL}))).status,429);
 const success=await handlers.POST(post({action:'verify',email:env.FOLKLY_OWNER_EMAIL,code:'123456'}));
 assert.equal(success.status,200); assert.match(success.headers.get('set-cookie'),/Secure; HttpOnly; SameSite=Strict; Max-Age=900/);
 assert(!(await success.text()).includes(token));

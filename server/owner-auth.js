@@ -52,14 +52,21 @@ export function createOwnerHandlers({ env = process.env, authClient, editorialCl
         if (email !== env.FOLKLY_OWNER_EMAIL.toLowerCase()) return reply(200, 'If this is the owner account, check your email.');
         if (data.action === 'login') {
           const result = await auth.auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
-          if (result.error) return reply(503, 'Sign-in is temporarily unavailable.');
+          if (result.error) {
+            const code = /^[a-z_]{1,80}$/.test(result.error.code || '') ? result.error.code : 'unknown';
+            console.error('Owner OTP request failed', { code, status: Number(result.error.status) || 0 });
+            if (result.error.status === 429 || code.includes('rate_limit')) return reply(429, 'Too many code requests. Wait a minute before trying again.', { 'Retry-After': '60' });
+            if (['email_address_not_authorized', 'email_provider_disabled', 'unexpected_failure'].includes(code)) return reply(503, 'Sign-in email could not be sent. Check the Supabase email provider configuration.');
+            return reply(503, 'Sign-in could not send a code. Check the owner account and Supabase email configuration.');
+          }
           return reply(200, 'Check your email for the sign-in code.');
         }
         if (data.action === 'verify') {
           if (typeof data.code !== 'string' || !/^\d{6,10}$/.test(data.code)) return reply(400, 'Enter your sign-in code.');
           const result = await auth.auth.verifyOtp({ email, token: data.code, type: 'email' });
           const session = result.data?.session;
-          if (result.error || !session || !(await owner(session.access_token, auth, db))) return reply(401, 'Sign-in could not be verified.');
+          if (result.error || !session) return reply(401, 'The sign-in code is invalid or expired. Request a new code.');
+          if (!(await owner(session.access_token, auth, db))) return reply(403, 'This account does not have active owner access.');
           const age = Math.min(900, Math.max(0, Math.floor(session.expires_at - Date.now() / 1000)));
           if (!age) return reply(401, 'Sign-in code expired.');
           return reply(200, 'Signed in.', { 'Set-Cookie': cookie(session.access_token, age) });

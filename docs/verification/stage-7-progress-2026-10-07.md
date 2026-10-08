@@ -2,6 +2,14 @@
 
 Stage 7 remains BLOCKED. No article generation, publication, or schedule enabled.
 
+Owner follow-up, 2026-10-08 UTC: noah@then.tv now has a confirmed Supabase Auth
+account and audited private owner membership. A current email-code request still
+returned 503, so account provisioning alone did not fix delivery. Added safe
+provider error-code/status logging (no email, token, or raw error message), 429
+rate-limit responses, distinct verification failures, and browser validation for
+empty codes. Build and focused owner/reader tests pass. Live OTP delivery and
+login remain pending; earlier account-unprovisioned statements are historical.
+
 ## Hosted recovery follow-up, 2026-10-07 23:30–23:34 UTC
 
 Used a temporary private `folkly_acceptance_20261007` schema on the existing

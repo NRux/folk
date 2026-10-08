@@ -11,7 +11,17 @@ async function loadStatus() {
 }
 document.getElementById('owner-form').addEventListener('submit', async event => {
   event.preventDefault();
-  try { await send({ action: event.submitter.value, email: document.getElementById('owner-email').value, code: document.getElementById('owner-code').value }); } catch { status.textContent = 'Connection unavailable. Please try again.'; }
+  const action = event.submitter?.value || 'login';
+  const code = document.getElementById('owner-code').value.trim();
+  if (action === 'verify' && !/^\d{6,10}$/.test(code)) {
+    status.textContent = 'Enter the sign-in code from your email first.';
+    document.getElementById('owner-code').focus();
+    return;
+  }
+  const buttons = [...event.currentTarget.querySelectorAll('button')];
+  buttons.forEach(button => { button.disabled = true; });
+  try { await send({ action, email: document.getElementById('owner-email').value, code }); } catch { status.textContent = 'Connection unavailable. Please try again.'; }
+  finally { buttons.forEach(button => { button.disabled = false; }); }
 });
 document.getElementById('owner-logout').addEventListener('click', async () => {
   try { await send({ action: 'logout' }); } catch { status.textContent = 'Sign-out could not be confirmed. Please try again.'; }
