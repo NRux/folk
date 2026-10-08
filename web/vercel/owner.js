@@ -13,7 +13,7 @@ function table(id,section,columns,empty) {
   if(!section.rows.length){target.textContent=empty;return;}
   const table=document.createElement('table'),head=document.createElement('thead'),header=document.createElement('tr'),body=document.createElement('tbody');
   for(const [,label] of columns){const cell=document.createElement('th');cell.scope='col';cell.textContent=label;header.append(cell);}head.append(header);
-  for(const row of section.rows){const tr=document.createElement('tr');for(const [key] of columns){const cell=document.createElement('td');cell.textContent=String(row[key]??'—');tr.append(cell);}body.append(tr);}
+  for(const row of section.rows){const tr=document.createElement('tr');for(const [key,,render] of columns){const cell=document.createElement('td');if(render)cell.append(render(row));else cell.textContent=String(row[key]??'—');tr.append(cell);}body.append(tr);}
   table.append(head,body);target.append(table);
 }
 function render(data) {
@@ -52,10 +52,10 @@ async function loadSubscribers(cursor) {
   }finally{el('owner-subscriber-first').disabled=false;}
 }
 function renderContacts(section) {
-  table('owner-contacts',section,[['name','Name'],['email','Email'],['reason','Reason'],['contributor','Contributor interest'],['message','Message'],['receivedAt','Received']],'No contact messages saved.');
+  table('owner-contacts',section,[['name','Name'],['email','Email'],['reason','Reason'],['contributor','Contributor interest'],['message','Message'],['receivedAt','Received'],['reply','Reply',row=>{const link=document.createElement('a');link.textContent='Reply';link.href=`mailto:${encodeURIComponent(row.email)}?subject=${encodeURIComponent('Re: Your message to Folkly')}&body=${encodeURIComponent(`Hi ${row.name},\n\n`)}`;link.rel='nofollow';return link;}]],'No contact messages saved.');
   nextContactCursor=section?.available?section.nextCursor:null;
   el('owner-contact-next').disabled=!nextContactCursor;
-  el('owner-contact-note').textContent=section?.hasMore?'Showing one page in storage order. Use Next page to see more.':'End of stored messages. Replies are handled separately.';
+  el('owner-contact-note').textContent=section?.hasMore?'Showing one page in storage order. Use Reply to open your email app, or Next page to see more.':'End of stored messages. Reply opens your email app and does not send automatically.';
 }
 async function loadContacts(cursor) {
   const generation=sessionGeneration;

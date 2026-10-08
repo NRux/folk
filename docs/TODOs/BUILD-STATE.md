@@ -4,7 +4,7 @@
 
 1. Subscribe button and signup flow deployed; private Blob connected and live signup returned 200 after storage write on 2026-10-07. Independent readback, email delivery, and unsubscribe processing remain pending. Exclude acceptance-test@example.com from any delivery import.
 2. Complete Vercel hosting migration: public reader first, then durable editorial storage and owner authentication. Keep publication and scheduling off until deployed acceptance passes.
-3. About contact form implemented with reason, contributor interest and private Blob storage. Protected owner inbox shows up to 20 stored messages; pagination is implemented; reply workflow remains pending.
+3. About contact form implemented with reason, contributor interest and private Blob storage. Protected owner inbox is paginated and provides a safe Reply action that opens the owner's email app without automatic sending. Provider-side reply delivery/tracking is intentionally not added.
 4. About now says Folkly is seeking contributors beside the contributor contact form.
 
 Master spec: `Folkly_Autonomous_Publishing_Codex_Prompt.txt` (this directory).
@@ -410,3 +410,13 @@ provider secrets. NEWSLETTER_ENABLED and all three autonomous switches remain of
 The implementation deployment succeeded; public owner HTML includes the section,
 and an anonymous subscriber-view request returned 401/no-store. Authenticated
 record readback was deliberately not attempted without Noah's owner session.
+
+## Owner contact reply workflow, 2026-10-08
+
+Each validated contact row now includes a Reply link that opens the owner's email
+application with a fixed Folkly subject and encoded greeting. It never sends or
+marks a reply automatically. The private inbox reader now rejects malformed email
+addresses and blank names before any `mailto:` target can be rendered; message
+content remains text-only. Focused contact and full regression checks pass. See
+verification/contact-reply-2026-10-08.md. No mail credentials, subscriber state,
+publication controls or autonomous switches changed.

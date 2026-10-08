@@ -38,6 +38,8 @@ const inbox=await readContactInbox({env,storage});assert.equal(inbox.available,t
 assert.equal((await readContactInbox({env:{},storage:{list:()=>assert.fail('unconfigured access')}})).available,false);
 assert.equal((await readContactInbox({env,storage:{list:async()=>{throw Error('secret');}}})).available,false);
 assert.equal((await readContactInbox({env,storage:{...storage,list:async()=>({blobs:[{pathname:'subscribers/private.json',size:1}]})}})).available,false);
+const invalidEmailStorage={...storage,get:async()=>({statusCode:200,stream:new Response(JSON.stringify({...saved[0].record,email:'javascript:alert(1)'})).body})};
+assert.equal((await readContactInbox({env,storage:invalidEmailStorage})).available,false);
 console.log('Owner inbox checks passed: bounded private prefix/read, field allowlist, no blob links, missing configuration and provider failure holds.');
 
 assert.equal(inbox.nextCursor,'page2');

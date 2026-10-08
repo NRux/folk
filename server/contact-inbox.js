@@ -12,7 +12,7 @@ export async function readContactInbox({env=process.env,storage,cursor}={}) {
       if(file?.statusCode!==200)throw Error();
       const text=await new Response(file.stream).text();if(Buffer.byteLength(text)>8192)throw Error();
       const r=JSON.parse(text);
-      if(typeof r.name!=='string'||r.name.length>100||typeof r.email!=='string'||r.email.length>254||typeof r.message!=='string'||r.message.length>3000||!['story-suggestion','correction','contributing','partnership','other'].includes(r.reason)||typeof r.contributor!=='boolean'||typeof r.receivedAt!=='string'||!Number.isFinite(Date.parse(r.receivedAt)))throw Error();
+      if(typeof r.name!=='string'||!r.name.trim()||r.name.length>100||typeof r.email!=='string'||r.email.length>254||!/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+$/i.test(r.email)||typeof r.message!=='string'||r.message.length>3000||!['story-suggestion','correction','contributing','partnership','other'].includes(r.reason)||typeof r.contributor!=='boolean'||typeof r.receivedAt!=='string'||!Number.isFinite(Date.parse(r.receivedAt)))throw Error();
       return {name:r.name,email:r.email,reason:r.reason,message:r.message,contributor:r.contributor?'Yes':'No',receivedAt:r.receivedAt};
     }));
     if(result.hasMore&&(typeof result.cursor!=='string'||result.cursor.length>2048||!/^[\x20-\x7e]+$/.test(result.cursor)||result.cursor===cursor))throw Error();
