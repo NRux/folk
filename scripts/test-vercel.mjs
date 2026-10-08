@@ -32,18 +32,18 @@ for (const route of Object.keys(routes)) {
   const html = await readFile(route === '/' ? 'dist/index.html' : `dist${route}.html`, 'utf8');
   for (const [, href] of html.matchAll(/href="(\/[^"]*)"/g)) {
     const path = href.split(/[?#]/)[0].replace(/\.html$/, '');
-    if (path && !path.startsWith('/assets/') && !['/style.css', '/subscribe.css', '/contact.css', '/article-grid.css', '/image-credits', '/subscribe'].includes(path)) assert(routes[path], `Broken link: ${href} on ${route}`);
+    if (path && !path.startsWith('/assets/') && !['/style.css', '/subscribe.css', '/contact.css', '/article-grid.css', '/image-credits', '/subscribe', '/privacy', '/privacy.css'].includes(path)) assert(routes[path], `Broken link: ${href} on ${route}`);
   }
 }
 const files = await readdir('dist', { recursive: true });
 for (const file of files.filter(p => p.endsWith('.html'))) {
   const html = await readFile(`dist/${file}`, 'utf8');
   const head = html.match(/<head>[\s\S]*?<\/head>/)?.[0] || '';
-  assert.equal((html.match(/adsbygoogle\.js/g) || []).length, 1, file);
-  assert(head.includes('client=ca-pub-6358670448023938'), file);
-  assert(head.includes('crossorigin="anonymous"'), file);
-  assert.equal((html.match(/googletagmanager\.com\/gtag\/js\?id=G-RQJD3XG35C/g) || []).length, 1, file);
-  assert.equal((head.match(/gtag\('config', 'G-RQJD3XG35C'\)/g) || []).length, 1, file);
+  assert(!html.includes('adsbygoogle.js'), file);
+  assert(!html.includes('googletagmanager.com'), file);
+  assert(head.includes('name="google-adsense-account"'), file);
+  assert(html.includes('href="/privacy"'), file);
+  assert.equal(html.includes('src="/privacy.js"'),file!=='owner.html',file);
   assert(!html.includes('Neighborhood context, not a pictured'));
   assert(!html.includes('. Displayed with a responsive crop; original image retained.'));
 }

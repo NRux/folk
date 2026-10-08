@@ -1,3 +1,4 @@
+import {privacyControls,privacyPage} from './privacy-pages.mjs';
 import { addArticleFilters } from './article-filters.mjs';
 import { decorateArticleLayout, inlineImageCredits } from './article-layout.mjs';
 import { applyResponsiveImages } from './responsive-images.mjs';
@@ -17,21 +18,12 @@ const articles = publishedArticles(catalog, routes);
 await verifyImageFiles(articles);
 Object.assign(routes, discoveryRouteFiles(articles));
 const origin = process.env.FOLKLY_PUBLIC_ORIGIN || 'https://www.folkly.com';
-const adsense = '<meta name="google-adsense-account" content="ca-pub-6358670448023938"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6358670448023938" crossorigin="anonymous"></script>';
-const analytics = `<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQJD3XG35C"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RQJD3XG35C');
-</script>`;
-function addAdsense(html) {
+function addAdsense(html, privatePage=false) {
   if (!html.includes('</head>')) throw new Error('Public page is missing its head');
   html = html.replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/g, footer => footer
     .replace(/Culture takes place\.<br\s*\/?>Stories about what makes a place itself\./g, 'Stories about the intersection of Culture and Place.')
     .replace(/A project by Noah Rappaport(?:\s*(?:&middot;|·)\s*October 2026)?/g, 'A Then Media inc. project.'));
-  return html.replace('</head>', `${adsense}${analytics}</head>`);
+  return privacyControls(html,{privatePage});
 }
 const canonical = new URL(origin);
 if (canonical.protocol !== 'https:' || canonical.pathname !== '/' || canonical.search || canonical.hash || canonical.username || canonical.password) {
@@ -78,11 +70,11 @@ await cp('web/vercel/ads.txt', 'dist/ads.txt');
 await cp('web/vercel/article-grid.css', 'dist/article-grid.css');
 await writeFile('dist/image-credits.html', addAdsense(imageCreditsPage(articles, canonical.origin).replace('</main>', `${inlineImageCredits(articles, articleMedia)}</main>`)));
 // Sitemap includes curated discovery pages and explicitly published articles only.
-const indexed = ['/', '/about', '/perspective', '/archive', ...articles.map(item => `/${item.slug}`), ...groups.keys()];
+const indexed = ['/', '/privacy', '/about', '/perspective', '/archive', ...articles.map(item => `/${item.slug}`), ...groups.keys()];
 await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${indexed.map(route => `<url><loc>${escapeHtml(canonical.origin + route)}</loc></url>`).join('')}</urlset>`);
 await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /owner\nDisallow: /api/\nDisallow: /admin\nDisallow: /mcp\nSitemap: ${canonical.origin}/sitemap.xml\n`);
 for (const file of ['subscribe.css', 'subscribe.js', 'owner.js', 'contact.js', 'contact.css']) await cp(`web/vercel/${file}`, `dist/${file}`);
-await writeFile('dist/owner.html', addAdsense(await readFile('web/vercel/owner.html', 'utf8')));
+await writeFile('dist/owner.html', addAdsense(await readFile('web/vercel/owner.html', 'utf8'),true));
 await writeFile('dist/subscribe.html', addAdsense(await readFile('web/vercel/subscribe.html', 'utf8')));
 await writeFile('dist/404.html', addAdsense('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Page not found | Folkly</title></head><body><h1>Page not found</h1><a href="/">Return to Folkly</a></body></html>'));
 console.log(`Built ${Object.keys(routes).length} public pages and journal assets for Vercel; publisher disabled.`);
@@ -90,3 +82,6 @@ console.log(`Built ${Object.keys(routes).length} public pages and journal assets
 await cp('web/vercel/article-filters.mjs', 'dist/article-filters.js');
 
 await cp('web/vercel/owner-workspace.js', 'dist/owner-workspace.js');
+
+await writeFile('dist/privacy.html', addAdsense(privacyPage()));
+for (const file of ['privacy.js','privacy.css']) await cp(`web/vercel/${file}`,`dist/${file}`);

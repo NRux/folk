@@ -362,3 +362,12 @@ migrated Supabase version. Editor chat uses the existing OpenAI provider, defaul
 off, has durable attempt claims and a 20-request UTC daily reservation limit.
 See platform/OWNER-WORKSPACE.md for storage, configuration and hosted checks.
 No draft migration, model call, paid translation or publication occurred.
+
+## Privacy controls, 2026-10-08
+
+/privacy and first-party analytics consent controls replace unconditional tracking.
+Every generated page links the policy; optional analytics starts denied, saved
+choices expire after 180 days and withdrawal reloads. Owner pages have no tags.
+Advertising is blocked until certified CMP account setup and deployed consent
+acceptance pass. See verification/privacy-consent-2026-10-08.md for exact AdSense
+and GA4 account actions, sources and tests. No new service, mail or publication.
