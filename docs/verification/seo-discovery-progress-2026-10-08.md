@@ -20,7 +20,7 @@ This follows the verified images/grid release and implements repository-side rec
 
 The new discovery tests check: all 11 search titles and unchanged H1s; all article related links; correct archive counts; every active place/topic page; truthful author lists; sitemap membership and empty-topic exclusion; automatic future published additions; draft exclusion; invalid dates; and escaped adversarial title/image attributes. Existing tests retain exact comparisons of the seven original article bodies and source lists.
 
-Live HTTP verification is recorded after GitHub synchronization. Search Console indexing and mobile Core Web Vitals are not claimed. The Vercel connection previously denied deployment inspection; public response checks and GitHub's Vercel commit status remain available.
+Implementation commit `aefda6e2dba52724506e1264cb8d2cf6d08d9d71` was synced to main and master. After deployment rollout, all 22 public checks returned HTTP 200 and matched the tested build byte for byte: homepage, all 11 articles, archive, two author pages, a new place page, active and empty topic pages, CSS, image credits, sitemap, and robots.txt. GitHub’s Vercel status reports success. Individual responses are recorded in [live evidence](seo-discovery-live-2026-10-08.json). Search Console indexing and mobile Core Web Vitals are not claimed. The Vercel connection previously denied deployment inspection; public response checks and GitHub's Vercel commit status remain available.
 
 Production generation, autonomous publication, and the recurring article schedule remain disabled. No credentials, migrations, model spend, or reserve releases were performed.
 
