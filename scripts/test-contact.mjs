@@ -33,9 +33,17 @@ console.log('Contact checks passed: private bounded records, contribution intent
 
 const {readContactInbox}=await import('../server/contact-inbox.js');
 const env={BLOB_STORE_ID:'fixture'};
-const storage={list:async args=>{assert.deepEqual(args,{prefix:'contacts/',limit:20});return {blobs:[{pathname:saved[0].path,size:1024}],hasMore:true};},get:async(path,args)=>{assert.deepEqual(args,{access:'private',useCache:false});return {statusCode:200,stream:new Response(JSON.stringify(saved[0].record)).body};}};
+const storage={list:async args=>{assert.deepEqual(args,{prefix:'contacts/',limit:20});return {blobs:[{pathname:saved[0].path,size:1024}],hasMore:true,cursor:'page2'};},get:async(path,args)=>{assert.deepEqual(args,{access:'private',useCache:false});return {statusCode:200,stream:new Response(JSON.stringify(saved[0].record)).body};}};
 const inbox=await readContactInbox({env,storage});assert.equal(inbox.available,true);assert.equal(inbox.hasMore,true);assert.equal(inbox.rows[0].email,'reader@example.com');assert(!JSON.stringify(inbox).includes('contacts/'));
 assert.equal((await readContactInbox({env:{},storage:{list:()=>assert.fail('unconfigured access')}})).available,false);
 assert.equal((await readContactInbox({env,storage:{list:async()=>{throw Error('secret');}}})).available,false);
 assert.equal((await readContactInbox({env,storage:{...storage,list:async()=>({blobs:[{pathname:'subscribers/private.json',size:1}]})}})).available,false);
 console.log('Owner inbox checks passed: bounded private prefix/read, field allowlist, no blob links, missing configuration and provider failure holds.');
+
+assert.equal(inbox.nextCursor,'page2');
+let pageRead=0;
+const pageStorage={...storage,list:async args=>{pageRead++;assert.equal(args.cursor,'page2');return {blobs:[],hasMore:false};}};
+assert.equal((await readContactInbox({env,storage:pageStorage,cursor:'page2'})).nextCursor,null);
+assert.equal((await readContactInbox({env,storage:pageStorage,cursor:'bad\nvalue'})).available,false);assert.equal(pageRead,1);
+assert.equal((await readContactInbox({env,storage:pageStorage,cursor:'x'.repeat(2049)})).available,false);assert.equal(pageRead,1);
+assert.equal((await readContactInbox({env,storage,cursor:'page2'})).available,false);

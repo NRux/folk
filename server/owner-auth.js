@@ -1,3 +1,4 @@
+import { readContactInbox } from './contact-inbox.js';
 import { createClient } from '@supabase/supabase-js';
 import { readOwnerDashboard } from './owner-dashboard.js';
 import { createEditorialClient } from './supabase.js';
@@ -10,7 +11,7 @@ export function sessionToken(request) {
   if (values.length !== 1) return '';
   try { return decodeURIComponent(values[0].slice(COOKIE.length + 1)); } catch { return ''; }
 }
-export function createOwnerHandlers({ env = process.env, authClient, editorialClient, readDashboard = readOwnerDashboard } = {}) {
+export function createOwnerHandlers({ env = process.env, authClient, editorialClient, readDashboard = readOwnerDashboard, readContacts = readContactInbox } = {}) {
   function clients() {
     if (!env.FOLKLY_OWNER_EMAIL || !env.SUPABASE_URL || !(env.SUPABASE_PUBLISHABLE_KEY || env.SUPABASE_ANON_KEY)) throw Error('Configuration missing');
     if (new URL(env.SUPABASE_URL).hostname !== 'vxmyggasjgsiohqzzwzh.supabase.co') throw Error('Supabase project mismatch');
@@ -87,6 +88,13 @@ export function createOwnerHandlers({ env = process.env, authClient, editorialCl
       try {
         const { auth, db } = clients();
         if (!(await owner(sessionToken(request), auth, db))) return reply(401, 'Owner sign-in required.', { 'Set-Cookie': cookie('', 0) });
+        const params=new URL(request.url).searchParams;
+        if(params.get('view')==='contacts') {
+          const cursor=params.has('cursor')?params.get('cursor'):undefined;
+          if(cursor!==undefined&&(cursor.length>2048||!/^[\x20-\x7e]+$/.test(cursor)))return reply(400,'Invalid inbox page. Return to the first page.');
+          const contacts=await readContacts({env,cursor});
+          return Response.json({owner:true,contacts},{headers:{'Cache-Control':'no-store'}});
+        }
         const result = await db.from('folkly_settings').select('key,value');
         if (result.error) throw Error('Storage unavailable');
         const switches = ['production.autonomous_enabled', 'publication.autonomous_enabled', 'schedule.enabled'];

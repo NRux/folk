@@ -39,3 +39,13 @@ assert.equal((await createOwnerHandlers({env:{}}).POST(post({action:'login'}))).
 const wrongProject=await createOwnerHandlers({env:{...env,SUPABASE_URL:'https://other.supabase.co'},authClient,editorialClient}).POST(post({action:'login'}));
 assert.equal(wrongProject.status,503);assert.match(await wrongProject.text(),/wrong Supabase project/);
 console.log('Owner auth passed: invite-only OTP, origin denial, HttpOnly bounded session, private membership, revoked-session denial, logout, no token response, missing configuration.');
+active=true;member=true;let inboxCalls=0;
+const inboxHandlers=createOwnerHandlers({env,authClient,editorialClient,readContacts:async args=>{inboxCalls++;assert.equal(args.cursor,'page2');return {available:true,rows:[],nextCursor:null};}});
+const pageReq=new Request(req.url+'?view=contacts&cursor=page2',{headers:{cookie:cookies}});
+assert.equal((await inboxHandlers.GET(pageReq)).status,200);assert.equal(inboxCalls,1);
+active=false;assert.equal((await inboxHandlers.GET(pageReq)).status,401);active=true;
+member=false;assert.equal((await inboxHandlers.GET(pageReq)).status,401);member=true;
+assert.equal((await inboxHandlers.GET(new Request(pageReq.url))).status,401);assert.equal(inboxCalls,1);
+const invalid=new Request(req.url+'?view=contacts&cursor=bad%0Avalue',{headers:{cookie:cookies}});
+assert.equal((await inboxHandlers.GET(invalid)).status,400);assert.equal(inboxCalls,1);
+console.log('Inbox paging authentication passed: per-request membership/session validation, anonymous and revoked denial, cursor validation before storage.');

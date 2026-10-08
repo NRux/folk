@@ -4,7 +4,7 @@
 
 1. Subscribe button and signup flow deployed; private Blob connected and live signup returned 200 after storage write on 2026-10-07. Independent readback, email delivery, and unsubscribe processing remain pending. Exclude acceptance-test@example.com from any delivery import.
 2. Complete Vercel hosting migration: public reader first, then durable editorial storage and owner authentication. Keep publication and scheduling off until deployed acceptance passes.
-3. About contact form implemented with reason, contributor interest and private Blob storage. Protected owner inbox shows up to 20 stored messages; pagination and reply workflow remain pending.
+3. About contact form implemented with reason, contributor interest and private Blob storage. Protected owner inbox shows up to 20 stored messages; pagination is implemented; reply workflow remains pending.
 4. About now says Folkly is seeking contributors beside the contributor contact form.
 
 Master spec: `Folkly_Autonomous_Publishing_Codex_Prompt.txt` (this directory).
@@ -176,3 +176,10 @@ private Blob writes, validation, same-origin checks, honeypot and storage-failur
 handling are tested. See verification/contact-2026-10-08.md. No email delivery,
 newsletter enrollment or publication controls are added. Google Cloud setup
 is deferred at Noah’s request; all autonomous switches remain off.
+
+## Owner inbox pagination, 2026-10-08 UTC
+
+Protected cursor pagination now reaches messages beyond the first 20, with
+first/next controls, per-page owner/session verification, cursor bounds and
+stale-response suppression after sign-out. Full hosted authenticated paging
+remains pending. See verification/contact-pagination-2026-10-08.md.

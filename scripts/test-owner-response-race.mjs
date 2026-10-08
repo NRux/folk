@@ -1,0 +1,19 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import vm from 'node:vm';
+const elements=new Map(),pending=[];
+function element(id){if(!elements.has(id))elements.set(id,{hidden:id==='owner-dashboard',disabled:false,textContent:'',replaceChildren(){this.textContent='';},addEventListener(){},append(){}});return elements.get(id);}
+const context=vm.createContext({document:{getElementById:element,createElement:()=>({append(){}})},fetch:()=>new Promise(resolve=>pending.push(resolve)),setInterval(){},Date,encodeURIComponent});
+vm.runInContext(await readFile('web/vercel/owner.js','utf8'),context);
+assert.equal(pending.length,1);
+context.signedIn(false);
+pending.shift()({ok:true,json:async()=>({owner:true,dashboard:{}})});
+await new Promise(resolve=>setImmediate(resolve));
+assert.equal(element('owner-dashboard').hidden,true);
+context.signedIn(true);
+const paging=context.loadContacts('page2');
+context.signedIn(false);
+pending.shift()({ok:true,status:200,json:async()=>({owner:true,contacts:{available:true,rows:[{message:'private'}],nextCursor:null}})});
+await paging;
+assert.equal(element('owner-dashboard').hidden,true);assert.equal(element('owner-contacts').textContent,'');assert.equal(element('owner-contact-next').disabled,true);
+console.log('Owner late-response checks passed: pending status and inbox responses cannot restore private UI after sign-out.');
