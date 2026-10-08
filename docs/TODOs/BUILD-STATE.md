@@ -238,3 +238,16 @@ branch, npm run build command, dist output, and custom-domain deployment. See th
 responsive image verification report and its live JSON evidence. The observation
 is not attributed to a specific build/caching cause without deployment access.
 Autonomous switches, release manifest, article bodies, and licenses are unchanged.
+
+## Xochimilco editorial clarification, 2026-10-08
+
+Clarified the published article opening and exported deck/description: chinampas
+are raised fields surrounded by canals, secured with stakes and trees, rather
+than floating rafts. Checked FAO's detailed construction account and a UNAM
+journal discussion; added UNAM as source 6. All later body paragraphs and existing
+references are unchanged. The manual release manifest remains the historical
+approved version; export before/after hashes are recorded separately in
+verification/xochimilco-editorial-revision-2026-10-08.json. No private reserve
+records, new releases, migrations, or autonomous settings were changed.
+Build (73 routes), full regression suite, and focused correction/provenance checks
+passed. Deployed readback remains pending.

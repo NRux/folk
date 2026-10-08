@@ -1,0 +1,23 @@
+{
+  "slug": "xochimilco-chinampas",
+  "revisedAt": "2026-10-08",
+  "scope": "Opening/deck/raw description physical construction clarification; added source 6.",
+  "originalReleaseManifest": "web/vercel/manual-releases.json",
+  "originalReleaseVersion": "art-a6719406efbf-v1",
+  "beforeExportSha256": "992a14ae5a3c90e84ddb21a839e0545cc1d1be5a2d38162fd7e3a1f1c1facc48",
+  "afterExportSha256": "160a7f4dcdaa84bf7b185607f93246d9ab6017961e85dd03c04a9bce37ee8496",
+  "originalReleaseHashesChanged": false,
+  "privateSourceRecordsChanged": false,
+  "sources": [
+    {
+      "url": "https://www.fao.org/giahs/giahs-around-the-world/mexico-chinampas-agricultural-system/en",
+      "checkedAt": "2026-10-08",
+      "finding": "Overview uses floating islands; construction section describes wetland raised fields, lake-bottom sediments and a structure around stakes."
+    },
+    {
+      "url": "https://anales.ib.unam.mx/index.php/anales/es_MX/article/view/335",
+      "checkedAt": "2026-10-08",
+      "finding": "1937 issue, digitized record dated 2017; abstract distinguishes secured agricultural fields from floating seedbeds."
+    }
+  ]
+}
