@@ -51,3 +51,14 @@ acceptance is not claimed. Existing hosted Stage 7 gates and image-download
 verification backlog are not satisfied by this presentation change. Autonomous
 production, publication and the article schedule remain disabled. No credentials,
 SMTP messages, paid model calls or database writes were used.
+
+## Deployment readback
+
+Implementation commit `2ba61c4e6588e3393fbe66832c3643198baf5827` is synced
+to main/master and GitHub reports Vercel success. All eleven live article pages,
+the homepage and archive returned HTTP 200 and matched the tested build byte for
+byte. About also returned HTTP 200 with both new footer strings; its HTML differs
+only by an omitted final newline. The adjacent live JSON records body hashes,
+lengths and the explicit normalized comparison. This confirms public deployment
+behavior, while browser visual/mobile and Stage 7 backend acceptance remain open.
+No connection or credential action is needed for these reader changes.

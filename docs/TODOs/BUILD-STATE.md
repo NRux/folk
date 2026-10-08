@@ -306,3 +306,8 @@ its credited inline portrait as a preview. Shared footer subtitle/project text
 matches the owner's supplied wording. See verification/reader-context-related-stories-
 2026-10-08.md and its JSON for hashes, counts and checks. Release manifest/private
 reserve and paused switches remain unchanged. Hosted acceptance is still pending.
+
+Public follow-up: implementation 2ba61c4 is live on Vercel. All eleven articles,
+homepage and archive match the verified build byte for byte; About matches apart
+from its final newline, with both new footer strings verified. Live evidence is
+in verification/reader-context-related-stories-live-2026-10-08.json.
