@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createOwnerHandlers, sessionToken } from '../server/owner-auth.js';
-const env = { FOLKLY_OWNER_EMAIL: 'owner@example.com', SUPABASE_URL: 'https://example.supabase.co', SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_test' };
+const env = { FOLKLY_OWNER_EMAIL: 'owner@example.com', SUPABASE_URL: 'https://vxmyggasjgsiohqzzwzh.supabase.co', SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_test' };
 const sid = '00000000-0000-0000-0000-000000000001';
 const token = `head.${Buffer.from(JSON.stringify({ session_id: sid })).toString('base64url')}.signature`;
 let active = true, member = true, calls = 0;
@@ -34,4 +34,6 @@ assert.equal(sessionToken(new Request(req.url,{headers:{cookie:`${cookies}; ${co
 assert.equal((await handlers.POST(post({action:'logout'},undefined,cookies))).status,200);
 assert.equal((await handlers.GET(req)).status,401);
 assert.equal((await createOwnerHandlers({env:{}}).POST(post({action:'login'}))).status,503);
+const wrongProject=await createOwnerHandlers({env:{...env,SUPABASE_URL:'https://other.supabase.co'},authClient,editorialClient}).POST(post({action:'login'}));
+assert.equal(wrongProject.status,503);assert.match(await wrongProject.text(),/wrong Supabase project/);
 console.log('Owner auth passed: invite-only OTP, origin denial, HttpOnly bounded session, private membership, revoked-session denial, logout, no token response, missing configuration.');

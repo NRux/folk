@@ -12,6 +12,7 @@ export function sessionToken(request) {
 export function createOwnerHandlers({ env = process.env, authClient, editorialClient } = {}) {
   function clients() {
     if (!env.FOLKLY_OWNER_EMAIL || !env.SUPABASE_URL || !(env.SUPABASE_PUBLISHABLE_KEY || env.SUPABASE_ANON_KEY)) throw Error('Configuration missing');
+    if (new URL(env.SUPABASE_URL).hostname !== 'vxmyggasjgsiohqzzwzh.supabase.co') throw Error('Supabase project mismatch');
     return {
       auth: authClient || createClient(env.SUPABASE_URL, env.SUPABASE_PUBLISHABLE_KEY || env.SUPABASE_ANON_KEY, { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } }),
       db: editorialClient || createEditorialClient(env),
@@ -57,7 +58,7 @@ export function createOwnerHandlers({ env = process.env, authClient, editorialCl
             console.error('Owner OTP request failed', { code, status: Number(result.error.status) || 0 });
             if (result.error.status === 429 || code.includes('rate_limit')) return reply(429, 'Too many code requests. Wait a minute before trying again.', { 'Retry-After': '60' });
             if (['email_address_not_authorized', 'email_provider_disabled', 'unexpected_failure'].includes(code)) return reply(503, 'Sign-in email could not be sent. Check the Supabase email provider configuration.');
-            return reply(503, 'Sign-in could not send a code. Check the owner account and Supabase email configuration.');
+            return Response.json({ message: 'Sign-in could not send a code. Check the owner account and Supabase email configuration.', errorCode: code }, { status: 503, headers: { 'Cache-Control': 'no-store' } });
           }
           return reply(200, 'Check your email for the sign-in code.');
         }
@@ -72,7 +73,13 @@ export function createOwnerHandlers({ env = process.env, authClient, editorialCl
           return reply(200, 'Signed in.', { 'Set-Cookie': cookie(session.access_token, age) });
         }
         return reply(400, 'Unknown action.');
-      } catch { console.error('Owner authentication unavailable'); return reply(503, 'Owner sign-in is temporarily unavailable.'); }
+      } catch (error) {
+        if (error.message === 'Supabase project mismatch') {
+          console.error('Owner Supabase project mismatch');
+          return reply(503, 'Vercel is connected to the wrong Supabase project. Connect the Folkly database before signing in.');
+        }
+        console.error('Owner authentication unavailable'); return reply(503, 'Owner sign-in is temporarily unavailable.');
+      }
     },
     async GET(request) {
       if (!sessionToken(request)) return reply(401, 'Sign in to view owner status.');
