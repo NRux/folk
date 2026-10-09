@@ -1,6 +1,6 @@
 # Seven-language implementation prompts
 
-Run these in order in NRux/folk. Follow docs/platform/MULTILINGUAL.md and the latest BUILD-STATE, manual-release manifest and acceptance reports. Reuse Vercel. Keep private reserve out of all public outputs. Preserve credits, licenses, sources and approved stories. Keep autonomous generation, publication and article scheduling disabled. Google Cloud remains deferred. Do not run paid translation calls or release translations before the budget and review steps below.
+Run these in order in NRux/folk. Current implementation and owner-reported approval update: docs/verification/translation-pilot-runtime-2026-10-09.md. Follow docs/platform/MULTILINGUAL.md and the latest BUILD-STATE, manual-release manifest and acceptance reports. Reuse Vercel. Keep private reserve out of all public outputs. Preserve credits, licenses, sources and approved stories. Keep autonomous generation, publication and article scheduling disabled. Google Cloud remains deferred. Do not run paid translation calls or release translations before the budget and review steps below.
 
 ## Current implementation, 2026-10-09 UTC
 
@@ -8,15 +8,15 @@ Run these in order in NRux/folk. Follow docs/platform/MULTILINGUAL.md and the la
 | --- | --- |
 | 1 | DONE: public-only contracts, glossary, strict payload schema and source-version validation. |
 | 2 | DONE for code/isolated fixtures: approved-only static renderer and review-bound translation hashes. No real translations released. |
-| 3 | PARTIAL: article language links, explicit English fallback, self canonicals, reciprocal alternates, sitemap and translated article/UI segments implemented. Standalone localized home/archive/filter pages and shared UI catalogs remain open. |
-| 4 | PARTIAL: script fonts, logical layout, RTL direction and link isolation implemented. Browser viewport/keyboard checks and competent language review remain pending. |
-| 5 | BLOCKED for funded pilot: explicit model/budget authorization and access required. Translation-specific paid job adapter/ledger integration is still open; do not treat the article-generation adapter as a completed translation adapter. |
-| 6 | BLOCKED: six competent language reviews and approved pilot evidence required before backfill. |
-| 7 | PARTIAL: isolated reproducible-build, stale omission, payload tamper denial and manifest rollback checks pass. Real localized hosted/recovery acceptance remains pending. |
+| 3 | DONE for implementation: reviewed home/archive/About/Subscribe/Privacy/credits, card/filter labels and message catalog, localized links and explicit accessible English fallback. Main discovery is localized; unreviewed author/topic/country subarchives retain English fallback. No real locale is released. |
+| 4 | PARTIAL: six-language structural/RTL/escaping tests pass. Actual viewport/keyboard checks and review of generated language output remain pending. |
+| 5 | DONE for job/usage/recovery code and hosted SQL fixtures. Owner reports capped pilot and provider/model approval completed. Runtime pilot awaits verification of configured model/caps through restored Vercel access; no paid call occurred. |
+| 6 | REVIEWERS PROVIDED per owner. Review of actual generated payloads and bounded backfill remain pending after the pilot. Do not request reviewer provision again. |
+| 7 | PARTIAL: immutable private Blob receipts, retained spend, persistence-only recovery, rollback/stale/duplicate checks implemented. Full hosted provider/Blob/browser evidence and reviewed locale release remain open. |
 
 Commands and limitations: `docs/platform/TRANSLATION-CONTRACTS.md` and
 `docs/verification/translation-reader-events-2026-10-09.md`. The production
-translation manifest stays empty. Synthetic AR/FR payloads are test data only,
+translation manifest stays empty. Pilot approval and reviewer provision are completed per the owner; payload-specific reviews and release are separate. Synthetic AR/FR payloads are test data only,
 not translations or language approval.
 
 ## 1. Extract a versioned public translation contract
@@ -37,11 +37,11 @@ Use logical CSS properties, appropriate system-font fallbacks and dir=rtl for Ar
 
 ## 5. Add a budgeted translation adapter and one-story pilot
 
-Use the existing funded provider only after confirming credentials, a reviewed model choice and an explicit pilot budget. Keep the latest-model editorial generation default unchanged. Compare economical available translation models against one representative cultural passage before choosing. Implement bounded input/output, strict schema validation, atomic per-job claims, concurrency limits, cost reservations and no automatic retry of ambiguous paid attempts. Translate one approved public story into six languages once; record actual tokens, estimated cost, hashes and failures. Reject unsupported claims or missing text. Never translate on each reader visit. Test the adapter with mocks before any paid call.
+Use the owner-approved funded provider/model and capped pilot; approval is already reported complete. Verify the configured values and credential scope, without requesting the same authorization again. Keep the latest-model editorial generation default unchanged. Use the reviewed model recorded in secure provider configuration; do not silently choose a different model or infer a cap. Implement bounded input/output, strict schema validation, atomic per-job claims, concurrency limits, cost reservations and no automatic retry of ambiguous paid attempts. Translate one approved public story into six languages once; record actual tokens, estimated cost, hashes and failures. Reject unsupported claims or missing text. Never translate on each reader visit. Test the adapter with mocks before any paid call.
 
 ## 6. Review and backfill the public catalog
 
-Arrange competent review for each pilot language: cultural nuance, unfamiliar-word context, place names, regional qualifiers, numbers, negation and source fidelity. Record reviewer and source-version evidence. Fix glossary/prompt issues before backfilling the remaining approved public stories within an agreed total budget. Keep unreviewed output private. Regenerate only changed source versions and mark prior translations stale. Never overwrite an approved translation silently. Test approval transitions, source edits and preservation of citations/licenses.
+Use the competent reviewers already supplied for each pilot language to review actual generated payloads: cultural nuance, unfamiliar-word context, place names, regional qualifiers, numbers, negation and source fidelity. Record reviewer and source-version evidence. Fix glossary/prompt issues before backfilling the remaining approved public stories within an agreed total budget. Keep unreviewed output private. Regenerate only changed source versions and mark prior translations stale. Never overwrite an approved translation silently. Test approval transitions, source edits and preservation of citations/licenses.
 
 ## 7. Verify deployed acceptance and recovery
 

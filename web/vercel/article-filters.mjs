@@ -4,9 +4,9 @@ export function normalizeFilters(input, items) {
   const knownPlaces=new Set([...items.filter(item=>typeof item.country==='string'&&/^[a-z]+(?:-[a-z]+)*$/.test(item.country)).map(item=>'country:'+item.country),...regionSlugs.map(region=>'region:'+region)]);
   return {tags:[...new Set(input.tags||[])].filter(tag=>knownTags.has(tag)).sort(),place:knownPlaces.has(input.place)?input.place:'',sort:['newest','oldest','title'].includes(input.sort)?input.sort:'newest'};
 }
-export function selectArticles(items, filters) {
+export function selectArticles(items, filters, locale) {
   return items.filter(item=>(!filters.place||`country:${item.country}`===filters.place||`region:${item.region}`===filters.place)&&(!filters.tags.length||filters.tags.some(tag=>item.topics.includes(tag)))).slice().sort((a,b)=>{
-    const order=filters.sort==='title'?a.title.localeCompare(b.title):filters.sort==='oldest'?a.published.localeCompare(b.published):b.published.localeCompare(a.published);
+    const order=filters.sort==='title'?a.title.localeCompare(b.title,locale):filters.sort==='oldest'?a.published.localeCompare(b.published):b.published.localeCompare(a.published);
     return order||a.slug.localeCompare(b.slug);
   });
 }
@@ -32,10 +32,11 @@ export function initializeArticleFilters(doc, win) {
   const apply=(filters,updateUrl)=>{
     place.value=filters.place;sort.value=filters.sort;
     tags.forEach(tag=>{tag.checked=filters.tags.includes(tag.value);});
-    const selected=selectArticles(items,filters),visible=new Set(selected.map(item=>item.slug));
+    const selected=selectArticles(items,filters,doc.documentElement?.lang||'en'),visible=new Set(selected.map(item=>item.slug));
     items.forEach(item=>{item.card.hidden=!visible.has(item.slug);});
     selected.forEach(item=>grid.append(item.card));
-    count.textContent=`Showing ${selected.length} of ${items.length} ${items.length===1?'story':'stories'}`;
+    const noun=items.length===1?'story':'stories',t=(key,fallback)=>win.FolklyUI?.t(key,fallback)||fallback;
+    count.textContent=t('count','Showing {shown} of {total} {noun}').replaceAll('{shown}',String(selected.length)).replaceAll('{total}',String(items.length)).replaceAll('{noun}',t(noun,noun));
     empty.hidden=selected.length>0;
     if(updateUrl)win.history.replaceState(null,'',writeFilters(win.location.href,filters));
   };

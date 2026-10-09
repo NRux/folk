@@ -8,7 +8,7 @@ by a paid provider. There is no request-time translation or new hosting service.
 
 Run `npm run build`, then
 `node scripts/extract-translations.mjs /absolute/private/output-directory`.
-The command exports only current published catalog entries into a new directory;
+The command exports eleven current published story contracts and seven allowlisted shared UI contracts into a new directory;
 it rejects overwriting existing files. The public build produces source contracts
 under `build/translation-contracts`, outside `dist`. Rebuild before extracting.
 Do not commit either directory or any original private export.
@@ -78,12 +78,77 @@ No approval means byte-identical English article content except independently
 implemented reader telemetry metadata. The scripts do not make provider calls,
 change publication settings or inspect private storage.
 
-## Outstanding gates
+## Paid drafts, usage and recovery
 
-Translation-specific paid job claims, cost reservations, provider failure/recovery
-and usage evidence remain open. Use a separate explicit pilot budget and approved
-model; keep article-generation configuration unchanged. Six competent language
-reviews, localized discovery pages/shared UI, real viewport/keyboard inspection
-and hosted locale/recovery acceptance are still required. The current tests use
-ephemeral synthetic AR/FR strings solely to verify structure and security. No
-synthetic payload or purported reviewer is saved in the production manifest.
+The independent translation pilot is implemented in `server/translation-jobs.js`
+and the owner-only `/api/owner-translations` endpoint. Use the Translations section
+of `/owner` to generate/view private drafts and inspect attempts. A model call never
+edits the public translation manifest, publishes an article, or enables an article
+switch. Contracts are loaded from the generated allowlisted build registry; the
+browser cannot supply source text, prompts or private reserve IDs.
+
+Existing Supabase holds a separate pilot budget and job ledger. Migration
+`20261009025742_translation_pilot_ledger.sql` starts closed with zero caps. The owner
+has already authorized the pilot and supplied reviewers; provision these approved
+values after secure configuration becomes inspectable, without seeking approval
+again. Set `FOLKLY_TRANSLATION_MODEL_ID` to the reviewed provider/model identifier
+and `FOLKLY_TRANSLATION_MAX_JOB_DOLLARS` in the existing Vercel project. Use the
+existing server-only OpenAI key for an OpenAI model or existing AI Gateway/OIDC
+credentials for gateway routing. No key belongs in Git, browser configuration, or
+chat. Preserve the article-generation model setting unchanged.
+
+Set the singleton `folkly_translation_budget` row through an audited trusted
+operator: exact matching reviewed model, approved total/per-attempt caps, current
+input/output USD-per-million rates, and pricing expiry. Hard ceilings are $50 total
+and $5 per attempt; narrower approved limits apply. Enable only this pilot budget
+when configuration has been verified. All three autonomous article switches and
+newsletter delivery stay off. Defaults never infer a paid cap or model from a
+credential's presence.
+
+One reservation runs at a time. Source/locale/glossary/prompt identity and UUID are
+unique. Input JSON is bounded to 90 KB; conservative pricing reserves for 200,000
+input tokens and at most 24,000 output tokens. Calls have no automatic retries and
+a 45-second timeout. A job reserves its entire maximum cost, even after failure.
+Frozen rates produce a usage estimate when actual token counts exist; unknown
+usage remains null, not zero. Reported spend above a reservation closes the pilot.
+These are local estimates; provider billing remains authoritative.
+
+Draft objects are create-only, private, SHA-256 addressed under
+`editorial/translations/`, at most 200 KB, and independently read/validated before
+recording generated status. SQL evidence is terminal and immutable through the
+RPC, with reservation token fencing. Anonymous/authenticated/publisher roles have
+no table/RPC rights; only the authorized owner server uses service authority.
+
+If SQL persistence fails after a verified upload, the authorized response contains
+a private receipt (job ID, checksum and byte size). Use the owner recovery form
+with that receipt. Recovery verifies current source identity, locale, checksum and
+size, then completes persistence using the existing reservation token. It makes
+no model call and refunds no budget. Source-stale, wrong-prefix, corrupt, unknown
+or terminal attempts cannot be recovered this way. With no verified object,
+retain the hold for operator reconciliation; never automatically clear it or create
+a second paid attempt. Unknown recovered usage is explicitly labelled. The owner
+UI clears private bodies/receipts on logout and rejects late responses.
+
+## Shared pages and review
+
+`ui-home`, `ui-archive`, `ui-about`, `ui-subscribe`, `ui-privacy`, and
+`ui-image-credits` use the same source/glossary/prompt/payload review hashes as
+articles. Their localized routes are `/fr`, `/fr/archive`, `/fr/about`, etc.
+`ui-messages` is a reviewed catalog for filter counts and confirmed form/GPC status;
+it emits no route or sitemap entry. Preserve `{shown}`, `{total}`, and `{noun}`
+placeholders exactly. The browser loads approved embedded plain JSON and updates
+textContent; it never contacts a translation provider. API destinations and consent
+field/version names stay fixed. Localize discovery card titles and sort metadata;
+links to unreviewed stories/subarchives retain English destinations with an
+accessible visible fallback notice. Release complete reviewed shared-page/message
+sets alongside the reviewed pilot story so forms and legal choices are coherent.
+
+## Outstanding deployed evidence
+
+Owner reports pilot approval/model review, reviewers, GA4 setup and provider secrets
+completed on 2026-10-09. These reports resolve the corresponding owner setup tasks;
+they do not substitute for actual translated-payload review or live runtime receipts.
+Vercel project inspection currently returns 404 for the existing project/team, so
+configured model/caps, real paid usage, private Blob/provider recovery, actual
+viewport/keyboard checks and reviewed locale release are not verified. Do not
+repeat the deferred Google Cloud setup request. See the current verification report.

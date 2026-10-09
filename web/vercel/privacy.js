@@ -18,6 +18,6 @@
  function save(allow){const wasLoaded=loaded;choice={version,analytics:Boolean(allow),at:Date.now()};try{localStorage.setItem(key,JSON.stringify(choice));}catch{}panel.hidden=true;opener?.focus?.();if(choice.analytics)analytics();else{allowed=false;window.gtag('consent','update',denied);clearCookies();if(wasLoaded)location.reload();}}
  for(const button of document.querySelectorAll('[data-privacy-open]'))button.addEventListener('click',()=>open(button));
  el('privacy-accept').addEventListener('click',()=>save(true));el('privacy-reject').addEventListener('click',()=>save(false));el('privacy-save').addEventListener('click',()=>save(el('privacy-analytics').checked));el('privacy-manage').addEventListener('click',()=>{el('privacy-details').hidden=false;el('privacy-save').hidden=false;el('privacy-analytics').focus();});
- if(navigator.globalPrivacyControl===true)el('privacy-signal').textContent='Global Privacy Control detected. Advertising stays disabled; analytics is a separate optional choice.';
+ if(navigator.globalPrivacyControl===true)el('privacy-signal').textContent=window.FolklyUI?.t('gpc','Global Privacy Control detected. Advertising stays disabled; analytics is a separate optional choice.')||'Global Privacy Control detected. Advertising stays disabled; analytics is a separate optional choice.';
  if(choice?.analytics)analytics();if(!choice)open();
 })();

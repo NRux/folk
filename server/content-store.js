@@ -23,3 +23,4 @@ function createObjectStore(blob,prefix,maxBytes){
 
 export const createContentStore=(blob={get,put})=>createObjectStore(blob,'editorial/versions/',200000);
 export const createSnapshotStore=(blob={get,put})=>createObjectStore(blob,'editorial/backups/',10000000);
+export const createTranslationStore=(blob={get,put})=>createObjectStore(blob,'editorial/translations/',200000);

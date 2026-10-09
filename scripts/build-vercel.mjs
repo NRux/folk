@@ -101,6 +101,7 @@ console.log(`Built ${Object.keys(routes).length} public pages and journal assets
 await cp('web/vercel/article-filters.mjs', 'dist/article-filters.js');
 
 await cp('web/vercel/owner-workspace.js', 'dist/owner-workspace.js');
+await cp('web/vercel/owner-translations.js', 'dist/owner-translations.js');
 
 await writeFile('dist/privacy.html', addAdsense(privacyPage()));
 for (const file of ['privacy.js','privacy.css']) await cp(`web/vercel/${file}`,`dist/${file}`);

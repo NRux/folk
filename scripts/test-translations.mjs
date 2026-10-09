@@ -13,7 +13,7 @@ const fixture=locale=>({format:'folkly-translation-v1',slug,locale,sourceHash:so
 const entry=value=>({slug,locale:value.locale,status:'approved',sourceHash:value.sourceHash,glossaryHash:value.glossaryHash,promptVersion:value.promptVersion,translationHash:hash(value),review:{reviewer:'Synthetic test only — not an actual reviewer',reviewedAt:'2026-10-09T00:00:00Z',competentLanguageReview:true}});
 const ar=fixture('ar'),fr=fixture('fr'),entries=[entry(ar),entry(fr)],approved=reviewedTranslations(entries,contracts,new Map([['ar/'+slug,ar],['fr/'+slug,fr]]));
 const out=renderTranslation(html,ar,source,approved,origin),english=decorateEnglish(html,slug,approved,origin);
-assert(out.includes('<html lang="ar" dir="rtl">'));assert(out.includes(`rel="canonical" href="${origin}/ar/${slug}"`));assert(out.includes('src="/assets/lisbon.jpg"'));assert(out.includes('lang="en" title="English fallback'));
+assert(out.includes('<html lang="ar" dir="rtl">'));assert(out.includes(`rel="canonical" href="${origin}/ar/${slug}"`));assert(out.includes('src="/assets/lisbon.jpg"'));assert(out.includes('hreflang="en" title="English fallback'));
 for(const page of [out,english,renderTranslation(html,fr,source,approved,origin)])for(const lang of ['en','ar','fr','x-default'])assert(page.includes(`hreflang="${lang}"`));
 assert.equal((out.match(/data-after-paragraph=/g)||[]).length,(html.match(/data-after-paragraph=/g)||[]).length);
 assert.deepEqual([...out.matchAll(/data-image-id="([^"]*)"/g)].map(m=>m[1]),source.immutable.media);

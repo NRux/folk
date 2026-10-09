@@ -34,6 +34,10 @@
     }
   ],
   "functions": {
+    "api/owner-translations.js": {
+      "maxDuration": 60,
+      "includeFiles": "{build/translation-contracts/**,web/vercel/translation-glossary.json}"
+    },
     "api/newsletter.js": {
       "maxDuration": 300,
       "includeFiles": "web/vercel/{articles,routes}.json"
