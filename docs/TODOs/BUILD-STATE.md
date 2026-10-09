@@ -2,6 +2,13 @@
 
 ## Priority TODO
 
+Latest runtime-log follow-up, 2026-10-09 UTC: all 98 supplied records were
+triaged; 75 succeeded, 21 required authentication, one rejected origin and one
+rejected contact input. No 5xx or rate-limit failure appears. The owner expiry
+UI now explains reauthentication and clears private panels/codes across the
+dashboard, inboxes, editor and translations. Short sessions and authorization
+checks remain intact. See verification/runtime-log-triage-2026-10-09.md.
+
 Latest reader follow-up, 2026-10-09 UTC: reviewed localization now includes
 five public author profiles and 34 published topic/place archives. Nested locale
 routes, source extraction, reciprocal SEO and reviewed internal links pass all

@@ -7,6 +7,11 @@ function signedIn(value) {
   el('owner-login').hidden=value; el('owner-dashboard').hidden=!value; el('owner-logout').hidden=!value;
   if (!value) for(const id of ['owner-articles','owner-jobs','owner-reservations','owner-budget','owner-switches','owner-updated','owner-migration','owner-contacts','owner-contact-note','owner-subscriber-list','owner-subscriber-note']) el(id).replaceChildren();
 }
+function expireOwnerSession() {
+  signedIn(false);
+  el('owner-code').value='';
+  status.textContent='Your owner session expired or is no longer active. Request a new sign-in code to continue.';
+}
 function table(id,section,columns,empty) {
   const target=el(id);target.replaceChildren();
   if(!section?.available){target.textContent='Status unavailable. Refresh to try again.';return;}
@@ -44,7 +49,7 @@ async function loadSubscribers(cursor) {
     const response=await fetch('/api/owner?view=subscribers'+query,{cache:'no-store'});
     const data=await response.json();
     if(generation!==sessionGeneration||el('owner-dashboard').hidden)return;
-    if(response.status===401){signedIn(false);status.textContent='Session expired. Sign in again.';return;}
+    if(response.status===401){expireOwnerSession();return;}
     if(!response.ok||!data.owner||!data.subscribers?.available)throw Error();
     renderSubscribers(data.subscribers);
   }catch {
@@ -65,7 +70,7 @@ async function loadContacts(cursor) {
     const response=await fetch('/api/owner?view=contacts'+query,{cache:'no-store'});
     const data=await response.json();
     if(generation!==sessionGeneration||el('owner-dashboard').hidden)return;
-    if(response.status===401){signedIn(false);status.textContent='Session expired. Sign in again.';return;}
+    if(response.status===401){expireOwnerSession();return;}
     if(!response.ok||!data.owner||!data.contacts?.available)throw Error();
     renderContacts(data.contacts);
   }catch {
@@ -77,11 +82,13 @@ el('owner-contact-first').addEventListener('click',()=>loadContacts());
 el('owner-subscriber-next').addEventListener('click',()=>{if(nextSubscriberCursor)loadSubscribers(nextSubscriberCursor);});
 el('owner-subscriber-first').addEventListener('click',()=>loadSubscribers());
 async function loadStatus() {
-  const generation=sessionGeneration;
+  const generation=sessionGeneration, wasSignedIn=!el('owner-dashboard').hidden;
   const response=await fetch('/api/owner',{cache:'no-store'});const data=await response.json();
   if(generation!==sessionGeneration)return false;
   if(response.ok&&data.owner&&data.dashboard){render(data);return true;}
-  signedIn(false);if(response.status!==401)status.textContent=data.message||'Dashboard unavailable.';return false;
+  if(response.status===401&&wasSignedIn)expireOwnerSession();
+  else {signedIn(false);if(response.status!==401)status.textContent=data.message||'Dashboard unavailable.';}
+  return false;
 }
 async function send(body) {
   const response=await fetch('/api/owner',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
@@ -96,7 +103,7 @@ el('owner-form').addEventListener('submit',async event=>{
  try{await send({action,email:el('owner-email').value,code});if(action==='verify')el('owner-code').value='';}catch{status.textContent='Connection unavailable. Please try again.';}finally{buttons.forEach(b=>b.disabled=false);}
 });
 el('owner-logout').addEventListener('click',async()=>{signedIn(false);try{await send({action:'logout'});}catch{signedIn(false);status.textContent='Sign-out could not be confirmed. Close this page and retry sign-out.';}});
-el('owner-refresh').addEventListener('click',async()=>{try{if(await loadStatus())status.textContent='Dashboard refreshed.';else status.textContent='Session expired or unavailable. Sign in again.';}catch{signedIn(false);status.textContent='Dashboard unavailable. Please sign in again.';}});
+el('owner-refresh').addEventListener('click',async()=>{try{if(await loadStatus())status.textContent='Dashboard refreshed.';}catch{signedIn(false);status.textContent='Dashboard unavailable. Please sign in again.';}});
 loadStatus().catch(()=>{signedIn(false);status.textContent='Connection unavailable.';});
 
 setInterval(()=>{if(!el('owner-dashboard').hidden)loadStatus().catch(()=>{signedIn(false);status.textContent='Session status unavailable. Sign in again.';});},60000);
