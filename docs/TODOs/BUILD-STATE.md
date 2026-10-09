@@ -1,5 +1,21 @@
 # Folkly Build State
 
+## Owner editor empty-reply repair, 2026-10-09 UTC
+
+The reported MODEL_EMPTY_REPLY is reproduced with the installed SDK for blank
+reasoning-only completion and explicit refusal responses. The 800 total-token
+cap is raised to 2,048, with concise chat instructions, within the existing
+per-attempt reservation at currently checked rates. Latest chat-latest selection,
+30-second deadline, zero automatic retries and retained failed reservations
+stay intact. Valid refusals render privately; length-truncated and filtered
+results receive distinct fixed codes and sanitized finish/usage diagnostics.
+Build and all 35 regressions pass, including SDK transport/refusal/length/filter
+and duplicate-attempt fixtures. The specific supplied occurrence's finish/usage
+was not logged, so token exhaustion is a supported diagnosis, not a confirmed
+historical cause. Vercel logs remain 403 and the available owner browser session
+is expired; live authenticated replay is not claimed. Publishing stays paused.
+See verification/editor-empty-reply-2026-10-09.md.
+
 ## Independent editorial transfer readback, 2026-10-09 UTC
 
 Added a read-only post-transfer command that validates the complete independent

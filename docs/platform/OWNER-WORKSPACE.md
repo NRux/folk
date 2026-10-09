@@ -12,7 +12,17 @@ Drafts are read from private Supabase folkly_articles and the latest folkly_arti
 
 In the existing Vercel project, configure funded OPENAI_API_KEY, the existing private Blob credentials (BLOB_READ_WRITE_TOKEN or supported linked BLOB_STORE_ID), and FOLKLY_EDITOR_CHAT_ENABLED=true, then redeploy. The default is disabled. Never place these credentials in browser code or commit them. Chat uses the existing OpenAI provider and chat-latest alias. It receives the owner's message and up to six recent completed exchanges; it has no tools to publish or change controls. Conversation text is transmitted to this provider when chat is enabled and submitted.
 
-Requests allow at most 6,000 message bytes, 12,000 total prompt/history bytes and 800 output tokens. The provider timeout is 30 seconds, function duration 60 seconds and SDK retries are disabled. A durable create-only attempt prevents a repeated request ID from charging twice. Twenty daily UTC create-only budget slots reserve $0.15 each ($3/day reservations). Failed/ambiguous attempts retain their slot. These are conservative application limits, not a provider invoice guarantee; review current model rates and configure provider-side spending controls before activation. A pending attempt does not claim a completed reply.
+Requests allow at most 6,000 message bytes, 12,000 total prompt/history bytes and 2,048 total completion tokens, including reasoning. The editor is instructed to answer in at most 250 words and split larger writing requests into sections. The provider timeout is 30 seconds, function duration 60 seconds and SDK retries are disabled. A durable create-only attempt prevents a repeated request ID from charging twice. Twenty daily UTC create-only budget slots reserve $0.15 each ($3/day reservations). Failed/ambiguous attempts retain their slot. These are conservative application limits, not a provider invoice guarantee; review current model rates and configure provider-side spending controls before activation. A pending attempt does not claim a completed reply.
+
+Token-exhausted replies, even visible partial text, are not recorded as complete:
+the owner receives MODEL_OUTPUT_LIMIT and a shorter-request instruction. Provider
+content filtering is distinguished as MODEL_CONTENT_FILTER. An explicit refusal
+returned separately from message.content is displayed as a normal private reply.
+The installed SDK response body is retained only locally to extract that field;
+no raw response, reasoning text or provider headers are returned or logged.
+Empty/limited/filtered failure logs contain only allowlisted finish reason and
+bounded input/output/reasoning token counts alongside the existing correlation
+reference. No automatic retry or reservation refund is introduced.
 
 Hosted acceptance still requires authenticated idea save/readback, concurrent edit conflicts, session revocation, actual private draft retrieval, a funded chat response, duplicate paid-attempt denial and interruption recovery. Local mocks do not satisfy those gates. Production/publication/article-schedule controls stay disabled.
 

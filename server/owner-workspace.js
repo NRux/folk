@@ -1,5 +1,6 @@
 import {createContentStore} from './content-store.js';
 import {randomUUID} from 'node:crypto';
+import {editorCompletionDiagnostics} from './editor-completion.js';
 const uuid=value=>/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(value||'');
 const reply=(status,data)=>Response.json(data,{status,headers:{'Cache-Control':'no-store'}});
 export function workspaceFaultCode(error,stage){
@@ -7,7 +8,7 @@ export function workspaceFaultCode(error,stage){
  if(known.includes(error?.code))return error.code;
  const blob={BlobAccessError:'BLOB_ACCESS_DENIED',BlobStoreNotFoundError:'BLOB_STORE_NOT_FOUND',BlobStoreSuspendedError:'BLOB_STORE_SUSPENDED',BlobServiceRateLimited:'BLOB_RATE_LIMITED',BlobServiceNotAvailable:'BLOB_UNAVAILABLE'};
  if(Object.hasOwn(blob,error?.name||''))return blob[error.name];
- if(stage==='provider')return [401,403].includes(error?.statusCode)?'MODEL_CREDENTIALS_REJECTED':error?.statusCode===429?'MODEL_RATE_OR_QUOTA_LIMIT':error?.statusCode===404?'MODEL_UNAVAILABLE':error?.statusCode===400?'MODEL_REQUEST_REJECTED':['AbortError','TimeoutError'].includes(error?.name)?'MODEL_TIMEOUT':error?.code==='EMPTY_REPLY'?'MODEL_EMPTY_REPLY':'MODEL_UNAVAILABLE';
+ if(stage==='provider')return [401,403].includes(error?.statusCode)?'MODEL_CREDENTIALS_REJECTED':error?.statusCode===429?'MODEL_RATE_OR_QUOTA_LIMIT':error?.statusCode===404?'MODEL_UNAVAILABLE':error?.statusCode===400?'MODEL_REQUEST_REJECTED':['AbortError','TimeoutError'].includes(error?.name)?'MODEL_TIMEOUT':error?.code==='OUTPUT_LIMIT'?'MODEL_OUTPUT_LIMIT':error?.code==='CONTENT_FILTER'?'MODEL_CONTENT_FILTER':error?.code==='EMPTY_REPLY'?'MODEL_EMPTY_REPLY':'MODEL_UNAVAILABLE';
  return stage==='budget'?'BUDGET_UNAVAILABLE':stage==='chat-history'?'CHAT_HISTORY_UNAVAILABLE':'WORKSPACE_STORAGE_UNAVAILABLE';
 }
 export function workspaceConfiguration(env=process.env){
@@ -34,7 +35,7 @@ export function createWorkspaceHandlers({authorize,store,drafts,chat,configured,
   if(request.headers.get('origin')!==new URL(request.url).origin)return reply(403,{message:'Use the owner workspace.'});
   const owner=await access(request);if(!owner)return reply(401,{message:'Owner sign-in required.'});
   const requestId=randomUUID();let stage='request',action='unknown';
-  function failure(error,message){const code=workspaceFaultCode(error,stage),status=code==='CONFLICT'?409:503;try{reportFault({requestId,action,stage,code,status});}catch{}return reply(status,{code,stage,requestId,message:message+' Reference: '+requestId+'.'});}
+  function failure(error,message){const code=workspaceFaultCode(error,stage),status=code==='CONFLICT'?409:503;try{reportFault({requestId,action,stage,code,status,...(stage==='provider'&&['MODEL_EMPTY_REPLY','MODEL_OUTPUT_LIMIT','MODEL_CONTENT_FILTER'].includes(code)&&error?.completion?{completion:editorCompletionDiagnostics(error.completion)}:{})});}catch{}return reply(status,{code,stage,requestId,message:message+' Reference: '+requestId+'.'});}
   try{
    const text=await request.text();if(Buffer.byteLength(text)>16000)return reply(413,{message:'Request too large.'});
    let data;try{data=JSON.parse(text);}catch{return reply(400,{message:'Invalid request.'});}
@@ -63,7 +64,7 @@ export function createWorkspaceHandlers({authorize,store,drafts,chat,configured,
      const saved=await store.save('chat',data.id,{id:data.id,message:data.message,response:result.text,state:'complete',createdAt:now().toISOString(),usage:result.usage},previous.etag);
      return reply(200,{turn:saved});
     }catch(error){
-     const reason=[401,403].includes(error.statusCode)?'The model provider rejected its credentials.':error.statusCode===429?'The model provider reported a rate or funded-quota limit.':error.statusCode===404?'The configured editor model is unavailable to this provider account.':['AbortError','TimeoutError'].includes(error.name)?'The editor request timed out.':error.code==='EMPTY_REPLY'?'The model returned no editor text.':'The model call or private reply persistence failed.';
+     const reason=[401,403].includes(error.statusCode)?'The model provider rejected its credentials.':error.statusCode===429?'The model provider reported a rate or funded-quota limit.':error.statusCode===404?'The configured editor model is unavailable to this provider account.':['AbortError','TimeoutError'].includes(error.name)?'The editor request timed out.':error.code==='OUTPUT_LIMIT'?'The editor reached its response limit before completing a reply. Ask for a shorter answer or one section at a time.':error.code==='CONTENT_FILTER'?'The provider could not return this reply under its safety policy. Rephrase the request.':error.code==='EMPTY_REPLY'?'The model returned no editor text.':'The model call or private reply persistence failed.';
      return failure(error,reason+' The attempt is retained to prevent duplicate charges. Refresh to inspect it.');
     }
    }

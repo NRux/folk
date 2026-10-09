@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {createWorkspaceHandlers,readDraft,workspaceConfiguration,workspaceFaultCode} from '../server/owner-workspace.js';
 import {createWorkspaceStore} from '../server/workspace-store.js';
+import {EDITOR_COMPLETION_LIMIT,editorCompletionDiagnostics} from '../server/editor-completion.js';
 const id='11111111-1111-4111-8111-111111111111';let allowed=true,enabled=true,calls=0,reserved=0;const records=new Map();
 const store={list:async kind=>[...records.values()].filter(x=>x.kind===kind),read:async(kind,id)=>records.get(kind+id),save:async(kind,id,row,etag)=>{const prior=records.get(kind+id);if(prior&&prior.etag!==etag)throw Object.assign(Error(),{code:'CONFLICT'});const next={...row,etag:'rev2',kind};records.set(kind+id,next);return next;},reserve:async()=>{reserved++;}};
 const h=createWorkspaceHandlers({authorize:async()=>allowed?{db:{}}:null,configured:()=>enabled,store,drafts:async()=>({content:'private draft'}),chat:async()=>{calls++;return {text:'Editor reply',usage:{inputTokens:12,outputTokens:5}};}});
@@ -61,7 +62,7 @@ const wireChat=createEditorChat({env:{OPENAI_API_KEY:'synthetic-sdk-test'},fetch
  assert.equal(String(url),'https://api.openai.com/v1/chat/completions');
  const body=JSON.parse(options.body);
  assert.equal(body.model,'chat-latest');
- assert.equal(body.max_completion_tokens,800);
+ assert.equal(body.max_completion_tokens,2048);
  assert.equal(Object.hasOwn(body,'max_tokens'),false);
  assert.equal(Object.hasOwn(body,'tools'),false);
  assert.equal(body.messages.some(m=>m.content==='ignored pending turn'),false);
@@ -80,3 +81,35 @@ const rejectedChat=createEditorChat({env:{OPENAI_API_KEY:'synthetic-sdk-test'},f
 await assert.rejects(()=>rejectedChat('One interview question.',[]),error=>error.statusCode===400);
 assert.equal(rejectedCalls,1,'Provider rejection must never retry');
 console.log('Editor SDK wire checks passed: latest alias, modern completion limit, usage readback, pending history exclusion and no retries. Synthetic only.');
+
+// A completion can spend every token on reasoning and return content:null.
+// Use the actual installed SDK to reproduce that response shape.
+const completion=(content,finish='stop',reasoning=0,refusal=null)=>({id:'fixture',object:'chat.completion',created:1,model:'chat-latest',choices:[{index:0,message:{role:'assistant',content,refusal},finish_reason:finish,logprobs:null}],usage:{prompt_tokens:250,completion_tokens:finish==='length'?2048:12,total_tokens:finish==='length'?2298:262,completion_tokens_details:{reasoning_tokens:reasoning}}});
+assert(13000*5/1000000+EDITOR_COMPLETION_LIMIT*30/1000000<0.15,'Keep prompt framing and completion headroom inside the existing reservation at checked prices');
+for(const [response,expected] of [[completion(null,'length',2048),'OUTPUT_LIMIT'],[completion('Partial reply','length',1500),'OUTPUT_LIMIT'],[completion(null,'content_filter'),'CONTENT_FILTER'],[completion(' '),'EMPTY_REPLY']]){
+ let count=0;
+ const model=createEditorChat({env:{OPENAI_API_KEY:'synthetic-sdk-test'},fetch:async()=>{count++;return Response.json(response);}});
+ let caught;try{await model('Synthetic request',[]);}catch(error){caught=error;}
+ assert.equal(caught?.code,expected);assert.equal(count,1);
+ assert.equal(caught.completion.finishReason,expected==='CONTENT_FILTER'?'content-filter':response.choices[0].finish_reason);
+ assert.equal(caught.completion.maxCompletionTokens,2048);assert.equal(caught.completion.reasoningTokens,response.usage.completion_tokens_details.reasoning_tokens);
+ assert(!JSON.stringify(caught).includes('Partial reply'));
+ // The endpoint must retain the attempt/reservation and refuse a duplicate ID.
+ const attempts=new Map(),logs=[];let spends=0;
+ const retained={list:async()=>[],reserve:async()=>{spends++;},read:async(kind,key)=>attempts.get(key),save:async(kind,key,row,etag)=>{if(attempts.has(key)&&!etag)throw Object.assign(Error(),{code:'CONFLICT'});const record={...row,etag:'test'};attempts.set(key,record);return record;}};
+ const handler=createWorkspaceHandlers({authorize:async()=>({db:{}}),configured:()=>true,store:retained,chat:model,reportFault:row=>logs.push(row)});
+ const result=await handler.POST(request({action:'chat',id,message:'PRIVATE TEST PROMPT'})),payload=await result.json();assert.equal(result.status,503);assert.equal(result.headers.get('cache-control'),'no-store');assert.equal(payload.code,'MODEL_'+expected);assert.equal(payload.stage,'provider');
+ assert.equal(attempts.get(id).state,'pending');assert.equal(spends,1);assert.equal(count,2);assert.deepEqual(logs[0].completion,caught.completion);
+ assert.equal((await handler.POST(request({action:'chat',id,message:'PRIVATE TEST PROMPT'}))).status,409);assert.equal(spends,1);assert.equal(count,2);
+ assert(!JSON.stringify({payload,logs}).includes('PRIVATE TEST PROMPT'));
+ assert(!JSON.stringify({payload,logs}).includes('Partial reply'));
+}
+const refusing=createEditorChat({env:{OPENAI_API_KEY:'synthetic-sdk-test'},fetch:async()=>Response.json(completion(null,'stop',0,'I cannot help with that request, but I can suggest a safer alternative.'))});
+assert.match((await refusing('Synthetic request',[])).text,/safer alternative/);
+const refusalTurns=new Map(),refusalHandler=createWorkspaceHandlers({authorize:async()=>({db:{}}),configured:()=>true,store:{list:async()=>[],reserve:async()=>{},read:async(kind,key)=>refusalTurns.get(key),save:async(kind,key,row)=>{const saved={...row,etag:'synthetic'};refusalTurns.set(key,saved);return saved;}},chat:refusing});
+const refusalResult=await refusalHandler.POST(request({action:'chat',id,message:'Synthetic request'}));assert.equal(refusalResult.status,200);assert.equal(refusalTurns.get(id).state,'complete');assert.match(refusalTurns.get(id).response,/safer alternative/);assert(!JSON.stringify(refusalTurns.get(id)).includes('choices'));
+assert.deepEqual(editorCompletionDiagnostics({finishReason:'secret-provider-body',maxCompletionTokens:999999,inputTokens:NaN,outputTokens:-1,reasoningTokens:Infinity,prompt:'PRIVATE',body:'secret'}),{finishReason:'unknown',maxCompletionTokens:2048});
+const diagnosticLog=[];
+const sanitized=createWorkspaceHandlers({authorize:async()=>({db:{}}),configured:()=>true,store:{save:async()=>({}),reserve:async()=>{},list:async()=>[]},chat:async()=>{throw Object.assign(Error('SECRET'),{code:'EMPTY_REPLY',completion:{finishReason:'PRIVATE',inputTokens:1,outputTokens:2,reasoningTokens:0,body:'SECRET',prompt:'PRIVATE'}});},reportFault:row=>diagnosticLog.push(row)});
+await sanitized.POST(request({action:'chat',id,message:'PRIVATE'}));assert.deepEqual(diagnosticLog[0].completion,{finishReason:'unknown',maxCompletionTokens:2048,inputTokens:1,outputTokens:2,reasoningTokens:0});assert(!JSON.stringify(diagnosticLog).includes('PRIVATE'));assert(!JSON.stringify(diagnosticLog).includes('SECRET'));
+console.log('Editor empty-output passed: total-token headroom within the existing reservation, actual SDK reasoning-only/partial/filter/refusal cases, allowlisted finish/usage diagnostics, retained failed reservations, duplicate denial and no automatic retries.');

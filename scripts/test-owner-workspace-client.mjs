@@ -37,6 +37,11 @@ elements.get('editor-message').value='hello';const sending=elements.get('editor-
 const diagnosticSend=elements.get('editor-form').submit({preventDefault(){},currentTarget:elements.get('editor-form')});
 resolve({status:503,ok:false,json:async()=>({message:'Provider rejected this request.',code:'MODEL_REQUEST_REJECTED',stage:'provider'})});await diagnosticSend;
 assert.match(elements.get('editor-status').textContent,/Diagnostic: MODEL_REQUEST_REJECTED \(provider\)/);
+for(const code of ['MODEL_OUTPUT_LIMIT','MODEL_CONTENT_FILTER']){
+ const send=elements.get('editor-form').submit({preventDefault(){},currentTarget:elements.get('editor-form')});
+ resolve({status:503,ok:false,json:async()=>({message:'Reply unavailable; retained attempt.',code,stage:'provider'})});await send;
+ assert(elements.get('editor-status').textContent.includes('Diagnostic: '+code+' (provider)'));assert.equal(elements.get('editor-message').value,'hello');
+}
 const unsafeSend=elements.get('editor-form').submit({preventDefault(){},currentTarget:elements.get('editor-form')});
 resolve({status:503,ok:false,json:async()=>({message:'Unavailable.',code:'secret-provider-body',stage:'private-record'})});await unsafeSend;
 assert.equal(elements.get('editor-status').textContent,'Unavailable.');
