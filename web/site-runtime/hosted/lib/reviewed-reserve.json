@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "bonwire-kente",
+    "version_id": "art-194098924a6c-v1",
+    "content_hash": "6f42ae90480e33580594d0cbc3f96632253e4a1ef6757a916f12796a0b1a91c5",
+    "evidence_hash": "99b8e8e69be73285e2460715798b7f3281b2a46962eff59cad6003c230552555",
+    "verdict": "pass",
+    "minor_findings": 2
+  },
+  {
+    "slug": "castells-tarragona",
+    "version_id": "art-bb739e9e9ef2-v1",
+    "content_hash": "96320f194b6a14cb838975835d04a8120ec7ff4462930addfa213323e76ca270",
+    "evidence_hash": "3679ad7aa79c7b6c242d4d49780e684af8d81f3af3835e1d3243f4804b4cc3a6",
+    "verdict": "pass",
+    "minor_findings": 2
+  },
+  {
+    "slug": "kimjang-seoul",
+    "version_id": "art-a8112bfb0f31-v1",
+    "content_hash": "e2c7bc6f8a6c34896296b2e7cc0720c9d2f53d11bca9438060062c7fd06fca7a",
+    "evidence_hash": "be707a386a7e1b1500acaf4f627e2e6ec223487bf9665cc736beb9731d788f55",
+    "verdict": "pass",
+    "minor_findings": 1
+  },
+  {
+    "slug": "matariki-puanga",
+    "version_id": "art-d3af7cc4d479-v1",
+    "content_hash": "2f227f69ffe6defb44afeca54df8b46799539f5ecafd5ec640ebbdc09ed5d9c2",
+    "evidence_hash": "141e12bf71b5ece6bc598a9cb996f639db3f54ed5178af8b04c58597c87b82ab",
+    "verdict": "pass",
+    "minor_findings": 3
+  },
+  {
+    "slug": "nowruz-tajikistan",
+    "version_id": "art-ee1c3d3baac6-v1",
+    "content_hash": "2c20f51cd948347bb077762afeb7559269318eac4a2bea86936f2d9fe1ae3cc2",
+    "evidence_hash": "9db37b9b76669518fee435c1ee9493679b5a2d1d4ddec5d87a2997839d3d27a5",
+    "verdict": "pass",
+    "minor_findings": 3
+  },
+  {
+    "slug": "tokushima-aizome",
+    "version_id": "art-0e1ea9c976f4-v1",
+    "content_hash": "b7d89ce229bd56d51bc72b641700824e6fa4f76edc0f8d589acf8ee0a99ae95a",
+    "evidence_hash": "69b5b51beabd688c8198e735408ae4073de4fc2ec872485d7e57187165630072",
+    "verdict": "pass",
+    "minor_findings": 2
+  },
+  {
+    "slug": "xochimilco-chinampas",
+    "version_id": "art-a6719406efbf-v1",
+    "content_hash": "3c0a67b56677fa382236441efd7d4a6b630853c265bdbb1645e84df286d9f141",
+    "evidence_hash": "df695787d3c2ba577a96c8a88420e8f79dbad1a766cf55e7f3ee12376c90599c",
+    "verdict": "pass",
+    "minor_findings": 2
+  }
+]

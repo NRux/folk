@@ -1,0 +1,351 @@
+{
+  "date": "2026-10-08",
+  "method": "Wikimedia imageinfo-provided URLs; curl GET; Pillow decoded dimensions and JPEG verification; SHA-256 of downloaded bytes; no local image transformation",
+  "photos": [
+    {
+      "slug": "new-orleans-second-line",
+      "source": "https://commons.wikimedia.org/wiki/File:Single_Ladies_Second_Line_Hot_8_Brass_Band_4.jpg",
+      "variants": [
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Single_Ladies_Second_Line_Hot_8_Brass_Band_4.jpg/330px-Single_Ladies_Second_Line_Hot_8_Brass_Band_4.jpg",
+          "width": 330,
+          "height": 220,
+          "bytes": 28348,
+          "sha256": "fb6218d8dee5b0d05a34a97311757113d8bc298a1d1edb038239c2cffe21fe5a"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Single_Ladies_Second_Line_Hot_8_Brass_Band_4.jpg/960px-Single_Ladies_Second_Line_Hot_8_Brass_Band_4.jpg",
+          "width": 960,
+          "height": 640,
+          "bytes": 168134,
+          "sha256": "ff9c98195c9395a66b1cc3821f5424e16a6f616a8e986db3fb9f8f0f3f77d8d4"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Single_Ladies_Second_Line_Hot_8_Brass_Band_4.jpg/1280px-Single_Ladies_Second_Line_Hot_8_Brass_Band_4.jpg",
+          "width": 1280,
+          "height": 853,
+          "bytes": 274646,
+          "sha256": "9e34be328c81410b14ff0e66efd2904b4b77b70934d5d89f80101c2928cd7a7e"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "slug": "lisbon-fado",
+      "source": "https://commons.wikimedia.org/wiki/File:Lisbon._Steep_and_narrow_streets_of_Alfama._pura_poesia._(28070675068).jpg",
+      "variants": [
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Lisbon._Steep_and_narrow_streets_of_Alfama._pura_poesia._%2828070675068%29.jpg/330px-Lisbon._Steep_and_narrow_streets_of_Alfama._pura_poesia._%2828070675068%29.jpg",
+          "width": 330,
+          "height": 247,
+          "bytes": 24636,
+          "sha256": "376f827f7f737db7de0bec63c57cebe30d24b43ecb1c8b82df097ee7400929b4"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Lisbon._Steep_and_narrow_streets_of_Alfama._pura_poesia._%2828070675068%29.jpg/960px-Lisbon._Steep_and_narrow_streets_of_Alfama._pura_poesia._%2828070675068%29.jpg",
+          "width": 960,
+          "height": 719,
+          "bytes": 163814,
+          "sha256": "615f4b65dc2b26a0ba34c7865f9979f81bc99d6cf37598cdf6703e173c630fb9"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Lisbon._Steep_and_narrow_streets_of_Alfama._pura_poesia._%2828070675068%29.jpg/1280px-Lisbon._Steep_and_narrow_streets_of_Alfama._pura_poesia._%2828070675068%29.jpg",
+          "width": 1280,
+          "height": 959,
+          "bytes": 281823,
+          "sha256": "de824cb9964565ba7636085ab1749e05eba77ebb958f1aea8de180590e713a2d"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "slug": "oaxaca-living-color",
+      "source": "https://commons.wikimedia.org/wiki/File:GutierrezWorkshopTeotitlan038.jpg",
+      "variants": [
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/GutierrezWorkshopTeotitlan038.jpg/330px-GutierrezWorkshopTeotitlan038.jpg",
+          "width": 330,
+          "height": 493,
+          "bytes": 55120,
+          "sha256": "1e22f7281084a6ecb905fea462f1aa7a48572f5bb52bb018966bc088b88bd6f3"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/GutierrezWorkshopTeotitlan038.jpg/960px-GutierrezWorkshopTeotitlan038.jpg",
+          "width": 960,
+          "height": 1434,
+          "bytes": 359047,
+          "sha256": "bc0eda7014f059a71f7a3564d96eabceec6c87a9264a93c70905e532894ffbb5"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/GutierrezWorkshopTeotitlan038.jpg/1280px-GutierrezWorkshopTeotitlan038.jpg",
+          "width": 1280,
+          "height": 1912,
+          "bytes": 599732,
+          "sha256": "1ef714e7f40900aeac7a99b2ba25ee0a830051ebbaf8abad3b7e33d4364f20c0"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "slug": "bonwire-kente",
+      "source": "https://commons.wikimedia.org/wiki/File:Bonwire_man_weaving.jpg",
+      "variants": [
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Bonwire_man_weaving.jpg/330px-Bonwire_man_weaving.jpg",
+          "width": 330,
+          "height": 247,
+          "bytes": 33157,
+          "sha256": "d265edf3b93fdc2e9456cf7f60f92c36f4c3d46f9c75249603891966edc31d5b"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Bonwire_man_weaving.jpg/960px-Bonwire_man_weaving.jpg",
+          "width": 960,
+          "height": 720,
+          "bytes": 213922,
+          "sha256": "a005c95f76bedb5d69cbbfd0fac5eea1893210b0204d80be19bd6ff3e56a3a61"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Bonwire_man_weaving.jpg/1280px-Bonwire_man_weaving.jpg",
+          "width": 1280,
+          "height": 960,
+          "bytes": 353417,
+          "sha256": "6e369038572a5b73a73fec91e04b26a8d66914fb9b3cb5b1d7b94cbe36321811"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "slug": "castells-tarragona",
+      "source": "https://commons.wikimedia.org/wiki/File:Concurs_castells_1.jpg",
+      "variants": [
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Concurs_castells_1.jpg/330px-Concurs_castells_1.jpg",
+          "width": 330,
+          "height": 495,
+          "bytes": 85652,
+          "sha256": "bf6aef20ccf5632dc89f26d67cf2b72a25bc9884b264f44707651ccf9de3fcb2"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Concurs_castells_1.jpg/960px-Concurs_castells_1.jpg",
+          "width": 960,
+          "height": 1440,
+          "bytes": 571759,
+          "sha256": "12745f71214b6d6301e79aee7f8bdf987bf3e2a15da1f492bd5ef2fc30423137"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Concurs_castells_1.jpg/1280px-Concurs_castells_1.jpg",
+          "width": 1280,
+          "height": 1920,
+          "bytes": 943942,
+          "sha256": "2ec961df75e6ad720e50fe0d9782e8e25efc245937f8517a371e32f8cfbdc5b2"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "slug": "kimjang-seoul",
+      "source": "https://commons.wikimedia.org/wiki/File:Gimjang_in_Gaemi_Village,_1_December_2012.jpg",
+      "variants": [
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Gimjang_in_Gaemi_Village%2C_1_December_2012.jpg/330px-Gimjang_in_Gaemi_Village%2C_1_December_2012.jpg",
+          "width": 330,
+          "height": 221,
+          "bytes": 36186,
+          "sha256": "de7607e712e55272d21e019d9edfd9eaf27dfb8ebb3a8741e806aa44a374c0f7"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Gimjang_in_Gaemi_Village%2C_1_December_2012.jpg/960px-Gimjang_in_Gaemi_Village%2C_1_December_2012.jpg",
+          "width": 960,
+          "height": 643,
+          "bytes": 238219,
+          "sha256": "fe7379b8168535329dfc9f003aa35d58e6402428a43beebfab6fcda6d98d2240"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/eb/Gimjang_in_Gaemi_Village%2C_1_December_2012.jpg/1280px-Gimjang_in_Gaemi_Village%2C_1_December_2012.jpg",
+          "width": 1280,
+          "height": 857,
+          "bytes": 397032,
+          "sha256": "cd5b6dad2845f88308c6e271a6711df1ded89c0dcf7a8ec556be6be8112d5af5"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "slug": "matariki-puanga",
+      "source": "https://commons.wikimedia.org/wiki/File:The_Pleiades_(b11).jpg",
+      "variants": [
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/The_Pleiades_%28b11%29.jpg/330px-The_Pleiades_%28b11%29.jpg",
+          "width": 330,
+          "height": 289,
+          "bytes": 47840,
+          "sha256": "32df1798b469ebad3fcb1299e8709a78b60d4b04f6ec357188465f9cd0e59dd1"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/The_Pleiades_%28b11%29.jpg/960px-The_Pleiades_%28b11%29.jpg",
+          "width": 960,
+          "height": 840,
+          "bytes": 295788,
+          "sha256": "713edec7f3b5f12d91f3e7866592c135a9c59121b2bb1014144cf85003c1b5f4"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/The_Pleiades_%28b11%29.jpg/1280px-The_Pleiades_%28b11%29.jpg",
+          "width": 1280,
+          "height": 1120,
+          "bytes": 442149,
+          "sha256": "b74cd5442ad2671c0123b5fa0af7de09596bace4319b739d71d05496be6e3975"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "slug": "nowruz-tajikistan",
+      "source": "https://commons.wikimedia.org/wiki/File:Sumanak_-_traditional_Nawruz_food_in_Tajikistan.jpg",
+      "variants": [
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Sumanak_-_traditional_Nawruz_food_in_Tajikistan.jpg/330px-Sumanak_-_traditional_Nawruz_food_in_Tajikistan.jpg",
+          "width": 330,
+          "height": 221,
+          "bytes": 31398,
+          "sha256": "ea99de4011097c8a51682411af7e99d336015a4adf12ba6499e74942e2a44d65"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Sumanak_-_traditional_Nawruz_food_in_Tajikistan.jpg/960px-Sumanak_-_traditional_Nawruz_food_in_Tajikistan.jpg",
+          "width": 960,
+          "height": 643,
+          "bytes": 214643,
+          "sha256": "6d61fca03bc99bfbf58b3df22b7c2fbcb8838ce1b9842f4c4bf6c327b3111c03"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Sumanak_-_traditional_Nawruz_food_in_Tajikistan.jpg/1280px-Sumanak_-_traditional_Nawruz_food_in_Tajikistan.jpg",
+          "width": 1280,
+          "height": 857,
+          "bytes": 351065,
+          "sha256": "6e96804c0a3e28572eea3f9f3034014c910f7b9957617e84312020fa5ba363cc"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "slug": "tokushima-aizome",
+      "source": "https://commons.wikimedia.org/wiki/File:Furusyo_aizome.jpg",
+      "variants": [
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Furusyo_aizome.jpg/330px-Furusyo_aizome.jpg",
+          "width": 330,
+          "height": 185,
+          "bytes": 14619,
+          "sha256": "1b24d8e5cec50a99629e6c68a91fa1bd936a67b0c959a09d72bd2dcc03fb871f"
+        },
+        {
+          "src": "https://upload.wikimedia.org/wikipedia/commons/9/91/Furusyo_aizome.jpg",
+          "width": 854,
+          "height": 480,
+          "bytes": 93781,
+          "sha256": "9ec12ed0e661df69b6d5a063176ef67c83423ad01b0c1032df8e78d92d50b985"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "slug": "xochimilco-chinampas",
+      "source": "https://commons.wikimedia.org/wiki/File:Paisaje_del_canal_y_chinampas_en_Xochimilco.JPG",
+      "variants": [
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Paisaje_del_canal_y_chinampas_en_Xochimilco.JPG/330px-Paisaje_del_canal_y_chinampas_en_Xochimilco.JPG",
+          "width": 330,
+          "height": 220,
+          "bytes": 25113,
+          "sha256": "456aecd62510647f0d68a3f6b72ed241fe6381bf4bafee34cb9d818827f1eb5e"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Paisaje_del_canal_y_chinampas_en_Xochimilco.JPG/960px-Paisaje_del_canal_y_chinampas_en_Xochimilco.JPG",
+          "width": 960,
+          "height": 640,
+          "bytes": 181163,
+          "sha256": "ff259166f3b2dc95d04a05e29380fabd74db032e24fa6400655f9a15e26bb8ce"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Paisaje_del_canal_y_chinampas_en_Xochimilco.JPG/1280px-Paisaje_del_canal_y_chinampas_en_Xochimilco.JPG",
+          "width": 1280,
+          "height": 853,
+          "bytes": 309893,
+          "sha256": "8c04a42c44cc312f9a5fd0dd7c84f2bf4d06e3d77b6c831ff5fd31f8a853493b"
+        }
+      ],
+      "failures": []
+    }
+  ],
+  "byteComparison": [
+    {
+      "slug": "new-orleans-second-line",
+      "baselineBytes": 1305156,
+      "candidateWidth": 960,
+      "candidateBytes": 168134,
+      "reductionPercent": 87.1
+    },
+    {
+      "slug": "lisbon-fado",
+      "baselineBytes": 2002620,
+      "candidateWidth": 960,
+      "candidateBytes": 163814,
+      "reductionPercent": 91.8
+    },
+    {
+      "slug": "oaxaca-living-color",
+      "baselineBytes": 4524198,
+      "candidateWidth": 960,
+      "candidateBytes": 359047,
+      "reductionPercent": 92.1
+    },
+    {
+      "slug": "bonwire-kente",
+      "baselineBytes": 695042,
+      "candidateWidth": 960,
+      "candidateBytes": 213922,
+      "reductionPercent": 69.2
+    },
+    {
+      "slug": "castells-tarragona",
+      "baselineBytes": 1897769,
+      "candidateWidth": 960,
+      "candidateBytes": 571759,
+      "reductionPercent": 69.9
+    },
+    {
+      "slug": "kimjang-seoul",
+      "baselineBytes": 780269,
+      "candidateWidth": 960,
+      "candidateBytes": 238219,
+      "reductionPercent": 69.5
+    },
+    {
+      "slug": "matariki-puanga",
+      "baselineBytes": 688380,
+      "candidateWidth": 960,
+      "candidateBytes": 295788,
+      "reductionPercent": 57.0
+    },
+    {
+      "slug": "nowruz-tajikistan",
+      "baselineBytes": 654502,
+      "candidateWidth": 960,
+      "candidateBytes": 214643,
+      "reductionPercent": 67.2
+    },
+    {
+      "slug": "tokushima-aizome",
+      "baselineBytes": 93781,
+      "candidateWidth": 854,
+      "candidateBytes": 93781,
+      "reductionPercent": 0.0
+    },
+    {
+      "slug": "xochimilco-chinampas",
+      "baselineBytes": 1414171,
+      "candidateWidth": 960,
+      "candidateBytes": 181163,
+      "reductionPercent": 87.2
+    }
+  ]
+}

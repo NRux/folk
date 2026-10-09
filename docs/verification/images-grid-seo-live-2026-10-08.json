@@ -1,0 +1,156 @@
+{
+  "date": "2026-10-08",
+  "verifiedCommit": "c13bc600042eef0c4bec027a13386be44a3542fc",
+  "origin": "https://www.folkly.com",
+  "publicResponses": [
+    {
+      "path": "/",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 14174
+    },
+    {
+      "path": "/new-orleans-second-line",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 11082
+    },
+    {
+      "path": "/lisbon-fado",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 11081
+    },
+    {
+      "path": "/oaxaca-living-color",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 11113
+    },
+    {
+      "path": "/detroit-future-frequency",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 10011
+    },
+    {
+      "path": "/bonwire-kente",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 13587
+    },
+    {
+      "path": "/castells-tarragona",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 17547
+    },
+    {
+      "path": "/kimjang-seoul",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 18469
+    },
+    {
+      "path": "/matariki-puanga",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 14759
+    },
+    {
+      "path": "/nowruz-tajikistan",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 14691
+    },
+    {
+      "path": "/tokushima-aizome",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 14586
+    },
+    {
+      "path": "/xochimilco-chinampas",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 15857
+    },
+    {
+      "path": "/article-grid.css",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 935
+    },
+    {
+      "path": "/image-credits",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 6875
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 994
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 132
+    }
+  ],
+  "imageAndAccessResponses": [
+    {
+      "resource": "bonwire-kente",
+      "status": "200",
+      "exitCode": 0
+    },
+    {
+      "resource": "castells-tarragona",
+      "status": "200",
+      "exitCode": 0
+    },
+    {
+      "resource": "kimjang-seoul",
+      "status": "200",
+      "exitCode": 0
+    },
+    {
+      "resource": "matariki-puanga",
+      "status": "200",
+      "exitCode": 0
+    },
+    {
+      "resource": "nowruz-tajikistan",
+      "status": "200",
+      "exitCode": 0
+    },
+    {
+      "resource": "tokushima-aizome",
+      "status": "200",
+      "exitCode": 0
+    },
+    {
+      "resource": "xochimilco-chinampas",
+      "status": "200",
+      "exitCode": 0
+    },
+    {
+      "resource": "/api/owner",
+      "status": "401",
+      "exitCode": 0
+    },
+    {
+      "resource": "/admin",
+      "status": "404",
+      "exitCode": 0
+    }
+  ],
+  "githubVercelStatus": "success",
+  "limitations": [
+    "Vercel connector deployment inspection returned 403; Vercel CLI unavailable.",
+    "No mobile rendered/CWV/Search Console evidence claimed."
+  ],
+  "automation": "No production, publication, or schedule enablement; approved manual article bodies preserved."
+}

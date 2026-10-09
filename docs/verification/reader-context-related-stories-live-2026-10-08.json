@@ -1,0 +1,113 @@
+{
+  "checkedAt": "2026-10-08T21:48:09Z",
+  "commit": "2ba61c4e6588e3393fbe66832c3643198baf5827",
+  "origin": "https://www.folkly.com",
+  "results": [
+    {
+      "route": "/",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "ff1a85e83b34bf8b3c6840ee520405d600a78636ade065d9f01be28fda328ddc",
+      "bytes": 29617
+    },
+    {
+      "route": "/about",
+      "status": 200,
+      "matchesBuild": false,
+      "sha256": "7bc89316fe0ead73b761affbfc68e0361066ac81981d58abaf68e95f97fd4f69",
+      "bytes": 6502
+    },
+    {
+      "route": "/archive",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "bf7eaa7db28c82979b65a9d088402f9b628761d25e110a10c7df1067dfef4439",
+      "bytes": 30229
+    },
+    {
+      "route": "/new-orleans-second-line",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "30542b6bbdfe8f37f3fd1be17771b02f3bcb8322707216d9a41406b0a4e48017",
+      "bytes": 29124
+    },
+    {
+      "route": "/lisbon-fado",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "ff21109ca61b0c517fc968d1dd0f9e053690376bc2382c8479e6469e62121759",
+      "bytes": 29342
+    },
+    {
+      "route": "/oaxaca-living-color",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "4904f304229a82645f0969cad74c92dd4e87a7bace3368cf9c78f8f6aa55845b",
+      "bytes": 28621
+    },
+    {
+      "route": "/detroit-future-frequency",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "b6ac3760faafffddf41b470199fbe9765a9e54695d4d5266d0557294ccd49564",
+      "bytes": 27742
+    },
+    {
+      "route": "/bonwire-kente",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "7e6f00273f88766d6fe5bf3e9efd443f913d6220d093c8e823e57181b93151fa",
+      "bytes": 24857
+    },
+    {
+      "route": "/castells-tarragona",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "3a1d325e682d0b0165e51abea94cc4ef70ab47381381d8ec28c5fa848b2f3f94",
+      "bytes": 26950
+    },
+    {
+      "route": "/kimjang-seoul",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "606514cd6637920f5026fc5294cdaf16530c8b4a88f8d62d58c715c18f0d5b14",
+      "bytes": 29055
+    },
+    {
+      "route": "/matariki-puanga",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "fc3ac237611df78deb6bbaa7d7b89b55dcfcccebe45c52ca463e95ae2fbeaa7d",
+      "bytes": 28918
+    },
+    {
+      "route": "/nowruz-tajikistan",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "dc35261ed1bbdf507d8ab02222cce5b01f897ba0e41e9db4953c9036af114efc",
+      "bytes": 26274
+    },
+    {
+      "route": "/tokushima-aizome",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "59f24ba55a913cf779b4358afaf3c631f336dd73f9f3e6d75a444931cf944cf6",
+      "bytes": 24989
+    },
+    {
+      "route": "/xochimilco-chinampas",
+      "status": 200,
+      "matchesBuild": true,
+      "sha256": "cdc9df35bc90fd7d172597f101ea66a5f5ffd2520b417ce8321f7b2a5fc5065a",
+      "bytes": 24916
+    }
+  ],
+  "aboutReadback": {
+    "status": 200,
+    "matchesBuildBytes": false,
+    "matchesNormalizedHtml": true,
+    "publicSha256": "7bc89316fe0ead73b761affbfc68e0361066ac81981d58abaf68e95f97fd4f69",
+    "localSha256": "42baf505e476750ecc956f0f6b323d8a4428db5550fcd8a2a415149463319130",
+    "footerVerified": true
+  }
+}

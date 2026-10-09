@@ -1,0 +1,146 @@
+{
+  "date": "2026-10-08",
+  "verifiedCommit": "aefda6e2dba52724506e1264cb8d2cf6d08d9d71",
+  "origin": "https://www.folkly.com",
+  "responses": [
+    {
+      "path": "/",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 14174
+    },
+    {
+      "path": "/new-orleans-second-line",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 11475
+    },
+    {
+      "path": "/lisbon-fado",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 11415
+    },
+    {
+      "path": "/oaxaca-living-color",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 11533
+    },
+    {
+      "path": "/detroit-future-frequency",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 10343
+    },
+    {
+      "path": "/bonwire-kente",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 14189
+    },
+    {
+      "path": "/castells-tarragona",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 18193
+    },
+    {
+      "path": "/kimjang-seoul",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 19082
+    },
+    {
+      "path": "/matariki-puanga",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 15424
+    },
+    {
+      "path": "/nowruz-tajikistan",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 15289
+    },
+    {
+      "path": "/tokushima-aizome",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 15229
+    },
+    {
+      "path": "/xochimilco-chinampas",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 16564
+    },
+    {
+      "path": "/archive",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 15508
+    },
+    {
+      "path": "/author/lena-march",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 6512
+    },
+    {
+      "path": "/author/rowan-pike",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 6627
+    },
+    {
+      "path": "/archive/place/bonwire-ghana",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 3439
+    },
+    {
+      "path": "/archive/topic/textiles",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 5005
+    },
+    {
+      "path": "/archive/topic/ceramics",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 2865
+    },
+    {
+      "path": "/article-grid.css",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 1408
+    },
+    {
+      "path": "/image-credits",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 6875
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 3442
+    },
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "matchesBuild": true,
+      "bytes": 132
+    }
+  ],
+  "vercelCommitStatus": "success",
+  "notes": [
+    "Initial requests overlapped deployment rollout; complete follow-up matched all 22 pages/assets.",
+    "Full build and regression suite passed.",
+    "No mobile rendering, Search Console indexing, or Core Web Vitals pass claimed.",
+    "No autonomous switches, credential wiring, migrations, reserve releases, or model calls changed."
+  ]
+}

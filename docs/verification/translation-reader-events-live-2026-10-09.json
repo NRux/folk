@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-10-09T01:51:00.372Z",
+  "implementationCommit": "49e98ea838eeb5482c5299931cfe1afa7f6f22f4",
+  "origin": "https://www.folkly.com",
+  "checks": [
+    {
+      "path": "/article-release-registry.json",
+      "status": 200,
+      "exactBuildMatch": true
+    },
+    {
+      "path": "/reader-events.js",
+      "status": 200,
+      "exactBuildMatch": true
+    },
+    {
+      "path": "/privacy.js",
+      "status": 200,
+      "exactBuildMatch": true
+    },
+    {
+      "path": "/subscribe.js",
+      "status": 200,
+      "exactBuildMatch": true
+    },
+    {
+      "path": "/locales.css",
+      "status": 200,
+      "exactBuildMatch": true
+    },
+    {
+      "path": "/language.js",
+      "status": 200,
+      "exactBuildMatch": true
+    },
+    {
+      "path": "/ar/lisbon-fado",
+      "status": 404,
+      "unapprovedOrNonpublic": true
+    },
+    {
+      "path": "/fr/lisbon-fado",
+      "status": 404,
+      "unapprovedOrNonpublic": true
+    },
+    {
+      "path": "/translation-manifest.json",
+      "status": 404,
+      "unapprovedOrNonpublic": true
+    },
+    {
+      "path": "/translation-glossary.json",
+      "status": 404,
+      "unapprovedOrNonpublic": true
+    },
+    {
+      "path": "/build/translation-contracts/lisbon-fado.json",
+      "status": 404,
+      "unapprovedOrNonpublic": true
+    },
+    {
+      "path": "/api/owner?view=subscribers",
+      "status": 401,
+      "anonymousDenied": true
+    },
+    {
+      "path": "/api/owner?view=contacts",
+      "status": 401,
+      "anonymousDenied": true
+    }
+  ]
+}

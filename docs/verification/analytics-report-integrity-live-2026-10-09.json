@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-10-09T05:58:37.360311+00:00",
+  "implementationCommit": "e13995ea24255d1e60a17822566af999e557a237",
+  "githubVercelStatus": "Deployment has completed",
+  "preDeploymentReaderChecks": 45,
+  "postDeploymentChecks": [
+    {
+      "path": "/lisbon-fado",
+      "status": "200",
+      "pass": true,
+      "exactBuiltBytes": true,
+      "sha256": "9de4ce3ce9d9c0206fa485323e4873cc1227c9ee13dc2d738a19bc8545779273"
+    },
+    {
+      "path": "/archive",
+      "status": "200",
+      "pass": true,
+      "exactBuiltBytes": true,
+      "sha256": "fae6a0401c74edff9bc51ae1c55442068c2a29dd10f428d537b545ccc33886de"
+    },
+    {
+      "path": "/owner.js",
+      "status": "200",
+      "pass": true,
+      "exactBuiltBytes": true,
+      "sha256": "ab0c5e46a358fed9b1d3aef3c0a44649111e53a7e85952ce38854d5c4ac0b69b"
+    },
+    {
+      "path": "/server/analytics.js",
+      "status": "404",
+      "pass": true
+    },
+    {
+      "path": "/api/owner",
+      "status": "401",
+      "pass": true
+    }
+  ],
+  "liveGoogleCollectorTested": false,
+  "localeManifestEntries": 0,
+  "collectorScheduleAdded": false
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Folkly</title>
+  <rect width="512" height="512" rx="88" fill="#482b40"/>
+  <path fill="#e6f078" d="M202 430V224h-62v-68h62v-22c0-42 12-76 37-100 24-23 59-35 104-35 31 0 58 6 81 18l-23 67c-16-8-34-12-54-12-48 0-72 23-72 69v15h108v68H275v206h-73z"/>
+</svg>

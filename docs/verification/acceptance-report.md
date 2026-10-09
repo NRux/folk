@@ -1,9 +1,146 @@
 # Stage 07 — Acceptance report
 
+## Latest translation/runtime follow-up, 2026-10-09 UTC
+
+Translation job/usage/recovery code and reviewed shared discovery/form/privacy
+rendering are implemented and deployed. Pilot/model approval, reviewer provision,
+GA4 settings/DebugView work and provider secrets are completed per the owner;
+these are no longer owner setup requests. Full Stage 7 activation remains BLOCKED:
+original lossless content export, Vercel project visibility, authenticated runtime
+provider/newsletter recovery and actual reviewed language output are still needed.
+The 31-command regression, rolled-back hosted SQL ledger tests and 60 public
+readback checks pass. All article switches are false; no paid call, locale release
+or outgoing newsletter occurred. See [current evidence](translation-pilot-runtime-2026-10-09.md).
+This follow-up supersedes older setup/implementation blockers below. Google Cloud
+reporting remains deferred. Local/provider mocks do not establish full hosted gates.
+
+## Current addendum, 2026-10-09 UTC
+
+Result remains **BLOCKED** for autonomous activation. This addendum supersedes
+historical account/connection assumptions in dated sections below. Owner Auth
+provisioning, Supabase migrations, private Blob storage foundations and protected
+owner workspace exist; the owner has reported successful login. Independent
+hosted private readback/provider/content/recovery acceptance is still distinct
+from that report and from passing local fixtures. The catalog contains eleven
+public stories, including seven already manually released; they are not reserve.
+
+| Gate | Current evidence / remaining requirement |
+| --- | --- |
+| Public reader, credits and discovery | Existing deployed foundation; new locale/event code passes local regression. See translation-reader-events-2026-10-09.md for deployment readback status. |
+| Translation source/review boundary | PASS local and isolated build fixtures; stale/unreviewed/tampered/private denial, complete coverage and immutable credits. Empty production manifest. |
+| Real translation launch | BLOCKED pending paid pilot authorization, translation job adapter, competent six-language review, localized discovery/shared UI and actual browser/hosted checks. |
+| Consent-aware reader events | PASS offline event-wiring/privacy/signup timing tests. Live GA property/stream/dimension/DebugView and enhanced-measurement settings are not verified. |
+| Editorial content import | BLOCKED on complete untruncated original version/evidence export; SQL/Blob hybrid compiler and append-only/checksum readback exist. No partial private transfer. |
+| Funded unattended generation | BLOCKED pending scoped provider/worker credentials, approved budget/pricing and live usage/redaction/persona evidence. Local paused/budget/ledger tests pass. |
+| Hosted recovery and publication | Earlier scoped hosted component fixtures exist; full Vercel commit/readback/backup/failure recovery gates remain pending. |
+| Resend newsletter acceptance | Adapter, suppression/unsubscribe and private subscriber readback code exist. Secure provider setup and authenticated hosted delivery/recovery evidence remain pending; delivery stays off. |
+| Vercel protected inspection | Connector GET for exact project/team still returns 404. Reconnect the existing Folkly project in optagens-projects; no replacement project required. |
+
+Production/autonomous publication/article scheduling stay disabled. Google Cloud
+remains deferred. No new public story, translated story or outgoing email was
+created by this implementation. Full regression and two focused debug/security
+passes are recorded in translation-reader-events-2026-10-09.md. A missing local
+Chromium executable prevents actual viewport acceptance; synthetic event tests
+are not substituted for native-language or visual review.
+
+## Current Vercel acceptance, 2026-10-07
+
+Latest Stage 7 progress: the Folkly Supabase project is now connected and three
+migrations are applied. Hosted RLS/client denial, rolled-back server write/readback,
+active-session RPC permissions, and paused scoped publisher claims pass. Owner OTP
+and model/lease foundations are locally tested. No content or owner imported.
+Lossless old Site export, owner provisioning, provider/worker credentials and an
+isolated hosted recovery database still block completion. See
+docs/verification/stage-7-progress-2026-10-07.md for current evidence; earlier
+connection-blocker text below describes the previous state.
+
+Reader follow-up: the shared public build adds the supplied AdSense loader once
+inside every HTML head, including Subscribe and 404. Photo captions are shortened
+while retaining attribution/license links and crop metadata. All three music
+stories include verified artist/label/archive listening examples. Local build
+and focused reader/subscription/Supabase suites pass. Stage 7 implementation order
+and hosted failure cases are documented in docs/platform/STAGE-7-PLAN.md; these
+presentation changes do not satisfy the pending hosted editorial gates.
+
+Result: **BLOCKED**. Vercel is the required host, superseding the old Sites hosting
+requirement. The historical results below are retained as evidence, not current
+Vercel backend acceptance. The public reader and subscriber endpoint are deployed;
+the autonomous editorial backend has not been migrated to Vercel.
+
+Supabase follow-up: Vercel now lists Supabase connection variables for production
+and preview. A pinned SDK, server-only client, verified owner-membership helper,
+and 19-table PostgreSQL migration are prepared. Local PGlite checks verify RLS,
+client-role denials, server write/readback, identity IDs, foreign keys, unique
+daily slots, and disabled switches. These are local Postgres checks, not hosted
+acceptance. The Supabase MCP currently exposes a different older application's
+project; it has not been modified. Authorize the Folkly project's Supabase
+connection before applying the migration and importing the private reserve.
+See docs/platform/SUPABASE.md.
+
+| Case | Current Vercel result | Evidence / next prerequisite |
+|---|---|---|
+| 1. Existing URLs and credits | PASS deployed Vercel | `npm run test:hosted` passed 38 checks covering both URL forms and exact built article HTML, including source and rights credits. |
+| 2. Five editable author profiles and distinct voices | Public profiles restored; editing BLOCKED | Five public profiles and linked topic archives are included in the reader build. Protected editable profiles and versioned briefs need the Vercel editorial backend. |
+| 3. Researched article through gates | Historical reserve retained; Vercel BLOCKED | Seven reviewed reserve stories remain private in the existing store. Vercel pipeline and editorial evidence storage are absent. |
+| 4. Unattended article write and independent readback | BLOCKED | Subscriber Blob writes do not satisfy this gate. Need scoped editorial writer credentials and durable article storage. |
+| 5. 07:00 Pacific across DST | Local calculation evidence retained | No Vercel article schedule configured or enabled. |
+| 6. Simultaneous publishers | Hosted DB component PASS; full gate BLOCKED | Private synthetic schema: five simultaneous claims yielded one lease, four busy, and one slot. Vercel trigger and article commit still pending. |
+| 7. Timeout/retry deduplication | Hosted DB component PASS; full gate BLOCKED | Committed-claim retry kept its lease; expiry recovered with a new token; synthetic published state reconciled its hash. Vercel timeout/served-content readback remains pending. |
+| 8. Claim/image hard gates | Focused local fixture passes | `node web/site-runtime/hosted/scripts/test-publication-gates.mjs`; port and exercise these checks in the Vercel publisher. |
+| 9. Failure recovery | BLOCKED hosted | Need deployed owner controls, provider, unattended authorization, and isolated failure fixtures. |
+| 10. Private reads/writes | Anonymous reader checks PASS; owner BLOCKED | Hosted regression confirms admin/MCP and all seven reserve slugs return 404. No Vercel owner write endpoints exist. |
+| 11. Mobile, restore, edits, corrections | BLOCKED | Mobile runner added for 375/390/768 px; Chromium download failed with truncated archive. Cloud browser has no viewport control. Restore/edit/correction backend is absent on Vercel. |
+
+Changes in this pass: removed the requested reading-lens comment boxes from all
+rendered stories, preserved source citations and credits, restored five public
+author profiles and 38 linked topic archives, and added repeatable hosted/mobile
+reader checks. Build and local reader/subscription checks pass for 59 public routes.
+The user's requested removal of the repeated article disclaimer is an explicit
+presentation override; no evidence, claim, media-rights, or publication gate was disabled.
+
+Hosted verification: Vercel deployment dpl_5LAYJ2YnVM8NDwxVVhaaZiKhZ3gz reached
+READY for source d571ab35943850644abaf13e9edea2d7877be169. The public custom domain
+passed 38 live reader checks. All four articles matched the tested build byte for
+byte, both URL forms resolved, five authors and signup navigation worked, lens
+boxes were absent, and private routes returned 404. Build/local checks passed
+twice; publication evidence fixture passed; npm production audit found zero
+vulnerabilities. Mobile runner failed to launch because Chromium was unavailable,
+and its attempted official download returned a truncated archive. No mobile PASS
+is claimed. This evidence closes reader prerequisites only, not Stage 7 overall.
+
+To unblock: connect a Vercel-compatible durable SQL database (for example Neon or
+Turso), an owner authentication provider with verified owner authorization, and a
+server-side model/research provider. Implement the Vercel editorial adapters and
+scoped unattended publisher, then verify writes/readback, concurrency/retry, owner
+mutations, provider/auth failure recovery, and mobile behavior. Blob stores the
+subscriber list; it is not the required transactional editorial database. Do not
+publish the private reserve, activate article production/publication, or add a cron
+until all gates pass. No new real article or publication slot was created here.
+
+## Historical Sites and local acceptance
+
 Date: 2026-10-07
 Result: **BLOCKED**. The public Worker/D1 reader and owner-gated publisher are deployed, but
 the authenticated unattended connection, production provider, hosted publication/readback,
 mobile verification, and complete failure suite are not accepted. No hosted article was published.
+
+Site version 5, deployed on 2026-10-07 from source
+`b61561338efa18c49759b4d5fb35b44fa89ac5ea`, closes a post-review evidence-mutation
+gap. Each reserve story is now attested to its source, claim, check, and applicable
+image-rights records, and the Worker repeats those gates atomically when claiming a slot.
+The focused fixture passed twice; all seven live reserve evidence digests matched before
+deployment. The deployed database still has four published stories, seven private ready
+stories, zero publication slots, and false production, publication, and schedule switches.
+This improves cases 3, 6, 7, 8, and 10 but does not clear the remaining authenticated,
+provider, failure-recovery, or mobile gates. See
+`docs/audits/2026-10-07-site-evidence-attestation.md`.
+
+The 2026-10-07 local scheduler review closed a publication-gate bypass in the
+Node/SQLite runner: missing deterministic checks, missing or adverse independent
+review, and dangling cited source IDs now hold a candidate. The scheduler
+regression passed with four new negative fixtures. This repository change is
+not yet deployed to the Worker/D1 Site and does not alter the blocked result.
+See `docs/audits/2026-10-07-scheduler-publication-gate.md`.
 
 ## Acceptance matrix
 
@@ -60,3 +197,4 @@ cases against the deployed Site, including a controlled authenticated write and 
 production readback, OAuth expiry, failure recovery, and mobile viewport checks. The Site
 connection and model-provider plugin were surfaced for connection; a suggestion is not a
 connection. Keep both autonomous switches and the recurring schedule inactive until accepted.
+

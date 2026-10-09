@@ -1,0 +1,97 @@
+{
+  "baseCommit": "9f565c37c28dce3b7a79170298604fb721682044",
+  "reference": "tokushima-aizome",
+  "minimumNarrativeWords": 1187,
+  "articles": [
+    {
+      "slug": "bonwire-kente",
+      "beforeSha256": "86783565e9ad662b57070f86024536c9f6fbd31ccbd701621d27f0faed948e2d",
+      "afterSha256": "d8150c73f48de8a15a239616e36e5f3e928bcd101146cccb647d3634cad6937d",
+      "narrativeWords": 1226,
+      "paragraphs": 17,
+      "inlineImages": 8,
+      "sourcesUnchanged": true
+    },
+    {
+      "slug": "castells-tarragona",
+      "beforeSha256": "da8e6d3c77b8be745d1a4e5f039dd01c3ccba692387db4afff6e7684dba22bdf",
+      "afterSha256": "939b9463bd1ede7938883028a5867686902fbcd930925775fcd8aa8db05269ee",
+      "narrativeWords": 1525,
+      "paragraphs": 11,
+      "inlineImages": 5,
+      "sourcesUnchanged": true
+    },
+    {
+      "slug": "detroit-future-frequency",
+      "beforeSha256": "50ae392b2e20f91169ce83fe4a17c0493751a28b29d4550526e0489faf0fb884",
+      "afterSha256": "fd0e7a01de66c9b1a859a68c18251dc6bc2e72c13514ede170f6043ca0ccb3ac",
+      "narrativeWords": 1297,
+      "paragraphs": 23,
+      "inlineImages": 11,
+      "sourcesUnchanged": true
+    },
+    {
+      "slug": "kimjang-seoul",
+      "beforeSha256": "d004d24a14abf9caaa7a209451f27ad98ab0c021bf148a6a3047062dd8de8138",
+      "afterSha256": "74394b185c9494c95fcd19050bfadbdec15fb2edc25323fed7daaa0a2646d684",
+      "narrativeWords": 1630,
+      "paragraphs": 17,
+      "inlineImages": 8,
+      "sourcesUnchanged": true
+    },
+    {
+      "slug": "lisbon-fado",
+      "beforeSha256": "5038e4aef6f6763e23afb4178b3c2956fd8d4c734d89c853e60c4c4b2c04d2b1",
+      "afterSha256": "115b9e4117c6fd21ff995275e0c4027f17383d652c53f15b01ff22ecbfb99f9e",
+      "narrativeWords": 1260,
+      "paragraphs": 22,
+      "inlineImages": 11,
+      "sourcesUnchanged": true
+    },
+    {
+      "slug": "matariki-puanga",
+      "beforeSha256": "09c79fc4765187a343cc340b5205c705c438f09cf89ee00566d75dd057a20752",
+      "afterSha256": "99136b05084b99878b14cfcd2b6c3f945e7fb2346d91f58afb8d6e7036da6939",
+      "narrativeWords": 1275,
+      "paragraphs": 18,
+      "inlineImages": 9,
+      "sourcesUnchanged": true
+    },
+    {
+      "slug": "new-orleans-second-line",
+      "beforeSha256": "9245dba9e7878adf25fd14b5ee3186ea398c9f10d6e99372a18ca542aa283f8b",
+      "afterSha256": "98f381a9bac9287d528c8103c844416b6a1360ec01549577c3bfcd45e926fc4e",
+      "narrativeWords": 1218,
+      "paragraphs": 21,
+      "inlineImages": 10,
+      "sourcesUnchanged": true
+    },
+    {
+      "slug": "nowruz-tajikistan",
+      "beforeSha256": "9be31b22a59dccfd3c21c520d402f52ff7b9418b321893d1ae5d1e9831a8d568",
+      "afterSha256": "7529bb34cda99d4f29a6462eb3f8da73221f479e1025c27dc91d9a0fbef8ca47",
+      "narrativeWords": 1204,
+      "paragraphs": 14,
+      "inlineImages": 7,
+      "sourcesUnchanged": true
+    },
+    {
+      "slug": "oaxaca-living-color",
+      "beforeSha256": "0b323d192e1537e53300f1522f97ac9a45a3b5ef608ec703d2f080353c47bac3",
+      "afterSha256": "e56154731e9e3648a434465e709b2d1a5358d7d7923da6ce906c698aa57f5cf2",
+      "narrativeWords": 1258,
+      "paragraphs": 21,
+      "inlineImages": 10,
+      "sourcesUnchanged": true
+    },
+    {
+      "slug": "xochimilco-chinampas",
+      "beforeSha256": "160a7f4dcdaa84bf7b185607f93246d9ab6017961e85dd03c04a9bce37ee8496",
+      "afterSha256": "1a06edf7542d8e0c8ee3a192124a54decb1373ea31863a4924b51b1c4d9895e4",
+      "narrativeWords": 1257,
+      "paragraphs": 12,
+      "inlineImages": 6,
+      "sourcesUnchanged": true
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+# Privacy and consent implementation — October 8, 2026
+
+Added /privacy, linked from every generated page and subscription disclosure. Policy describes private subscriber/contact storage, Vercel hosting, Supabase owner access, Resend delivery configuration, owner-only OpenAI chat, externally delivered images, retention limits and no automatic deletion schedule. Privacy contact: noah@then.tv. No new third-party service was activated.
+
+Replaced immediate GA4/AdSense injection with first-party consent controls. GA4 is blocked until explicit analytics consent, then uses basic Consent Mode v2 with advertising consent denied and Google signals/personalization disabled. Initial page location excludes query/fragment. Preference validation rejects malformed, future-dated, wrong-version and >180-day records; unavailable storage starts denied. Withdrawal clears accessible GA cookies and reloads, but cannot erase previously processed data. AdSense verification meta and ads.txt remain; advertising script is absent from all pages. Owner page has a privacy link and no tracking or consent script. Reading and forms remain available when optional cookies are rejected. GPC is disclosed and advertising remains off.
+
+Local checks: npm build and full npm test; targeted VM tests cover default denial, explicit grant, saved choices, withdrawal, invalid/expired records, storage failure, GPC, owner exclusion and cleaned page location. Build checks require no direct analytics/advertising script on any page, exactly one consent script on public pages and privacy links throughout. These checks do not claim a real-browser network trace or legal certification.
+
+## Remaining account and acceptance work
+
+Noah: in AdSense, open Privacy & messaging → European regulations, configure and publish a Google-certified consent message for www.folkly.com, provide https://www.folkly.com/privacy and enable a withdrawal entry point. Configure applicable US-state privacy messages/opt-out behavior. Account configuration is not available through connected tools here. Then integrate the generated certified CMP setup with the site's advertising gate and verify TCF/vendor consent and GPC behavior before restoring any advertising tag; the custom analytics controls are not a certified advertising CMP. Ads stay off meanwhile.
+
+GA4: disable enhanced-measurement form interactions and check data-sharing/retention settings in the account. Verify consent denial, grant and withdrawal through real-browser network/cookie checks and Tag Assistant, including navigation, private pages and mobile keyboard flow. Review legal applicability and retention with the operator; a policy alone does not implement data-request handling/deletion automation.
+
+Sources checked 2026-10-08: https://developers.google.com/tag-platform/security/concepts/consent-mode ; https://developers.google.com/tag-platform/security/guides/consent ; https://support.google.com/adsense/answer/13554020 ; https://support.google.com/adsense/answer/7549925 . Keep autonomous production/publication/article scheduling disabled.

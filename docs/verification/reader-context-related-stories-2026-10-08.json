@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-08",
+  "baseCommit": "9fd95df35e95b3478020b7d0ee8fa57c9b537d9d",
+  "authorization": "Owner requested existing-story revisions, four related stories with images, and shared footer wording.",
+  "historicalReleaseManifestUnchanged": true,
+  "stories": [
+    {
+      "slug": "new-orleans-second-line",
+      "templateSha256": "de2fd130e4fb21f464878a45197c4794ec54a4d28134317119cc66a106853da5",
+      "narrativeWords": 1232,
+      "paragraphs": 21
+    },
+    {
+      "slug": "lisbon-fado",
+      "templateSha256": "086e4e2099bdc673d08f88b1957ecd38d8c458bc43b11fc1103b7c15435d4b62",
+      "narrativeWords": 1292,
+      "paragraphs": 22
+    },
+    {
+      "slug": "oaxaca-living-color",
+      "templateSha256": "4dbe8805108ad2f7ddddbc99d5eff9f66bf3ad8dee232945a356d9f6f2d24877",
+      "narrativeWords": 1303,
+      "paragraphs": 21
+    },
+    {
+      "slug": "detroit-future-frequency",
+      "templateSha256": "88fa07c7476cdf879346071295c87a2824f59e4a510832db18000843d9becec2",
+      "narrativeWords": 1325,
+      "paragraphs": 23
+    },
+    {
+      "slug": "bonwire-kente",
+      "templateSha256": "d40a75521e8be2330ad408a7de531107c6385a017a08419dad8b2c771c886f6d",
+      "narrativeWords": 1252,
+      "paragraphs": 17
+    },
+    {
+      "slug": "castells-tarragona",
+      "templateSha256": "028c0dd02236e5a89cf6a9b08e70a8f5fcf3fd6adbf88ad9201814347feb6942",
+      "narrativeWords": 1547,
+      "paragraphs": 11
+    },
+    {
+      "slug": "kimjang-seoul",
+      "templateSha256": "121642997d2980a26758cc93cca011a738abe6d3af11f1c7a74b6a838649badb",
+      "narrativeWords": 1646,
+      "paragraphs": 17
+    },
+    {
+      "slug": "matariki-puanga",
+      "templateSha256": "5c11028214257ddbe3331bc8fa8cf2fd5262fddecde6ee0332e589a2aa5b768a",
+      "narrativeWords": 1394,
+      "paragraphs": 18
+    },
+    {
+      "slug": "nowruz-tajikistan",
+      "templateSha256": "6ee541266734963a6ce16bf19fa1cffe4a89a9cecc807490413740fa32d8edbb",
+      "narrativeWords": 1228,
+      "paragraphs": 14
+    },
+    {
+      "slug": "tokushima-aizome",
+      "templateSha256": "0540a40ef0f35ad64f5e50dc6771ed99e75d7c382da863734077552972adf2d0",
+      "narrativeWords": 1228,
+      "paragraphs": 16
+    },
+    {
+      "slug": "xochimilco-chinampas",
+      "templateSha256": "162643d54b3f60b1ae638790c3cbe7cf1ac8d86ee6b22ca238f0acd4f280db7a",
+      "narrativeWords": 1319,
+      "paragraphs": 12
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "redirects": [
+    {"source":"/perspective","destination":"/about#perspective","permanent":true},
+    {"source":"/perspective.html","destination":"/about#perspective","permanent":true}
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        }
+      ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/newsletter",
+      "schedule": "0 16 * * 5"
+    }
+  ],
+  "functions": {
+    "api/owner-translations.js": {
+      "maxDuration": 60,
+      "includeFiles": "{build/translation-contracts/**,web/vercel/translation-glossary.json}"
+    },
+    "api/newsletter.js": {
+      "maxDuration": 300,
+      "includeFiles": "web/vercel/{articles,routes}.json"
+    },
+    "api/owner-workspace.js": {
+      "maxDuration": 60
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-09",
+  "story": "detroit-future-frequency",
+  "rejectedCommonsPageIds": [59168332, 70567925, 70567928, 192797898],
+  "accepted": [
+    {
+      "role": "cover",
+      "commonsPageId": 59390516,
+      "title": "The Belleville Three at The Detroit Masonic Temple 2017 2.png",
+      "preview": {"width": 1280, "height": 851, "bytes": 1315814, "sha256": "8393e98571bcf476185225dd738cfb3d3dc99b45e9134c37e53c0b7554376346"},
+      "license": "CC BY-SA 4.0",
+      "creator": "PeRshGo"
+    },
+    {
+      "role": "inline-after-6",
+      "commonsPageId": 98729564,
+      "title": "WGPR-TV Studio Detroit.jpg",
+      "preview": {"width": 960, "height": 524, "bytes": 141273, "sha256": "141944a0527dfdc35f2652e2ea408df080daf9c09fc830741ba51989aed2857f"},
+      "license": "CC BY-SA 4.0",
+      "creator": "Andrew Jameson"
+    },
+    {
+      "role": "inline-after-10",
+      "commonsPageId": 59390514,
+      "title": "The Belleville Three at The Detroit Masonic Temple 2017 1.png",
+      "preview": {"width": 960, "height": 638, "bytes": 689907, "sha256": "d3daa8c4473bb5aa64adcdef91fb47796eaf5f6407e92460bfb35a9bb30c9298"},
+      "license": "CC BY-SA 4.0",
+      "creator": "PeRshGo"
+    },
+    {
+      "role": "inline-after-18",
+      "commonsPageId": 3562458,
+      "title": "Model500 3.jpg",
+      "preview": {"width": 960, "height": 720, "bytes": 125748, "sha256": "9c87a68cd49944b902b0a03aa0c5bc872a5b5d81a38090c06f757a3022bc1b69"},
+      "license": "CC BY-SA 2.0",
+      "creator": "Angie Schwendemann"
+    },
+    {
+      "role": "inline-after-20",
+      "commonsPageId": 65076128,
+      "title": "Detroit Electronic Music Festival 2002 main stage after dark.jpg",
+      "preview": {"width": 960, "height": 720, "bytes": 133584, "sha256": "fead662e4117830f4ec166177691c987398977837455d501b47a33d0bfc7d2b9"},
+      "license": "CC BY-SA 4.0",
+      "creator": "Myself248"
+    }
+  ]
+}
