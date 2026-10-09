@@ -145,4 +145,63 @@ function renderMapPage(page) {
 </script>`;
 }
 
-module.exports = { renderMapPage, mapArticles };
+// ---- Admin control room: coverage map (owner-only; includes unpublished reserve) ----
+// Solid pins = published. Hollow pins = ready reserve (visible ONLY here, inside the
+// owner-authenticated control room; never on the public map).
+function renderAdminMapPanel(rows) {
+  const arts = rows
+    .map((a) => {
+      const coords = coordsFor(a.place_label);
+      if (!coords) return null;
+      return {
+        id: a.id,
+        title: a.title,
+        place: a.place_label || "",
+        region: regionForCountry(a.country) || "—",
+        state: a.status === "published" ? "published" : "reserve",
+        coords,
+      };
+    })
+    .filter(Boolean);
+  const regions = [...new Set(arts.map((a) => REGION_LABELS[a.region] || a.region))];
+
+  const pins = arts
+    .map((a) => {
+      const { x, y } = pinPosition(a.coords.lat, a.coords.lon);
+      return `<a class="apin ${a.state === "reserve" ? "reserve" : ""}" href="/admin?article=${esc(a.id)}" data-state="${a.state}" style="left:${x}%;top:${y}%" aria-label="${esc(a.title)} — ${esc(a.place)} (${a.state})"><span class="dot"></span><span class="alabel">${esc(a.title)}</span></a>`;
+    })
+    .join("");
+  const listRows = arts
+    .map(
+      (a) => `<div class="amap-row" data-state="${a.state}" data-id="${esc(a.id)}"><span class="badge ${a.state}">${a.state === "published" ? "Published" : "Ready reserve"}</span><a href="/admin?article=${esc(a.id)}">${esc(a.title)}</a><span class="sub">${esc(a.place)}</span></div>`
+    )
+    .join("");
+  const chips = ["published", "reserve"]
+    .map((s) => `<button type="button" class="amap-chip" data-state="${s}" aria-pressed="true">${s === "published" ? "Published" : "Ready reserve"}</button>`)
+    .join("");
+
+  const html = `<section class="panel"><h2>Coverage map</h2><p class="sub">All published stories (solid pins) and the ready reserve (hollow pins). Owner view only; reserve articles are not public.</p><div class="chips">${chips}<span class="sub" id="amap-count" role="status" aria-live="polite"></span></div><div class="mapframe"><img src="/assets/world-equirectangular.svg" alt="World map of published and reserve articles" width="1440" height="720" loading="lazy">${pins}</div><p class="sub">Regions in view: ${esc(regions.join(", "))}</p><div class="amap-list">${listRows}</div></section>`;
+  const script = `(function(){
+  var chips=[].slice.call(document.querySelectorAll(".amap-chip"));
+  var pins=[].slice.call(document.querySelectorAll(".apin"));
+  var rows=[].slice.call(document.querySelectorAll(".amap-row"));
+  var countEl=document.getElementById("amap-count");
+  function active(){return chips.filter(function(c){return c.getAttribute("aria-pressed")==="true"}).map(function(c){return c.dataset.state});}
+  function apply(){var on=active();var v=0;
+    pins.forEach(function(p){var show=on.indexOf(p.dataset.state)>=0;p.classList.toggle("is-hidden",!show);if(show)v++;});
+    rows.forEach(function(r){r.classList.toggle("is-hidden",on.indexOf(r.dataset.state)<0);});
+    countEl.textContent=v+(v===1?" story":" stories")+" in view";}
+  chips.forEach(function(c){c.addEventListener("click",function(){c.setAttribute("aria-pressed",c.getAttribute("aria-pressed")==="true"?"false":"true");apply();});});
+  function idOfPin(p){return (p.getAttribute("href")||"").split("article=")[1]||"";}
+  pins.forEach(function(p){
+    p.addEventListener("mouseenter",function(){var r=document.querySelector('.amap-row[data-id="'+idOfPin(p)+'"]');if(r)r.classList.add("is-active");});
+    p.addEventListener("mouseleave",function(){var r=document.querySelector('.amap-row[data-id="'+idOfPin(p)+'"]');if(r)r.classList.remove("is-active");});});
+  rows.forEach(function(r){
+    r.addEventListener("mouseenter",function(){var p=document.querySelector('.apin[href="/admin?article='+r.dataset.id+'"]');if(p)p.classList.add("is-active");});
+    r.addEventListener("mouseleave",function(){var p=document.querySelector('.apin[href="/admin?article='+r.dataset.id+'"]');if(p)p.classList.remove("is-active");});});
+  apply();
+})();`;
+  return { html, script };
+}
+
+module.exports = { renderMapPage, mapArticles, renderAdminMapPanel };
