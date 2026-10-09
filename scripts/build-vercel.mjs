@@ -1,4 +1,5 @@
 import {privacyControls,privacyPage} from './privacy-pages.mjs';
+import { mapPage } from './build-map.mjs';
 import {buildTranslations} from './build-translations.mjs';
 import {hash} from './translations.mjs';
 import { addArticleFilters } from './article-filters.mjs';
@@ -45,7 +46,7 @@ for (const [route, file] of Object.entries(routes)) {
   if (!/^\/(?:[a-z0-9-]+\/)*[a-z0-9-]*$/.test(route) || /^(?:\/admin|\/api|\/mcp)/.test(route) || !/^[a-z0-9_-]+\.html$/.test(file)) {
     throw new Error(`Unsafe public route: ${route}`);
   }
-  let html = groups.has(route) ? discoveryPage(archiveTemplate, route, groups.get(route), canonical.origin) : extraPages[file] ?? await readFile(`web/vercel/pages/${file}`, 'utf8');
+  let html = route === '/map' ? mapPage(archiveTemplate, articles, canonical.origin) : groups.has(route) ? discoveryPage(archiveTemplate, route, groups.get(route), canonical.origin) : extraPages[file] ?? await readFile(`web/vercel/pages/${file}`, 'utf8');
   html = html.replace(/https:\/\/folkly-journal\.[a-z0-9.-]+\.site/g, canonical.origin);
   html = html.replace(/<p class="ai-disclosure">Written with AI using the Folkly editorial persona; researched from the linked sources\.<\/p>/g, '');
   html = html.replace(/<p class="editorial-note">[\s\S]*?<\/p>/g, '');
@@ -72,7 +73,7 @@ for (const [route, file] of Object.entries(routes)) {
   if (article) html = decorateArticleLayout(html, article, articleMedia);
   html = addArticleFilters(html, articles);
   html = addAdsense(html);
-  html = html.replace('</nav>', '<a class="subscribe-button" href="/subscribe">Subscribe</a></nav>');
+  html = html.replace('</nav>', '<a href="/map">Map</a><a class="subscribe-button" href="/subscribe">Subscribe</a></nav>');
   if(article){
     const narrative=html.match(/<article>([\s\S]*?)<\/article>/)?.[1];if(!narrative)throw Error('Missing analytics story boundary');
     const version=hash(narrative);releaseRegistry.push({article_id:article.slug,content_version:version,published_at:article.publishedAt,declared_modified_at:JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]).dateModified});
@@ -90,7 +91,7 @@ await cp('web/vercel/ads.txt', 'dist/ads.txt');
 await cp('web/vercel/article-grid.css', 'dist/article-grid.css');
 await writeFile('dist/image-credits.html', addAdsense(imageCreditsPage(articles, canonical.origin).replace('</main>', `${inlineImageCredits(articles, articleMedia)}</main>`)));
 // Sitemap includes curated discovery pages and explicitly published articles only.
-const indexed = ['/', '/privacy', '/about', '/archive', ...articles.map(item => `/${item.slug}`), ...groups.keys()];
+const indexed = ['/', '/privacy', '/about', '/archive', '/map', ...articles.map(item => `/${item.slug}`), ...groups.keys()];
 await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${indexed.map(route => `<url><loc>${escapeHtml(canonical.origin + route)}</loc></url>`).join('')}</urlset>`);
 await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /owner\nDisallow: /api/\nDisallow: /admin\nDisallow: /mcp\nSitemap: ${canonical.origin}/sitemap.xml\n`);
 for (const file of ['subscribe.css', 'subscribe.js', 'owner.js', 'contact.js', 'contact.css']) await cp(`web/vercel/${file}`, `dist/${file}`);

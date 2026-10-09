@@ -1,0 +1,3 @@
+# Generated build output (Vercel builds dist at deploy time; build/ is translation output)
+dist/
+build/
