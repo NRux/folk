@@ -19,7 +19,7 @@ export function openAITranslationBatch(env,fetcher=fetch){
  if(!env.OPENAI_API_KEY)throw Error('OpenAI Batch provider unavailable');
  async function call(path,{method='GET',body,json=false,text=false}={}){
   const response=await fetcher('https://api.openai.com/v1'+path,{method,redirect:'error',headers:{Authorization:'Bearer '+env.OPENAI_API_KEY,...(json?{'Content-Type':'application/json'}:{})},body:json?JSON.stringify(body):body,signal:AbortSignal.timeout(15000)});
-  if(!response.ok){await response.body?.cancel();throw Error('OpenAI Batch request unavailable');}
+  if(!response.ok){await response.body?.cancel();throw Object.assign(Error('OpenAI Batch request unavailable'),{code:'BATCH_PROVIDER_REJECTED',statusCode:response.status});}
   const reader=response.body.getReader(),parts=[];let size=0;
   try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>4000000)throw Error('Batch response too large');parts.push(Buffer.from(value));}}catch(e){await reader.cancel().catch(()=>{});throw e;}
   const value=Buffer.concat(parts).toString('utf8');return text?value:JSON.parse(value);

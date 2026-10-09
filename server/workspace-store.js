@@ -23,9 +23,9 @@ export function createWorkspaceStore(blob={get,put,list}){
   for(let slot=0;slot<20;slot++){
    const path=`${prefix}chat-budget/${day}/${slot}.json`;
    const existing=await blob.get(path,{access:'private',useCache:false});if(existing)continue;
-   try{await blob.put(path,JSON.stringify({attempt:id,reservedUSD:0.15}),{...options,allowOverwrite:false});return;}catch{if(await blob.get(path,{access:'private',useCache:false}))continue;throw Error('Budget unavailable');}
+   try{await blob.put(path,JSON.stringify({attempt:id,reservedUSD:0.15}),{...options,allowOverwrite:false});return;}catch{if(await blob.get(path,{access:'private',useCache:false}))continue;throw Object.assign(Error('Budget unavailable'),{code:'BUDGET_UNAVAILABLE'});}
   }
-  throw Error('Daily editor chat budget exhausted');
+  throw Object.assign(Error('Daily editor chat budget exhausted'),{code:'BUDGET_EXHAUSTED'});
  }
  };
 }

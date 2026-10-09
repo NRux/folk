@@ -1,5 +1,14 @@
 # Folkly Build State
 
+Latest owner POST 503 investigation, 2026-10-09: the bare Luna identifier defect
+is repaired and Batch is deployed. Live Supabase pilot configuration remains
+disabled/blank/zero/expired, a confirmed translation blocker. Workspace 503 root
+cause cannot be inferred from status-only logs while Vercel access is denied.
+Safe phase/code/correlation logs and response references now distinguish budget,
+provider, history and reply-storage failures; focused redaction and regression
+tests pass. See verification/owner-503-diagnostics-2026-10-09.md. No secrets or
+approved spending values were guessed, and publishing remains disabled.
+
 Current update, 2026-10-09: owner translations now queue OpenAI Batch by default,
 with up to 12 public source–language pairs, atomic bulk spending reservations,
 durable submission fences, status/import controls and persistence-only recovery.

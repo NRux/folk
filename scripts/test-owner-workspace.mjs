@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {createWorkspaceHandlers,readDraft,workspaceConfiguration} from '../server/owner-workspace.js';
+import {createWorkspaceHandlers,readDraft,workspaceConfiguration,workspaceFaultCode} from '../server/owner-workspace.js';
 import {createWorkspaceStore} from '../server/workspace-store.js';
 const id='11111111-1111-4111-8111-111111111111';let allowed=true,enabled=true,calls=0,reserved=0;const records=new Map();
 const store={list:async kind=>[...records.values()].filter(x=>x.kind===kind),read:async(kind,id)=>records.get(kind+id),save:async(kind,id,row,etag)=>{const prior=records.get(kind+id);if(prior&&prior.etag!==etag)throw Object.assign(Error(),{code:'CONFLICT'});const next={...row,etag:'rev2',kind};records.set(kind+id,next);return next;},reserve:async()=>{reserved++;}};
@@ -42,3 +42,13 @@ for(const [fault,expected] of [[Object.assign(Error('provider secret'),{statusCo
  const failed=createWorkspaceHandlers({authorize:async()=>({db:{}}),configured:()=>true,store:safeStore,chat:async()=>{if(fault)throw fault;return {text:' '};}});
  const response=await failed.POST(request({action:'chat',id,message:'hello'}));assert.equal(response.status,503);const payload=await response.json();assert.match(payload.message,expected);assert(!JSON.stringify(payload).includes('provider secret'));assert.equal(attempts.get(id).state,'pending');
 }
+for(const [stage,fault,code] of [
+ ['provider',{statusCode:400},'MODEL_REQUEST_REJECTED'],['provider',{name:'TimeoutError'},'MODEL_TIMEOUT'],['provider',{name:'private-secret',code:'private-secret'},'MODEL_UNAVAILABLE'],['reply-save',{name:'BlobAccessError'},'BLOB_ACCESS_DENIED'],['budget',{code:'BUDGET_EXHAUSTED'},'BUDGET_EXHAUSTED']
+])assert.equal(workspaceFaultCode(fault,stage),code);
+for(const fail of ['budget','chat-history','provider','reply-read','reply-save']){
+ const logs=[];let modelCalls=0,saves=0;const fault=Object.assign(Error('private prompt and provider-secret'),fail==='budget'?{code:'BUDGET_EXHAUSTED'}:fail==='provider'?{statusCode:401}:{name:'BlobAccessError'});
+ const diagnosticStore={list:async()=>{if(fail==='chat-history')throw fault;return [];},reserve:async()=>{if(fail==='budget')throw fault;},read:async()=>{if(fail==='reply-read')throw fault;return {etag:'1'};},save:async()=>{saves++;if(fail==='reply-save'&&saves===2)throw fault;return {};}};
+ const diagnostic=createWorkspaceHandlers({authorize:async()=>({db:{}}),configured:()=>true,store:diagnosticStore,reportFault:row=>logs.push(row),chat:async()=>{modelCalls++;if(fail==='provider')throw fault;return {text:'Synthetic reply'};}});
+ const response=await diagnostic.POST(request({action:'chat',id,message:'PRIVATE OWNER PROMPT'})),body=await response.json();assert.equal(response.status,503);assert.equal(body.stage,fail);assert.match(body.requestId,/^[a-f0-9-]{36}$/);assert.equal(logs.length,1);assert.deepEqual(Object.keys(logs[0]).sort(),['action','code','requestId','stage','status']);assert.equal(logs[0].requestId,body.requestId);assert(!JSON.stringify({body,logs}).includes('provider-secret'));assert(!JSON.stringify({body,logs}).includes('PRIVATE OWNER PROMPT'));if(['budget','chat-history'].includes(fail))assert.equal(modelCalls,0);if(fail==='budget')assert.match(body.message,/budget is exhausted/);
+}
+console.log('Workspace diagnostics passed: budget/provider/history/reply phases, safe fixed codes and correlation IDs, secret/prompt redaction and no model call after budget failure.');
