@@ -1,5 +1,23 @@
 # Folkly Build State
 
+## Translation configuration preparation, 2026-10-09 UTC
+
+Live Supabase now records model `gpt-6-luna`, STANDARD input price 0.10 and
+output price 0.50 USD per million. The update was conditional on the original
+disabled, blank, zero-cap row and absence of jobs/batches, preserving concurrent
+operator configuration. Independent readback confirms those values, zero jobs
+and batches, disabled spending, zero total/per-attempt caps, and the unchanged
+expired approval window. This supersedes older blank-model/zero-price findings;
+it does not enable the pilot or claim paid provider acceptance.
+
+Actual approved total/per-attempt caps and future expiry remain missing from
+the configuration. The Vercel model string must exactly match the SQL model.
+All three autonomous article switches remain false. Focused Batch SQL/provider/
+security regression passes using synthetic fixtures. Editor root cause remains
+unconfirmed: Vercel logs/configuration access is denied, and the secure browser
+sign-in request timed out with no authenticated owner state verified.
+See verification/translation-configuration-preparation-2026-10-09.md.
+
 Latest owner POST 503 investigation, 2026-10-09: the bare Luna identifier defect
 is repaired and Batch is deployed. Live Supabase pilot configuration remains
 disabled/blank/zero/expired, a confirmed translation blocker. Workspace 503 root
