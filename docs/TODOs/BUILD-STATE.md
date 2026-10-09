@@ -1,5 +1,18 @@
 # Folkly Build State
 
+## Owner translation budget entry, 2026-10-09 UTC
+
+The Translations section now has a total spending-limit entry, expiry, explicit
+independent pilot-enable choice, and reserved/remaining/per-translation readback.
+Saves are owner/origin protected, atomically audited and stale-edit fenced,
+bounded to $50/30 days, and independently verified. Retained failed reservations
+cannot be refunded or undercut. Model/prices stay server controlled. Saving starts
+no batch and changes no article/newsletter switch. The private RPC migration is
+applied; hosted rollback-only save/readback and role-denial evidence pass.
+Build and all 35 regression commands pass, including real HTML/client budget
+interactions. Pilot limits and enablement remain unchanged until Noah saves them.
+See verification/translation-budget-controls-2026-10-09.md.
+
 ## Live owner editor repair and acceptance, 2026-10-09 UTC
 
 The owner editor now returns and persists a real reply. A live current-build check
