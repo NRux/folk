@@ -2,6 +2,21 @@
   "format": "folkly-translation-manifest-v1",
   "entries": [
     {
+      "slug": "bonwire-kente",
+      "locale": "ar",
+      "status": "draft",
+      "sourceHash": "d70c57c7c202cc04928c3bc4fe10c18e3c2963b9016847551a68f5827adce75f",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "36c9a4215b4ef821c836559db3f06c1e7da616bfe6b95aee21b28922d95936ed",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft via local provider; pending owner competent-language review"
+      }
+    },
+    {
       "slug": "ui-messages",
       "locale": "ar",
       "status": "draft",
@@ -9,6 +24,51 @@
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "068d52d028eb29f14e1c621d521d888ca933caff9fec89d43576a9d02ab0a191",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft via local provider; pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "ui-privacy",
+      "locale": "ar",
+      "status": "draft",
+      "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "ab3f7d370e4eba5573ee493a602ad46b5e1689fb34d6f9bca199ee6d6c3fe489",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "ui-subscribe",
+      "locale": "ar",
+      "status": "draft",
+      "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "fa40ed154922cd81d80cdb88e4653b9719a6ecb670b09d0936d222f2a07714b7",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "bonwire-kente",
+      "locale": "es",
+      "status": "draft",
+      "sourceHash": "d70c57c7c202cc04928c3bc4fe10c18e3c2963b9016847551a68f5827adce75f",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "8af0c580f7fbd646614a9daa500757b95d62a9e92b9cac4387312e79cc5f77c3",
       "review": {
         "reviewer": null,
         "reviewedAt": null,
@@ -32,6 +92,51 @@
       }
     },
     {
+      "slug": "ui-privacy",
+      "locale": "es",
+      "status": "draft",
+      "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "48a22af49e2f449ebbf237abd0fb2e59a253fc8925cf157a19a8dceb0864ae02",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "ui-subscribe",
+      "locale": "es",
+      "status": "draft",
+      "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "b6e749b1da47cf825c9f4eeca4c024727b717d9138ed5dda922c322d122f1f56",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "bonwire-kente",
+      "locale": "fr",
+      "status": "draft",
+      "sourceHash": "d70c57c7c202cc04928c3bc4fe10c18e3c2963b9016847551a68f5827adce75f",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "a271aaaab920328ccd8c82834529313cb555a7e194d384342f3ffc47c5ad5f71",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft via local provider; pending owner competent-language review"
+      }
+    },
+    {
       "slug": "ui-messages",
       "locale": "fr",
       "status": "draft",
@@ -39,6 +144,51 @@
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "9f6b48623e0eb789cd5bf9cd7aeab7128cdf492902aa1505efadc18e4e87ea8f",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft via local provider; pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "ui-privacy",
+      "locale": "fr",
+      "status": "draft",
+      "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "4b61fd95b931aca38661108d58539782ba3a1a7263d198198fdcbb249089ba87",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "ui-subscribe",
+      "locale": "fr",
+      "status": "draft",
+      "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "43045d36cb3aa3a19b816aa97929c746f94f66c7fb853fe007dea309f9c771dd",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "bonwire-kente",
+      "locale": "hi",
+      "status": "draft",
+      "sourceHash": "d70c57c7c202cc04928c3bc4fe10c18e3c2963b9016847551a68f5827adce75f",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "2ba0628bd1cc248de2fa9c596c5471e970f0cbb6429cff3319daaaa593fcb6ec",
       "review": {
         "reviewer": null,
         "reviewedAt": null,
@@ -62,6 +212,36 @@
       }
     },
     {
+      "slug": "ui-privacy",
+      "locale": "hi",
+      "status": "draft",
+      "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "4de20f2e2b1b897fce6ce14a640814e14c808f67847e397de0a66b4018309faf",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "ui-subscribe",
+      "locale": "hi",
+      "status": "draft",
+      "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "8679bd212d8c01a59a6520f7d359d0b81f5a8f73a6035ca733eacee5bb6d671d",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
       "slug": "ui-messages",
       "locale": "ja",
       "status": "draft",
@@ -69,6 +249,51 @@
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "2a26b30ea2e1766f8aa63a6eabd4474e26edf6bd0935bdae942501c2d49ccde8",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft via local provider; pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "ui-privacy",
+      "locale": "ja",
+      "status": "draft",
+      "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "e37583e3cce167169841fe94d28272bd6de9937cb275d0a20ca57bf809d547b5",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "ui-subscribe",
+      "locale": "ja",
+      "status": "draft",
+      "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "ffc31474490def76fbd59dacbff7ca1ac05ffb734f308b0be686b55a6f38f4c3",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "bonwire-kente",
+      "locale": "zh-Hans",
+      "status": "draft",
+      "sourceHash": "d70c57c7c202cc04928c3bc4fe10c18e3c2963b9016847551a68f5827adce75f",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "c17d989e43c2772e06832a0136f8929d134e2173ecbbaa553bb144bd3440ea08",
       "review": {
         "reviewer": null,
         "reviewedAt": null,
@@ -89,6 +314,36 @@
         "reviewedAt": null,
         "competentLanguageReview": false,
         "note": "machine draft via local provider; pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "ui-privacy",
+      "locale": "zh-Hans",
+      "status": "draft",
+      "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "660125f90a23503dcae78cdda4bbf8893ebc8919fdeb3fa34ab2c251b2dbcf0f",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "ui-subscribe",
+      "locale": "zh-Hans",
+      "status": "draft",
+      "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "a27b54af321ea4f5f349fbfaebc33e05d71f254c48e1f94a6a070d0177d9d99e",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
       }
     }
   ]
