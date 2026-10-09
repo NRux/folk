@@ -60,3 +60,16 @@ No real budget was approved or enabled, paid translation generated, article
 published, newsletter sent, private reserve transferred or secret changed.
 The form lets Noah provide the remaining cap/expiry explicitly. Model and
 private storage configuration remain in existing provider settings.
+
+## Deployed readback
+
+Implementation 286ad89b964f3110988566caac35fb8c91ac94bb completed successfully
+on Vercel. Public /owner HTML and /owner-translations.js matched the tested build
+byte for byte, including all budget controls. Anonymous API GET and budget POST
+returned 401 with no-store. Both main/master were read back at the implementation
+SHA. A follow-up copy change clarifies that the publishing/MFA lock applies to
+publishing controls; the independent translation spending form remains separate.
+
+No positive budget or activation was selected for Noah. A real owner budget save
+is left for his chosen amount/expiry; the private save/readback path was verified
+through rolled-back hosted SQL and server/client security tests.
