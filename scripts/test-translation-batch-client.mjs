@@ -1,0 +1,25 @@
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFile} from 'node:fs/promises';
+const html=await readFile('web/vercel/owner.html','utf8'),script=await readFile('web/vercel/owner-translations.js','utf8');
+const controls=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+for(const id of [...script.matchAll(/el\('([^']+)'\)/g)].map(m=>m[1]))assert(controls.includes(id),'Missing real owner control '+id);
+assert.match(html,/<select id="translation-source" multiple/);assert.match(html,/<select id="translation-locale" multiple/);
+const listeners={},elements=new Map();
+function element(){return {value:'',textContent:'',children:[],disabled:false,button:{disabled:false},get options(){return this.children;},get selectedOptions(){return this.children.filter(x=>x.selected);},addEventListener(n,f){this[n]=f;},replaceChildren(...c){this.children=c;this.textContent='';},append(...c){this.children.push(...c);},querySelector(){return this.button;}};}
+for(const id of controls)elements.set(id,element());
+for(const value of ['zh-Hans','es','hi','ar','fr','ja'])elements.get('translation-locale').children.push({value,selected:false});
+const document={getElementById(id){assert(elements.has(id),id);return elements.get(id);},createElement:element,addEventListener(n,f){listeners[n]=f;}};
+const calls=[];let resolveSubmission,delay=false,ready=true;
+const list=()=>({jobs:[],batches:[{batch_id:'fixture-batch',state:'submitted',provider_status:'in_progress'}],sources:['story-one','story-two','story-three'],batchConfiguration:{available:ready,model:'gpt-6-luna',maxJobDollars:0.02,message:'Pilot paused'}});
+vm.runInNewContext(script,{document,crypto:{randomUUID:()=> 'fixture-id'},encodeURIComponent,window:{},fetch:async(url,opts)=>{const body=opts?.body&&JSON.parse(opts.body);calls.push({url,body});if(body?.action==='batch'){if(delay)return new Promise(r=>resolveSubmission=r);return {ok:true,status:202,json:async()=>({message:'Batch queued'})};}if(body?.action==='sync')return {ok:true,status:200,json:async()=>({message:'Existing batch checked'})};return {ok:true,status:200,json:async()=>list()};}});
+const tick=()=>new Promise(r=>setImmediate(r)),session=signedIn=>listeners['owner-session']({detail:{signedIn}}),form=elements.get('translation-form'),status=elements.get('translation-status');
+session(true);await tick();assert.equal(form.button.disabled,false);assert.match(elements.get('translation-configuration').textContent,/OpenAI Batch/);
+elements.get('translation-source').children.slice(0,2).forEach(o=>o.selected=true);elements.get('translation-locale').children.forEach(o=>o.selected=true);
+await form.submit({preventDefault(){},currentTarget:form});assert.equal(calls.filter(c=>c.body?.action==='batch').length,1);const bulk=calls.find(c=>c.body?.action==='batch').body;assert.deepEqual(bulk.slugs,['story-one','story-two']);assert.equal(bulk.locales.length,6);assert.equal(status.textContent,'Batch queued');
+elements.get('translation-source').children.forEach(o=>o.selected=true);await form.submit({preventDefault(){},currentTarget:form});assert.match(status.textContent,/at most 12/);assert.equal(calls.filter(c=>c.body?.action==='batch').length,1);
+elements.get('translation-source').children.slice(1).forEach(o=>o.selected=false);delay=true;const pending=form.submit({preventDefault(){},currentTarget:form});await tick();assert.equal(form.button.disabled,true);assert.match(status.textContent,/submitting 6 translations/);await form.submit({preventDefault(){},currentTarget:form});assert.equal(calls.filter(c=>c.body?.action==='batch').length,2,'Double click blocked');
+session(false);assert.equal(elements.get('translation-batches').children.length,0);assert.equal(elements.get('translation-source').children.length,0);assert.equal(elements.get('translation-locale').selectedOptions.length,0);assert.equal(status.textContent,'');resolveSubmission({ok:true,status:202,json:async()=>({message:'Private late response'})});await pending;assert.equal(status.textContent,'');assert.equal(form.button.disabled,true);
+session(true);await tick();const batchButton=elements.get('translation-batches').children[0].children[0];await batchButton.click();assert(calls.some(c=>c.body?.action==='sync'));assert.equal(status.textContent,'Existing batch checked');
+ready=false;await elements.get('translation-refresh').click();assert.equal(form.button.disabled,true);assert.equal(elements.get('translation-configuration').textContent,'Pilot paused');
+console.log('Batch client passed: real HTML controls, 12-pair bulk selection, invalid/duplicate-click prevention, visible progress, existing-batch sync, readiness disabling and late-response/logout privacy.');

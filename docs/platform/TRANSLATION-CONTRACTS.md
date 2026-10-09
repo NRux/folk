@@ -105,7 +105,7 @@ when configuration has been verified. All three autonomous article switches and
 newsletter delivery stay off. Defaults never infer a paid cap or model from a
 credential's presence.
 
-One reservation runs at a time. Source/locale/glossary/prompt identity and UUID are
+One synchronous reservation or one bulk batch runs at a time. Source/locale/glossary/prompt identity and UUID are
 unique. Input JSON is bounded to 90 KB; conservative pricing reserves for 200,000
 input tokens and at most 24,000 output tokens. Calls have no automatic retries and
 a 45-second timeout. A job reserves its entire maximum cost, even after failure.
@@ -128,6 +128,49 @@ or terminal attempts cannot be recovered this way. With no verified object,
 retain the hold for operator reconciliation; never automatically clear it or create
 a second paid attempt. Unknown recovered usage is explicitly labelled. The owner
 UI clears private bodies/receipts on logout and rejects late responses.
+
+## OpenAI Batch and bulk drafts
+
+The owner form queues OpenAI Batch by default. Select one or more public sources
+and languages, up to 12 source–language pairs per batch. A single JSONL upload
+contains separate structured requests with unique job IDs. OpenAI processes the
+batch asynchronously within its 24-hour completion window; readers never make
+translation calls. Use **Check batch** to import completed results and then choose
+the individual draft for preview. Imports do not release translations.
+
+Use `FOLKLY_TRANSLATION_MODEL_ID=gpt-6-luna` (the equivalent
+`openai/gpt-6-luna` identifier is also accepted). The exact configured identifier
+must match the approved SQL budget model. Batch uses the server-only
+`OPENAI_API_KEY` directly; there is no gateway or synchronous paid fallback.
+`FOLKLY_TRANSLATION_MAX_JOB_DOLLARS` is the reservation for EACH translation,
+not the whole batch. All pairs must fit the remaining total pilot budget.
+
+Install migration `20261009194655_translation_batch_queue.sql`. Keep approved
+STANDARD input/output prices in `folkly_translation_budget`; batch jobs snapshot
+50% of those prices and calculate actual-usage estimates at those frozen rates.
+For Luna, prices checked 2026-10-09 are 0.10 input and 0.50 output USD per million
+standard tokens, or 0.05 and 0.25 for Batch. Do not halve SQL approval prices again.
+At the conservative 200,000-input / 24,000-output ceiling, a Luna Batch reservation
+must cover at least $0.016 per translation. An example $0.02 reservation is not an
+authorization to enable spending. Approved total caps and expiry remain required.
+
+Claims reserve all member jobs atomically. A durable `submitting` fence is written
+before provider access. Lost creation responses are reconciled using the batch ID,
+manifest checksum and provider metadata, never resubmitted. Uncertain submission,
+unknown provider receipt, duplicate output IDs or bounded reconciliation failures
+remain held for operator inspection. No automatic generation retry or refund.
+
+Result import matches IDs rather than line order. Partial, failed, expired and
+cancelled batches retain all reservations; complete valid results can be saved
+while invalid/truncated/stale members fail. Blob or SQL persistence faults keep
+the remaining jobs reserved. A later **Check batch** reuses the existing provider
+output and attempts persistence only. A 90-second SQL lease prevents concurrent
+imports; an interrupted lease expires. Provider files have a 30-day output
+retention request, so inspect/import before expiry. Preserve source versions,
+credits, placeholder integrity and competent language review before release.
+
+Provider reference: https://developers.openai.com/api/docs/guides/batch
+Model pricing: https://developers.openai.com/api/docs/models/gpt-6-luna
 
 ## Shared pages and review
 

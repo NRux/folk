@@ -1,5 +1,18 @@
 # Folkly Build State
 
+Current update, 2026-10-09: owner translations now queue OpenAI Batch by default,
+with up to 12 public source–language pairs, atomic bulk spending reservations,
+durable submission fences, status/import controls and persistence-only recovery.
+Bare `gpt-6-luna` IDs are accepted. The batch queue migration is applied to the
+existing Supabase project and server-only access is verified. Full regression,
+bulk SQL/provider fixtures and actual owner HTML/client fixtures pass. No paid
+calls or translation releases. The live pilot row remains disabled with blank
+model, zero caps/rates and expired approval; populate the previously approved
+values before paid acceptance. SQL pricing stays at STANDARD rates; batch job
+snapshots apply the 50% discount. Existing Vercel access remains blocked. See
+verification/translation-batch-2026-10-09.md and platform/TRANSLATION-CONTRACTS.md.
+
+
 ## Priority TODO
 
 Latest owner runtime repair, 2026-10-09 UTC: idea saves now require private
