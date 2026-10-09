@@ -79,3 +79,37 @@ off. Google Cloud remains deferred. No owner connection or credential change is
 needed for these public reader edits. Existing Stage 7 private import, scoped
 provider and hosted recovery gates remain separately blocked as described in the
 acceptance report; this release does not claim those gates passed.
+
+## Live acceptance, 2026-10-09 UTC
+
+Code commit 98e4f03e7f96bf557e71a2ec09e66b682cc21eb0 was synchronized to
+main/master with expected-head checks; Vercel reported `Deployment has completed`
+for the existing folk project. npm run test:hosted passed 45 checks, including
+exact readback of all eleven published stories in both URL forms and private-route
+denial. Nine additional pages/assets matched the local build byte for byte:
+homepage, About, Archive, image credits, sitemap, filter controller/styles and the
+two changed article pages. No ignored-build status was used as deployment proof.
+
+HTTP /perspective returns 308 to /about#perspective. Vercel cleanUrls sends the
+.html form first to /perspective with 308, then to the same About section; the
+browser confirmed that final URL and the combined page's contributor form.
+
+At a 1363×936 browser viewport, the collapsed filter panel measures 58px high,
+with no horizontal page overflow. Europe produces two cards; Europe plus Music
+produces one; Clear resets both controls and restores all eleven cards. The tag
+menu opens/closes and the region selection is reflected in the URL. Option values
+contain countries and the seven world regions only. No data/API write is needed
+for filtering. Existing city archive links remain available.
+
+The browser confirmed the new arena-interior image loads at 960px intrinsic
+width with its source/license caption. Detroit's wide performance image loaded
+at 960px and its Berlin group-dancing image at 512px, with the actual 1999 place/
+date caption. All eleven Detroit captions match the curated gallery. No Folkly
+application console error was observed; browser-extension metadata errors were
+excluded from application findings. Actual mobile viewport testing remains
+blocked as noted above. No contact/signup submission, model call, newsletter or
+private read occurred during these browser checks.
+
+Public response hashes, redirect chain and browser observations are recorded in
+group-images-compact-live-2026-10-09.json. The source-review JSON records the
+separate rights/visual checks; neither file claims original 1980s photo coverage.

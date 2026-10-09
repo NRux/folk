@@ -1,0 +1,85 @@
+{
+  "codeCommit": "98e4f03e7f96bf557e71a2ec09e66b682cc21eb0",
+  "githubVercelStatus": "Deployment has completed",
+  "hostedReaderChecks": 45,
+  "exactReadbacks": [
+    {
+      "url": "https://www.folkly.com/",
+      "status": 200,
+      "exactBuiltOutput": true,
+      "sha256": "235ce4ea4ecf6cf50e5db5d1c45835eff553180625a7ae79959bb8664c7ba708"
+    },
+    {
+      "url": "https://www.folkly.com/about",
+      "status": 200,
+      "exactBuiltOutput": true,
+      "sha256": "858af85c97dc283bf7729ed9d67360c45c83fc0d2ad8aa2ecd0dec5fa1242c80"
+    },
+    {
+      "url": "https://www.folkly.com/archive",
+      "status": 200,
+      "exactBuiltOutput": true,
+      "sha256": "fae6a0401c74edff9bc51ae1c55442068c2a29dd10f428d537b545ccc33886de"
+    },
+    {
+      "url": "https://www.folkly.com/image-credits",
+      "status": 200,
+      "exactBuiltOutput": true,
+      "sha256": "cc3df75f2fa9ead383932b1fcca4f36e0df43a495ddb47e25a05dc529103bf19"
+    },
+    {
+      "url": "https://www.folkly.com/sitemap.xml",
+      "status": 200,
+      "exactBuiltOutput": true,
+      "sha256": "da5e7cb0612b4997bf90f90d18499d8b4e336905a5b20cb9069a37a20abb3b10"
+    },
+    {
+      "url": "https://www.folkly.com/article-filters.js",
+      "status": 200,
+      "exactBuiltOutput": true,
+      "sha256": "8841bf46cdff2eb4ca2b3fb7c00d6dd71aa5c7295326e58f35bbd18bb84f66b9"
+    },
+    {
+      "url": "https://www.folkly.com/article-grid.css",
+      "status": 200,
+      "exactBuiltOutput": true,
+      "sha256": "f687b22404c1ac96b7cebd156fb7c9dc6f4a139ec58537b2eafa3e169d050cd5"
+    },
+    {
+      "url": "https://www.folkly.com/detroit-future-frequency",
+      "status": 200,
+      "exactBuiltOutput": true,
+      "sha256": "82f338dbe55efe96cc23f32f6e84e6197dd84f50123d5aec0880b7f215671671"
+    },
+    {
+      "url": "https://www.folkly.com/castells-tarragona",
+      "status": 200,
+      "exactBuiltOutput": true,
+      "sha256": "33048d4189b50edc418e6ac05dd742ae12b6015a82df51ffc58c74346518ff1b"
+    }
+  ],
+  "redirects": {
+    "/perspective": "308 \u2192 /about#perspective",
+    "/perspective.html": "308 \u2192 /perspective \u2192 308 \u2192 /about#perspective"
+  },
+  "browser": {
+    "viewportWidth": 1363,
+    "viewportHeight": 936,
+    "filterPanelHeight": 58,
+    "horizontalOverflow": false,
+    "regionEuropeResults": 2,
+    "regionEuropeMusicResults": 1,
+    "clearResults": 11,
+    "cityFilterOptions": 0,
+    "legacyRedirectFinalUrl": "https://www.folkly.com/about#perspective",
+    "aboutContributorFormPresent": true,
+    "mobileViewportTest": "Blocked: no local Chromium; attempted download was truncated/non-ZIP.",
+    "tarragonaArenaPhotoLoaded": true,
+    "detroitGroupPerformanceLoaded": true,
+    "berlinGroupDancingLoaded": true,
+    "applicationConsoleErrorsObserved": 0,
+    "consoleLimit": "Extension metadata errors were excluded from application console findings."
+  },
+  "activation": "Unchanged: production, autonomous publication, article scheduling and newsletter delivery remain disabled.",
+  "recordedAtUtc": "2026-10-09T02:46:00.029697+00:00"
+}
