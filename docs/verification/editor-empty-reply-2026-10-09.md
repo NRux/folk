@@ -8,7 +8,7 @@ chat-latest alias and max_completion_tokens=800. The endpoint rejected blank
 text but discarded the provider finish reason and usage at this boundary.
 
 Official OpenAI documentation says that max_completion_tokens covers visible
-text and non-visible reasoning; a exhausted limit can produce no visible reply.
+text and non-visible reasoning; an exhausted limit can produce no visible reply.
 The actual installed SDK fixture reproduces a content:null/finish_reason:length
 response with every completion token consumed by reasoning. A second distinct
 SDK defect at the application boundary is reproduced: message.refusal is not
@@ -76,3 +76,14 @@ does not substitute for that authenticated generation check.
 - Installed SDK chat conversion/usage source and generateText include.responseBody
   documentation. npm reports ai 7.0.137 available; the pinned 7.0.131 is the same
   major and the reproduced boundary is repaired without a dependency migration.
+
+## Deployed readback
+
+Implementation a2767a2ede2e8bcf68e992f321c3385eb5dda227 completed successfully
+on the existing Vercel project. Main and master were independently read back at
+that SHA. Public owner-workspace.js returned 200, exactly matching the tested
+build, with both new fixed diagnostic codes. SHA-256:
+1af703650e8f80c53bf1d72b9fcce782480edc2d0f22730464d6b48ad89a59b4.
+Anonymous workspace GET and chat POST both returned 401 with Cache-Control
+no-store. The hosted reader suite passes all 45 public checks. No authenticated
+model replay or paid call is inferred from these deployment/privacy checks.
