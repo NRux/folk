@@ -52,3 +52,31 @@ for(const fail of ['budget','chat-history','provider','reply-read','reply-save']
  const response=await diagnostic.POST(request({action:'chat',id,message:'PRIVATE OWNER PROMPT'})),body=await response.json();assert.equal(response.status,503);assert.equal(body.stage,fail);assert.match(body.requestId,/^[a-f0-9-]{36}$/);assert.equal(logs.length,1);assert.deepEqual(Object.keys(logs[0]).sort(),['action','code','requestId','stage','status']);assert.equal(logs[0].requestId,body.requestId);assert(!JSON.stringify({body,logs}).includes('provider-secret'));assert(!JSON.stringify({body,logs}).includes('PRIVATE OWNER PROMPT'));if(['budget','chat-history'].includes(fail))assert.equal(modelCalls,0);if(fail==='budget')assert.match(body.message,/budget is exhausted/);
 }
 console.log('Workspace diagnostics passed: budget/provider/history/reply phases, safe fixed codes and correlation IDs, secret/prompt redaction and no model call after budget failure.');
+
+// Exercise the installed SDK serialization, not a handwritten request fixture.
+const {createEditorChat}=await import('../server/editor-model.js');
+let providerCalls=0;
+const wireChat=createEditorChat({env:{OPENAI_API_KEY:'synthetic-sdk-test'},fetch:async(url,options)=>{
+ providerCalls++;
+ assert.equal(String(url),'https://api.openai.com/v1/chat/completions');
+ const body=JSON.parse(options.body);
+ assert.equal(body.model,'chat-latest');
+ assert.equal(body.max_completion_tokens,800);
+ assert.equal(Object.hasOwn(body,'max_tokens'),false);
+ assert.equal(Object.hasOwn(body,'tools'),false);
+ assert.equal(body.messages.some(m=>m.content==='ignored pending turn'),false);
+ assert.equal(body.messages.at(-1).content,'One interview question.');
+ assert.equal(options.signal.aborted,false);
+ return Response.json({id:'fixture',object:'chat.completion',created:1,model:'chat-latest',choices:[{index:0,message:{role:'assistant',content:'Which local booksellers help shape the city?',refusal:null},finish_reason:'stop',logprobs:null}],usage:{prompt_tokens:100,completion_tokens:12,total_tokens:112}});
+}});
+const wireResult=await wireChat('One interview question.',[{state:'pending',message:'ignored pending turn'}]);
+assert.equal(wireResult.text,'Which local booksellers help shape the city?');
+assert.deepEqual(wireResult.usage,{inputTokens:100,outputTokens:12});
+assert.equal(providerCalls,1);
+let rejectedCalls=0;
+const rejectedChat=createEditorChat({env:{OPENAI_API_KEY:'synthetic-sdk-test'},fetch:async()=>{
+ rejectedCalls++;return Response.json({error:{message:'Synthetic parameter rejection',type:'invalid_request_error',param:'max_tokens',code:'unsupported_parameter'}},{status:400});
+}});
+await assert.rejects(()=>rejectedChat('One interview question.',[]),error=>error.statusCode===400);
+assert.equal(rejectedCalls,1,'Provider rejection must never retry');
+console.log('Editor SDK wire checks passed: latest alias, modern completion limit, usage readback, pending history exclusion and no retries. Synthetic only.');
