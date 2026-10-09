@@ -34,6 +34,10 @@
     }
   ],
   "functions": {
+    "api/editorial-import.js": {
+      "maxDuration": 300,
+      "includeFiles": "{supabase/migrations/20261007220625_folkly_editorial.sql,web/vercel/{articles,manual-releases}.json}"
+    },
     "api/owner-translations.js": {
       "maxDuration": 60,
       "includeFiles": "{build/translation-contracts/**,web/vercel/translation-glossary.json}"

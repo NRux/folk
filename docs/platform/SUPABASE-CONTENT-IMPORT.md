@@ -122,3 +122,41 @@ the newer public Vercel reader or declare old evidence valid for later revisions
 Private owner draft viewing, anonymous/non-owner denial, hosted outage/restore
 fixtures and the full publisher acceptance suite remain separate gates. Retain
 the private source, receipt and backup for those recovery checks.
+
+## Vercel-resident controlled transfer (2026-10-09)
+
+The protected `/api/editorial-import` function can use the existing server
+credentials without pulling them into the agent's local environment. Apply
+`20261009232929_hosted_editorial_import.sql` first; the migration has been applied
+to the existing project and verified with rolled-back hosted fixtures.
+
+A trusted administrative connection issues one `folkly_import_grants` row: only a
+random 256-bit token hash, the independently verified source SHA/counts, deployed
+contract hash and at most 30-minute expiry are stored. This route cannot issue
+credentials; service_role itself has no grant INSERT permission. Pass the raw
+credential through hidden stdin as a Bearer header to the exact existing Vercel
+origin, never a URL, shell argument, chat message or file. POST a bounded JSON
+object containing the complete recovered `snapshot` and source `receipt`.
+
+The function authorizes before reading the body, pins the existing Supabase
+project, rejects changed schema/catalog/manifest contracts, validates the entire
+source, and claims the grant exactly once with a five-minute lease. It uploads and
+independently reads back create-only private Blob versions and backup, then commits
+all metadata/evidence/references in one locked invoker RPC transaction. Conflicts,
+missing rows and enabled switches roll back. Reference UPDATE/DELETE permissions
+stay revoked; locked version parents, the FK and complete unique reference index
+bound concurrent insertions. Only the two imported identity sequences receive the
+UPDATE privilege needed for advancement.
+
+The existing exact-field/two-sweep verifier runs against independent HTTP SELECTs
+and private Blob GETs after commit. A safe aggregate receipt is stored privately,
+and the grant becomes verified and cannot be reused. Invocation/DB deadlines are
+180/15 seconds within a 300-second function; request bodies cap at 2 MB. Inputs
+larger than that require the original secure CLI path, not a public upload bypass.
+
+Failures retain state and do not automatically retry, refund, overwrite, publish
+or delete. A failed grant is revoked administratively; a separately authorized
+new grant may reuse identical immutable objects/metadata. If the commit succeeded
+but response or readback failed, inspect the existing row and run the independent
+verifier before declaring success. Full owner-session and recovery acceptance
+remain separate from this capability-scoped transfer.

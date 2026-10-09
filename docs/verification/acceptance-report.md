@@ -1,5 +1,19 @@
 # Stage 07 — Acceptance report
 
+## Vercel-resident import checkpoint, 2026-10-09 UTC
+
+The private transfer can now run inside Vercel using existing provider environment
+credentials and a short-lived administrative grant bound to the exact independent
+source receipt and deployed contract. Migration, service-only invoker RPC/role
+checks and rolled-back hosted guard fixtures pass. Build and all 36 regressions
+pass, including late transaction rollback, append-only object retries, stale/used
+claims, installed SDK serialization and HTTP input/auth/redaction boundaries.
+
+This checkpoint is implementation evidence; actual source upload, import and
+hosted exact readback are not yet claimed. No publisher switch or article content
+changes. See [transfer evidence](hosted-editorial-import-2026-10-09.md). Any later
+actual-transfer addendum in that report supersedes this pending checkpoint.
+
 ## Original source export gate completed, 2026-10-09 UTC
 
 PASS for complete source extraction: Codex recovered the original ChatGPT Site

@@ -39,15 +39,17 @@ export function validatedImportRecords(snapshot,{expectedSha,expectedCounts,sche
  for(const table of ['sources','claim_citations','editorial_checks'])if(records[table].some(r=>!versions.has(r.article_version_id)))throw Error('Orphan evidence');
  return {records,columns,sourceSha:sha256,published:[...importedPublic].sort(),private:records.articles.filter(a=>a.status!=='published').map(a=>a.slug).sort()};
 }
-export function compileSnapshot(snapshot,options){
- const {records,columns,sourceSha,published,private:privateStories}=validatedImportRecords(snapshot,options);
- const {contentObjects}=options;
- let objects;
- if(contentObjects){
+export function blobImportRecords(sourceRecords,contentObjects){
+ const records=structuredClone(sourceRecords);
   if(!Array.isArray(contentObjects)||contentObjects.length!==records.article_versions.length)throw Error('Incomplete Blob references');
   const references=new Map(contentObjects.map(r=>[r.article_version_id,r]));if(references.size!==contentObjects.length)throw Error('Duplicate Blob references');
-  objects=records.article_versions.map(version=>{const ref=references.get(version.id);const hash=digest(version.content_json);if(!ref||ref.sha256!==hash||ref.pathname!==contentPath(hash)||ref.byte_size!==Buffer.byteLength(version.content_json)||!Number.isFinite(Date.parse(ref.verified_at)))throw Error('Unverified Blob reference');version.content_json='';return {article_version_id:version.id,pathname:ref.pathname,sha256:hash,byte_size:ref.byte_size,verified_at:ref.verified_at};});
- }
+  const objects=records.article_versions.map(version=>{const ref=references.get(version.id);const hash=digest(version.content_json);if(!ref||ref.sha256!==hash||ref.pathname!==contentPath(hash)||ref.byte_size!==Buffer.byteLength(version.content_json)||!Number.isFinite(Date.parse(ref.verified_at)))throw Error('Unverified Blob reference');version.content_json='';return {article_version_id:version.id,pathname:ref.pathname,sha256:hash,byte_size:ref.byte_size,verified_at:ref.verified_at};});
+ return {records,objects};
+}
+export function compileSnapshot(snapshot,options){
+ let {records,columns,sourceSha,published,private:privateStories}=validatedImportRecords(snapshot,options);
+ let objects;
+ if(options.contentObjects)({records,objects}=blobImportRecords(records,options.contentObjects));
  const sql=['BEGIN;','SET LOCAL standard_conforming_strings = on;',"SET LOCAL lock_timeout = '5s';", "SET LOCAL statement_timeout = '60s';",`LOCK TABLE public.folkly_settings, ${[...TABLES.map(t=>'public.folkly_'+t),...(objects?['public.folkly_content_objects']:[])].join(', ')} IN SHARE ROW EXCLUSIVE MODE;`,
  "CREATE FUNCTION pg_temp.folkly_assert(ok boolean, reason text) RETURNS void LANGUAGE plpgsql AS $$ BEGIN IF ok IS DISTINCT FROM true THEN RAISE EXCEPTION '%', reason; END IF; END $$;",
  "SELECT pg_temp.folkly_assert((SELECT count(*)=3 AND bool_and(value='false') FROM public.folkly_settings WHERE key IN ('production.autonomous_enabled','publication.autonomous_enabled','schedule.enabled')), 'Editorial switches must remain paused');"];

@@ -1,5 +1,26 @@
 # Folkly Build State
 
+## Vercel-resident editorial transfer implementation, 2026-10-09 UTC
+
+Added a bounded server-side import so existing Vercel Blob/Supabase credentials
+stay in the trusted runtime. Administrative issuance binds a short-lived private
+hashed bearer grant to the exact source checksum, counts and deployed contract.
+The public function cannot issue grants or return draft content. Claims are
+single-use and lease fenced; verified immutable Blob bodies/backup precede an
+all-or-nothing metadata/reference transaction. Two-sweep exact readback precedes
+retiring the grant and saving a redacted receipt. Failed/interrupted attempts keep
+private objects and committed records for reviewed recovery, without overwrites,
+automatic retries, deletion or publisher changes.
+
+Migration is applied to the existing project. Local service-role rollback,
+append-only/role denial, source/contract/lease fences, actual SDK transport and
+HTTP authorization/redaction tests pass, as do all 36 regression commands and
+73-page build. Hosted rollback-only SQL leaves zero fixture grants/articles/objects;
+private RLS, service-only invoker RPCs and unchanged append-only references pass.
+Actual source transfer and full hosted gates have not yet been claimed at this
+implementation checkpoint. Vercel connector remains deferred; GitHub deployment
+will carry the function. See verification/hosted-editorial-import-2026-10-09.md.
+
 ## Original Site source export recovered, 2026-10-09 UTC
 
 Codex opened the original Site source repository and recovered a complete live D1
