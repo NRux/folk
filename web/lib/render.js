@@ -68,15 +68,15 @@ class Page {
   }
 
   homeHeader(issueLabel) {
-    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell"><div class="topline"><span>A journal of culture, place &amp; belonging</span><span>Independent perspectives. Interconnected worlds.</span></div><a class="masthead" href="/" aria-label="Folkly home">folkly</a><nav class="nav" aria-label="Main navigation"><div class="navlinks"><a href="/#stories">The journal</a><a href="/#places">Places</a><a href="/map">Map</a><a href="/archive">Archives</a><a href="/perspective">Our perspective</a><a href="/about">About</a></div><span class="issue">${esc(issueLabel)}</span></nav></header>`;
+    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell"><div class="topline"><span>A journal of culture, place &amp; belonging</span><span>Independent perspectives. Interconnected worlds.</span></div><a class="masthead" href="/" aria-label="Folkly home">folkly</a><nav class="nav" aria-label="Main navigation"><div class="navlinks"><a href="/#stories">Culture</a><a href="/map">Places</a><a href="/archive">Archive</a><a href="/perspective">Our perspective</a><a href="/about">About</a></div><span class="issue">${esc(issueLabel)}</span></nav></header>`;
   }
 
   compactHeader() {
-    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell compact-head"><a class="compact-logo" href="/" aria-label="Folkly home">folkly</a><nav aria-label="Main navigation"><a href="/#stories">The journal</a><a href="/map">Map</a><a href="/archive">Archives</a><a href="/perspective">Our perspective</a><a href="/about">About</a></nav></header>`;
+    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell compact-head"><a class="compact-logo" href="/" aria-label="Folkly home">folkly</a><nav aria-label="Main navigation"><a href="/#stories">Culture</a><a href="/map">Places</a><a href="/archive">Archive</a><a href="/perspective">Our perspective</a><a href="/about">About</a></nav></header>`;
   }
 
   footer() {
-    return `<footer class="footer"><div class="shell"><div class="footer-top"><div><a class="footer-logo" href="/">folkly</a><p>Culture takes place.<br>Stories about what makes a place itself.</p></div><nav class="footer-nav" aria-label="Footer navigation"><a href="/#stories">The journal</a><a href="/archive">Archives</a><a href="/perspective">Our perspective</a><a href="/about">About Folkly</a></nav></div><div class="footer-bottom"><span>A project by Noah Rappaport &middot; ${esc(this.settings["site.footer_date"] || "October 2026")}</span><span>Words, places, and the people who give them meaning.</span></div></div></footer></body></html>`;
+    return `<footer class="footer"><div class="shell"><div class="footer-top"><div><a class="footer-logo" href="/">folkly</a><p>Culture takes place.<br>Stories about what makes a place itself.</p></div><nav class="footer-nav" aria-label="Footer navigation"><a href="/#stories">Culture</a><a href="/archive">Archive</a><a href="/perspective">Our perspective</a><a href="/about">About Folkly</a></nav></div><div class="footer-bottom"><span>A project by Noah Rappaport &middot; ${esc(this.settings["site.footer_date"] || "October 2026")}</span><span>Words, places, and the people who give them meaning.</span></div></div></footer></body></html>`;
   }
 }
 

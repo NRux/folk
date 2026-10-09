@@ -73,7 +73,13 @@ for (const [route, file] of Object.entries(routes)) {
   if (article) html = decorateArticleLayout(html, article, articleMedia);
   html = addArticleFilters(html, articles);
   html = addAdsense(html);
-  html = html.replace('</nav>', '<a href="/map">Map</a><a class="subscribe-button" href="/subscribe">Subscribe</a></nav>');
+  // Nav rework: the map takes the Places slot (renamed Places), journal -> Culture,
+  // Archives -> Archive. Pages without a Places link get one pointing at the map.
+  html = html.replace('<a href="/#places">Places</a>', '<a href="/map">Places</a>');
+  html = html.replace(/>The journal<\/a>/g, '>Culture</a>');
+  html = html.replace(/>Archives<\/a>/g, '>Archive</a>');
+  if (!html.includes('href="/map"')) html = html.replace('</nav>', '<a href="/map">Places</a></nav>');
+  html = html.replace('</nav>', '<a class="subscribe-button" href="/subscribe">Subscribe</a></nav>');
   if(article){
     const narrative=html.match(/<article>([\s\S]*?)<\/article>/)?.[1];if(!narrative)throw Error('Missing analytics story boundary');
     const version=hash(narrative);releaseRegistry.push({article_id:article.slug,content_version:version,published_at:article.publishedAt,declared_modified_at:JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]).dateModified});
