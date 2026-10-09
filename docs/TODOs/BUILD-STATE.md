@@ -1,5 +1,26 @@
 # Folkly Build State
 
+## Original Site source export recovered, 2026-10-09 UTC
+
+Codex opened the original Site source repository and recovered a complete live D1
+editorial snapshot using a fixed, temporary authenticated export. Two independent
+exports matched; the source receipt and all 15 full version JSON values pass the
+existing import compiler. Eleven tables include 11 articles, 63 sources, 147 claim
+links and 63 checks. The manual-release manifest classifies all 11 articles public;
+none replenishes private reserve. Snapshot/receipt are saved privately outside Git.
+Temporary export credentials were removed and that configuration redeployed; the
+former credential and anonymous requests now receive 404/no-store. Both public
+homepages remain 200, and anonymous owner workspace access remains 401/no-store.
+
+Source export is complete and is no longer Noah's action. Actual private Blob
+upload, one-transaction metadata import and independent hosted readback/recovery
+remain open; existing server credentials are not available in this runner and
+Vercel inspection stays deferred as requested. No content import, new publication,
+paid provider call, switch change or newsletter occurred. Export security tests,
+publication gates, source build and focused import/readback regression pass. See
+verification/original-site-export-2026-10-09.md. This supersedes older source-export
+blockers below; full Stage 7 activation remains blocked.
+
 ## Owner editor empty-reply repair, 2026-10-09 UTC
 
 The reported MODEL_EMPTY_REPLY is reproduced with the installed SDK for blank
@@ -557,8 +578,8 @@ characters at limit 1. No partial import was attempted. Added an offline private
 SQL compiler with independent source checksum/counts, complete-column and version
 checks, current manual-release classification, transactional readback and conflict
 rejection. See platform/SUPABASE-CONTENT-IMPORT.md. The old seven releases are public
-and cannot be counted as reserve. Full source export remains the required owner
-artifact; no schema change, publisher activation or private content commit.
+and cannot be counted as reserve. Full source export was recovered by Codex on October 9; the former owner
+artifact request is closed; no schema change, publisher activation or private content commit.
 
 ## Blob-backed editorial content, 2026-10-08
 
