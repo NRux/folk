@@ -53,7 +53,10 @@ for (const slug of ['new-orleans-second-line', 'lisbon-fado', 'detroit-future-fr
   assert(html.includes('class="music-examples"'), slug);
   assert.match(html, /https:\/\/(?:smithsonianfolkways\.bandcamp\.com|arquivosonoro\.museudofado\.pt|planetecommunications\.bandcamp\.com)/);
 }
-assert(!files.some(p => /\.db$|\.json$|\.sql$|\.mjs$|\.ts$|reserve|admin|mcp/.test(p)));
+assert(!files.some(p => p!=='article-release-registry.json' && /\.db$|\.json$|\.sql$|\.mjs$|\.ts$|reserve|admin|mcp/.test(p)));
+const registry=JSON.parse(await readFile('dist/article-release-registry.json','utf8'));
+assert.equal(registry.format,'folkly-public-release-registry-v1');assert.equal(registry.articles.length,11);
+for(const entry of registry.articles){assert.deepEqual(Object.keys(entry).sort(),['article_id','content_version','declared_modified_at','published_at']);assert.match(entry.content_version,/^[a-f0-9]{64}$/);assert(routes[`/${entry.article_id}`]);const html=await readFile(`dist/${entry.article_id}.html`,'utf8');assert(html.includes(`data-article-version="${entry.content_version}"`));assert(html.includes('src="/reader-events.js"'));assert.equal((html.match(/data-story-id=/g)||[]).length,4);}
 const config = JSON.parse(await readFile('vercel.json', 'utf8'));
 assert.equal(config.outputDirectory, 'dist');
 assert.deepEqual(config.crons,[{path:'/api/newsletter',schedule:'0 16 * * 5'}]);

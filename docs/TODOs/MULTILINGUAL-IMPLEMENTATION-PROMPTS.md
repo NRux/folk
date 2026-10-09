@@ -2,6 +2,23 @@
 
 Run these in order in NRux/folk. Follow docs/platform/MULTILINGUAL.md and the latest BUILD-STATE, manual-release manifest and acceptance reports. Reuse Vercel. Keep private reserve out of all public outputs. Preserve credits, licenses, sources and approved stories. Keep autonomous generation, publication and article scheduling disabled. Google Cloud remains deferred. Do not run paid translation calls or release translations before the budget and review steps below.
 
+## Current implementation, 2026-10-09 UTC
+
+| Prompt | Status and next gate |
+| --- | --- |
+| 1 | DONE: public-only contracts, glossary, strict payload schema and source-version validation. |
+| 2 | DONE for code/isolated fixtures: approved-only static renderer and review-bound translation hashes. No real translations released. |
+| 3 | PARTIAL: article language links, explicit English fallback, self canonicals, reciprocal alternates, sitemap and translated article/UI segments implemented. Standalone localized home/archive/filter pages and shared UI catalogs remain open. |
+| 4 | PARTIAL: script fonts, logical layout, RTL direction and link isolation implemented. Browser viewport/keyboard checks and competent language review remain pending. |
+| 5 | BLOCKED for funded pilot: explicit model/budget authorization and access required. Translation-specific paid job adapter/ledger integration is still open; do not treat the article-generation adapter as a completed translation adapter. |
+| 6 | BLOCKED: six competent language reviews and approved pilot evidence required before backfill. |
+| 7 | PARTIAL: isolated reproducible-build, stale omission, payload tamper denial and manifest rollback checks pass. Real localized hosted/recovery acceptance remains pending. |
+
+Commands and limitations: `docs/platform/TRANSLATION-CONTRACTS.md` and
+`docs/verification/translation-reader-events-2026-10-09.md`. The production
+translation manifest stays empty. Synthetic AR/FR payloads are test data only,
+not translations or language approval.
+
 ## 1. Extract a versioned public translation contract
 
 Implement a public-only extraction command using the current manual-release manifest. Extract stable segment IDs for titles, decks, narrative paragraphs, section headings, alt text, captions and reader UI. Preserve citation destinations, creator/license names and media IDs separately as immutable fields. Define locales en, zh-Hans, es, hi, ar, fr and ja. Hash source content, glossary and prompt versions. Add a strict JSON schema that rejects missing/extra segments, invalid locale IDs and supplied HTML. Create a glossary for culturally specific terms; retain local spellings and give lyrical but accurate context at first mention. Test private/draft exclusion, escaping, deterministic hashes and malformed translations. Document the command and evidence; commit verified changes.

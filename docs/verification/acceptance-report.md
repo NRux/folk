@@ -1,5 +1,34 @@
 # Stage 07 — Acceptance report
 
+## Current addendum, 2026-10-09 UTC
+
+Result remains **BLOCKED** for autonomous activation. This addendum supersedes
+historical account/connection assumptions in dated sections below. Owner Auth
+provisioning, Supabase migrations, private Blob storage foundations and protected
+owner workspace exist; the owner has reported successful login. Independent
+hosted private readback/provider/content/recovery acceptance is still distinct
+from that report and from passing local fixtures. The catalog contains eleven
+public stories, including seven already manually released; they are not reserve.
+
+| Gate | Current evidence / remaining requirement |
+| --- | --- |
+| Public reader, credits and discovery | Existing deployed foundation; new locale/event code passes local regression. See translation-reader-events-2026-10-09.md for deployment readback status. |
+| Translation source/review boundary | PASS local and isolated build fixtures; stale/unreviewed/tampered/private denial, complete coverage and immutable credits. Empty production manifest. |
+| Real translation launch | BLOCKED pending paid pilot authorization, translation job adapter, competent six-language review, localized discovery/shared UI and actual browser/hosted checks. |
+| Consent-aware reader events | PASS offline event-wiring/privacy/signup timing tests. Live GA property/stream/dimension/DebugView and enhanced-measurement settings are not verified. |
+| Editorial content import | BLOCKED on complete untruncated original version/evidence export; SQL/Blob hybrid compiler and append-only/checksum readback exist. No partial private transfer. |
+| Funded unattended generation | BLOCKED pending scoped provider/worker credentials, approved budget/pricing and live usage/redaction/persona evidence. Local paused/budget/ledger tests pass. |
+| Hosted recovery and publication | Earlier scoped hosted component fixtures exist; full Vercel commit/readback/backup/failure recovery gates remain pending. |
+| Resend newsletter acceptance | Adapter, suppression/unsubscribe and private subscriber readback code exist. Secure provider setup and authenticated hosted delivery/recovery evidence remain pending; delivery stays off. |
+| Vercel protected inspection | Connector GET for exact project/team still returns 404. Reconnect the existing Folkly project in optagens-projects; no replacement project required. |
+
+Production/autonomous publication/article scheduling stay disabled. Google Cloud
+remains deferred. No new public story, translated story or outgoing email was
+created by this implementation. Full regression and two focused debug/security
+passes are recorded in translation-reader-events-2026-10-09.md. A missing local
+Chromium executable prevents actual viewport acceptance; synthetic event tests
+are not substituted for native-language or visual review.
+
 ## Current Vercel acceptance, 2026-10-07
 
 Latest Stage 7 progress: the Folkly Supabase project is now connected and three

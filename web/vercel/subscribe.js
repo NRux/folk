@@ -12,7 +12,7 @@ if (form) form.addEventListener('submit', async (event) => {
     });
     const result = await response.json();
     status.textContent = result.message;
-    if (response.ok) form.reset();
+    if (response.ok) { form.reset(); window.folklyAnalytics?.emit('subscribe_success'); }
   } catch { status.textContent = 'Could not connect. Please try again.'; }
   finally { button.disabled = false; }
 });

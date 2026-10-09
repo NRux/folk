@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Folkly translation payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "slug", "locale", "sourceHash", "glossaryHash", "promptVersion", "fallbackLabel", "segments"],
+  "properties": {
+    "format": {"const": "folkly-translation-v1"},
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "locale": {"enum": ["zh-Hans", "es", "hi", "ar", "fr", "ja"]},
+    "sourceHash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "glossaryHash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "promptVersion": {"const": "faithful-public-segments-v1"},
+    "fallbackLabel": {"type": "string", "minLength": 1, "maxLength": 30000},
+    "segments": {"type": "array", "minItems": 1, "items": {
+      "type": "object", "additionalProperties": false, "required": ["id", "text"],
+      "properties": {"id": {"type": "string", "pattern": "^s[0-9]{4,}$"}, "text": {"type": "string", "minLength": 1, "maxLength": 30000}}
+    }}
+  },
+  "$comment": "scripts/translations.mjs additionally enforces exact ordered source IDs, byte limits, plain text, matching hashes and competent review. Schema validation alone never approves publication."
+}

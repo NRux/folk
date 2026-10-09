@@ -2,6 +2,15 @@
 
 ## Priority TODO
 
+Current update, 2026-10-09 UTC: reviewed-only multilingual article generation
+and consent-aware reader events are implemented and tested. The translation
+manifest is empty; no real translation, model spend or new article release.
+See the status matrix in MULTILINGUAL-IMPLEMENTATION-PROMPTS.md and
+verification/translation-reader-events-2026-10-09.md. Google reporting remains
+deferred, the full content transfer still needs a complete original export,
+and Stage 7 deployed acceptance remains blocked. Earlier dated sections below
+are historical and do not supersede this update.
+
 1. Subscribe button and signup flow deployed; private Blob connected and live signup returned 200 after storage write on 2026-10-07. Independent readback, email delivery, and unsubscribe processing remain pending. Exclude acceptance-test@example.com from any delivery import.
 2. Complete Vercel hosting migration: public reader first, then durable editorial storage and owner authentication. Keep publication and scheduling off until deployed acceptance passes.
 3. About contact form implemented with reason, contributor interest and private Blob storage. Protected owner inbox is paginated and provides a safe Reply action that opens the owner's email app without automatic sending. Provider-side reply delivery/tracking is intentionally not added.
@@ -420,6 +429,38 @@ addresses and blank names before any `mailto:` target can be rendered; message
 content remains text-only. Focused contact and full regression checks pass. See
 verification/contact-reply-2026-10-08.md. No mail credentials, subscriber state,
 publication controls or autonomous switches changed.
+
+## Translation foundation and reader telemetry, 2026-10-09 UTC
+
+Completed public-only segment extraction for all eleven published stories, a
+cultural glossary and strict schema, source/glossary/prompt hashes, review-bound
+translation payload hashes, approved-only static locale rendering, reciprocal
+article language links/hreflang/self canonicals/sitemap and script/RTL CSS. Empty
+approval leaves English locale navigation unchanged. Draft/stale/private output,
+path traversal, unknown locales, HTML payloads and changed-after-review payloads
+are denied. All source credits, bibliography, numeric citations, responsive media
+and two-paragraph image positions remain in the trusted source template.
+
+Added consent-gated article source-version IDs and bounded reading/related/music
+events plus subscription success only after private storage acknowledgement.
+Preview hosts do not load GA; pre-consent scroll milestones are discarded;
+withdrawal immediately blocks event emission. The public current-release registry
+contains only published IDs/hashes/declared dates, not a verified historical
+activation timeline. No owner/session/form values enter the explicit events.
+
+Build, full regression and two focused debug/security runs pass. Extraction
+produced eleven contracts outside public dist without paid calls. Tests use
+ephemeral synthetic AR/FR payloads, not actual translated prose or reviewers.
+Chromium is unavailable, so viewport/keyboard/browser visual acceptance remains
+unverified. Localized discovery/shared UI and translation-specific budget/job
+adapter remain open code work; real pilot/backfill needs an approved cap/model
+and competent language review. Live GA stream/custom-dimension/DebugView account
+checks and deferred read-only credentials remain separate requirements.
+The Vercel connector still returns 404 for the exact authorized project/team;
+reconnect it to optagens-projects and project prj_d93TLitMYu8uYjqfgvgANuwsRJVK
+for protected configuration and logs. Public HTTP and GitHub deployment checks
+remain available. No newsletter/autonomous production/publication/article
+schedule switch was enabled.
 Production readback passed for the homepage graph, representative Article
 publisher identity and exact 512×512 logo bytes after the Vercel deployment.
 The implementation deployed successfully; production serves the reply workflow,

@@ -1,6 +1,6 @@
 # GA4 editorial feedback implementation prompts
 
-Status: planned, not implemented. Tracking stream: G-RQJD3XG35C.
+Status: partial foundations implemented; live reporting and editorial automation remain gated. Tracking stream: G-RQJD3XG35C; property: 558035708.
 Run prompts in order. Each prompt inherits the shared constraints below.
 
 ## Shared instructions for every prompt
@@ -9,8 +9,10 @@ Work in the existing NRux/folk repository, Vercel folk project and Folkly
 Supabase project vxmyggasjgsiohqzzwzh. Read AGENTS.md if present, current
 BUILD-STATE, Stage 7 plan, acceptance report and latest verification reports.
 Inspect actual code before changing it; previous documentation may be stale.
-Preserve four public stories, seven private reserve stories, persona styles,
+Preserve the current eleven public stories and any remaining private reserve, persona styles,
 source/evidence hashes, photo credits, licenses and music examples.
+Use the current manual-release manifest: the seven manually released stories are
+already public and must not be counted as remaining reserve.
 Keep production.autonomous_enabled, publication.autonomous_enabled and
 schedule.enabled false. Do not create or enable a publication cron. Analytics
 collection needs a separate disabled-by-default switch and explicit activation.
@@ -211,3 +213,19 @@ Prompt 4 has per-article exposure/day thresholds, verified-property matching,
 window freshness and malformed/qualified-data holds. Full cohorts, release
 mapping, consent coverage and baseline comparisons remain pending; keep the
 complete prompt unchecked. See verification/analytics-evidence-2026-10-08.md.
+
+### Article instrumentation progress, 2026-10-09 UTC
+
+Prompt 2 code and synthetic browser-event checks are implemented: source-version
+IDs, public release registry, once-per-page 25/50/75/90 reading milestones,
+related/music clicks and durable-acknowledgement subscription success. The
+consent bridge denies events before consent, after withdrawal and on preview
+hosts, drops pre-consent milestones rather than replaying them, and accepts only
+bounded event fields. Query/hash values and user-entered form data are excluded.
+The existing GA tag remains single and consent-controlled. Raw successful
+subscription requests can include repeats; they are not new unique subscribers.
+No live DebugView/property verification or custom-dimension registration is
+claimed. Keep full Prompt 2 acceptance unchecked until those account checks pass.
+See platform/READER-ANALYTICS-EVENTS.md and
+verification/translation-reader-events-2026-10-09.md. Prompts 5–8 remain open;
+this release does not authorize analytics-driven edits or model spending.

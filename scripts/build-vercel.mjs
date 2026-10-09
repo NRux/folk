@@ -1,4 +1,6 @@
 import {privacyControls,privacyPage} from './privacy-pages.mjs';
+import {buildTranslations} from './build-translations.mjs';
+import {hash} from './translations.mjs';
 import { addArticleFilters } from './article-filters.mjs';
 import { decorateArticleLayout, inlineImageCredits } from './article-layout.mjs';
 import { applyResponsiveImages } from './responsive-images.mjs';
@@ -15,6 +17,7 @@ const extraPages = JSON.parse(gunzipSync(await readFile('web/vercel/extra-pages.
 const catalog = JSON.parse(await readFile('web/vercel/articles.json', 'utf8'));
 const articleMedia = JSON.parse(await readFile('web/vercel/article-media.json', 'utf8'));
 const articles = publishedArticles(catalog, routes);
+const releaseRegistry=[];
 await verifyImageFiles(articles);
 Object.assign(routes, discoveryRouteFiles(articles));
 const origin = process.env.FOLKLY_PUBLIC_ORIGIN || 'https://www.folkly.com';
@@ -65,6 +68,13 @@ for (const [route, file] of Object.entries(routes)) {
   html = addArticleFilters(html, articles);
   html = addAdsense(html);
   html = html.replace('</nav>', '<a class="subscribe-button" href="/subscribe">Subscribe</a></nav>');
+  if(article){
+    const narrative=html.match(/<article>([\s\S]*?)<\/article>/)?.[1];if(!narrative)throw Error('Missing analytics story boundary');
+    const version=hash(narrative);releaseRegistry.push({article_id:article.slug,content_version:version,published_at:article.publishedAt,declared_modified_at:JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]).dateModified});
+    html=html.replace('<article>',`<article data-article-id="${article.slug}" data-article-version="${version}">`);
+    html=html.replace(/(<a class="related-card"[^>]*href=")\/([a-z0-9-]+)("[^>]*>)/g,(all,before,slug,after)=>articles.some(a=>a.slug===slug)?`${before}/${slug}${after.slice(0,-1)} data-story-id="${slug}">`:all);
+    html=html.replace('</head>','<script type="module" src="/reader-events.js"></script></head>');
+  }
   const target = route === '/' ? 'dist/index.html' : `dist${route}.html`;
   await mkdir(dirname(target), { recursive: true });
   await writeFile(target, html);
@@ -92,3 +102,6 @@ await cp('web/vercel/owner-workspace.js', 'dist/owner-workspace.js');
 
 await writeFile('dist/privacy.html', addAdsense(privacyPage()));
 for (const file of ['privacy.js','privacy.css']) await cp(`web/vercel/${file}`,`dist/${file}`);
+await cp('web/vercel/reader-events.mjs','dist/reader-events.js');
+await writeFile('dist/article-release-registry.json',JSON.stringify({format:'folkly-public-release-registry-v1',articles:releaseRegistry},null,2)+'\n');
+await buildTranslations({articles,origin:canonical.origin});

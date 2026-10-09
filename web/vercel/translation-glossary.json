@@ -1,0 +1,5 @@
+{
+  "version": "public-cultural-names-v1",
+  "rules": ["Retain original spelling and diacritics of local names.", "Translate the source's first-use context faithfully; do not invent etymology, symbolism or a universal custom.", "Keep creator names, license labels, source citations, numbers, dates and musical recordings intact."],
+  "retain": ["Aotearoa", "Māori", "maunga", "iwi", "Matariki", "Puanga", "Rigel", "Te Tai Tokerau", "Taranaki", "Whanganui", "Teotitlán del Valle", "Zapotec", "Bonwire", "kente", "Tokushima", "aizome", "sukumo", "castells", "colla", "pinya", "kimjang", "kimchi", "Navruz", "Nowruz", "sumanak", "Xochimilco", "chinampa", "fado", "Alfama"]
+}
