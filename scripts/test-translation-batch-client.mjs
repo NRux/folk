@@ -10,9 +10,9 @@ function element(){return {value:'',textContent:'',children:[],disabled:false,bu
 for(const id of controls)elements.set(id,element());
 for(const value of ['zh-Hans','es','hi','ar','fr','ja'])elements.get('translation-locale').children.push({value,selected:false});
 const document={getElementById(id){assert(elements.has(id),id);return elements.get(id);},createElement:element,addEventListener(n,f){listeners[n]=f;}};
-const calls=[];let resolveSubmission,delay=false,ready=true;
-const list=()=>({jobs:[],batches:[{batch_id:'fixture-batch',state:'submitted',provider_status:'in_progress'}],sources:['story-one','story-two','story-three'],batchConfiguration:{available:ready,model:'gpt-6-luna',maxJobDollars:0.02,message:'Pilot paused'}});
-vm.runInNewContext(script,{document,crypto:{randomUUID:()=> 'fixture-id'},encodeURIComponent,window:{},fetch:async(url,opts)=>{const body=opts?.body&&JSON.parse(opts.body);calls.push({url,body});if(body?.action==='batch'){if(delay)return new Promise(r=>resolveSubmission=r);return {ok:true,status:202,json:async()=>({message:'Batch queued'})};}if(body?.action==='sync')return {ok:true,status:200,json:async()=>({message:'Existing batch checked'})};return {ok:true,status:200,json:async()=>list()};}});
+const calls=[];let resolveSubmission,delay=false,ready=true,budgetFailure=false,budgetDelay=false,resolveBudget;let budget={available:true,editable:true,revision:'a'.repeat(64),model:'gpt-6-luna',totalDollars:1,reservedDollars:0.10,remainingDollars:0.90,perTranslationDollars:0.02,enabled:false,validUntil:new Date(Date.now()+86400000).toISOString()};
+const list=()=>({budget,jobs:[],batches:[{batch_id:'fixture-batch',state:'submitted',provider_status:'in_progress'}],sources:['story-one','story-two','story-three'],batchConfiguration:{available:ready,model:'gpt-6-luna',maxJobDollars:0.02,message:'Pilot paused'}});
+vm.runInNewContext(script,{document,crypto:{randomUUID:()=> 'fixture-id'},encodeURIComponent,window:{},fetch:async(url,opts)=>{const body=opts?.body&&JSON.parse(opts.body);calls.push({url,body});if(body?.action==='budget'){if(budgetDelay)return new Promise(r=>resolveBudget=r);if(budgetFailure)return {ok:false,status:409,json:async()=>({message:'The budget changed. Refresh before saving.'})};budget={...budget,revision:'b'.repeat(64),totalDollars:Number(body.totalDollars),enabled:body.enabled,validUntil:body.validUntil};return {ok:true,status:200,json:async()=>({message:'Budget saved and verified. No batch started.',budget})};}if(body?.action==='batch'){if(delay)return new Promise(r=>resolveSubmission=r);return {ok:true,status:202,json:async()=>({message:'Batch queued'})};}if(body?.action==='sync')return {ok:true,status:200,json:async()=>({message:'Existing batch checked'})};return {ok:true,status:200,json:async()=>list()};}});
 const tick=()=>new Promise(r=>setImmediate(r)),session=signedIn=>listeners['owner-session']({detail:{signedIn}}),form=elements.get('translation-form'),status=elements.get('translation-status');
 session(true);await tick();assert.equal(form.button.disabled,false);assert.match(elements.get('translation-configuration').textContent,/OpenAI Batch/);
 elements.get('translation-source').children.slice(0,2).forEach(o=>o.selected=true);elements.get('translation-locale').children.forEach(o=>o.selected=true);
@@ -23,3 +23,22 @@ session(false);assert.equal(elements.get('translation-batches').children.length,
 session(true);await tick();const batchButton=elements.get('translation-batches').children[0].children[0];await batchButton.click();assert(calls.some(c=>c.body?.action==='sync'));assert.equal(status.textContent,'Existing batch checked');
 ready=false;await elements.get('translation-refresh').click();assert.equal(form.button.disabled,true);assert.equal(elements.get('translation-configuration').textContent,'Pilot paused');
 console.log('Batch client passed: real HTML controls, 12-pair bulk selection, invalid/duplicate-click prevention, visible progress, existing-batch sync, readiness disabling and late-response/logout privacy.');
+
+const budgetForm=elements.get('translation-budget-form'),budgetStatus=elements.get('translation-budget-status'),total=elements.get('translation-budget-total'),expiry=elements.get('translation-budget-expiry'),enabled=elements.get('translation-budget-enabled');
+assert.match(elements.get('translation-budget-summary').textContent,/Reserved \$0.10/);
+total.value='2.50';total.input();enabled.checked=true;enabled.input();expiry.value=new Date(Date.now()+86400000).toISOString().slice(0,16);expiry.input();
+await elements.get('translation-refresh').click();assert.equal(total.value,'2.50','Refresh retains unsaved budget text');
+const batchesBefore=calls.filter(c=>c.body?.action==='batch').length;
+const savedBudget=budgetForm.submit({preventDefault(){},currentTarget:budgetForm});
+assert.equal(budgetForm.button.disabled,true);assert.equal(total.disabled,true);assert.match(budgetStatus.textContent,/Saving and verifying/);await savedBudget;
+assert.equal(budgetStatus.textContent,'Budget saved and verified. No batch started.');
+assert.equal(calls.filter(c=>c.body?.action==='batch').length,batchesBefore,'Saving budget starts no batch');
+const budgetCall=calls.find(c=>c.body?.action==='budget');assert.equal(budgetCall.body.totalDollars,'2.50');assert.equal(budgetCall.body.enabled,true);assert.equal(budgetCall.body.revision,'a'.repeat(64));
+for(const value of ['51','1.001','0x10']){total.value=value;total.input();await budgetForm.submit({preventDefault(){},currentTarget:budgetForm});assert.match(budgetStatus.textContent,/Enter a USD limit/);}
+assert.equal(calls.filter(c=>c.body?.action==='budget').length,1);
+total.value='3.00';total.input();budgetFailure=true;await budgetForm.submit({preventDefault(){},currentTarget:budgetForm});assert.equal(total.value,'3.00');assert.match(budgetStatus.textContent,/budget changed/);budgetFailure=false;
+await elements.get('translation-budget-reload').click();assert.equal(total.value,'2.5');assert.equal(enabled.checked,true);
+total.value='4.00';total.input();budgetDelay=true;const lateBudget=budgetForm.submit({preventDefault(){},currentTarget:budgetForm});await tick();session(false);resolveBudget({ok:true,status:200,json:async()=>({message:'Private late budget state',budget})});await lateBudget;
+assert.equal(total.value,'');assert.equal(expiry.value,'');assert.equal(enabled.checked,false);assert.equal(budgetStatus.textContent,'');assert.equal(budgetForm.button.disabled,true);
+session(true);await tick();assert.equal(total.disabled,false,'New owner session restores editing after an interrupted save');
+console.log('Budget client passed: real controls, saved values, retained unsaved input, explicit spending choice, bounded dollars, stale/save failures, no batch from save and logout/late-response isolation.');

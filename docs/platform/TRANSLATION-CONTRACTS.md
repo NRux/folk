@@ -172,6 +172,38 @@ credits, placeholder integrity and competent language review before release.
 Provider reference: https://developers.openai.com/api/docs/guides/batch
 Model pricing: https://developers.openai.com/api/docs/models/gpt-6-luna
 
+## Owner budget controls, 2026-10-09 UTC
+
+Use **Translations → Translation spending limit** in the existing owner panel.
+Enter the total USD cap (0–50) and an expiry within the next 30 days. The form
+shows existing reserved spend, remaining headroom, model and per-translation
+reservation. The latter comes from FOLKLY_TRANSLATION_MAX_JOB_DOLLARS and is not
+a caller-supplied price. The exact configured model must match the prepared SQL
+model; pricing remains the previously verified STANDARD rates.
+
+**Allow translation batches within these limits** is an explicit owner choice.
+Saving writes the independent pilot's enabled state, total cap, job cap and expiry
+and requires separate private readback. It never starts a batch, calls a model,
+releases translations, changes newsletter delivery or changes any article switch.
+Default loaded values reflect the persisted budget; no positive cap or activation
+is preselected for the current paused pilot.
+
+Existing failed/reserved jobs remain charged against the total commitment.
+The server rejects a cap below retained reservations, an enabled cap that cannot
+fund one translation, incompatible model/prices/token ceilings, malformed amounts
+and stale edits. Changing limits never refunds or deletes earlier jobs. Existing
+in-flight paid batches can still be checked/imported after pausing or expiry.
+
+Migration 20261009214800_translation_budget_controls.sql adds private server-only
+read/save RPCs. Saves lock the same singleton budget row used by claims, compare
+the entire expected snapshot, and append before/after metadata to the existing
+private audit table in one transaction. PUBLIC, anon, authenticated and publisher
+roles cannot call either RPC. The owner endpoint additionally checks membership,
+session and origin on every save; responses use no-store caching. Unknown client
+model/rate fields are rejected. Unsaved inputs survive ordinary refresh; **Reload
+saved budget** explicitly discards them. Logout clears values and rejects late
+save responses. An unverified save asks for refresh, without automatic retry.
+
 ## Shared pages and review
 
 `ui-home`, `ui-archive`, `ui-about`, `ui-subscribe`, `ui-privacy`, and
