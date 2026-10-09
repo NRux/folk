@@ -1,0 +1,143 @@
+{
+  "format": "folkly-editorial-import-live-evidence-v1",
+  "implementationCommit": "b52edbc18d9f0e7ca9cf064a3fc3cca9425eeb10",
+  "verifiedAt": "2026-10-09T23:47:12.422Z",
+  "receipt": {
+    "format": "folkly-import-readback-v1",
+    "sourceSha": "f284367ddd8455fe6907983bd39a6b48e3d5a7209ea98ede24a66304afdacd5d",
+    "counts": {
+      "personas": 5,
+      "persona_briefs": 6,
+      "pitches": 0,
+      "articles": 11,
+      "article_versions": 15,
+      "assignments": 0,
+      "page_blocks": 2,
+      "sources": 63,
+      "claim_citations": 147,
+      "media_assets": 3,
+      "editorial_checks": 63
+    },
+    "publishedCount": 11,
+    "privateCount": 0,
+    "mode": "blob",
+    "verifiedVersions": 15,
+    "backupVerified": true,
+    "sweeps": 2,
+    "switchesPaused": true,
+    "projectId": "vxmyggasjgsiohqzzwzh",
+    "verifiedAt": "2026-10-09T23:47:12.422Z"
+  },
+  "independentAdministrativeReadback": {
+    "mode": "read-only per-field digest and exact count comparison against validated source",
+    "tables": [
+      {
+        "category": "personas",
+        "count": 5,
+        "exact_matches": 5,
+        "expected": 5
+      },
+      {
+        "category": "persona_briefs",
+        "count": 6,
+        "exact_matches": 6,
+        "expected": 6
+      },
+      {
+        "category": "pitches",
+        "count": 0,
+        "exact_matches": 0,
+        "expected": 0
+      },
+      {
+        "category": "articles",
+        "count": 11,
+        "exact_matches": 11,
+        "expected": 11
+      },
+      {
+        "category": "article_versions",
+        "count": 15,
+        "exact_matches": 15,
+        "expected": 15
+      },
+      {
+        "category": "assignments",
+        "count": 0,
+        "exact_matches": 0,
+        "expected": 0
+      },
+      {
+        "category": "page_blocks",
+        "count": 2,
+        "exact_matches": 2,
+        "expected": 2
+      },
+      {
+        "category": "sources",
+        "count": 63,
+        "exact_matches": 63,
+        "expected": 63
+      },
+      {
+        "category": "claim_citations",
+        "count": 147,
+        "exact_matches": 147,
+        "expected": 147
+      },
+      {
+        "category": "media_assets",
+        "count": 3,
+        "exact_matches": 3,
+        "expected": 3
+      },
+      {
+        "category": "editorial_checks",
+        "count": 63,
+        "exact_matches": 63,
+        "expected": 63
+      }
+    ],
+    "contentObjects": {
+      "count": 15,
+      "exactMatches": 15,
+      "expected": 15
+    }
+  },
+  "grant": {
+    "status": "verified",
+    "leaseRetired": true,
+    "receiptSaved": true,
+    "replayStatus": 401,
+    "replayCacheControl": "private, no-store"
+  },
+  "publicChecks": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/detroit-future-frequency",
+      "status": 200
+    },
+    {
+      "path": "/owner",
+      "status": 200
+    },
+    {
+      "path": "/api/owner-workspace",
+      "status": 401
+    },
+    {
+      "path": "/api/editorial-import",
+      "status": 401
+    }
+  ],
+  "readerChecks": 45,
+  "regressionCommands": 36,
+  "limitations": [
+    "Owner-session draft readback is a separate pending gate.",
+    "Hosted publisher, newsletter and isolated outage/restore acceptance remain pending.",
+    "Historical source versions do not replace or validate later public Vercel revisions."
+  ]
+}

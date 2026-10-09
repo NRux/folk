@@ -1,5 +1,26 @@
 # Stage 07 — Acceptance report
 
+## Actual editorial transfer and hosted readback PASS, 2026-10-09 UTC
+
+The complete source was transferred inside existing Vercel using existing server
+secrets. All eleven metadata/evidence tables, 11 already-public articles and 15
+private version bodies are imported; two exact-field database sweeps, byte-exact
+Blob reads and immutable original backup passed. Separate administrative field
+digest/count/reference checks also passed. The import grant is verified/retired,
+its aggregate receipt persisted, and actual replay plus anonymous requests return
+401/no-store. All three autonomous switches remain false; no new publication,
+paid model/translation call or outgoing newsletter occurred. Build/all 36 regression
+commands and 45 deployed reader checks pass, with additional private CLI guards.
+
+Source export, actual transfer and exact hosted readback are PASS, superseding
+older missing-source/empty-destination/credential-access claims below. No new source
+export or provider-secret setup is needed from Noah for this prerequisite. Full
+Stage 7 remains BLOCKED for authenticated owner draft readback and complete hosted
+isolated publisher/newsletter/provider outage/restore acceptance. Historical source
+versions do not replace later public revisions or validate their evidence.
+See [live transfer report](hosted-editorial-import-2026-10-09.md) and
+[aggregate receipt](editorial-import-live-2026-10-09.json).
+
 ## Vercel-resident import checkpoint, 2026-10-09 UTC
 
 The private transfer can now run inside Vercel using existing provider environment
@@ -80,7 +101,7 @@ public stories, including seven already manually released; they are not reserve.
 | Translation source/review boundary | PASS local and isolated build fixtures; stale/unreviewed/tampered/private denial, complete coverage and immutable credits. Empty production manifest. |
 | Real translation launch | BLOCKED pending paid pilot authorization, translation job adapter, competent six-language review, localized discovery/shared UI and actual browser/hosted checks. |
 | Consent-aware reader events | PASS offline event-wiring/privacy/signup timing tests. Live GA property/stream/dimension/DebugView and enhanced-measurement settings are not verified. |
-| Editorial content import | Complete original export PASS (2026-10-09). BLOCKED for actual private Blob upload, transactional metadata import and independent hosted readback. No partial private transfer. |
+| Editorial content import | PASS complete source export, actual private Blob upload/transactional metadata import, exact two-sweep readback and independent administrative comparison (2026-10-09). Owner draft/recovery remains a separate gate. |
 | Funded unattended generation | BLOCKED pending scoped provider/worker credentials, approved budget/pricing and live usage/redaction/persona evidence. Local paused/budget/ledger tests pass. |
 | Hosted recovery and publication | Earlier scoped hosted component fixtures exist; full Vercel commit/readback/backup/failure recovery gates remain pending. |
 | Resend newsletter acceptance | Adapter, suppression/unsubscribe and private subscriber readback code exist. Secure provider setup and authenticated hosted delivery/recovery evidence remain pending; delivery stays off. |

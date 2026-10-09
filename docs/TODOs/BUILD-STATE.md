@@ -1,5 +1,25 @@
 # Folkly Build State
 
+## Original editorial transfer completed, 2026-10-09 UTC
+
+PASS: the recovered complete source has been imported into existing Supabase and
+private Vercel Blob using credentials kept inside Vercel. Two complete exact-field
+HTTP sweeps, all 15 byte-exact version reads and the original backup passed at
+23:47:12 UTC. An independent administrative connection confirmed all eleven table
+counts/field digests and 15 immutable references. The one-use grant is verified,
+lease cleared, receipt saved, and actual replay denied 401/no-store. All 11 stories
+were already published according to the manual-release manifest; no reserve or
+public revision was overwritten. All three autonomous switches remain false.
+
+Build/all 36 regressions and 45 deployed reader checks pass; additional CLI path,
+proof-preservation and sanitized-failure tests pass. Source export, transfer and
+hosted exact readback are no longer blockers or actions for Noah. Existing secrets
+were reused without local export or the deferred Vercel connector. Next: actual
+authenticated owner draft readback and isolated full publisher/newsletter/recovery
+acceptance. Historical source evidence does not validate later public revisions.
+See verification/hosted-editorial-import-2026-10-09.md and its aggregate JSON receipt.
+This addendum supersedes the older pending-transfer checkpoints below.
+
 ## Vercel-resident editorial transfer implementation, 2026-10-09 UTC
 
 Added a bounded server-side import so existing Vercel Blob/Supabase credentials

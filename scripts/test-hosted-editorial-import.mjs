@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
-import {readFile} from 'node:fs/promises';
+import {readFile,mkdtemp,writeFile,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {spawnSync} from 'node:child_process';
 import {PGlite} from '@electric-sql/pglite';
 import {createEditorialImportHandler,createImportStore,contractHash,importClient,PROJECT_ID} from '../server/editorial-import.js';
 import {createClient} from '@supabase/supabase-js';
@@ -98,4 +101,19 @@ assert.equal(await sdkStore.claim(tokenHash,snapshot.sha256,contractHash(contrac
 assert.equal(await sdkStore.commit('fixture',lease,prepared.records,prepared.objects),true);
 assert.equal(await sdkStore.complete('fixture',lease,safeReceipt),true);assert.equal(wire.length,4);
 await db.close();
+// CLI refuses public/repository receipts and preserves an existing private proof
+// before opening stdin or making a network request. Paths and file bytes stay out
+// of diagnostics, including when source files are missing.
+const privateDir=await mkdtemp(join(tmpdir(),'folkly-import-cli-'));
+try{
+ const existing=join(privateDir,'existing.json');await writeFile(existing,'private fixture',{mode:0o600});
+ const run=output=>spawnSync(process.execPath,['scripts/run-hosted-editorial-import.mjs',join(privateDir,'missing-snapshot.json'),join(privateDir,'missing-receipt.json'),output],{encoding:'utf8',input:'',timeout:10000});
+ for(const output of ['package.json',existing]){
+  const result=run(output);assert.equal(result.status,1);assert.equal(result.stdout,'');
+  assert.ok(!result.stderr.includes(privateDir));assert.ok(!result.stderr.includes('private fixture'));
+  assert.match(result.stderr,output===existing?/Readback receipt already exists/:/Import inputs and receipts must be outside/);
+ }
+ assert.equal(await readFile(existing,'utf8'),'private fixture');
+ const missing=run(join(privateDir,'new-proof.json'));assert.equal(missing.status,1);assert.match(missing.stderr,/Hosted import failed;/);assert.ok(!missing.stderr.includes(privateDir));
+}finally{await rm(privateDir,{recursive:true,force:true});}
 console.log('Hosted import fixtures passed: private roles, fenced single-use grants, transactional rollback, paused switches, immutable Blob retry, receipt allowlist, authorization-before-upload and redacted failures.');

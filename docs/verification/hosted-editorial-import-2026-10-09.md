@@ -1,6 +1,66 @@
 # Vercel-resident editorial import — 2026-10-09 UTC
 
-## Implementation checkpoint
+## Deployed transfer PASS — 2026-10-09 23:47:12 UTC
+
+The complete recovered source was actually transferred inside the existing Vercel
+project to the existing Supabase database and private Vercel Blob store. No provider
+credentials were exported locally. The deployed function returned HTTP 200 and
+`folkly-import-readback-v1` after two exact-field database sweeps, uncached byte-exact
+readback of all 15 version bodies, and the immutable original snapshot backup.
+The independently generated source SHA is
+`f284367ddd8455fe6907983bd39a6b48e3d5a7209ea98ede24a66304afdacd5d`.
+
+| Imported table | Verified records |
+| --- | ---: |
+| personas | 5 |
+| persona_briefs | 6 |
+| pitches | 0 |
+| articles | 11 |
+| article_versions | 15 |
+| assignments | 0 |
+| page_blocks | 2 |
+| sources | 63 |
+| claim_citations | 147 |
+| media_assets | 3 |
+| editorial_checks | 63 |
+| private content references | 15 |
+
+A separate administrative connection independently compared every imported field
+via per-field digests and exact counts against the validated source. All eleven
+metadata tables match, and all 15 Blob references match source hashes, byte sizes
+and checksum paths. SQL compatibility content_json fields are empty; full original
+JSON bodies remain private in Blob. The raw 411,686-byte request never entered Git.
+
+The one-use grant is verified, its lease cleared, and its redacted receipt saved.
+An actual replay with the retired credential and an anonymous request both returned
+401/private,no-store. Anonymous owner-workspace access remains 401/no-store.
+Homepage, Detroit story and owner shell remain 200. All 45 deployed reader checks
+passed on the implementation; build and all 36 regression commands pass. Additional
+CLI tests verify repository/public output refusal, existing private-proof preservation
+and safe missing-file diagnostics before credential input or network access.
+
+Implementation commit: [b52edbc](https://github.com/NRux/folk/commit/b52edbc18d9f0e7ca9cf064a3fc3cca9425eeb10).
+[Vercel deployment](https://vercel.com/optagens-projects/folk/AMkWyBFqmuhwRsgMQwygohhW4WQY)
+reported success. Machine-readable aggregate evidence:
+[editorial-import-live-2026-10-09.json](editorial-import-live-2026-10-09.json).
+
+The release manifest identifies all 11 imported stories as already public, including
+the seven manually released stories; private article count is zero. Historical
+version bodies, persona briefs, checks and evidence remain private. No new story
+was published, no public revision or image/license replaced, and no historical
+source evidence is asserted to validate later Vercel edits. All three autonomous
+production/publication/article-schedule settings remain false. No model call,
+newsletter or translation release was performed.
+
+This supersedes the transfer-pending checkpoints below and in older reports.
+Source export, actual transfer and exact hosted readback are now PASS. No source
+export or new credential action remains for Noah for this prerequisite. Full
+Stage 7 stays blocked for authenticated owner draft viewing and the complete
+isolated publisher/newsletter/provider outage/restore acceptance, including native
+language review where applicable. Vercel connector and Google Cloud stay deferred.
+Existing secrets were successfully reused; setup is not being requested again.
+
+## Implementation checkpoint (before transfer)
 
 The existing Vercel project can now perform the recovered source transfer without
 exporting provider secrets. `/api/editorial-import` accepts only a fixed bounded

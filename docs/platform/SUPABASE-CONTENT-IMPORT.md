@@ -123,6 +123,28 @@ Private owner draft viewing, anonymous/non-owner denial, hosted outage/restore
 fixtures and the full publisher acceptance suite remain separate gates. Retain
 the private source, receipt and backup for those recovery checks.
 
+## Completed hosted transfer (2026-10-09)
+
+The actual controlled transfer passed at 23:47:12 UTC. Existing Supabase has all
+11 expected metadata tables, 11 already-public stories and 15 version references;
+private Vercel Blob holds exact source version bodies and the immutable backup.
+Two exact-field hosted sweeps/private Blob reads and a separate administrative
+field-digest/count/reference comparison passed. The original one-use grant is
+retired and actual replay returns 401/no-store. All three switches remain false.
+Noah has no original-source export or new credential setup action for this import.
+[Live receipt and limitations](../verification/hosted-editorial-import-2026-10-09.md)
+supersede earlier pending/empty-destination readbacks. Do not re-import casually:
+future actual changes must be reviewed against concurrent metadata and publication
+state. Historical source bodies do not overwrite later public Vercel revisions.
+
+For an explicitly reviewed future transfer, `scripts/run-hosted-editorial-import.mjs`
+accepts private snapshot, independent source receipt and a new private aggregate
+readback-receipt path, all outside the repository/public directories. It refuses
+existing output, validates the full source before requesting credentials, receives
+only the temporary import token through hidden stdin, posts once to the fixed
+existing origin, and validates the aggregate HTTP 200/no-store receipt before saving
+mode-0600 proof. It never accepts provider secrets, follows redirects, or retries.
+
 ## Vercel-resident controlled transfer (2026-10-09)
 
 The protected `/api/editorial-import` function can use the existing server
