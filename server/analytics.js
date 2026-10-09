@@ -19,6 +19,34 @@ export function analyticsClient(env=process.env,factory=createClient) {
   if(claims.role!=='folkly_analytics'||!Number.isFinite(claims.exp)||claims.exp<=Date.now()/1000)throw Error('Scoped analytics credential required');
   return factory(env.SUPABASE_URL,env.SUPABASE_PUBLISHABLE_KEY,{global:{headers:{Authorization:`Bearer ${env.SUPABASE_ANALYTICS_TOKEN}`}},auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
 }
+const MAX_REPORT_BYTES=1000000;
+const QUOTA_FIELDS=['tokensPerDay','tokensPerHour','tokensPerProjectPerHour','concurrentRequests','serverErrorsPerProjectPerHour','potentiallyThresholdedRequestsPerHour'];
+function quotaEvidence(value) {
+  if(value===undefined)return null;
+  if(!value||typeof value!=='object'||Array.isArray(value))throw Error('Invalid GA4 quota evidence');
+  const result={};
+  for(const field of QUOTA_FIELDS)if(Object.hasOwn(value,field)){
+    const status=value[field];if(!status||typeof status!=='object'||Array.isArray(status))throw Error('Invalid GA4 quota evidence');
+    const normalized={};for(const key of ['consumed','remaining'])if(Object.hasOwn(status,key)){
+      if(!Number.isSafeInteger(status[key])||status[key]<0)throw Error('Invalid GA4 quota evidence');normalized[key]=status[key];
+    }
+    result[field]=normalized;
+  }
+  return result;
+}
+async function readReport(response) {
+  if(Number(response.headers?.get('content-length'))>MAX_REPORT_BYTES){await response.body?.cancel().catch(()=>{});throw Error('GA4 report exceeds bound');}
+  const reader=response.body?.getReader();if(!reader)throw Error('Invalid GA4 report response');
+  const chunks=[];let size=0;
+  try {
+    while(true){let part;try{part=await reader.read();}catch{throw Error('GA4 report request unavailable');}
+      if(part.done)break;size+=part.value.byteLength;
+      if(size>MAX_REPORT_BYTES){await reader.cancel().catch(()=>{});throw Error('GA4 report exceeds bound');}chunks.push(part.value);
+    }
+  }finally{reader.releaseLock();}
+  let report;try{report=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(Buffer.concat(chunks)));}catch{throw Error('Invalid GA4 report response');}
+  if(!report||typeof report!=='object'||Array.isArray(report))throw Error('Invalid GA4 report response');return report;
+}
 export async function collectAnalytics({env=process.env,tokenProvider,client,fetcher=fetch,at=new Date()}) {
   if(env.FOLKLY_ANALYTICS_ENABLED!=='true')return {state:'paused'};
   if(!/^[0-9]{1,20}$/.test(env.GA4_PROPERTY_ID||'')||!env.GA4_TIME_ZONE||typeof tokenProvider!=='function')throw Error('GA4 property, timezone and read-only authentication required');
@@ -29,31 +57,42 @@ export async function collectAnalytics({env=process.env,tokenProvider,client,fet
   const request={dimensions:[{name:'date'},{name:'pagePath'}],metrics:[{name:'screenPageViews'},{name:'userEngagementDuration'}],dimensionFilter:{andGroup:{expressions:[{filter:{fieldName:'hostName',inListFilter:{values:['www.folkly.com','folkly.com']}}},{filter:{fieldName:'pagePath',inListFilter:{values:paths}}}]}}};
   async function post(method,body) {
     let response;try{response=await fetcher(base+':'+method,{method:'POST',headers:{Authorization:`Bearer ${token}`,'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(15000),redirect:'error'});}catch{throw Error('GA4 report request unavailable');}
-    if(!response.ok)throw Error(`GA4 report request failed (${response.status})`);
-    const text=await response.text();if(Buffer.byteLength(text)>1000000)throw Error('GA4 report exceeds bound');
-    try{return JSON.parse(text);}catch{throw Error('Invalid GA4 report response');}
+    if(!response.ok){const error=Error(`GA4 report request failed (${response.status})`);const retry=response.headers?.get('retry-after');
+      if(response.status===429&&/^\d{1,5}$/.test(retry||'')&&Number(retry)<=86400)error.retryAfterSeconds=Number(retry);
+      throw error;
+    }
+    return readReport(response);
   }
   const compatible=await post('checkCompatibility',{...request,compatibilityFilter:'COMPATIBLE'});
-  if(!request.dimensions.every(d=>compatible.dimensionCompatibilities?.some(x=>x.dimensionMetadata?.apiName===d.name&&x.compatibility==='COMPATIBLE'))||!request.metrics.every(m=>compatible.metricCompatibilities?.some(x=>x.metricMetadata?.apiName===m.name&&x.compatibility==='COMPATIBLE')))throw Error('GA4 report dimensions/metrics incompatible');
-  const records=new Map(),quality=[],hashes=[];let offset=0,expected;
+  if(!Array.isArray(compatible.dimensionCompatibilities)||!Array.isArray(compatible.metricCompatibilities)||!request.dimensions.every(d=>compatible.dimensionCompatibilities?.some(x=>x.dimensionMetadata?.apiName===d.name&&x.compatibility==='COMPATIBLE'))||!request.metrics.every(m=>compatible.metricCompatibilities?.some(x=>x.metricMetadata?.apiName===m.name&&x.compatibility==='COMPATIBLE')))throw Error('GA4 report dimensions/metrics incompatible');
+  const records=new Map(),seen=new Set(),quality=[],quotas=[],hashes=[];let offset=0,expected,previousKey;
+  const maximumRows=paths.length*((Date.parse(window.endDate)-Date.parse(window.startDate))/86400000+1);
   for(let page=0;page<5;page++) {
     const report=await post('runReport',{...request,dateRanges:[window],offset:String(offset),limit:'2000',orderBys:[{dimension:{dimensionName:'date'}},{dimension:{dimensionName:'pagePath'}}],returnPropertyQuota:true});
     hashes.push(createHash('sha256').update(JSON.stringify(report)).digest('hex'));
     if(report.metadata?.timeZone!==env.GA4_TIME_ZONE)throw Error('GA4 property timezone mismatch');
-    if(JSON.stringify(report.dimensionHeaders?.map(x=>x.name))!==JSON.stringify(['date','pagePath'])||JSON.stringify(report.metricHeaders?.map(x=>x.name))!==JSON.stringify(['screenPageViews','userEngagementDuration']))throw Error('Unexpected GA4 report columns');
-    if(!Number.isSafeInteger(report.rowCount)||report.rowCount<0||report.rowCount>10000||(expected!==undefined&&expected!==report.rowCount))throw Error('GA4 report changed or exceeds bound');expected=report.rowCount;
+    if(!Array.isArray(report.dimensionHeaders)||!Array.isArray(report.metricHeaders)||JSON.stringify(report.dimensionHeaders?.map(x=>x.name))!==JSON.stringify(['date','pagePath'])||JSON.stringify(report.metricHeaders?.map(x=>x.name))!==JSON.stringify(['screenPageViews','userEngagementDuration']))throw Error('Unexpected GA4 report columns');
+    if(!Number.isSafeInteger(report.rowCount)||report.rowCount<0||report.rowCount>Math.min(10000,maximumRows)||(expected!==undefined&&expected!==report.rowCount))throw Error('GA4 report changed or exceeds bound');expected=report.rowCount;
+    const quota=quotaEvidence(report.propertyQuota);quotas.push(quota);
     quality.push({thresholded:!!report.metadata.subjectToThresholding,sampled:!!report.metadata.samplingMetadatas?.length,otherRows:!!report.metadata.dataLossFromOtherRow,truncated:!!report.metadata.dataTruncationReasons?.length,emptyReason:report.metadata.emptyReason||null});
     if(!Array.isArray(report.rows)&&report.rowCount!==0)throw Error('GA4 report rows missing');
     const rows=report.rows||[];if(rows.length>2000||(!rows.length&&offset<expected))throw Error('GA4 pagination incomplete');
     for(const row of rows){
-      const rawDate=row.dimensionValues?.[0]?.value,path=canonicalArticlePath(row.dimensionValues?.[1]?.value),values=row.metricValues?.map(v=>Number(v.value));
+      if(!Array.isArray(row?.dimensionValues)||row.dimensionValues.length!==2||!Array.isArray(row.metricValues)||row.metricValues.length!==2)throw Error('Invalid GA4 report row');
+      const rawDate=row.dimensionValues[0]?.value,rawPath=row.dimensionValues[1]?.value,path=canonicalArticlePath(rawPath),rawValues=row.metricValues.map(v=>v?.value);
+      if(typeof rawValues[0]!=='string'||!/^(?:0|[1-9]\d*)$/.test(rawValues[0])||typeof rawValues[1]!=='string'||!/^(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$/.test(rawValues[1]))throw Error('Invalid GA4 report metrics');
+      const values=rawValues.map(Number);
+      if(typeof rawDate!=='string'||typeof rawPath!=='string')throw Error('Invalid GA4 report row');
       const date=/^\d{8}$/.test(rawDate||'')?`${rawDate.slice(0,4)}-${rawDate.slice(4,6)}-${rawDate.slice(6,8)}`:'';
-      if(!path||date<window.startDate||date>window.endDate||values?.length!==2||!Number.isSafeInteger(values[0])||values[0]<0||!Number.isFinite(values[1])||values[1]<0)throw Error('Invalid GA4 report row');
+      if(!path||!paths.includes(rawPath)||civilDate(date)===null||date<window.startDate||date>window.endDate||values?.length!==2||!Number.isSafeInteger(values[0])||values[0]<0||!Number.isFinite(values[1])||values[1]<0)throw Error('Invalid GA4 report row');
+      const rawKey=rawDate+'|'+rawPath;if(seen.has(rawKey))throw Error('Duplicate GA4 report row');
+      if(previousKey!==undefined&&rawKey<previousKey)throw Error('Invalid GA4 report order');seen.add(rawKey);previousKey=rawKey;
       const key=date+path,prior=records.get(key)||{date,path,views:0,engagementSeconds:0};prior.views+=values[0];prior.engagementSeconds+=values[1];if(!Number.isSafeInteger(prior.views)||!Number.isFinite(prior.engagementSeconds))throw Error('GA4 aggregate exceeds bound');records.set(key,prior);
     }
     offset+=rows.length;if(offset===expected)break;if(offset>expected||page===4)throw Error('GA4 pagination incomplete');
+    if(['tokensPerDay','tokensPerHour','tokensPerProjectPerHour','serverErrorsPerProjectPerHour'].some(field=>quota?.[field]?.remaining===0))throw Error('GA4 quota exhausted; incomplete report not persisted');
   }
-  const snapshot={propertyId:env.GA4_PROPERTY_ID,...window,version:'page-daily-v1',hash:createHash('sha256').update(JSON.stringify(hashes)).digest('hex'),report:{timeZone:env.GA4_TIME_ZONE,rows:[...records.values()],quality}};
+  const snapshot={propertyId:env.GA4_PROPERTY_ID,...window,version:'page-daily-v1',hash:createHash('sha256').update(JSON.stringify(hashes)).digest('hex'),report:{timeZone:env.GA4_TIME_ZONE,rows:[...records.values()],quality,quotas}};
   const db=client||analyticsClient(env);const saved=await db.rpc('folkly_save_analytics_snapshot',{snapshot});
   if(saved.error||saved.data!==true)throw Error('Analytics snapshot not persisted; collection disabled or unavailable');
   return {state:'collected',rows:snapshot.report.rows.length,startDate:window.startDate,endDate:window.endDate};

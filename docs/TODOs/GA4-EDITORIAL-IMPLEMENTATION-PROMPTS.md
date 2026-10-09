@@ -1,6 +1,18 @@
 # GA4 editorial feedback implementation prompts
 
 Status: partial foundations implemented; live reporting and editorial automation remain gated. Tracking stream: G-RQJD3XG35C; property: 558035708.
+
+Latest collector follow-up, 2026-10-09 UTC: strict report/calendar/metric/path
+validation, cross-page duplicate and ordering denial, bounded streaming reads,
+quota-aware pagination and redacted 429 retry hints are implemented. Invalid or
+incomplete reports never reach the snapshot RPC; valid alias rows still merge.
+Prompt 3 remains PARTIAL: durable sync-run/checkpoint recovery, additional report
+groups, runtime token wiring and live readback remain open. Prompt 4 still permits
+only qualified descriptive observations. No reporting call, schedule or AI revision
+was activated. Owner-reported GA4 setup and provider secrets remain completed
+setup reports; Google Cloud/reporting access stays deferred. See
+verification/analytics-report-integrity-2026-10-09.md for tests and limits.
+
 Run prompts in order. Each prompt inherits the shared constraints below.
 
 ## Shared instructions for every prompt

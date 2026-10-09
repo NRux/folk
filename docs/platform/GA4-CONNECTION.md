@@ -38,3 +38,26 @@ Run a protected manual connection fixture first. Record property match, timezone
 API permissions, snapshot readback, redaction and disabled publication evidence.
 Collection scheduling, retries and AI editorial recommendations are separate
 future work in docs/TODOs/GA4-EDITORIAL-IMPLEMENTATION-PROMPTS.md.
+
+## Collector integrity follow-up, 2026-10-09 UTC
+
+The owner reports property/stream verification and bounded GA4 settings completed;
+older setup assumptions above are historical. Google Cloud/reporting access is
+still deferred; no new credential is required for the offline integrity work.
+
+Report responses are streamed with a one-million-byte cap and strict UTF-8/JSON
+validation. Rows require real calendar dates, exactly requested column shapes,
+explicit nonnegative numeric strings and exact allowlisted public route variants.
+Repeated raw date/path cells and nonascending pages are rejected; canonical and
+.html aliases remain distinct cells and are combined once after validation.
+Row counts must remain stable and cannot exceed the public-path/window cardinality.
+
+Only known numeric quota fields are retained. If daily/hourly/project tokens or
+server-error capacity is explicitly exhausted while rows remain, stop before the
+next request and do not save a partial snapshot. A complete valid report can still
+be saved when its final response exhausts quota. Omitted quota data is unknown,
+not infinite capacity. HTTP 429 exposes only a bounded numeric retry-after hint;
+there is no automatic retry. The entire report must validate before the existing
+scoped snapshot RPC runs. Idempotent upsert, private ACLs and disabled configuration
+are unchanged. Durable sync checkpoints remain a separate unfinished task.
+See verification/analytics-report-integrity-2026-10-09.md.
