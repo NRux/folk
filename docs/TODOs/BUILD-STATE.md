@@ -1,5 +1,23 @@
 # Folkly Build State
 
+## Live owner editor repair and acceptance, 2026-10-09 UTC
+
+The owner editor now returns and persists a real reply. A live current-build check
+identified MODEL_REQUEST_REJECTED at the provider stage. The installed SDK sent
+legacy max_tokens for the valid chat-latest alias; explicit max_completion_tokens
+fixed that request while retaining the latest model, 800-token cap, 30-second
+deadline and no retries. A subsequent live reply survived private-history readback.
+Existing idea save/readback also passed. Removed the duplicate Subscribers section
+from the deployed build and exposed only allowlisted diagnostic code/stage values.
+Build (73 public pages) and all 34 regression commands pass, including actual SDK
+wire serialization. Three rejected test attempts retained their reservations;
+one live editor reply succeeded. Provider billing remains unverified.
+See verification/owner-hosted-acceptance-2026-10-09.md. This supersedes older
+unconfirmed workspace-root-cause and unavailable-owner-session findings.
+Translation model/pricing are prepared, but zero caps and expired approval still
+block the independent pilot. No translation release, newsletter activation or
+autonomous article-switch change occurred.
+
 ## Translation configuration preparation, 2026-10-09 UTC
 
 Live Supabase now records model `gpt-6-luna`, STANDARD input price 0.10 and
