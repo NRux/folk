@@ -34,5 +34,11 @@ const delayedList=elements.get('workspace-refresh').click();resolve({status:200,
 notes.value='Another unsaved edit';
 const partial=elements.get('workspace-refresh').click();resolve({status:200,ok:true,json:async()=>({...empty,ideasAvailable:false,ideasMessage:'Ideas unavailable',chat:[{message:'hello',response:'reply'}]})});await partial;assert.equal(notes.value,'Another unsaved edit');assert(elements.get('editor-history').children[0].textContent.includes('reply'));
 elements.get('editor-message').value='hello';const sending=elements.get('editor-form').submit({preventDefault(){},currentTarget:elements.get('editor-form')});assert.match(elements.get('editor-status').textContent,/responding/);resolve({status:503,ok:false,json:async()=>({message:'Provider unavailable'})});await sending;assert.equal(elements.get('editor-message').value,'hello');assert.equal(elements.get('editor-status').textContent,'Provider unavailable');
+const diagnosticSend=elements.get('editor-form').submit({preventDefault(){},currentTarget:elements.get('editor-form')});
+resolve({status:503,ok:false,json:async()=>({message:'Provider rejected this request.',code:'MODEL_REQUEST_REJECTED',stage:'provider'})});await diagnosticSend;
+assert.match(elements.get('editor-status').textContent,/Diagnostic: MODEL_REQUEST_REJECTED \(provider\)/);
+const unsafeSend=elements.get('editor-form').submit({preventDefault(){},currentTarget:elements.get('editor-form')});
+resolve({status:503,ok:false,json:async()=>({message:'Unavailable.',code:'secret-provider-body',stage:'private-record'})});await unsafeSend;
+assert.equal(elements.get('editor-status').textContent,'Unavailable.');
 listeners['owner-session']({detail:{signedIn:false}});assert.equal(elements.get('ideas-body').children.length,0);
 console.log('Workspace interaction passed: unsaved rows survive refresh/partial outages, row save progress and verified acknowledgement are visible, failures retain input, editor progress/errors are visible and logout clears all private state.');

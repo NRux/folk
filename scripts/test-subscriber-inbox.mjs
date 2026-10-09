@@ -26,5 +26,8 @@ const malformed={...record,email:'bad'};
 assert.equal((await readSubscriberInbox({env,storage:{...storage,list:async()=>({blobs:[{pathname:`subscribers/${id}.json`,size:100}],hasMore:false}),get:async path=>path.startsWith('subscribers/')?{statusCode:200,stream:new Response(JSON.stringify(malformed)).body}:null}})).available,false);
 assert.equal((await readSubscriberInbox({env,storage:{...storage,list:async()=>({blobs:[],hasMore:true,cursor:'same'})},cursor:'same'})).available,false);
 const ownerHtml=await readFile('dist/owner.html','utf8');
+const ids=[...ownerHtml.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
+assert.equal(new Set(ids).size,ids.length,'Deployed owner controls must have unique IDs');
+assert.equal(ids.filter(id=>id==='owner-subscribers').length,1,'Exactly one subscriber panel');
 assert(ownerHtml.includes('id="owner-subscribers"'));assert(ownerHtml.includes('id="owner-subscriber-list"'));assert(ownerHtml.includes('id="owner-subscriber-next"'));assert(!ownerHtml.includes('BLOB_READ_WRITE_TOKEN'));
 console.log('Subscriber inbox passed: authenticated-reader adapter uses bounded private pages, validates records, reports suppression, hides storage IDs and fails closed.');

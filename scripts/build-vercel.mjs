@@ -95,8 +95,7 @@ const indexed = ['/', '/privacy', '/about', '/archive', '/map', ...articles.map(
 await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${indexed.map(route => `<url><loc>${escapeHtml(canonical.origin + route)}</loc></url>`).join('')}</urlset>`);
 await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /owner\nDisallow: /api/\nDisallow: /admin\nDisallow: /mcp\nSitemap: ${canonical.origin}/sitemap.xml\n`);
 for (const file of ['subscribe.css', 'subscribe.js', 'owner.js', 'contact.js', 'contact.css']) await cp(`web/vercel/${file}`, `dist/${file}`);
-const ownerSubscribers='<section class="owner-card" id="owner-subscribers"><h2>Subscribers</h2><p id="owner-subscriber-note" class="owner-muted">Private signup and unsubscribe status. Delivery remains paused until hosted acceptance passes.</p><div id="owner-subscriber-list" class="owner-table"></div><div class="owner-actions"><button id="owner-subscriber-first" type="button">First page</button><button id="owner-subscriber-next" type="button" disabled>Next page</button></div></section>';
-const ownerSource=(await readFile('web/vercel/owner.html', 'utf8')).replace('<section class="owner-card"><h2>Model reservations</h2>',`${ownerSubscribers}<section class="owner-card"><h2>Model reservations</h2>`);
+const ownerSource=await readFile('web/vercel/owner.html', 'utf8');
 await writeFile('dist/owner.html', addAdsense(ownerSource,true));
 await writeFile('dist/subscribe.html', addAdsense(await readFile('web/vercel/subscribe.html', 'utf8')));
 await writeFile('dist/404.html', addAdsense('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Page not found | Folkly</title></head><body><h1>Page not found</h1><a href="/">Return to Folkly</a></body></html>'));
