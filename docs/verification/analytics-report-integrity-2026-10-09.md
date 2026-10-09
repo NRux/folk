@@ -78,3 +78,15 @@ public pages. Autonomous production/publication/article switches remain off.
 
 These define response row counts, pagination and returned property quota; they do
 not guarantee snapshot consistency across separate requests or statistical inference.
+
+## Deployment and final public readback
+
+Implementation commit `e13995ea24255d1e60a17822566af999e557a237` was synced to
+main and master with current-head leases. GitHub reported Vercel deployment
+completed before master synchronization. Five post-deployment HTTP checks passed:
+exact tested bytes for Lisbon, the archive and owner.js, server analytics source
+404 and unauthenticated owner API 401. See
+analytics-report-integrity-live-2026-10-09.json for hashes/statuses/time.
+
+These checks confirm public preservation and access boundaries. They do not
+execute the private collector or replace live Google/provider acceptance.
