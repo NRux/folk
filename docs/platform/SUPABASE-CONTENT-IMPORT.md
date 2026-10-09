@@ -59,3 +59,41 @@ owner-approved deletion. A metadata commit is not proof that Blob and Postgres
 share a transaction. Independent hosted readback and interruption tests remain
 acceptance gates. Existing credited public images stay on their current static/CDN
 paths; no image replacement or new public Blob exposure was performed.
+
+## Independent post-transfer verification (October 9 follow-up)
+
+After applying the reviewed import SQL, start a separate process with the existing
+Folkly server-only Supabase credentials and private Blob token supplied securely
+through its environment. Run:
+
+    node scripts/verify-supabase-import.mjs /private/snapshot.json /private/source-receipt.json /private/verified-import.json
+
+This is a SELECT/private-GET verifier, not an importer or repair tool. It pins
+the destination to vxmyggasjgsiohqzzwzh, validates the independent source checksum,
+all eleven source tables and current manual-release classification before reading
+the destination, and checks every imported scalar field rather than only counts
+or the latest article hash. For each Blob-backed version it requires the empty
+SQL compatibility field, exact reference/path/byte count/checksum, uncached bounded
+private content readback and byte-exact source JSON. The original immutable
+snapshot backup must also match. Two complete database sweeps catch observed
+pagination/reference/concurrent-edit drift; all three publishing switches must
+remain false before, between and after them.
+
+The verifier uses deterministic ordered pages with exact counts, rejecting
+truncated, duplicate, extra or missing rows and changing counts. Supabase requests
+have a 15-second deadline. It performs no INSERT, UPDATE, RPC, provider call,
+Blob upload, delete or retry repair. Failures produce no PASS receipt. Its stdout
+and new mode-0600 receipt contain only source hash, counts, storage mode, verification
+timestamp, fixed project ID and verification booleans. Titles, draft text, evidence,
+row IDs, slugs, private paths and credentials are omitted. Inputs and receipt must
+be outside the repository and public directories; an existing receipt is never
+overwritten. For a deliberately SQL-only import add --sql; any unexpected Blob
+reference is rejected, and no Blob backup verification is claimed in that mode.
+
+Run while editorial import data is quiescent. Two matching sweeps are not a
+cross-service transactional snapshot and cannot prove no intervening/reverted
+change occurred. This checks exact historical migration data; it does not modify
+the newer public Vercel reader or declare old evidence valid for later revisions.
+Private owner draft viewing, anonymous/non-owner denial, hosted outage/restore
+fixtures and the full publisher acceptance suite remain separate gates. Retain
+the private source, receipt and backup for those recovery checks.

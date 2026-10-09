@@ -1,5 +1,21 @@
 # Folkly Build State
 
+## Independent editorial transfer readback, 2026-10-09 UTC
+
+Added a read-only post-transfer command that validates the complete independent
+source receipt and manual-release classification, compares every field of all
+eleven imported tables, and verifies private Blob version bodies and the original
+snapshot backup. Exact-count pagination and two database sweeps reject missing,
+extra, duplicate, truncated and drifting records/references. Publishing switches
+must stay false; no import, repair, provider call or activation is performed.
+Private artifact paths, pinned destination, redacted mode-0600 receipts and
+installed-SDK GET serialization are tested. Build and all 35 regression commands
+pass. Live read-only Supabase checks confirm all eleven editorial tables and
+content references remain empty, private RLS/client denial is intact and switches
+are false. The lossless original export and actual hosted transfer/owner draft/
+cross-service recovery acceptance remain open. Concurrent editorial/map changes
+are preserved. See verification/editorial-import-readback-2026-10-09.md.
+
 ## Owner translation budget entry, 2026-10-09 UTC
 
 The Translations section now has a total spending-limit entry, expiry, explicit

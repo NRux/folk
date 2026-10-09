@@ -5,7 +5,8 @@ export const TABLES=['personas','persona_briefs','pitches','articles','article_v
 export const digest=value=>createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 const literal=value=>{if(value===null)return 'NULL';if(typeof value==='number'&&Number.isFinite(value))return String(value);if(typeof value==='string'&&!value.includes('\0'))return "'"+value.replaceAll("'","''")+"'";throw Error('Invalid scalar');};
 const json=value=>literal(JSON.stringify(value))+'::jsonb';
-export function compileSnapshot(snapshot,{expectedSha,expectedCounts,schema,manifest,catalog,contentObjects}){
+// Shared source validation; returned records are private and must never be logged.
+export function validatedImportRecords(snapshot,{expectedSha,expectedCounts,schema,manifest,catalog}){
  if(snapshot?.format!=='folkly-d1-snapshot-v1'||snapshot.release_state!=='unpublished')throw Error('Unsupported snapshot');
  const {sha256,...payload}=snapshot;
  if(!/^[a-f0-9]{64}$/.test(expectedSha||'')||sha256!==expectedSha||digest(payload)!==sha256)throw Error('Independent snapshot checksum mismatch');
@@ -36,6 +37,11 @@ export function compileSnapshot(snapshot,{expectedSha,expectedCounts,schema,mani
  const versions=new Set(records.article_versions.map(v=>v.id));const articleIds=new Set(records.articles.map(a=>a.id));
  if(records.article_versions.some(v=>!articleIds.has(v.article_id)))throw Error('Orphan article version');
  for(const table of ['sources','claim_citations','editorial_checks'])if(records[table].some(r=>!versions.has(r.article_version_id)))throw Error('Orphan evidence');
+ return {records,columns,sourceSha:sha256,published:[...importedPublic].sort(),private:records.articles.filter(a=>a.status!=='published').map(a=>a.slug).sort()};
+}
+export function compileSnapshot(snapshot,options){
+ const {records,columns,sourceSha,published,private:privateStories}=validatedImportRecords(snapshot,options);
+ const {contentObjects}=options;
  let objects;
  if(contentObjects){
   if(!Array.isArray(contentObjects)||contentObjects.length!==records.article_versions.length)throw Error('Incomplete Blob references');
@@ -56,5 +62,5 @@ export function compileSnapshot(snapshot,{expectedSha,expectedCounts,schema,mani
  }
  for(const table of ['persona_briefs','editorial_checks'])sql.push(`SELECT setval('public.folkly_${table}_id_seq', GREATEST((SELECT COALESCE(max(id),1) FROM public.folkly_${table}), (SELECT last_value FROM public.folkly_${table}_id_seq)), true);`);
  sql.push('DROP FUNCTION pg_temp.folkly_assert(boolean,text);','COMMIT;');
- return {sql:sql.join('\n'),sourceSha:sha256,counts:Object.fromEntries(TABLES.map(t=>[t,records[t].length])),published:[...importedPublic].sort(),private:records.articles.filter(a=>a.status!=='published').map(a=>a.slug).sort()};
+ return {sql:sql.join('\n'),sourceSha,counts:Object.fromEntries(TABLES.map(t=>[t,records[t].length])),published,private:privateStories};
 }

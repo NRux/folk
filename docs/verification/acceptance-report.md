@@ -1,5 +1,23 @@
 # Stage 07 — Acceptance report
 
+## Current owner and transfer verification, 2026-10-09 UTC
+
+The latest owner-hosted-acceptance report supersedes older editor/idea-save
+availability blockers: a real editor reply persisted and independent idea-save
+readback passed. Translation spending controls are deployed; the owner supplies
+the actual numeric limit/expiry separately. Saving alone starts no paid job.
+
+The next content-transfer prerequisite now has a repeatable independent read-only
+verifier for all eleven metadata/evidence tables, exact private version bodies,
+immutable snapshot backup, complete ordered pages and observed concurrent drift.
+Build/all 35 regressions pass, including actual SDK read serialization and
+isolated interrupted-import/Blob-corruption checks. Live metadata readback still
+shows zero imported rows/references; all three article switches remain false.
+No full source export, transfer, restored private draft, live recovery run, mail
+or translation was produced here. Stage 7 remains BLOCKED pending those actual
+hosted gates; this is supporting tooling, not a hosted transfer PASS. See
+[readback evidence](editorial-import-readback-2026-10-09.md).
+
 ## Latest translation/runtime follow-up, 2026-10-09 UTC
 
 Translation job/usage/recovery code and reviewed shared discovery/form/privacy
