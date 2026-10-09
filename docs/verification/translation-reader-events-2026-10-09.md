@@ -84,4 +84,27 @@ rebuilding with stale/no approval removes the locale and preserves English.
 
 No production/autonomous publication/article schedule or newsletter switch was
 enabled. The implementation does not authorize automated editorial changes or
-translation release. Public deployment readback will be appended after rollout.
+translation release.
+
+## Deployed readback
+
+Implementation commit `49e98ea838eeb5482c5299931cfe1afa7f6f22f4` was synced to
+main and master with expected-head leases. GitHub's Vercel status confirms
+"Deployment has completed" at 2026-10-09T01:49:35Z, with deployment dashboard
+https://vercel.com/optagens-projects/folk/75Kka87vq8eVd2rwVfGLRHXpwN56.
+An earlier status was "Canceled by Ignored Build Step"; that was not accepted as
+deployment proof. An initial registry request during rollout returned 404; after
+the actual completed deployment, the independent checks passed.
+
+`npm run test:hosted` passed **45** checks: both URL forms, all eleven articles
+byte-identical to the verified build (including credits), author pages,
+subscription navigation and private-route exclusion. The new read-only
+`node scripts/verify-reader-foundation.mjs 49e98ea838eeb5482c5299931cfe1afa7f6f22f4`
+passed **13** more checks: the release registry and five scripts/styles return
+200 with exact build bytes; unapproved AR/FR routes and nonpublic manifest/glossary/
+source-contract paths return 404; anonymous subscriber/contact owner views return
+401. The check timestamp and per-path results are in
+`translation-reader-events-live-2026-10-09.json`. No subscriber records, owner
+sessions, outgoing messages or real Google analytics events were created.
+These 58 public response checks do not replace actual browser viewport/native
+language, authenticated storage or live Analytics property acceptance.
