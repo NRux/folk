@@ -2,6 +2,17 @@
 
 ## Priority TODO
 
+Latest owner runtime repair, 2026-10-09 UTC: idea saves now require private
+ETag/content readback, show per-row progress and retain unsaved input across
+refreshes. Independent workspace reads and explicit editor/translation readiness
+replace blank/ambiguous panels. Full regression passes. Live Supabase confirms
+the translation pilot is still disabled with blank model, zero caps/rates and an
+expired approval window; provider-secret setup did not populate that ledger.
+Vercel lists the correct team but no matching project; exact lookup is 404 and
+runtime logs are 403. Hosted private/provider acceptance remains unverified.
+See verification/owner-runtime-readiness-2026-10-09.md. No secrets, caps, private
+records, public stories or autonomous switches were changed.
+
 Latest Detroit reader correction, 2026-10-09 UTC: the story now has a
 Belleville Three cover in every article grid and four irrelevant images are
 removed (three Berlin Love Parade scenes and one incidental waterfront frame).

@@ -1,15 +1,16 @@
-import {generateTranslation,recoverTranslation,translationLedger,translationConfig} from './translation-jobs.js';
+import {generateTranslation,recoverTranslation,translationLedger,translationReadiness} from './translation-jobs.js';
 import {validateTranslation,hash,LOCALES} from '../scripts/translations.mjs';
 const reply=(status,data)=>Response.json(data,{status,headers:{'Cache-Control':'no-store'}});
 const uuid=value=>/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(value||'');
 export function createTranslationHandlers({authorize,source,sources=async()=>[],glossary,store,env=process.env,generate}){
  async function owner(request){try{return await authorize(request);}catch{return null;}}
+ async function configuration(db){const {data,error}=await db.from('folkly_translation_budget').select('enabled,model,total_usd,job_usd,input_per_million,output_per_million,valid_until').eq('id',true).maybeSingle();return translationReadiness(env,error?null:data);}
  return {
   async GET(request){
    const access=await owner(request);if(!access)return reply(401,{message:'Owner sign-in required.'});
    try{
     const id=new URL(request.url).searchParams.get('job');
-    if(!id){const {data,error}=await access.db.from('folkly_translation_jobs').select('job_id,slug,locale,model,state,reserved_usd,estimated_usd,evidence,created_at,recorded_at').order('created_at',{ascending:false}).limit(50);if(error)throw Error();let configuration;try{const c=translationConfig(env);configuration={available:true,model:c.model,maxJobDollars:c.amount};}catch{configuration={available:false};}return reply(200,{jobs:data||[],sources:await sources(),configuration});}
+    if(!id){const {data,error}=await access.db.from('folkly_translation_jobs').select('job_id,slug,locale,model,state,reserved_usd,estimated_usd,evidence,created_at,recorded_at').order('created_at',{ascending:false}).limit(50);if(error)throw Error();return reply(200,{jobs:data||[],sources:await sources(),configuration:await configuration(access.db)});}
     if(!uuid(id))return reply(400,{message:'Invalid translation job.'});
     const {data,error}=await access.db.from('folkly_translation_jobs').select('job_id,slug,locale,state,evidence,content_reference').eq('job_id',id).maybeSingle();if(error||!data)return reply(404,{message:'Translation job unavailable.'});
     if(data.state!=='generated')return reply(200,{job:{jobId:id,state:data.state,usage:data.evidence}});
@@ -29,7 +30,8 @@ export function createTranslationHandlers({authorize,source,sources=async()=>[],
      return reply(200,await recoverTranslation({job,reference,contract:await source(job.slug),store,ledger:translationLedger(access.db)}));
     }
     if(!value||Object.keys(value).sort().join('|')!=='jobId|locale|slug'||!uuid(value.jobId)||!Object.hasOwn(LOCALES,value.locale)||value.locale==='en'||typeof value.slug!=='string'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value.slug)||value.slug.length>100)return reply(400,{message:'Invalid translation request.'});
-    const contract=await source(value.slug);translationConfig(env);
+    const contract=await source(value.slug),readiness=await configuration(access.db);
+    if(!readiness.available)return reply(503,{code:'TRANSLATION_CONFIGURATION',message:readiness.message});
     const result=await generateTranslation({...value,contract,glossary:await glossary(),ledger:translationLedger(access.db),store},env,generate);
     return reply(200,result);
    }catch(error){return reply(503,{message:'Translation unavailable or held. Inspect saved attempts before retrying.',...(error.privateReference?{jobId:error.jobId,privateReference:error.privateReference}:{})});}

@@ -12,6 +12,22 @@ export function translationConfig(env=process.env){
  else{if(!(env.AI_GATEWAY_API_KEY||env.VERCEL_OIDC_TOKEN))throw Error('Translation provider unavailable');selected=model;}
  return {model,selected,amount};
 }
+export function translationReadiness(env,budget,now=Date.now()){
+ const blockers=[];let config;
+ try{config=translationConfig(env);}catch{blockers.push('Configure FOLKLY_TRANSLATION_MODEL_ID, FOLKLY_TRANSLATION_MAX_JOB_DOLLARS and the funded model provider in Vercel, then redeploy.');}
+ if(!env.BLOB_STORE_ID&&!env.BLOB_READ_WRITE_TOKEN)blockers.push('Connect the existing private Blob store to this deployment.');
+ if(!budget)blockers.push('Translation pilot budget could not be read.');
+ else{
+  if(!budget.enabled)blockers.push('The separate Supabase translation pilot is disabled.');
+  if(!budget.model)blockers.push('The pilot has no approved model.');
+  else if(config&&budget.model!==config.model)blockers.push('The deployment model and approved pilot model do not match.');
+  if(!(Number(budget.total_usd)>0&&Number(budget.job_usd)>0))blockers.push('The pilot total and per-attempt budgets are zero.');
+  if(!Number.isFinite(Date.parse(budget.valid_until))||Date.parse(budget.valid_until)<=now)blockers.push('The pilot approval window has expired.');
+  if(!(Number(budget.input_per_million)>0&&Number(budget.output_per_million)>0))blockers.push('The pilot has no approved input/output pricing.');
+  if(config&&(config.amount>Number(budget.job_usd)||(200000*Number(budget.input_per_million)+24000*Number(budget.output_per_million))/1000000>config.amount))blockers.push('The per-attempt reservation does not cover the approved token ceiling.');
+ }
+ return {available:blockers.length===0,...(config?{model:config.model,maxJobDollars:config.amount}:{}),blockers,message:blockers.length?blockers.join(' '):'Translation pilot ready. Every draft still requires language review before release.'};
+}
 export function translationLedger(db){
  return {
   async claim({jobId,locale,contract,config}){
