@@ -65,5 +65,20 @@ history statement uses:
 - Preservation: no story was added or removed; private reserve content was not
   touched; production, autonomous publication and article scheduling remain off.
 
-Hosted readback is recorded after the commit reaches the existing Vercel project.
+## Hosted acceptance
+
+Commit `cbea343cb2c4cd1f51cebc998427e9e28a6bfa42` reached the existing Vercel
+project successfully. Public readback on October 9, 2026 confirmed:
+
+- the Detroit card and article cover both load the Belleville Three image;
+- the article contains the eleven approved inline Commons images recorded in
+  the relevance manifest;
+- the three Berlin Love Parade images and the incidental Detroit waterfront
+  image are absent;
+- the article contains no Berlin or Love Parade reference and includes its
+  third source for Detroit festival history; and
+- the private relevance implementation and registry return `404` publicly.
+
+Browser inspection measured the rendered card source at 615 by 409 pixels and
+the article cover source at 1,000 by 664 pixels.
 
