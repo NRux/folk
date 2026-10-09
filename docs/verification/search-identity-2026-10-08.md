@@ -26,6 +26,13 @@ prose, dates, public catalog entries, images, credits and licenses are unchanged
 - `npm test` passed the full debug, security, reader, newsletter, privacy,
   editorial and storage regression suite.
 
+The implementation deployed successfully. At 2026-10-09 00:41 UTC, production
+served the exact homepage title and linked Folkly WebSite/Organization graph.
+The New Orleans Article publisher referenced the same organization and logo.
+The logo returned 200 as `image/png`, contained 14,042 bytes, and matched the
+reviewed SHA-256
+`180c88648e74e131f23892174505d0e12dd5c77326870cabe591e9f090435658`.
+
 ## Limits
 
 Search engines choose displayed site names and logos algorithmically. Rich Results
