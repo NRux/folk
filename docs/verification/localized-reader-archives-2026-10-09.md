@@ -34,7 +34,7 @@ same complete public registry. Existing English URLs and content are preserved.
 
 - `npm run test:hosted`: PASS, all 45 public English reader, credit, privacy,
   metadata, image and private-output boundary checks against https://www.folkly.com.
-  This is pre-update readback; the empty manifest introduces no public locale pages.
+  Repeated after syncing implementation commit c38c2758da9982b1fbfd849feaa585bd51a89484; the empty manifest introduces no public locale pages.
 
 ## Release limits
 
@@ -47,3 +47,20 @@ credential or connection action. Original lossless source import and full hosted
 editorial/newsletter/recovery acceptance remain separate Stage 7 gates; the owner
 has already reported provider secrets and pilot/reviewer/GA4 setup complete.
 Google Cloud and Vercel connector work remain deferred.
+
+## Public readback after Git sync
+
+Implementation commit: `c38c2758da9982b1fbfd849feaa585bd51a89484`, synced to main
+and master with current-head leases. The 45 standard hosted reader checks passed
+again, plus six focused HTTP checks recorded in
+`localized-reader-archives-live-2026-10-09.json`: exact English bytes for one author,
+one topic and one place archive; unauthenticated owner translation API 401;
+private contract registry 404; unreleased French author URL 404.
+
+New-code deployment is **not yet confirmed**. GitHub's Vercel status for this
+commit says `Canceled by Ignored Build Step`; that status is not acceptance proof.
+Existing public readback demonstrates preservation, not the deployed private source
+registry. No Vercel connector was called. To deploy if this remains canceled,
+redeploy the current main commit in the existing project and check its Ignored
+Build Step/production-branch setting; do not create a replacement hosting project.
+No new secret is required for this implementation.

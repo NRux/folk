@@ -1,0 +1,39 @@
+{
+  "checks": [
+    {
+      "path": "/author/mira-sol",
+      "exactEnglishSha256": "339196ee96257171149faf937fb01142be1ce7760b598c31ca3a110bc3929582",
+      "pass": true
+    },
+    {
+      "path": "/archive/topic/music",
+      "exactEnglishSha256": "2a8ef97d688942237d585d92c79bdbaeccf2776f46967997f2eb650353077d9f",
+      "pass": true
+    },
+    {
+      "path": "/archive/place/tokushima-japan",
+      "exactEnglishSha256": "0f9474994bdd47574a4a8053c19488a5d9256d25b4658be1751f892918d36765",
+      "pass": true
+    },
+    {
+      "path": "/api/owner-translations",
+      "status": "401",
+      "pass": true
+    },
+    {
+      "path": "/build/translation-contracts/index.json",
+      "status": "404",
+      "pass": true
+    },
+    {
+      "path": "/fr/author/mira-sol",
+      "status": "404",
+      "pass": true
+    }
+  ],
+  "implementationCommit": "c38c2758da9982b1fbfd849feaa585bd51a89484",
+  "standardHostedChecks": 45,
+  "newCodeDeploymentConfirmed": false,
+  "githubVercelStatus": "Canceled by Ignored Build Step",
+  "localeManifestEmpty": true
+}

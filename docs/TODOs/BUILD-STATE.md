@@ -7,7 +7,8 @@ five public author profiles and 34 published topic/place archives. Nested locale
 routes, source extraction, reciprocal SEO and reviewed internal links pass all
 31 regressions and six-language synthetic fixtures. Production translations
 remain unreleased; autonomous article switches stay false. Vercel connector
-inspection is deferred at the owner's request. See
+inspection is deferred at the owner's request. All 51 public readback checks pass;
+new-code deployment is unconfirmed because GitHub reports an ignored build. See
 verification/localized-reader-archives-2026-10-09.md for evidence and release limits.
 
 Latest acceptance follow-up, 2026-10-09 UTC: independent capped translation jobs,
