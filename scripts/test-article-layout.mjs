@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
-import { articleBodyParts, articleWordCount, narrativeParagraphs, decorateArticleLayout, inlineFigure, validateInlineImage, ARTICLE_MIN_WORDS, ARTICLE_REFERENCE } from './article-layout.mjs';
+import { articleBodyParts, articleWordCount, narrativeParagraphs, decorateArticleLayout, inlineFigure, validateInlineImage, validateImageSequence, ARTICLE_MIN_WORDS, ARTICLE_REFERENCE } from './article-layout.mjs';
 import { publishedArticles } from './public-articles.mjs';
 const json=async path=>JSON.parse(await readFile(path,'utf8'));
 const articles=publishedArticles(await json('web/vercel/articles.json'),await json('web/vercel/routes.json'));
@@ -13,7 +13,7 @@ for(const item of articles){
  const output=await readFile(`dist/${item.slug}.html`,'utf8');
  assert(articleWordCount(output)>=ARTICLE_MIN_WORDS,item.slug);
  const schema=JSON.parse(output.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
- assert.equal(schema.wordCount,articleWordCount(output));assert.equal(schema.dateModified,'2026-10-08');
+ assert.equal(schema.wordCount,articleWordCount(output));assert(schema.dateModified>=media[item.slug].map(image=>image.checkedAt).sort().at(-1));
  assert.equal(articleWordCount(output),articleWordCount(source),'Captions must not inflate length');
  const body=articleBodyParts(output).body;
  let paragraph=0,figures=0;
@@ -43,3 +43,10 @@ for(const changes of [{license:'All rights reserved'},{width:0},{height:1.5},{cr
 const escaped=inlineFigure({...image,caption:'<script>alert(1)</script>',creator:'" onclick="bad',alt:'<img onerror="bad">'},2);
 assert(!escaped.includes('<script>'));assert(escaped.includes('&lt;script&gt;'));assert(!escaped.includes(' onclick="bad'));
 console.log(`Article layout passed: ${articles.length} stories >= ${ARTICLE_MIN_WORDS} words; ${total} credited lazy images; exact two-paragraph spacing; odd endings, caption/source exclusion, duplicate/media evidence and unsafe URL denial.`);
+const detroit=media['detroit-future-frequency'];validateImageSequence(detroit,'detroit-future-frequency');
+assert.equal(detroit.filter(i=>i.visualReview.subject==='instruments').length,1);assert.equal(detroit.filter(i=>i.visualReview.composition==='group').length,8);
+const twoTools=structuredClone(detroit);twoTools[0].visualReview={...twoTools[6].visualReview};assert.throws(()=>validateImageSequence(twoTools,'detroit-future-frequency'),/instruments/);
+const allObjects=structuredClone(detroit);for(const image of allObjects)image.visualReview.composition='object';assert.throws(()=>validateImageSequence(allObjects,'detroit-future-frequency'),/groups/);
+const repeated=structuredClone(detroit);repeated[1].visualReview.subject=repeated[0].visualReview.subject;assert.throws(()=>validateImageSequence(repeated,'detroit-future-frequency'),/adjacent/);
+assert.throws(()=>validateInlineImage({...detroit[0],visualReview:{...detroit[0].visualReview,composition:'individual-closeup'}}),/closeups/);
+const tarragona=media['castells-tarragona'];assert.equal(tarragona.at(-1).commonsPageId,127039993);assert(tarragona.at(-1).caption.includes('inside Tarraco Arena Plaça'));assert.equal(tarragona.at(-1).verification,'download-decoded');assert(!tarragona.some(i=>i.commonsPageId===123700534));

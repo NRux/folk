@@ -32,6 +32,23 @@ proportional intrinsic dimensions, and lazy loading below the lead image.
 Identify contextual photographs taken elsewhere by their actual location.
 Illustrations must be identified as illustrations rather than photographs.
 
+Owner image direction, October 8, 2026: prioritize group photographs showing a
+practice's social life: audiences, dancing, collective work, shared venues and
+people making things together. Avoid close-up individual portraits. A wide view
+of a performer with an audience can show the relationship; a headshot cannot.
+Vary the sequence instead of repeating equipment, materials or city skylines.
+For music stories, one instrument/equipment image is enough; show what the
+creative practice makes possible for people in the remaining images. Prefer
+documented photographs from the period being discussed when licensed sources
+exist. If later or elsewhere, give the actual date/place in the concise caption;
+never relabel another event or imply a later photograph depicts an earlier era.
+Visually inspect the image bytes, not just filenames or source descriptions.
+The pictured scene must support the caption: buses outside an event are not a
+view of its arena. Keep concise creator/license links and exact source evidence.
+Newly curated records include visual composition, subject and review notes.
+The Detroit sequence enforces group priority, one instrument image and varied
+adjacent subjects; automated validation does not replace visual judgement.
+
 The public offline export enforces both rules in `scripts/article-layout.mjs`.
 A future authorized release requires its body template, catalog entry, and
 `web/vercel/article-media.json` records together. Missing/duplicate images,

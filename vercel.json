@@ -4,6 +4,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "cleanUrls": true,
+  "redirects": [
+    {"source":"/perspective","destination":"/about#perspective","permanent":true},
+    {"source":"/perspective.html","destination":"/about#perspective","permanent":true}
+  ],
   "headers": [
     {
       "source": "/(.*)",

@@ -23,6 +23,7 @@ Object.assign(routes, discoveryRouteFiles(articles));
 const origin = process.env.FOLKLY_PUBLIC_ORIGIN || 'https://www.folkly.com';
 function addAdsense(html, privatePage=false) {
   if (!html.includes('</head>')) throw new Error('Public page is missing its head');
+  html=html.replace(/<a href="\/perspective(?:\.html)?">Our perspective<\/a>/g,'').replace(/href="\/perspective(?:\.html)?"/g,'href="/about#perspective"');
   html = html.replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/g, footer => footer
     .replace(/Culture takes place\.<br\s*\/?>Stories about what makes a place itself\./g, 'Stories about the intersection of Culture and Place.')
     .replace(/A project by Noah Rappaport(?:\s*(?:&middot;|·)\s*October 2026)?/g, 'A Then Media inc. project.'));
@@ -37,6 +38,7 @@ await mkdir('dist', { recursive: true });
 const archiveTemplate = extraPages[routes['/archive']] ?? await readFile(`web/vercel/pages/${routes['/archive']}`, 'utf8');
 const groups = discoveryGroups(articles);
 for (const [route, file] of Object.entries(routes)) {
+  if(route==='/perspective')continue; // Legacy URLs redirect to the merged About page.
   if (!/^\/(?:[a-z0-9-]+\/)*[a-z0-9-]*$/.test(route) || /^(?:\/admin|\/api|\/mcp)/.test(route) || !/^[a-z0-9_-]+\.html$/.test(file)) {
     throw new Error(`Unsafe public route: ${route}`);
   }
@@ -85,7 +87,7 @@ await cp('web/vercel/ads.txt', 'dist/ads.txt');
 await cp('web/vercel/article-grid.css', 'dist/article-grid.css');
 await writeFile('dist/image-credits.html', addAdsense(imageCreditsPage(articles, canonical.origin).replace('</main>', `${inlineImageCredits(articles, articleMedia)}</main>`)));
 // Sitemap includes curated discovery pages and explicitly published articles only.
-const indexed = ['/', '/privacy', '/about', '/perspective', '/archive', ...articles.map(item => `/${item.slug}`), ...groups.keys()];
+const indexed = ['/', '/privacy', '/about', '/archive', ...articles.map(item => `/${item.slug}`), ...groups.keys()];
 await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${indexed.map(route => `<url><loc>${escapeHtml(canonical.origin + route)}</loc></url>`).join('')}</urlset>`);
 await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /owner\nDisallow: /api/\nDisallow: /admin\nDisallow: /mcp\nSitemap: ${canonical.origin}/sitemap.xml\n`);
 for (const file of ['subscribe.css', 'subscribe.js', 'owner.js', 'contact.js', 'contact.css']) await cp(`web/vercel/${file}`, `dist/${file}`);

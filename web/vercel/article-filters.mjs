@@ -1,10 +1,11 @@
+export const regionSlugs=['north-america','central-america','south-america','africa','asia','europe','oceania'];
 export function normalizeFilters(input, items) {
   const knownTags=new Set(items.flatMap(item=>item.topics));
-  const knownPlaces=new Set(items.map(item=>item.place));
+  const knownPlaces=new Set([...items.filter(item=>typeof item.country==='string'&&/^[a-z]+(?:-[a-z]+)*$/.test(item.country)).map(item=>'country:'+item.country),...regionSlugs.map(region=>'region:'+region)]);
   return {tags:[...new Set(input.tags||[])].filter(tag=>knownTags.has(tag)).sort(),place:knownPlaces.has(input.place)?input.place:'',sort:['newest','oldest','title'].includes(input.sort)?input.sort:'newest'};
 }
 export function selectArticles(items, filters) {
-  return items.filter(item=>(!filters.place||item.place===filters.place)&&(!filters.tags.length||filters.tags.some(tag=>item.topics.includes(tag)))).slice().sort((a,b)=>{
+  return items.filter(item=>(!filters.place||`country:${item.country}`===filters.place||`region:${item.region}`===filters.place)&&(!filters.tags.length||filters.tags.some(tag=>item.topics.includes(tag)))).slice().sort((a,b)=>{
     const order=filters.sort==='title'?a.title.localeCompare(b.title):filters.sort==='oldest'?a.published.localeCompare(b.published):b.published.localeCompare(a.published);
     return order||a.slug.localeCompare(b.slug);
   });
@@ -24,7 +25,7 @@ export function initializeArticleFilters(doc, win) {
   const panel=doc.querySelector('[data-article-filters]');
   const grid=doc.querySelector('[data-published-grid]');
   if(!panel||!grid)return;
-  const items=[...grid.querySelectorAll('[data-article]')].map(card=>({slug:card.dataset.article,title:card.dataset.title,place:card.dataset.place,topics:card.dataset.topics.split(' ').filter(Boolean),published:card.dataset.published,card}));
+  const items=[...grid.querySelectorAll('[data-article]')].map(card=>({slug:card.dataset.article,title:card.dataset.title,country:card.dataset.country,region:card.dataset.region,topics:card.dataset.topics.split(' ').filter(Boolean),published:card.dataset.published,card}));
   const place=panel.querySelector('[name="place"]'),sort=panel.querySelector('[name="sort"]');
   const tags=[...panel.querySelectorAll('[name="tag"]')];
   const count=panel.querySelector('[data-filter-count]'),empty=panel.querySelector('[data-filter-empty]');

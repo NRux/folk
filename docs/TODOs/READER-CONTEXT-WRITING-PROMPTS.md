@@ -1,5 +1,14 @@
 # Reader context: drafting, revision and review prompts
 
+Image selection direction: prioritize group shots and show a creative practice's
+effects on people, including collective work, audiences, dancing and shared
+venues. Avoid close-up portraits and repetitive subjects. For music, use at most
+one equipment image, then vary social scenes. Prefer verified period photographs;
+otherwise retain the actual place/date. Inspect every image visually and match
+the caption to what is visible, not merely its filename. Keep the one-image-per-
+two-paragraph rule and all source/creator/license credits. Follow
+`../platform/EDITORIAL-STYLE.md` for the full policy.
+
 Apply alongside the existing persona brief, source/claim requirements, article
 length and image rules in `../platform/EDITORIAL-STYLE.md`. Preserve each persona's
 voice. Explain unfamiliar English vocabulary as well as non-English terms.

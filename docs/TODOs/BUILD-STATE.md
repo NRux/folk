@@ -1,1 +1,492 @@
-YªçŠx-®éÜj×¢ëiºÚ+Š§j[h‘éÜ¢éí×]÷é:-jZ.¶›­–)Ş³R2föÆ¶Ç’'V–ÆB7FFP ¢22&–÷&—G’DôDğ ¤7W'&VçBWFFRÂ##bÓÓ’UD3¢&Wf–WvVBÖöæÇ’×VÇF–Æ–æwVÂ'F–6ÆRvVæW&F–öà¦æB6öç6VçBÖv&R&VFW"WfVçG2&R–×ÆVÖVçFVBæBFW7FVBâF†RG&ç6ÆF–öà¦Öæ–fW7B—2V×G“²æò&VÂG&ç6ÆF–öâÂÖöFVÂ7VæB÷"æWr'F–6ÆR&VÆV6Rà¥6VRF†R7FGW2ÖG&—‚–âÕTÅD”Ä”äuTÂÔ”ÕÄTÔTåDD”ôâÕ$ôÕE2æÖBæ@§fW&–f–6F–öâ÷G&ç6ÆF–öâ×&VFW"ÖWfVçG2Ó##bÓÓ’æÖBâvöövÆR&W÷'F–ær&VÖ–ç0¦FVfW'&VBÂF†RgVÆÂ6öçFVçBG&ç6fW"7F–ÆÂæVVG26ö×ÆWFR÷&–v–æÂW‡÷'BÀ¦æB7FvRrFWÆ÷–VB66WFæ6R&VÖ–ç2&Æö6¶VBâV&Æ–W"FFVB6V7F–öç2&VÆ÷p¦&R†—7F÷&–6ÂæBFòæ÷B7WW'6VFRF†—2WFFRà £â7V'67&–&R'WGFöâæB6–vçWfÆ÷rFWÆ÷–VC²&—fFR&Æö"6öææV7FVBæBÆ—fR6–vçW&WGW&æVB#gFW"7F÷&vRw&—FRöâ##bÓÓrâ–æFWVæFVçB&VF&6²ÂVÖ–ÂFVÆ—fW'’ÂæBVç7V'67&–&R&ö6W76–ær&VÖ–âVæF–ærâW†6ÇVFR66WFæ6R×FW7DW†×ÆRæ6öÒg&öÒç’FVÆ—fW'’–×÷'Bà£"â6ö×ÆWFRfW&6VÂ†÷7F–ærÖ–w&F–öã¢V&Æ–2&VFW"f—'7BÂF†VâGW&&ÆRVF—F÷&–Â7F÷&vRæB÷væW"WF†VçF–6F–öââ¶VWV&Æ–6F–öâæB66†VGVÆ–æröfbVçF–ÂFWÆ÷–VB66WFæ6R76W2à£2â&÷WB6öçF7Bf÷&Ò–×ÆVÖVçFVBv—F‚&V6öâÂ6öçG&–'WF÷"–çFW&W7BæB&—fFR&Æö"7F÷&vRâ&÷FV7FVB÷væW"–æ&÷‚—2v–æFVBæB&÷f–FW26fR&WÇ’7F–öâF†B÷Vç2F†R÷væW"w2VÖ–Âv—F†÷WBWFöÖF–26VæF–ærâ&÷f–FW"×6–FR&WÇ’FVÆ—fW'’÷G&6¶–ær—2–çFVçF–öæÆÇ’æ÷BFFVBà£Bâ&÷WBæ÷r6—2föÆ¶Ç’—26VV¶–ær6öçG&–'WF÷'2&W6–FRF†R6öçG&–'WF÷"6öçF7Bf÷&Òà ¤Ö7FW"7V3¢föÆ¶Ç•ôWFöæöÖ÷W5õV&Æ—6†–æuô6öFW…õ&ö×BçG‡F‡F†—2F—&V7F÷'’’à¤V6‚7FvRWFFW2ôäÅ’—G2÷vâ6V7F–öââ7FGW2fÇVW3¢TäD”ärò”â$ôu$U52òDôäRò$Äô4´TBà ¢227FvR(	B&6†—FV7B„†W&ÖW2¥7FGW3¢DôäRƒ##bÓÓ2¤æ÷FW3¢Ö7FW"&ö×BÖ÷fVBg&öÒ&Wò&ö÷B–çFòFö72õDôD÷2òâ'V–ÆBFV6ö×÷6VB–çFò‚7FvP§&ö×G2²WFöæöÖ÷W2'VææW"†'V–ÆBÖG&—fW"ç6‚’âÆ—fR×6—FR&6VÆ–æR6GW&VBg&öÒ…EE £B'F–6ÆW2†æWrÖ÷&ÆVç2×6V6öæBÖÆ–æRÂÆ—6&öâÖfFòÂö†6ÖÆ—f–ærÖ6öÆ÷"ÂFWG&ö—BÖgWGW&RÖg&WVVæ7’’À§W'7V7F—fRvRÂ&÷WBvS²&÷WFW2&RW‡FVç6–öæÆW72v—F‚æ‡FÖÂf&–çG3²–ÖvW2VæFW"ö76WG2òà¤W†—7F–ær'F–6ÆW26''’&VÂ6÷W&6Rfö÷FW'2æB7FæF&B’ÖW76’F—66Æ÷7W&Rà¤Wf–FVæ6S¢&Wò6öÖÖ—B†—7F÷'’à ¢227FvR(	B–ç7V7Bb&W6W'fP¥7FGW3¢DôäRƒ##bÓÓB¤Wf–FVæ6S¢Fö72÷&W6W'fF–öâö–çfVçF÷'’æÖBÂ–çfVçF÷'’æ§6öâÂvW2ò¢æÖBƒ’6GW&W2’Â&rò¢æ‡FÖÀ¢²&r÷7G–ÆRæ772†6GW&VB7G–ÆW6†VWB’ÂäõDU2æÖC²6GW&R67&—B67&—G2÷7FvSö6GW&Rç’à¤æ÷FW3¢2&÷WFW26GW&VB†&÷F‚U$Âf÷&×3²æ‡FÖÂ6æöæ–6Æ—¦W2FòW‡FVç6–öæÆW72v—F‚#’à¤76WG3¢2ÆVB–ÖvW2²7G–ÆRæ772ƒãb´"ÂgVÆÂFW6–vâ7—7FVÒ’â6—FW2FööÇ2äõBf–Æ&ÆP¦–âF†—2Vçf—&öæÖVçB„…EE&6VÆ–æRöæÇ’’(	B&V6÷&FVBW"&÷Fö6öÂâF—fW&vVæ6W2ÆövvVB–à¤äõDU2æÖC¢6æöæ–6Ç2ö–çBBF–ffW&VçB7V&FöÖ–â†÷væW"VW7F–öâ’Âæò¥4ôâÔÄBÂ†—7F÷&–6À¢$föÆ¶Ç’VF—F÷&–Â"'–Æ–æW2Fò&W6W'fRÂFWG&ö—B'F–6ÆR—2F†Ræò×†÷Föw&‚W†V×Æ"à ¢227FvR"(	BÆFf÷&Òb6öçFVçBÖ–w&F–öà¥7FGW3¢DôäRƒ##bÓÓB¤Wf–FVæ6S¢Fö72÷fW&–f–6F–öâ÷7FvRÓ"×W&ÂÖ6†V6²æÖBƒBóB&÷WFW2W†7BFW‡BÖF6‚Â&÷F‚U$À¦f÷&×3²–FV×÷FVçB&R×'Vâ&V6÷&FVB’ÂFö72÷ÆFf÷&Òô$4„•DT5EU$RæÖBà¤æ÷FW3¢¦W&òÖFWVæFVæ7’æöFR#B6W'fW"‡vV"÷6W'fW"æ§2Â÷'Bƒsƒr’²5Æ—FR7F÷&R‡vV"öföÆ¶Ç’æF"À¦v—F–væ÷&VC²&V'V–ÆC¢æöFRvV"÷67&—G2öÖ–w&FRæ§2’â5Æ—FRÒC7FæBÖ–âÂ7FF–276WG2Ò# §7FæBÖ–âÂFFW"&÷VæF'’–âvV"öÆ–"öF"æ§2W"7V2â7G–ÆRæ772ÖCRÖ–FVçF–6ÂFòÆ—fR6GW&Rà¤ÆÂB'F–6ÆW2²W'7V7F—fR²&÷WBÖ–w&FVBv—F‚'–Æ–æW2Âf–wW&R7&VF—G2…v–¶–ÖVF–42%£"ãÆ–æ·2’Â6÷W&6W2ÂæB†öÖR6ö×÷6—F–öâ&W6W'fVBâ6—FW2FööÇ27F–ÆÂVæf–Æ&ÆR(	B&VÀ¤Cõ#"÷66†VGVÆW"FWÆ÷–ÖVçBF‚Fö7VÖVçFVBf÷"7FvRbó‚à ¢227FvR2(	BW'6öæ2b&VæFW&–æp¥7FGW3¢DôäRƒ##bÓÓB¤Wf–FVæ6S¢Fö72÷fW&–f–6F–öâ÷7FvRÓ2×W'6öæ2æÖB(	B#bó#b6†V6·272ƒRWF†÷"vW2v—F€¦W†7BF—66Æ÷7W&R²F—7F–æ7B'&–Vg2÷fö–6R÷Fw3²F—66Æ÷7W&R²ÆVv7’'–Æ–æR²fÆ–B'F–6ÆP¤¥4ôâÔÄBöâÆÂB'F–6ÆW3²&6†—fR–æFW‚²Æ6R²F÷–2&6†—fW3²&VÆFVB7F÷&–W2öâWfW'¦'F–6ÆS²†öÖWvR6÷fW"7G–ÆR&WF–æVC²ÆÂ7FvRÓ"&÷WFW2&Vw&W76–öâÖ6ÆVâ’à¤æ÷FW3¢vV"÷67&—G2÷6VVB×W'6öæ2æ§26VVG2F†RR7V2W'6öæ2fW&&F–Ò††6‚ÖwV&FVBÀ¦–FV×÷FVçB’âWF†÷"vW2öWF†÷"óÆ–Cã²&6†—fW2ö&6†—fRÂö&6†—fR÷Æ6RóÇ6ÇVsâÀ¢ö&6†—fR÷F÷–2óÇ6ÇVsââÆVv7’'F–6ÆW2¶VWF†V—"$föÆ¶Ç’VF—F÷&–Â"'–Æ–æW2æB6†÷rF†P¤föÆ¶Ç’F—66Æ÷7W&Râ&VF–ærF–ÖR²FFW26ö×WFVBg&öÒ&VÂ&öG’…DÔÂ–âÖW&–6ôÆ÷5ôævVÆW2à¤fF'2&RG—öw&†–2–æ—F–Ç2†æòf'&–6FVB†VG6†÷G2’â÷2æ÷FS¢7FÆRæöFR6W'fW ¢…”B3S“c’g&öÒ7FvR"7F–ÆÂ†öÆG2÷'Bƒsƒs²F†RfW&–f–VB7FvRÓ26W'fW"'Vç2öà¤dôÄ´Å•õõ%CÓƒsƒ‚â&V6Æ–Òƒsƒr'’¶–ÆÆ–ær”B3S“cÂF†VâæöFRvV"÷6W'fW"æ§6à ¢227FvRB(	B&W6V&6‚—VÆ–æRbvFW0¥7FGW3¢DôäRƒ##bÓÓc²6WfVâÖ'F–6ÆR&W6W'fR&WÆVæ—6†ÖVçB—27FvRb&RÖ7F—fF–öâ&WV—&VÖVçB¤Wf–FVæ6S¢Fö72÷fW&–f–6F–öâ÷7FvRÓB×—VÆ–æR×'VâæÖBƒ#’ó#’6†V6·2“²Fö72öVF—G2ó##bÓÓb×7FvRÓBÖFV'Vr×6V7W&—G’ÖVF—BæÖC²æöFRvV"÷67&—G2÷FW7B×7FvSB×6V7W&—G’æ§6à¤–×ÆVÖVçFF–öã¢7FvRB—VÆ–æRæBVF—Bf—†W2&R6öÖÖ—GFVBöâÖ7FW"âF†R&VÂFö·W6†–Ö'F–6ÆR—2&VG’v—F‚6—‚&WG&–WfVB6÷W&6W2Â#BÆ–æ¶VB6Æ–×2ÂG—öw&†–2–ÖvRG&VFÖVçBÂæB’÷6÷W&6–æröæòÖf—'7F†æBÖW‡W&–Væ6RF—66Æ÷7W&RâF†RVç7W÷'FVBÖ6Æ–ÒæBVç&W6öÇfVBÖ–ÖvR×&–v‡G2f—‡GW&W2&V6†VBF†V—"–çFVæFVBæVVG2×&Wf–Wr†öÆG3²&÷F‚6VÆV7FVBâf–Æ&ÆR&VG’&W6W'fR6æF–FFRâF†R–ÖvR×&–v‡G2f—‡GW&R&WW6W2F†RfW&–f–VB6VVBF÷76–W"–ââ—6öÆFVB6†V6·ö–çB6ò—BFW7G2F†R–ÖvRvFRv—F†÷WB7&VF–ærGWÆ–6FRV&Æ–2'F–6ÆRà¤æ÷FW3¢F†RFF&6Rv2fW&–f–VBöâF—7÷6&ÆR6÷’öbF†RÆö6ÂFWfVÆ÷ÖVçB5Æ—FR6æ6†÷BâÆVv7’çVÖW&–26—FF–öâ&VfW&Væ6W2vW&RÖ–w&FVBFò7F&ÆR6÷W&6R”G2â&W6W'fR6VÆV7F–öâæ÷rw&—FW26VÆV7FVBÖ6æF–FFRVF—BWfVçBæB¦ö"×7FW&V6÷&BâöæRfW&–f–VB&VG’'F–6ÆR—2&W6VçC²7FvRb×W7B÷VÆFRF†R6WfVâÖ'F–6ÆR÷W&F–ær&W6W'fR&Vf÷&R7F—fF–ærF–Ç’V&Æ–6F–öâà ¢227FvRR(	BFÖ–â6öçG&öÂ&ööĞ¥7FGW3¢DôäRƒ##bÓÓb¤Wf–FVæ6S¢Fö72÷fW&–f–6F–öâ÷7FvRÓRÖFÖ–âæÖ@¤æ÷FW3¢&÷FV7FVBFÖ–âvW2æB—26†V6²F†R6—FW2ÖWF†VçF–6FVBW6W"”Bv–ç7BF†R6öæf–wW&V@¦÷væW"”BöâWfW'’&WVW7C²æöç–Ö÷W26ÆÆW'2&R&V¦V7FVBæB6–væVBÖ–âæöâÖ÷væW'2&V6V—fRC2à¤&6¶w&÷VæB¦ö"WF†÷&—¦F–öâW6W2F—7F–æ7B66÷VB&V&W"7&VFVçF–ÂâF†RF6†&ö&B&VG2F†P¦6ÆVæF"Â—VÆ–æRÂ&W6W'fRÂf–ÇW&W2ÂæB7VæBFF²—B&W÷'G266†VGVÆW"7FFR2Væf–Æ&ÆP§VçF–Â7FvRb–ç7FÆÇ2F†RÆ—fR&Vv—7G'’â÷væW"6öçG&öÇ2W'6—7BVF—FVBVF—G2Â6WGF–æw2ÂF÷–0¦76–væÖVçG2öW†6ÇW6–öç2ÂW6R7FFRÂf–ÆVB×7FW&WG&–W2ÂFöÖ÷'&÷r&WÆ6VÖVçG2ÂfW'6–öâ&W7F÷&W2À§VçV&Æ—6†W2Â6÷'&V7F–öç2ÂæBW‡Æ–6—BV&Æ—6‚Öæ÷r&WVW7G2âf7GVÂVF—G27&VFRæWrfW'6–öâÀ§&W6W'fR÷&VÖ6—FF–öç2Â–çfÆ–FFRfW&–f–6F–öâÂæBVWVR&WfÆ–FF–öââV&Æ—6‚Öæ÷r—2&V6÷&FV@¦'WBæ÷BW†V7WFVB&Vf÷&R7FvRb–ç7FÆÇ2F†RV&Æ—6†W"âfW&–f–6F–öã¢Fö72÷fW&–f–6F–öâ÷7FvRÓRÖFÖ–âæÖBà ¢227FvRb(	B66†VGVÆ–ærbV&Æ–6F–öà¥7FGW3¢DôäRƒ##bÓÓb¤Wf–FVæ6S¢Fö72÷ÆFf÷&Òõ44„TETÄ”äræÖC²Fö72÷fW&–f–6F–öâ÷7FvRÓb×66†VGVÆ–æræÖC²vV"÷67&—G2÷FW7B×7FvSb×66†VGVÆW"æ§2à£##bÓÓrföÆÆ÷r×W¢F†RÆö6ÂV&Æ—6†W"æ÷r&WV—&W2FWFW&Ö–æ—7F–26†V6·2Ââ–æFWVæFVçB76–ær&Wf–Wrv—F†÷WBÖ¦÷"ö7&—F–6Âf–æF–æw2ÂæB6Æ–Ò6—FF–öç2FòW†—7F–ær6÷W&6R”G2âF†R66†VGVÆW"&Vw&W76–öâ76VBv—F‚f÷W"æWr†öÆBf—‡GW&W2â6VRFö72öVF—G2ó##bÓÓr×66†VGVÆW"×V&Æ–6F–öâÖvFRæÖBâF†RFWÆ÷–VBv÷&¶W"ôCV&Æ—6†W"—2Væ6†ævVBà¤æ÷FW3¢FFVBW'6—7FVBöæR×6†÷BV&Æ–6F–öâæB&W6W'fR×&WÆVæ—6†ÖVçB'VææW'2v—F‚6–f–2Æö6ÂÖFFR&W6öÇWF–öâÂVæ—VRF–Ç’6Æ÷G2Â6W&–Æ—¦VBV&Æ–6F–öâÂÆFW7B×fW'6–öâVÆ–v–&–Æ—G’&V6†V6·2ÂF–ÖV÷WB×6fR&WG&–W2ÂFVÆ’G&6¶–ærÂ6W&FR6öçFVçB&VF&6²Âf—fRÖÖ–çWFR&WG'’&6¶öfbÂæBFÖ–â×f—6–&ÆRf–ÇW&W2öÆW'G2â&÷f–FW"'VFvWB&W6W'fF–öç2&VÖ–âFöÖ–2VæFW"F†RW†—7F–ærF–Ç’öÖöçF†Ç’62âF†R÷væW"6öçG&öÂ&ööÒæ÷r6†÷w266†VGVÆW"7FFRÂf–ÇW&W2ÂæBÆW'G2âfW&–f–6F–öâ76W27&÷727&–æröfÆÂE5Böfg6WG2ÂGvò6öæ7W'&VçBv÷&¶W"F‡&VG2ÂF–ÖV÷WBgFW"6öÖÖ—BÂ&÷f–FW"f–ÇW&RÂV×G’&W6W'fRÂ&6¶öfbÂæBÆFR6ÖRÖF’FVÆ’âBF†R7FvRbÖ–ÆW7FöæRF†RV&Æ–26—FR†BæòÔ5VæGö–çC²—G2Æö6Â'VææW"FVÆ–&W&FVÇ’G&VFVBF†RV&Æ—6†W"2Væf–Æ&ÆRâF†R6—FRæ÷rFV6Æ&W2Ô5Â'WB&VÖ–ç2Væ6öææV7FVBæBVç66†VGVÆVBâG&ç67F–öâFW7G2fW&–g’5Æ—FR&V†f–÷"öæÇ’Âæ÷BÆ—fR6—FRWFFRâ7F—fF–öâ&VÖ–ç2vFVBöâ7FvRrà  ¢227FvRr(	B66WFæ6RfW&–f–6F–öâb6VVF–æp¤ÆFW7B&öw&W73¢7W&6RföÆ²&ö¦V7B6öææV7FVBÂF‡&VRÖ–w&F–öç2Æ–VBÀ¦†÷7FVBFVfVÇBÖFVç’õ%2W&Ö—76–öâ÷W6VB×7v—F6‚6†V6·272â÷væW"õE&VBÖöæÇ§67&VVâÂ66÷VBÆV6R%2ÂæBwV&FVBÖöFVÂFFW"–×ÆVÖVçFVBæBÆö6ÆÇ’FW7FVBà¥6VRFö72÷fW&–f–6F–öâ÷7FvRÓr×&öw&W72Ó##bÓÓræÖBf÷"&VÖ–æ–ærW‡÷'BÂ÷væW"À¦7&VFVçF–ÂÂæB—6öÆFVB&V6÷fW'’&Æö6¶W'2â7FvRr&VÖ–ç2&Æö6¶VBà¤–×ÆVÖVçFF–öâÆã¢Fö72÷ÆFf÷&Òõ5DtRÓrÕÄâæÖB6÷fW'2fW&–f–VB7F÷&vRÂ÷væW ¦WF†VçF–6F–öâÂ66÷VBVæGFVæFVBV&Æ—6†–æröÖöFVÂ6öæf–wW&F–öâÂæB†÷7FV@§&V6÷fW'’FW7G2âE6Vç6RÂ6öæ6—6R–ÖvR7&VF—G2ÂæBÆ—7FVæ–ærW†×ÆW2&Ræ÷p¦–æ6ÇVFVB–âF†RV&Æ–2&VFW"â×W6–2W†×ÆW2&R&WV—&VB–âgWGW&R×W6–2÷ §6–æv–ær'F–6ÆR&Wf–WrÂ–æ6ÇVF–ær&W6W'fR&Wf–Wr&Vf÷&RV&Æ–6F–öâà¥7FGW3¢$Äô4´TBƒ##bÓÓr¤7W'&VçBfW&6VÂ&W&WV—6—FR73¢V&Æ–2WF†÷"vW2æBÆ–æ¶VBF÷–2&6†—fW2&W7F÷&VC°¥7W&6RföÆÆ÷r×W¢6öææV7F–öâf&–&ÆW2&R&W6VçB–âfW&6VÃ²6V7W&R6W'fW"6Æ–Vç@¦æB’×F&ÆR÷7Fw&W2Ö–w&F–öâ&W&VBæBÆö6ÆÇ’FW7FVBâ†÷7FVBÖ–w&F–öâæ@§&—fFR&W6W'fR–×÷'B&R&Æö6¶VBVçF–ÂF†R7W&6R6öææV7F–öâW‡÷6W2F†RföÆ¶Ç§&ö¦V7B&F†W"F†âF†RöÆFW"Vç&VÆFVB&ö¦V7Bâ6VRFö72÷ÆFf÷&Òõ5U$4RæÖBà§&WVW7FVB&VF–ærÖÆVç2&÷†W2&VÖ÷fVC²S’×&÷WFR'V–ÆBæBfö7W6VB&VFW"÷7V'67&—F–öà¦6†V6·272âFFVBçÒ'VâFW7C¦†÷7FVFæBçÒ'VâFW7C¦Öö&–ÆVâ6‡&öÖ—VÒF÷væÆö@¦f–ÆVBÂ6òÖö&–ÆR66WFæ6R&VÖ–ç2VçfW&–f–VBâGW&&ÆRfW&6VÂVF—F÷&–Â5Â7F÷&vRÀ¦÷væW"WF‚Â66÷VBVæGFVæFVBV&Æ—6†W"Â&öGV7F–öâÖöFVÂ÷&W6V&6‚&÷f–FW"Âæ@¦FWÆ÷–VB6öæ7W'&Væ7’÷&WG'’öf–ÇW&RöVF—B÷&W7F÷&R6†V6·2&VÖ–âÖ—76–ærâF†R†—7F÷&–6À¥6—FW2ôC&W7VÇG2&VÆ÷rFòæ÷B6ÆV"fW&6VÂ66WFæ6Râ6VRF†R7W'&VçBÖG&—‚–à¦Fö72÷fW&–f–6F–öâö66WFæ6R×&W÷'BæÖBâæò'F–6ÆR66†VGVÆRv2Væ&ÆVBà¤Wf–FVæ6S¢Fö72÷fW&–f–6F–öâö66WFæ6R×&W÷'BæÖC²Fö72÷fW&–f–6F–öâ÷&W6W'fRÖf–ÆÂæÖC°§vV"÷67&—G2÷fW&–g’×&W6W'fRæ§3²vV"÷67&—G2÷FW7B×7FvSr×&VFW"æ§3°¦Fö72÷fW&–f–6F–öâ÷7FvRÓ2×W'6öæ2æÖC²6ö×öæVçBWf–FVæ6Rg&öÒ7FvW2"Óbà¤æ÷FW3¢Æö6Â6ö×öæVçB6†V6·272f÷"Fö·W6†–ÖÂ7FvRBvFRf—‡GW&W2Â7FvRR÷væW"6öçG&öÇ2À¥7FvRb66†VGVÆW"f—‡GW&W2ÂæB6ÆVâÖ6†V6¶÷WB&VFW"öG&gBÖ—6öÆF–öâf—‡GW&Râg&W6‚7FvR0§'Vâöââ—6öÆFVB7W'&VçB6W'fW"76W2#bó#c²F†R&Wf–÷W2f÷W"f–ÇW&W2†—B7FÆR&ö6W72öà§F†RFVfVÇB÷'Bâ6WfVâÆö6ÆÇ’&W6V&6†VBæB&Wf–WvVB'F–6ÆW2æ÷r72F†R&W6W'fRvFS°§F†R÷'F&ÆRVçV&Æ—6†VB'VæFÆR—2G&6¶VBf÷"Ö–w&F–öââF‡&VR÷F†W"—F6†W2&VÖ–â†VÆBà¥F†RW†—7F–ærV&Æ–26—FRv27V'6WVVçFÇ’Ö–w&FVBFòv÷&¶W"ôCÂv—F‚f÷W"ÆVv7’'F–6ÆW0§V&Æ—6†VBæB6WfVâ&Wf–WvVB&W6W'fR7F÷&–W2&—fFRâ—G2÷væW"ÖvFVBFÖ–âæBÔ5V&Æ—6†W ¦&RFWÆ÷–VBâ6—FRfW'6–öâB†wfW%óVc3cSs†C“ƒƒ“ƒ6Sc#–fSF33““#F’Â6÷W&6P¦c&3fcSSCF3V#vFfc“cSfS–3S&c#Sf#“†FÂFG2â÷væW"ÖöæÇ’7F÷'’Wf–FVæ6Rf–Wp§v—F‚F†RÆFW7BfW'6–öâÂ6÷W&6RæB6Æ–ÒÆVFvW'2Â6†V6·2ÂF—66Æ÷7W&RÂæB–ÖvR&–v‡G2à¥F†RÆö6ÂWF†VçF–6FVBf—‡GW&R76VBÂ–æ6ÇVF–æræöç–Ö÷W2öæöâÖ÷væW"FVæ–ÂæB&—fFP§&VFW"—6öÆF–öââ†÷7FVBæöç–Ö÷W2&Wf–WrFVæ–ÂæBæ÷F†W"cÖ6†V6²&VFW"&Vw&W76–öâ76VBà¥6—FRfW'6–öâR†wfW%ö&CV3–C3Vcƒƒ“V&ccc“66SCfC–’Â6÷W&6P¦#cSc33†Vf†3C“sS–#FCVf#3V#CFfƒ–3VVÂ&–æG2WfW'’&Wf–WvVB&W6W'fR7F÷'’Fğ¦—G26ö×ÆWFRWf–FVæ6RÆVFvW"æB&WVG2×WF&ÆRWf–FVæ6R6†V6·2FöÖ–6ÆÇ’v†Vâ6Æ–Ö–æp§F†RF–Ç’6Æ÷BâF†Rfö7W6VBvFRf—‡GW&R76VBGv–6RÂF†R&öGV7F–öâ'V–ÆB76VBÂæBÆÀ§6WfVâÆ—fRWf–FVæ6RF–vW7G2ÖF6†VB&Vf÷&RFWÆ÷–ÖVçBâ÷7BÖFWÆ÷–ÖVçB6†V6·2&WF–æVBf÷W §V&Æ–27F÷&–W2Â6WfVâ&—fFR&W6W'fR7F÷&–W2Â¦W&òV&Æ–6F–öâ6Æ÷G2ÂæBÆÂF‡&VR7v—F6†W2öfbà¥6VRFö72öVF—G2ó##bÓÓr×6—FRÖWf–FVæ6RÖGFW7FF–öâæÖBà¤V&Æ–W"Gvò6öç6V7WF—fR†÷7FVB&VFW"ö66W7276W2V6‚76VBc6†V6·2ââ—6öÆFVBv÷&¶W"ôC¦f—‡GW&RfW&–f–VB6öæ7W'&VçBV&Æ—6‚Â&WG'’æB6W&FR&VF&6²â&öGV7F–öâÖWF†VçF–6FV@§w&—FR÷&VF&6²Â&VÂ†÷7FVB÷væW"6W76–öâÂVæGFVæFVB6öææV7F–öâÂÖöFVÂ&÷f–FW"ÂgVÆÂ†÷7FV@¦f–ÇW&R7V—FRÂæBÖö&–ÆRf–Ww÷'B&VÖ–â–æ6ö×ÆWFRâæò66†VGVÆRv27F—fFVC²&öGV7F–öà¦æBV&Æ–6F–öâ7v—F6†W2&Röfbà¤öâ##bÓÓr66†VÖÖöæÇ’CG&ç6fW"'F–f7BæB&—fFR6öçFVçBW‡÷'FW"ö–×÷'FW §vW&RFFVBââ—6öÆFVB5Æ—FR&÷VæBG&—76VBv—F‚b'F–6ÆW2Â’fW'6–öç2Âƒ‚6÷W&6W2À¦–æ6ÇVF–ær6WfVâVçV&Æ—6†VB&VG’G&gG2â6VRFö72÷fW&–f–6F–öâ÷6—FRÖÖ–w&F–öâÖ&÷VæF'’æÖBà¥F†—2Gfæ6W2FF÷'F&–Æ—G’'WBFöW2æ÷B6†ævRF†R$Äô4´TBFWÆ÷–VB66WFæ6R&W7VÇBà¤&VBÖöæÇ’C×6†R&VFW"f—‡GW&RÇ6ò76VBÆVv7’U$Âf÷&×2Âf—fRWF†÷"vW2À¦æB&—fFR&W6W'fR—6öÆF–öââ—G2v÷&¶W"6¶v–æræBÆ—fRC&–æF–ær&Ræ÷rFWÆ÷–VBà ¢227FvR‚(	B÷W&F–öç2Fö2Â7F—fF–öâbFVÆ—fW'¥7FGW3¢$Äô4´TBƒ##bÓÓr¤Wf–FVæ6S¢Fö72÷fW&–f–6F–öâö66WFæ6R×&W÷'BæÖC²Fö72÷fW&–f–6F–öâ÷6—FRÖÖ–w&F–öâÖ&÷VæF'’æÖBà¤æ÷FW3¢7FvRr—2æ÷BgVÆÇ’w&VVââF†RÆ–æ¶VB66†VGVÆR7F—2–æ7F—fR'’F†R7FvR‚vFRà   ¢22fW&6VÂ&öw&W72Â##bÓÓ‚UD0 ¤ÆÂ&V6VçBv÷&²—27–æ6VBFòÖ–âöÖ7FW#²'&æ6‚–çfVçF÷'’6öçF–ç2ı·ß«h‘éì¶»§q«^tQ¡”Y•É•°ÁÉ½©•Ğ¥Ì­¹½İ¸Ñ¼9½… …Ì™½±­±äì¥¹ÍÁ•ĞÑ¡…Ğ•á¥ÍÑ¥¹œ)ÁÉ½©•Ğİ¡•¸Ñ¡”½¹¹•Ñ¥½¸•áÁ½Í•Ì¥Ğ¸!¥ÍÑ½É¥…°µ…¹Õ…°É•±•…Í•Ì½ÁÉ¥Ù…Ñ”)É•Í•ÉÙ”É•µ…¥¸Õ¹¡…¹•ìÁÉ½‘ÕÑ¥½¸½ÁÕ‰±¥…Ñ¥½¸½Í¡•‘Õ±”É•µ…¥¸½™˜¸((ŒŒAÕ‰±¥Œ…ÉÑ¥±”Ñ…Ì…¹™¥±Ñ•ÉÌ°€ÈÀÈØ´ÄÀ´Àà()AÕ‰±¥Í¡•…Ñ…±½œÑ…Ì¹½Ü…ÁÁ•…È…ÌÑ½Á¥Œ±¥¹­Ì½¸É¥…É‘Ì¸!½µ•Á…”½…É¡¥Ù”)…¹…Ñ¥Ù”Ñ½Á¥Œ½Á±…”É¥‘Ì…‘…¹äµÑ…œÍ•±•Ñ¥½¸°Á±…”¹…ÉÉ½İ¥¹œ°¹•İ•ÍĞ½½±‘•ÍĞ)…¹Ñ¥Ñ±”Í½ÉÑ¥¹œ°±¥Ù”½Õ¹ÑÌ°•µÁÑäÍÑ…Ñ”…¹±•…È½É•Í•Ğ¸M¡…É•…‰±”UI0ÍÑ…Ñ”)ÁÉ•Í•ÉÙ•ÌÕ¹É•±…Ñ•ÅÕ•ÉäÁ…É…µ•Ñ•ÉÌ¸9…Ñ¥Ù”…•ÍÍ¥‰±”½¹ÑÉ½±Ì•¹¡…¹”½Ñ¡•Éİ¥Í”)½µÁ±•Ñ”ÍÑ…Ñ¥ŒÉ¥‘Ìì¹¼µ)…Ù…MÉ¥ÁĞÑ½Á¥Œ¹…Ù¥…Ñ¥½¸İ½É­Ì¸=ÁÑ¥½¹Ì½¹•Ü…ÉÑ¥±”)µ•Ñ…‘…Ñ„Á½ÁÕ±…Ñ”…ÕÑ½µ…Ñ¥…±±ä™É½´•… É¥ÌÁÕ‰±¥Í¡••¹ÑÉ¥•Ì¸	Õ¥±…¹)É•É•ÍÍ¥½¸•Ù¥‘•¹”¥Ì¥¸Ù•É¥™¥…Ñ¥½¸½…ÉÑ¥±”µ™¥±Ñ•ÉÌ´ÈÀÈØ´ÄÀ´Àà¹µ¸Õ±°‰É½İÍ•È)Ù¥ÍÕ…°½‘•Á±½å•…•ÁÑ…¹”É•µ…¥¹ÌÁ•¹‘¥¹œìÁÉ¥Ù…Ñ”É•Í•ÉÙ”…¹Á…ÕÍ•Íİ¥Ñ¡•Ì)…É”Õ¹¡…¹•¸((ŒŒ¥ÉÍĞµÕÍ”É•…‘•È½¹Ñ•áĞ°€ÈÀÈØ´ÄÀ´Àà()=İ¹•ÈÉ•ÅÕ•ÍÑ•½¹Ñ•áÑÕ…°¥¹ÑÉ½‘ÕÑ¥½¹Ì™½ÈÕ¹™…µ¥±¥…È½¹½¸µ¹±¥Í Ù½…‰Õ±…Éä¸)É…™Ñ¥¹œ°É•Ù¥Í¥½¸…¹É•Ù¥•Ü¥¹ÍÑÉÕÑ¥½¹Ì¹½ÜÉ•ÅÕ¥É”Í½ÕÉ•µ•…¹¥¹œ…¹)•½É…Á¡¥Œ½Õ±ÑÕÉ…°½É¥•¹Ñ…Ñ¥½¸İ½Ù•¸¥¹Ñ¼Ñ¡”ÁÉ½Í”¸M¡…É•µ½‘•°¥¹ÍÑÉÕÑ¥½¹Ì)ÁÉ•Í•ÉÙ”¹…µ•Ì½‘¥…É¥Ñ¥Ì°…±±½Ü•Ù¥‘•¹”µÍÕÁÁ½ÉÑ•±åÉ¥…°½…¹Ñ¡É½Á½±½¥…°‘•ÁÑ °)…¹ÁÉ½¡¥‰¥Ğ¥¹Ù•¹Ñ••Ñåµ½±½¥•Ì°Íåµ‰½±¥Í´…¹¡½µ½•¹¥é•Õ±ÑÕÉ…°±…¥µÌ¸)M•”Á±…Ñ™½É´½%Q=I%0µMQe1¹µ…¹Q==Ì½IHµ=9QaPµ]I%Q%9µAI=5AQL¹µ™½È)Ñ•É´µ‰äµÑ•É´½É¥•¹Ñ…Ñ¥½¸…¹„Í½ÕÉ”µ¡•­•5…Ñ…É¥­¤½AÕ…¹„Ñ•…¡¥¹œ•á…µÁ±”¸)Q¡”µ½‘•°™¥áÑÕÉ”½¹™¥ÉµÌÑ¡”¹•Ü¥¹ÍÑÉÕÑ¥½¹ÌÉ•… Ñ¡”•¹•É…Ñ¥½¸É•ÅÕ•ÍĞì)¹¼±¥Ù”•¹•É…Ñ¥½¸½ÈÍ•µ…¹Ñ¥ŒÅÕ…±¥Ñä…•ÁÑ…¹”¥Ì±…¥µ•¸	Õ¥±…¹ÁÕ‰±¥Œ)…ÉÑ¥±”±…å½ÕĞ¡•­ÌÁ…ÍÌ¸AÕ‰±¥Í¡•…ÉÑ¥±•Ì½ÁÉ¥Ù…Ñ”…ÑÑ•ÍÑ…Ñ¥½¹Ì…¹‘¥Í…‰±•)ÁÉ½‘ÕÑ¥½¸½ÁÕ‰±¥…Ñ¥½¸½Í¡•‘Õ±”Í•ÑÑ¥¹ÌÉ•µ…¥¸Õ¹¡…¹•¸((ŒŒá¥ÍÑ¥¹œµÍÑ½Éä½¹Ñ•áĞ…¹É•±…Ñ•…É‘Ì°€ÈÀÈØ´ÄÀ´Àà()±°•±•Ù•¸ÁÕ‰±¥Í¡•ÍÑ½É¥•Ì¹½Ü¥¹ÑÉ½‘Õ”Õ¹™…µ¥±¥…ÈÕ±ÑÕÉ…°½•½É…Á¡¥Œ…¹)Ñ•¡¹¥…°Ñ•ÉµÌİ¥Ñ¡¥¸Ñ¡”ÁÉ½Í”¸I•¥½¹…°AÕ…¹„½5…Ñ…É¥­¤Ù¥Í¥‰¥±¥Ñäİ½É‘¥¹œ¥Ì)½ÉÉ•Ñ•…¹±¥¹­•Ñ¼Q”A…Á„½Q”­„•Ù¥‘•¹”¸Ù•ÉäÍÑ½Éä¥Ì…Ğ±•…ÍĞÑ¡”)É•Ù¥Í•Q½­ÕÍ¡¥µ„±•¹Ñ ½˜€Ä°ÈÈà¹…ÉÉ…Ñ¥Ù”İ½É‘Ì…¹É•Ñ…¥¹Ì•á…ĞÑİ¼µÁ…É…É…Á )¥µ…”…‘•¹”€ äÌ¥µ…•Ì¤¸I•±…Ñ•Á…¹•±ÌÍ¡½Ü™½ÕÈ‘¥ÍÑ¥¹ĞÁÕ‰±¥Œ¥µ…”…É‘Ì°)İ¥Ñ ÕÉ…Ñ•±¥¹­Ì™¥ÉÍĞ…¹‘•Ñ•Éµ¥¹¥ÍÑ¥ŒÑ½Á¥Œ½Á±…”™…±±‰…¬¸•ÑÉ½¥ĞÕÍ•Ì)¥ÑÌÉ•‘¥Ñ•¥¹±¥¹”Á½ÉÑÉ…¥Ğ…Ì„ÁÉ•Ù¥•Ü¸M¡…É•™½½Ñ•ÈÍÕ‰Ñ¥Ñ±”½ÁÉ½©•ĞÑ•áĞ)µ…Ñ¡•ÌÑ¡”½İ¹•ÈÌÍÕÁÁ±¥•İ½É‘¥¹œ¸M•”Ù•É¥™¥…Ñ¥½¸½É•…‘•Èµ½¹Ñ•áĞµÉ•±…Ñ•µÍÑ½É¥•Ì´(ÈÀÈØ´ÄÀ´Àà¹µ…¹¥ÑÌ)M=8™½È¡…Í¡•Ì°½Õ¹ÑÌ…¹¡•­Ì¸I•±•…Í”µ…¹¥™•ÍĞ½ÁÉ¥Ù…Ñ”)É•Í•ÉÙ”…¹Á…ÕÍ•Íİ¥Ñ¡•ÌÉ•µ…¥¸Õ¹¡…¹•¸!½ÍÑ•…•ÁÑ…¹”¥ÌÍÑ¥±°Á•¹‘¥¹œ¸()AÕ‰±¥Œ™½±±½ÜµÕÀè¥µÁ±•µ•¹Ñ…Ñ¥½¸€É‰„ØÅŒĞ¥Ì±¥Ù”½¸Y•É•°¸±°•±•Ù•¸…ÉÑ¥±•Ì°)¡½µ•Á…”…¹…É¡¥Ù”µ…Ñ Ñ¡”Ù•É¥™¥•‰Õ¥±‰åÑ”™½È‰åÑ”ì‰½ÕĞµ…Ñ¡•Ì…Á…ÉĞ)™É½´¥ÑÌ™¥¹…°¹•İ±¥¹”°İ¥Ñ ‰½Ñ ¹•Ü™½½Ñ•ÈÍÑÉ¥¹ÌÙ•É¥™¥•¸1¥Ù”•Ù¥‘•¹”¥Ì)¥¸Ù•É¥™¥…Ñ¥½¸½É•…‘•Èµ½¹Ñ•áĞµÉ•±…Ñ•µÍÑ½É¥•Ìµ±¥Ù”´ÈÀÈØ´ÄÀ´Àà¹©Í½¸¸((ŒŒMÕ‰ÍÉ¥‰•È…ÕÑ½µ…Ñ¥½¸…¹İ••­±ä‘¥•ÍĞ°€ÈÀÈØ´ÄÀ´Àà()á¥ÍÑ¥¹œÍÕ‰ÍÉ¥‰•ÉÌ…É”…ÕÑ½µ…Ñ¥…±±äÍÑ½É•¥¸ÁÉ¥Ù…Ñ”Y•É•°	±½ˆ)M=8É•½É‘Ì¸)]••­±ä¹•İÍ±•ÑÑ•È½‘”¹½ÜÉ•ÕÍ•ÌÑ¡…Ğ±¥ÍĞ°…‘‘ÌÉ¥‘…ä€ÄØèÀÀUQ‘¥•ÍĞÉ½¸°)ÁÉ¥Ù…Ñ”‘ÕÁ±¥…Ñ”µÍ•¹±…¥µÌ°ÁÉ½Ù¥‘•Èµ¹•ÕÑÉ…°İ½É­•È…¹Í¥¹•Õ¹ÍÕ‰ÍÉ¥‰”½ÍÕÁÁÉ•ÍÍ¥½¸¸)ÉÑ¥±”‘¥Í±…¥µ•ÉÌ…É”É•µ½Ù•™É½´ÁÕ‰±¥Œ‰Õ¥±½ÕÑÁÕĞìÍ½ÕÉ•Ì½±¥•¹Í•ÌÉ•µ…¥¸¸)½ÕÍ•½™Õ±°É•É•ÍÍ¥½¸•Ù¥‘•¹”¥Ì¥¸Ù•É¥™¥…Ñ¥½¸½¹•İÍ±•ÑÑ•È´ÈÀÈØ´ÄÀ´Àà¹µ¸)Ñ¥Ù…Ñ¥½¸¥Ì‰±½­•½¸½İ¹•È…ÁÁÉ½Ù…°½˜„Í•¹‘¥¹œÁÉ½Ù¥‘•È°¥ÑÌ…‘…ÁÑ•È°)Ù•É¥™¥•Í•¹‘¥¹œ‘½µ…¥¸°IM9}A%}-d°9]M1QQI}I=4°)9]M1QQI}A=MQ1}IML°I=9}MIP°9]M1QQI}MIP…¹•¹…‰±¥¹œÑ¡”Í•Á…É…Ñ”)9]M1QQI}9	1™±…œ…™Ñ•È„¡½ÍÑ•Ñ•ÍĞ¸M•”Á±…Ñ™½É´½9]M1QQH¹µ¸½¹¹•Ñ•)Y•É•°ÁÉ½©•Ğµ•Ñ…‘…Ñ„…•ÍÌÉ•ÑÕÉ¹Ì€ĞÀĞìÉ•½¹¹•ĞÁÉ½©•Ğ…•ÍÌ½È½¹™¥ÕÉ”)¥ÑÌ‘…Í¡‰½…É‘¥É•Ñ±ä¸9¼•µ…¥±ÌÍ•¹Ğ°ÍÕ‰ÍÉ¥‰•ÈÉ•½É‘Ì¡…¹•½È…ÉÑ¥±”)ÁÉ½‘ÕÑ¥½¸½ÁÕ‰±¥…Ñ¥½¸½Í¡•‘Õ±”Íİ¥Ñ¡•Ì•¹…‰±•¸½½±”±½ÕÉ•µ…¥¹Ì‘•™•ÉÉ•¸()ÕÑ½µ…Ñ¥Œ…ÁÁÉ½Ù…°É•Ù¥•ÜÉ•©•Ñ•Ñ¡”ÁÉ½Á½Í•I•Í•¹…‘…ÁÑ•È™½ÈÑÉ…¹Íµ¥ÑÑ¥¹œ)ÁÉ¥Ù…Ñ”ÍÕ‰ÍÉ¥‰•È…‘‘É•ÍÍ•ÌÑ¼…¸Õ¹…ÁÁÉ½Ù•ÁÉ½Ù¥‘•È¸Q¡”½µµ¥ÑÑ•¹•İÍ±•ÑÑ•È)A$¡…Ì¹¼Í•¹‘¥¹œÑÉ…¹ÍÁ½ÉĞ…¹™…¥±Ì±½Í••Ù•¸¥˜9]M1QQI}9	1¥ÌÑÉÕ”¸()I•Í•¹™½±±½ÜµÕÀè9½… •áÁ±¥¥Ñ±ä…ÁÁÉ½Ù•Ñ¡”Í•¹‘¥¹œÁÉ½Ù¥‘•È½¸€ÈÀÈØ´ÄÀ´Àà¸)Q¡”…‘…ÁÑ•È¥Ì¥µÁ±•µ•¹Ñ•İ¥Ñ ™¥á•!QQAL‘•ÍÑ¥¹…Ñ¥½¸°‰•…É•È½¥‘•µÁ½Ñ•¹ä)¡•…‘•ÉÌ°‰½Õ¹‘•Ñ¥µ•½ÕĞ…¹É••¥ÁĞµ½¹±äÉ•ÍÁ½¹Í•Ì¸5½¬ÁÉ½Ù¥‘•È…¹¹•İÍ±•ÑÑ•È)¡•­ÌÁ…ÍÌì¹¼É•…°µ…¥°Í•¹Ğ¸Q¡”ÁÉ¥½È…ÁÁÉ½Ù…°‰±½­•È¥ÌÉ•Í½±Ù•¸M•¹‘•È°)É•‘•¹Ñ¥…±Ì½…‘‘É•ÍÌ½Í•É•ÑÌ°Y•É•°ÁÉ½©•Ğ…•ÍÌ…¹¡½ÍÑ•…•ÁÑ…¹”É•µ…¥¸)Á•¹‘¥¹œì9]M1QQI}9	1ÍÑ¥±°‘•™…Õ±ÑÌ½™˜¸((ŒŒ!•…‘•È…±¥¹µ•¹Ğ…¹µÕ±Ñ¥±¥¹Õ…°‘•Í¥¸°€ÈÀÈØ´ÄÀ´Àà()Q¡”½İ¹•ÈÌÍÉ••¹Í¡½Ğ¥‘•¹Ñ¥™¥•½µÁ…Ğ¹…Ù¥…Ñ¥½¸±¥¹­Ì…±¥¹•Ñ¼Ñ¡”Ñ½À½˜)Ñ¡”Á…‘‘•MÕ‰ÍÉ¥‰”…Ñ¥½¸¸M¡…É•ML¹½Ü•¹Ñ•ÉÌ…±°¡•…‘•È±¥¹­Ì½…Ñ¥½¹Ì°)ÁÉ½Ù¥‘•Ì€ĞÑÁàÑ…É•ÑÌ°İÉ…ÁÌ¹…ÉÉ½Ü¡•…‘•ÉÌ…¹É•Ñ…¥¹ÌÉ¡¥Ù•Ì½¸Íµ…±°ÍÉ••¹Ì¸)Q¡”Í•Ù•¸µ±…¹Õ…”…É¡¥Ñ•ÑÕÉ”…¹¥µÁ±•µ•¹Ñ…Ñ¥½¸‰…­±½œ…É”‘½Õµ•¹Ñ•¥¸)Á±…Ñ™½É´½5U1Q%1%9U0¹µ…¹Q==Ì½5U1Q%1%9U0µ%5A159QQ%=8¹µèÑÉ…¹Í±…Ñ”ÁÕ‰±¥Œ)…ÁÁÉ½Ù•½¹Ñ•¹Ğ½¹”Á•ÈÉ•Ù¥Í¥½¸°…¡”¥¸¥Ğ…¹Í•ÉÙ”ÍÑ…Ñ¥ŒY•É•°±½…±”)Á…•Ì°Í¡…É¥¹œ¥µ…”…ÍÍ•ÑÌ¸É…‰¥ŒIQ0°ÍÉ¥ÁĞµ…İ…É”½¹Ñ•áĞ°…ÁÁÉ½Ù…°½ÍÑ…±”)¡…Í¡•Ì°±½…±”M<…¹‰Õ‘•Ñ•É•Ù¥•Ü…É”¥¹±Õ‘•¸9¼ÑÉ…¹Í±…Ñ¥½¹Ì½ÈÁ…¥…±±Ì)İ•É”ÉÕ¸¸Y•É•°¥¹ÍÁ•Ñ¥½¸ÍÑ¥±°É•ÑÕÉ¹Ì€ĞÀĞ™½ÈÑ¡”­¹½İ¸ÁÉ½©•Ğ½Ñ•…´ì¥Ñ!Õˆ)É•µ…¥¹ÌÑ¡”‘•Á±½åµ•¹ĞÁ…Ñ ¸	É½İÍ•È¥¹ÍÑ…±±…Ñ¥½¸İ…ÌÕ¹…Ù…¥±…‰±”‘Õ”¥¹Ù…±¥)¡É½µ¥Õ´‘½İ¹±½…‘Ì°Í¼™Õ±°Ù¥ÍÕ…°½µ½‰¥±”…•ÁÑ…¹”¥Ì¹½Ğ±…¥µ•¸((ŒŒ=İ¹•Èİ½É­ÍÁ…”…¹ÑÉ…¹Í±…Ñ¥½¸ÁÉ½µÁÑÌ°€ÈÀÈØ´ÄÀ´Àà()‘‘•Í•Ù•¸Í•ÅÕ•¹Ñ¥…°¥µÁ±•µ•¹Ñ…Ñ¥½¸ÁÉ½µÁÑÌ¥¸)Q==Ì½5U1Q%1%9U0µ%5A159QQ%=8µAI=5AQL¹µ¸=İ¹•È¹…Ù¥…Ñ¥½¸¹½Ü½¹¹•ÑÌ)=Ù•ÉÙ¥•Ü°‘¥Ñ½È¡…Ğ°ÉÑ¥±”¥‘•…Ì°É…™ÑÌ…¹%¹‰½à¸AÉ¥Ù…Ñ”¥‘•…Ì¡…Ù”•áÁ±¥¥Ğ)É½ÜÍ…Ù•Ì…¹½ÁÑ¥µ¥ÍÑ¥ŒÉ•Ù¥Í¥½¹Ì¸ÁÉ½Ñ•Ñ•‘É…™ĞÙ¥•İ•ÈÉ•…‘ÌÑ¡”±…Ñ•ÍĞ)µ¥É…Ñ•MÕÁ…‰…Í”Ù•ÉÍ¥½¸¸‘¥Ñ½È¡…ĞÕÍ•ÌÑ¡”•á¥ÍÑ¥¹œ=Á•¹$ÁÉ½Ù¥‘•È°‘•™…Õ±ÑÌ)½™˜°¡…Ì‘ÕÉ…‰±”…ÑÑ•µÁĞ±…¥µÌ…¹„€ÈÀµÉ•ÅÕ•ÍĞUQ‘…¥±äÉ•Í•ÉÙ…Ñ¥½¸±¥µ¥Ğ¸)M•”Á±…Ñ™½É´½=]9Hµ]=I-MA¹µ™½ÈÍÑ½É…”°½¹™¥ÕÉ…Ñ¥½¸…¹¡½ÍÑ•¡•­Ì¸)9¼‘É…™Ğµ¥É…Ñ¥½¸°µ½‘•°…±°°Á…¥ÑÉ…¹Í±…Ñ¥½¸½ÈÁÕ‰±¥…Ñ¥½¸½ÕÉÉ•¸((ŒŒAÉ¥Ù…ä½¹ÑÉ½±Ì°€ÈÀÈØ´ÄÀ´Àà((½ÁÉ¥Ù…ä…¹™¥ÉÍĞµÁ…ÉÑä…¹…±åÑ¥Ì½¹Í•¹Ğ½¹ÑÉ½±ÌÉ•Á±…”Õ¹½¹‘¥Ñ¥½¹…°ÑÉ…­¥¹œ¸)Ù•Éä•¹•É…Ñ•Á…”±¥¹­ÌÑ¡”Á½±¥äì½ÁÑ¥½¹…°…¹…±åÑ¥ÌÍÑ…ÉÑÌ‘•¹¥•°Í…Ù•)¡½¥•Ì•áÁ¥É”…™Ñ•È€ÄàÀ‘…åÌ…¹İ¥Ñ¡‘É…İ…°É•±½…‘Ì¸=İ¹•ÈÁ…•Ì¡…Ù”¹¼Ñ…Ì¸)‘Ù•ÉÑ¥Í¥¹œ¥Ì‰±½­•Õ¹Ñ¥°•ÉÑ¥™¥•5@…½Õ¹ĞÍ•ÑÕÀ…¹‘•Á±½å•½¹Í•¹Ğ)…•ÁÑ…¹”Á…ÍÌ¸M•”Ù•É¥™¥…Ñ¥½¸½ÁÉ¥Ù…äµ½¹Í•¹Ğ´ÈÀÈØ´ÄÀ´Àà¹µ™½È•á…Ğ‘M•¹Í”)…¹Ğ…½Õ¹Ğ…Ñ¥½¹Ì°Í½ÕÉ•Ì…¹Ñ•ÍÑÌ¸9¼¹•ÜÍ•ÉÙ¥”°µ…¥°½ÈÁÕ‰±¥…Ñ¥½¸¸((ŒŒMÑ…”€ÜÑÉ…¹Í…Ñ¥½¹…°½¹Ñ•¹Ğ¥µÁ½ÉĞ°€ÈÀÈØ´ÄÀ´Àà()!½ÍÑ•MÕÁ…‰…Í”É•…½¹™¥ÉµÌé•É¼…ÉÑ¥±”°Ù•ÉÍ¥½¸…¹Í½ÕÉ”É½İÌ…¹…±°Ñ¡É•”)Íİ¥Ñ¡•Ì™…±Í”¸Q¡”½É¥¥¹…°M¥Ñ”É•…‘•ÈÍÑ¥±°ÑÉÕ¹…Ñ•ÌÙ•ÉÍ¥½¸)M=8Ñ¼€È°ÀÀÀ)¡…É…Ñ•ÉÌ…Ğ±¥µ¥Ğ€Ä¸9¼Á…ÉÑ¥…°¥µÁ½ÉĞİ…Ì…ÑÑ•µÁÑ•¸‘‘•…¸½™™±¥¹”ÁÉ¥Ù…Ñ”)ME0½µÁ¥±•Èİ¥Ñ ¥¹‘•Á•¹‘•¹ĞÍ½ÕÉ”¡•­ÍÕ´½½Õ¹ÑÌ°½µÁ±•Ñ”µ½±Õµ¸…¹Ù•ÉÍ¥½¸)¡•­Ì°ÕÉÉ•¹Ğµ…¹Õ…°µÉ•±•…Í”±…ÍÍ¥™¥…Ñ¥½¸°ÑÉ…¹Í…Ñ¥½¹…°É•…‘‰…¬…¹½¹™±¥Ğ)É•©•Ñ¥½¸¸M•”Á±…Ñ™½É´½MUA	Mµ=9Q9Pµ%5A=IP¹µ¸Q¡”½±Í•Ù•¸É•±•…Í•Ì…É”ÁÕ‰±¥Œ)…¹…¹¹½Ğ‰”½Õ¹Ñ•…ÌÉ•Í•ÉÙ”¸Õ±°Í½ÕÉ”•áÁ½ÉĞÉ•µ…¥¹ÌÑ¡”É•ÅÕ¥É•½İ¹•È)…ÉÑ¥™…Ğì¹¼Í¡•µ„¡…¹”°ÁÕ‰±¥Í¡•È…Ñ¥Ù…Ñ¥½¸½ÈÁÉ¥Ù…Ñ”½¹Ñ•¹Ğ½µµ¥Ğ¸((ŒŒ	±½ˆµ‰…­••‘¥Ñ½É¥…°½¹Ñ•¹Ğ°€ÈÀÈØ´ÄÀ´Àà()=İ¹•Èµ…ÁÁÉ½Ù•¡å‰É¥¥µÁ±•µ•¹Ñ•èÁÉ¥Ù…Ñ”¥µµÕÑ…‰±”Ù•ÉÍ¥½¸)M=8…¹Í¹…ÁÍ¡½Ğ)‰…­ÕÁÌ¥¸•á¥ÍÑ¥¹œY•É•°	±½ˆ°ÑÉ…¹Í…Ñ¥½¸½É•Ù¥•Üµ•Ñ…‘…Ñ„¥¸MÕÁ…‰…Í”¸9•Ü)™½±­±å}½¹Ñ•¹Ñ}½‰©•ÑÌÉ•™•É•¹”Ñ…‰±”¥Ì…ÁÁ±¥•ìI1L½±¥•¹Ğ‘•¹¥…°…¹Í•ÉÙ•È)…ÁÁ•¹µ½¹±äÉ…¹ÑÌÙ•É¥™¥•±¥Ù”¸=İ¹•È‘É…™ĞÉ•…‘ÌÙ•É¥™äÁÉ¥Ù…Ñ”	±½ˆ¡•­ÍÕµÌ)…¹Í¥é•Ì°ÁÉ•Í•ÉÙ¥¹œME0½µÁ…Ñ¥‰¥±¥Ñäİ¥Ñ¡½ÕĞ™…±±‰…¬½¸½ÉÉÕÁĞÉ•™•É•¹•Ì¸)Q¡”€´µ‰±½ˆ¥µÁ½ÉĞÁ…Ñ ÕÁ±½…‘Ì½É•…‘‰…­Ì™¥ÉÍĞ°Ñ¡•¸½µÁ¥±•Ì½¹”µ•Ñ…‘…Ñ„½É•™•É•¹”)ÑÉ…¹Í…Ñ¥½¸¸9¼É•…°½¹Ñ•¹ĞÕÁ±½…‘•½È¥µÁ½ÉÑ•ì½µÁ±•Ñ”½É¥¥¹…°•áÁ½ÉĞÉ•µ…¥¹Ì)É•ÅÕ¥É•¸Q•ÍÑÌ…¹±¥µ¥ÑÌèÙ•É¥™¥…Ñ¥½¸½‰±½ˆµ•‘¥Ñ½É¥…°µ½¹Ñ•¹Ğ´ÈÀÈØ´ÄÀ´Àà¹µ¸((ŒŒAÉ½Ñ•Ñ•ÍÕ‰ÍÉ¥‰•ÈÉ•…‘‰…¬°€ÈÀÈØ´ÄÀ´Àà()Q¡”½İ¹•È‘…Í¡‰½…É¹½Ü¥¹±Õ‘•Ì„ÁÉ¥Ù…Ñ”Á…¥¹…Ñ•MÕ‰ÍÉ¥‰•ÉÌÍ•Ñ¥½¸‰…­•‰ä)Ñ¡”•á¥ÍÑ¥¹œY•É•°	±½ˆÉ•½É‘Ì¸%ĞÍ¡½İÌ•µ…¥°°½¹Í•¹ĞÙ•ÉÍ¥½¸½Í½ÕÉ”°Í¥¹ÕÀ)Ñ¥µ”…¹ÕÉÉ•¹ĞÍÕ‰ÍÉ¥‰•½Õ¹ÍÕ‰ÍÉ¥‰•ÍÑ…Ñ”İ¥Ñ¡½ÕĞ•áÁ½Í¥¹œ	±½ˆÁ…Ñ¡Ì½È)Õ¹ÍÕ‰ÍÉ¥‰”Ñ½­•¹Ì¸Ù•ÉäÁ…”É•Ù…±¥‘…Ñ•ÌÑ¡”½İ¹•ÈÍ•ÍÍ¥½¸…¹µ•µ‰•ÉÍ¡¥Àì)É•½É‘Ì°Á…Ñ ¡…Í¡•Ì°Í¥é•Ì…¹½¹Ñ¥¹Õ…Ñ¥½¸ÕÉÍ½ÉÌ…É”‰½Õ¹‘•…¹Ù…±¥‘…Ñ•¸)5…±™½Éµ•½ÈÁ…ÉÑ¥…±±äÉ•…‘…‰±”Á…•Ì™…¥°±½Í•É…Ñ¡•ÈÑ¡…¸É•Á½ÉÑ¥¹œ„™…±Í”)‘•±¥Ù•ÉäÍÑ…Ñ”¸Õ±°É•É•ÍÍ¥½¸…¹™½ÕÍ•Í•ÕÉ¥Ñä™¥áÑÕÉ•ÌÁ…ÍÌ¸M•”)Ù•É¥™¥…Ñ¥½¸½ÍÕ‰ÍÉ¥‰•ÈµÉ•…‘‰…¬´ÈÀÈØ´ÄÀ´Àà¹µ¸Q¡¥Ì±½Í•ÌÑ¡”½‘”µÍ¥‘”)…ÕÑ¡•¹Ñ¥…Ñ•É•…‘‰…¬…À°‰ÕĞ¡½ÍÑ•½İ¹•ÈµÍ•ÍÍ¥½¸É•…‘‰…¬…¹I•Í•¹‘•±¥Ù•Éä)…•ÁÑ…¹”ÍÑ¥±°É•ÅÕ¥É”Ñ¡”•á¥ÍÑ¥¹œY•É•°ÁÉ½©•Ğ½¹¹•Ñ¥½¸…¹½¹™¥ÕÉ•)ÁÉ½Ù¥‘•ÈÍ•É•ÑÌ¸9]M1QQI}9	1…¹…±°Ñ¡É•”…ÕÑ½¹½µ½ÕÌÍİ¥Ñ¡•ÌÉ•µ…¥¸½™˜¸)Q¡”¥µÁ±•µ•¹Ñ…Ñ¥½¸‘•Á±½åµ•¹ĞÍÕ••‘•ìÁÕ‰±¥Œ½İ¹•È!Q50¥¹±Õ‘•ÌÑ¡”Í•Ñ¥½¸°)…¹…¸…¹½¹åµ½ÕÌÍÕ‰ÍÉ¥‰•ÈµÙ¥•ÜÉ•ÅÕ•ÍĞÉ•ÑÕÉ¹•€ĞÀÄ½¹¼µÍÑ½É”¸ÕÑ¡•¹Ñ¥…Ñ•)É•½ÉÉ•…‘‰…¬İ…Ì‘•±¥‰•É…Ñ•±ä¹½Ğ…ÑÑ•µÁÑ•İ¥Ñ¡½ÕĞ9½… Ì½İ¹•ÈÍ•ÍÍ¥½¸¸((ŒŒ=İ¹•È½¹Ñ…ĞÉ•Á±äİ½É­™±½Ü°€ÈÀÈØ´ÄÀ´Àà()… Ù…±¥‘…Ñ•½¹Ñ…ĞÉ½Ü¹½Ü¥¹±Õ‘•Ì„I•Á±ä±¥¹¬Ñ¡…Ğ½Á•¹ÌÑ¡”½İ¹•ÈÌ•µ…¥°)…ÁÁ±¥…Ñ¥½¸İ¥Ñ „™¥á•½±­±äÍÕ‰©•Ğ…¹•¹½‘•É••Ñ¥¹œ¸%Ğ¹•Ù•ÈÍ•¹‘Ì½È)µ…É­Ì„É•Á±ä…ÕÑ½µ…Ñ¥…±±ä¸Q¡”ÁÉ¥Ù…Ñ”¥¹‰½àÉ•…‘•È¹½ÜÉ•©•ÑÌµ…±™½Éµ••µ…¥°)…‘‘É•ÍÍ•Ì…¹‰±…¹¬¹…µ•Ì‰•™½É”…¹äµ…¥±Ñ¼é€Ñ…É•Ğ…¸‰”É•¹‘•É•ìµ•ÍÍ…”)½¹Ñ•¹ĞÉ•µ…¥¹ÌÑ•áĞµ½¹±ä¸½ÕÍ•½¹Ñ…Ğ…¹™Õ±°É•É•ÍÍ¥½¸¡•­ÌÁ…ÍÌ¸M•”)Ù•É¥™¥…Ñ¥½¸½½¹Ñ…ĞµÉ•Á±ä´ÈÀÈØ´ÄÀ´Àà¹µ¸9¼µ…¥°É•‘•¹Ñ¥…±Ì°ÍÕ‰ÍÉ¥‰•ÈÍÑ…Ñ”°)ÁÕ‰±¥…Ñ¥½¸½¹ÑÉ½±Ì½È…ÕÑ½¹½µ½ÕÌÍİ¥Ñ¡•Ì¡…¹•¸((ŒŒQÉ…¹Í±…Ñ¥½¸™½Õ¹‘…Ñ¥½¸…¹É•…‘•ÈÑ•±•µ•ÑÉä°€ÈÀÈØ´ÄÀ´ÀäUQ()½µÁ±•Ñ•ÁÕ‰±¥Œµ½¹±äÍ•µ•¹Ğ•áÑÉ…Ñ¥½¸™½È…±°•±•Ù•¸ÁÕ‰±¥Í¡•ÍÑ½É¥•Ì°„)Õ±ÑÕÉ…°±½ÍÍ…Éä…¹ÍÑÉ¥ĞÍ¡•µ„°Í½ÕÉ”½±½ÍÍ…Éä½ÁÉ½µÁĞ¡…Í¡•Ì°É•Ù¥•Üµ‰½Õ¹)ÑÉ…¹Í±…Ñ¥½¸Á…å±½…¡…Í¡•Ì°…ÁÁÉ½Ù•µ½¹±äÍÑ…Ñ¥Œ±½…±”É•¹‘•É¥¹œ°É•¥ÁÉ½…°)…ÉÑ¥±”±…¹Õ…”±¥¹­Ì½¡É•™±…¹œ½Í•±˜…¹½¹¥…±Ì½Í¥Ñ•µ…À…¹ÍÉ¥ÁĞ½IQ0ML¸µÁÑä)…ÁÁÉ½Ù…°±•…Ù•Ì¹±¥Í ±½…±”¹…Ù¥…Ñ¥½¸Õ¹¡…¹•¸É…™Ğ½ÍÑ…±”½ÁÉ¥Ù…Ñ”½ÕÑÁÕĞ°)Á…Ñ ÑÉ…Ù•ÉÍ…°°Õ¹­¹½İ¸±½…±•Ì°!Q50Á…å±½…‘Ì…¹¡…¹•µ…™Ñ•ÈµÉ•Ù¥•ÜÁ…å±½…‘Ì)…É”‘•¹¥•¸±°Í½ÕÉ”É•‘¥ÑÌ°‰¥‰±¥½É…Á¡ä°¹Õµ•É¥Œ¥Ñ…Ñ¥½¹Ì°É•ÍÁ½¹Í¥Ù”µ•‘¥„)…¹Ñİ¼µÁ…É…É…Á ¥µ…”Á½Í¥Ñ¥½¹ÌÉ•µ…¥¸¥¸Ñ¡”ÑÉÕÍÑ•Í½ÕÉ”Ñ•µÁ±…Ñ”¸()‘‘•½¹Í•¹Ğµ…Ñ•…ÉÑ¥±”Í½ÕÉ”µÙ•ÉÍ¥½¸%Ì…¹‰½Õ¹‘•É•…‘¥¹œ½É•±…Ñ•½µÕÍ¥Œ)•Ù•¹ÑÌÁ±ÕÌÍÕ‰ÍÉ¥ÁÑ¥½¸ÍÕ•ÍÌ½¹±ä…™Ñ•ÈÁÉ¥Ù…Ñ”ÍÑ½É…”…­¹½İ±•‘•µ•¹Ğ¸)AÉ•Ù¥•Ü¡½ÍÑÌ‘¼¹½Ğ±½…ìÁÉ”µ½¹Í•¹ĞÍÉ½±°µ¥±•ÍÑ½¹•Ì…É”‘¥Í…É‘•ì)İ¥Ñ¡‘É…İ…°¥µµ•‘¥…Ñ•±ä‰±½­Ì•Ù•¹Ğ•µ¥ÍÍ¥½¸¸Q¡”ÁÕ‰±¥ŒÕÉÉ•¹ĞµÉ•±•…Í”É•¥ÍÑÉä)½¹Ñ…¥¹Ì½¹±äÁÕ‰±¥Í¡•%Ì½¡…Í¡•Ì½‘•±…É•‘…Ñ•Ì°¹½Ğ„Ù•É¥™¥•¡¥ÍÑ½É¥…°)…Ñ¥Ù…Ñ¥½¸Ñ¥µ•±¥¹”¸9¼½İ¹•È½Í•ÍÍ¥½¸½™½É´Ù…±Õ•Ì•¹Ñ•ÈÑ¡”•áÁ±¥¥Ğ•Ù•¹ÑÌ¸()	Õ¥±°™Õ±°É•É•ÍÍ¥½¸…¹Ñİ¼™½ÕÍ•‘•‰Õœ½Í•ÕÉ¥ÑäÉÕ¹ÌÁ…ÍÌ¸áÑÉ…Ñ¥½¸)ÁÉ½‘Õ••±•Ù•¸½¹ÑÉ…ÑÌ½ÕÑÍ¥‘”ÁÕ‰±¥Œ‘¥ÍĞİ¥Ñ¡½ÕĞÁ…¥…±±Ì¸Q•ÍÑÌÕÍ”)•Á¡•µ•É…°Íå¹Ñ¡•Ñ¥ŒH½HÁ…å±½…‘Ì°¹½Ğ…ÑÕ…°ÑÉ…¹Í±…Ñ•ÁÉ½Í”½ÈÉ•Ù¥•İ•ÉÌ¸)¡É½µ¥Õ´¥ÌÕ¹…Ù…¥±…‰±”°Í¼Ù¥•İÁ½ÉĞ½­•å‰½…É½‰É½İÍ•ÈÙ¥ÍÕ…°…•ÁÑ…¹”É•µ…¥¹Ì)Õ¹Ù•É¥™¥•¸1½…±¥é•‘¥Í½Ù•Éä½Í¡…É•U$…¹ÑÉ…¹Í±…Ñ¥½¸µÍÁ•¥™¥Œ‰Õ‘•Ğ½©½ˆ)…‘…ÁÑ•ÈÉ•µ…¥¸½Á•¸½‘”İ½É¬ìÉ•…°Á¥±½Ğ½‰…­™¥±°¹••‘Ì…¸…ÁÁÉ½Ù•…À½µ½‘•°)…¹½µÁ•Ñ•¹Ğ±…¹Õ…”É•Ù¥•Ü¸1¥Ù”ÍÑÉ•…´½ÕÍÑ½´µ‘¥µ•¹Í¥½¸½•‰ÕY¥•Ü…½Õ¹Ğ)¡•­Ì…¹‘•™•ÉÉ•É•…µ½¹±äÉ•‘•¹Ñ¥…±ÌÉ•µ…¥¸Í•Á…É…Ñ”É•ÅÕ¥É•µ•¹ÑÌ¸)Q¡”Y•É•°½¹¹•Ñ½ÈÍÑ¥±°É•ÑÕÉ¹Ì€ĞÀĞ™½ÈÑ¡”•á…Ğ…ÕÑ¡½É¥é•ÁÉ½©•Ğ½Ñ•…´ì)É•½¹¹•Ğ¥ĞÑ¼½ÁÑ…•¹ÌµÁÉ½©•ÑÌ…¹ÁÉ½©•ĞÁÉ©}äÍQ1¥Ñ5eÔáÕe©Å™Ù9ÕİÍI)Y,)™½ÈÁÉ½Ñ•Ñ•½¹™¥ÕÉ…Ñ¥½¸…¹±½Ì¸AÕ‰±¥Œ!QQ@…¹¥Ñ!Õˆ‘•Á±½åµ•¹Ğ¡•­Ì)É•µ…¥¸…Ù…¥±…‰±”¸9¼¹•İÍ±•ÑÑ•È½…ÕÑ½¹½µ½ÕÌÁÉ½‘ÕÑ¥½¸½ÁÕ‰±¥…Ñ¥½¸½…ÉÑ¥±”)Í¡•‘Õ±”Íİ¥Ñ İ…Ì•¹…‰±•¸()•Á±½å•™½±±½ÜµÕÀè¥µÁ±•µ•¹Ñ…Ñ¥½¸€Ğå”äá•„àÌá••ˆÔĞàÉŒÔÈäääÌÅ™”Å…™„İ˜Ù˜ÈÉ˜Ğ)½µÁ±•Ñ•½¸Y•É•°ì€ĞÔÉ•…‘•È¡•­ÌÁ±ÕÌ€ÄÌ•á…Ğµ…ÍÍ•Ğ½Õ¹…ÁÁÉ½Ù•µÉ½ÕÑ”½ÁÉ¥Ù…Ñ”)A$¡•­ÌÁ…ÍÍ•¸±°•±•Ù•¸…ÉÑ¥±•Ìµ…Ñ Ñ¡”Ñ•ÍÑ•‰Õ¥±°Ñ¡”ÁÕ‰±¥ŒÉ•±•…Í”)É•¥ÍÑÉä½¹Ñ…¥¹Ì½¹±äÕÉÉ•¹ĞÁÕ‰±¥Í¡•µ•Ñ…‘…Ñ„°Õ¹…ÁÁÉ½Ù•H½HÁ…Ñ¡Ì…É”(ĞÀĞ°…¹…¹½¹åµ½ÕÌÁÉ¥Ù…Ñ”Ù¥•İÌÉ•µ…¥¸€ĞÀÄ¸1¥Ù”•Ù¥‘•¹”¥ÌÉ•½É‘•¥¸)Ù•É¥™¥…Ñ¥½¸½ÑÉ…¹Í±…Ñ¥½¸µÉ•…‘•Èµ•Ù•¹ÑÌµ±¥Ù”´ÈÀÈØ´ÄÀ´Àä¹©Í½¸¸9¼±¥Ù”‘•±¥Ù•Éä°)±…¹Õ…”µÅÕ…±¥Ñä½ÈÙ¥•İÁ½ÉĞ…•ÁÑ…¹”¥Ì¥¹™•ÉÉ•¸)AÉ½‘ÕÑ¥½¸É•…‘‰…¬Á…ÍÍ•™½ÈÑ¡”¡½µ•Á…”É…Á °É•ÁÉ•Í•¹Ñ…Ñ¥Ù”ÉÑ¥±”)ÁÕ‰±¥Í¡•È¥‘•¹Ñ¥Ñä…¹•á…Ğ€ÔÄË\ÔÄÈ±½¼‰åÑ•Ì…™Ñ•ÈÑ¡”Y•É•°‘•Á±½åµ•¹Ğ¸)Q¡”¥µÁ±•µ•¹Ñ…Ñ¥½¸‘•Á±½å•ÍÕ•ÍÍ™Õ±±äìÁÉ½‘ÕÑ¥½¸Í•ÉÙ•ÌÑ¡”É•Á±äİ½É­™±½Ü°)İ¡¥±”…¹½¹åµ½ÕÌ½¹Ñ…Ğµ¥¹‰½à…•ÍÌÉ•µ…¥¹Ì€ĞÀÄİ¥Ñ ¹¼µÍÑ½É”…¡¥¹œ¸((ŒŒM•…É ¥‘•¹Ñ¥Ñä…¹ÁÕ‰±¥Í¡•È±½¼°€ÈÀÈØ´ÄÀ´Àà()‘‘•„É…İ±…‰±”€ÔÄË\ÔÄÈ½±­±ä‰É…¹…ÍÍ•Ğ°¡½µ•Á…”=É…¹¥é…Ñ¥½¸½]•‰M¥Ñ”)M=8µ1°)½¹Í¥ÍÑ•¹Ğ½œéÍ¥Ñ•}¹…µ•€°…¹„‘•ÍÉ¥ÁÑ¥Ù”¡½µ•Á…”Í•…É Ñ¥Ñ±”¸±°ÉÑ¥±”)ÁÕ‰±¥Í¡•È½‰©•ÑÌ¹½ÜÉ•ÕÍ”Ñ¡”Í…µ”½±­±ä½É…¹¥é…Ñ¥½¸%…¹±½¼İ¡¥±”Ù¥Í¥‰±”)½±­±äµ•‘¥Ñ½É¥…°…¹Á•ÉÍ½¹„…ÑÑÉ¥‰ÕÑ¥½¸ÍÑ…åÌÕ¹¡…¹•¸	Õ¥±…¹™Õ±°É•É•ÍÍ¥½¸)¡•­ÌÁ…ÍÌìÍ•”Ù•É¥™¥…Ñ¥½¸½Í•…É µ¥‘•¹Ñ¥Ñä´ÈÀÈØ´ÄÀ´Àà¹µ¸M•…É ½¹Í½±”½I¥ )I•ÍÕ±ÑÌÙ…±¥‘…Ñ¥½¸É•µ…¥¹Ì•áÑ•É¹…°¸9¼ÍÑ½É¥•Ì°É•‘¥ÑÌ°ÁÉ¥Ù…Ñ”É•½É‘Ì°)ÁÕ‰±¥…Ñ¥½¸½¹ÑÉ½±Ì½È…ÕÑ½¹½µ½ÕÌÍİ¥Ñ¡•Ì¡…¹•¸
+# Folkly Build State
+
+## Priority TODO
+
+Current reader update, 2026-10-09 UTC: group-first image policy and draft prompts,
+varied Detroit group photography (one equipment detail), correct Tarragona arena
+image, merged About/Perspective at half the original editorial length, and compact
+country/world-region filters are implemented. Legacy Perspective URLs redirect
+to About. See verification/group-images-compact-discovery-2026-10-09.md for tests
+and live evidence. Public release records and all autonomous switches are unchanged.
+
+Current update, 2026-10-09 UTC: reviewed-only multilingual article generation
+and consent-aware reader events are implemented and tested. The translation
+manifest is empty; no real translation, model spend or new article release.
+See the status matrix in MULTILINGUAL-IMPLEMENTATION-PROMPTS.md and
+verification/translation-reader-events-2026-10-09.md. Google reporting remains
+deferred, the full content transfer still needs a complete original export,
+and Stage 7 deployed acceptance remains blocked. Earlier dated sections below
+are historical and do not supersede this update.
+
+1. Subscribe button and signup flow deployed; private Blob connected and live signup returned 200 after storage write on 2026-10-07. Independent readback, email delivery, and unsubscribe processing remain pending. Exclude acceptance-test@example.com from any delivery import.
+2. Complete Vercel hosting migration: public reader first, then durable editorial storage and owner authentication. Keep publication and scheduling off until deployed acceptance passes.
+3. About contact form implemented with reason, contributor interest and private Blob storage. Protected owner inbox is paginated and provides a safe Reply action that opens the owner's email app without automatic sending. Provider-side reply delivery/tracking is intentionally not added.
+4. About now says Folkly is seeking contributors beside the contributor contact form.
+
+Master spec: `Folkly_Autonomous_Publishing_Codex_Prompt.txt` (this directory).
+Each stage updates ONLY its own section. Status values: PENDING / IN PROGRESS / DONE / BLOCKED.
+
+## Stage 00 â€” Architect (Hermes)
+Status: DONE (2026-10-03)
+Notes: Master prompt moved from repo root into docs/TODOs/. Build decomposed into 8 stage
+prompts + autonomous runner (build-driver.sh). Live-site baseline captured from HTTP:
+4 articles (new-orleans-second-line, lisbon-fado, oaxaca-living-color, detroit-future-frequency),
+perspective page, about page; routes are extensionless with .html variants; images under /assets/.
+Existing articles carry real source footers and a standard AI-essay disclosure.
+Evidence: repo commit history.
+
+## Stage 01 â€” Inspect & preserve
+Status: DONE (2026-10-04)
+Evidence: docs/preservation/inventory.md, inventory.json, pages/*.md (9 captures), raw/*.html
++ raw/style.css (captured stylesheet), NOTES.md; capture script scripts/stage01_capture.py.
+Notes: 13 routes captured (both URL forms; .html canonicalizes to extensionless with 200).
+Assets: 3 lead images + style.css (11.6 KB, full design system). Sites tools NOT available
+in this environment (HTTP baseline only) â€” recorded per protocol. Divergences logged in
+NOTES.md: canonicals point at a different subdomain (owner question), no JSON-LD, historical
+"Folkly editorial" bylines to preserve, Detroit article is the no-photograph exemplar.
+
+## Stage 02 â€” Platform & content migration
+Status: DONE (2026-10-04)
+Evidence: docs/verification/stage-02-url-check.md (14/14 routes exact text match, both URL
+forms; idempotent re-run recorded), docs/platform/ARCHITECTURE.md.
+Notes: zero-dependency Node 24 server (web/server.js, port 8787) + SQLite store (web/folkly.db,
+gitignored; rebuild: node web/scripts/migrate.js). SQLite = D1 stand-in, static assets = R2
+stand-in, adapter boundary in web/lib/db.js per spec. style.css md5-identical to live capture.
+All 4 articles + perspective + about migrated with bylines, figure credits (Wikimedia CC BY
+2.0 links), sources, and home composition preserved. Sites tools still unavailable â€” real
+D1/R2/scheduler deployment path documented for stage 06/08.
+
+## Stage 03 â€” Personas & rendering
+Status: DONE (2026-10-04)
+Evidence: docs/verification/stage-03-personas.md â€” 26/26 checks pass (5 author pages with
+exact disclosure + distinct briefs/voice/tags; disclosure + legacy byline + valid Article
+JSON-LD on all 4 articles; archive index + place + topic archives; related stories on every
+article; homepage cover style retained; all stage-02 routes regression-clean).
+Notes: web/scripts/seed-personas.js seeds the 5 spec personas verbatim (hash-guarded,
+idempotent). Author pages /author/<id>; archives /archive, /archive/place/<slug>,
+/archive/topic/<slug>. Legacy articles keep their "Folkly editorial" bylines and show the
+Folkly disclosure. Reading time + dates computed from real body HTML in America/Los_Angeles.
+Avatars are typographic initials (no fabricated headshots). Ops note: a stale node server
+(PID 35960) from stage 02 still holds port 8787; the verified stage-03 server runs on
+FOLKLY_PORT=8788. Reclaim 8787 by killing PID 35960, then `node web/server.js`.
+
+## Stage 04 â€” Research pipeline & gates
+Status: DONE (2026-10-06; seven-article reserve replenishment is a Stage 06 pre-activation requirement)
+Evidence: docs/verification/stage-04-pipeline-run.md (29/29 checks); docs/audits/2026-10-06-stage-04-debug-security-audit.md; `node web/scripts/test-stage04-security.js`.
+Implementation: Stage 04 pipeline and audit fixes are committed on master. The real Tokushima article is ready with six retrieved sources, 24 linked claims, typographic image treatment, and AI/sourcing/no-firsthand-experience disclosure. The unsupported-claim and unresolved-image-rights fixtures reached their intended needs-review holds; both selected an available ready reserve candidate. The image-rights fixture reuses the verified seed dossier in an isolated checkpoint so it tests the image gate without creating a duplicate public article.
+Notes: The database was verified on a disposable copy of the local development SQLite snapshot. Legacy numeric citation references were migrated to stable source IDs. Reserve selection now writes a selected-candidate audit event and job-step record. One verified ready article is present; Stage 06 must populate the seven-article operating reserve before activating daily publication.
+
+## Stage 05 â€” Admin control room
+Status: DONE (2026-10-06)
+Evidence: docs/verification/stage-05-admin.md
+Notes: Protected admin pages and APIs check the Sites-authenticated user ID against the configured
+owner ID on every request; anonymous callers are rejected and signed-in non-owners receive 403.
+Background job authorization uses a distinct scoped bearer credential. The dashboard reads the
+calendar, pipeline, reserve, failures, and spend data; it reports scheduler state as unavailable
+until Stage 06 installs the live registry. Owner controls persist audited edits, settings, topic
+assignments/exclusions, pause state, failed-step retries, tomorrow replacements, version restores,
+unpublishes, corrections, and explicit publish-now requests. Factual edits create a new version,
+preserve/remap citations, invalidate verification, and queue revalidation. Publish-now is recorded
+but not executed before Stage 06 installs the publisher. Verification: docs/verification/stage-05-admin.md.
+
+## Stage 06 â€” Scheduling & publication
+Status: DONE (2026-10-06)
+Evidence: docs/platform/SCHEDULING.md; docs/verification/stage-06-scheduling.md; web/scripts/test-stage06-scheduler.js.
+2026-10-07 follow-up: the local publisher now requires deterministic checks, an independent passing review without major/critical findings, and claim citations to existing source IDs. The scheduler regression passed with four new hold fixtures. See docs/audits/2026-10-07-scheduler-publication-gate.md. The deployed Worker/D1 publisher is unchanged.
+Notes: Added persisted one-shot publication and reserve-replenishment runners with Pacific local-date resolution, unique daily slots, serialized publication, latest-version eligibility rechecks, timeout-safe retries, delay tracking, separate content readback, five-minute retry backoff, and admin-visible failures/alerts. Provider budget reservations remain atomic under the existing daily/monthly caps. The owner control room now shows scheduler state, failures, and alerts. Verification passes across spring/fall DST offsets, two concurrent worker threads, timeout after commit, provider failure, empty reserve, backoff, and late same-day delay. At the Stage 06 milestone the public Site had no MCP endpoint; its local runner deliberately treated the publisher as unavailable. The Site now declares MCP, but remains unconnected and unscheduled. Transaction tests verify SQLite behavior only, not a live Site update. Activation remains gated on Stage 07.
+
+
+## Stage 07 â€” Acceptance verification & seeding
+Latest progress: Supabase folk project connected, three migrations applied,
+hosted default-deny/RPC permission/paused-switch checks pass. Owner OTP read-only
+screen, scoped lease RPC, and guarded model adapter implemented and locally tested.
+See docs/verification/stage-7-progress-2026-10-07.md for remaining export, owner,
+credential, and isolated recovery blockers. Stage 7 remains blocked.
+Implementation plan: docs/platform/STAGE-7-PLAN.md covers verified storage, owner
+authentication, scoped unattended publishing/model configuration, and hosted
+recovery tests. AdSense, concise image credits, and listening examples are now
+included in the public reader. Music examples are required in future music or
+singing article review, including reserve review before publication.
+Status: BLOCKED (2026-10-07)
+Current Vercel prerequisite pass: public author pages and linked topic archives restored;
+Supabase follow-up: connection variables are present in Vercel; secure server client
+and 19-table Postgres migration prepared and locally tested. Hosted migration and
+private reserve import are blocked until the Supabase connection exposes the Folkly
+project rather than the older unrelated project. See docs/platform/SUPABASE.md.
+requested reading-lens boxes removed; 59-route build and focused reader/subscription
+checks pass. Added `npm run test:hosted` and `npm run test:mobile`. Chromium download
+failed, so mobile acceptance remains unverified. Durable Vercel editorial SQL storage,
+owner auth, scoped unattended publisher, production model/research provider, and
+deployed concurrency/retry/failure/edit/restore checks remain missing. The historical
+Sites/D1 results below do not clear Vercel acceptance. See the current matrix in
+docs/verification/acceptance-report.md. No article schedule was enabled.
+Evidence: docs/verification/acceptance-report.md; docs/verification/reserve-fill.md;
+web/scripts/verify-reserve.js; web/scripts/test-stage07-reader.js;
+docs/verification/stage-03-personas.md; component evidence from Stages 02-06.
+Notes: Local component checks pass for Tokushima, Stage 04 gate fixtures, Stage 05 owner controls,
+Stage 06 scheduler fixtures, and a clean-checkout reader/draft-isolation fixture. A fresh Stage 03
+run on an isolated current server passes 26/26; the previous four failures hit a stale process on
+the default port. Seven locally researched and reviewed articles now pass the reserve gate;
+the portable unpublished bundle is tracked for migration. Three other pitches remain held.
+The existing public Site was subsequently migrated to Worker/D1, with four legacy articles
+published and seven reviewed reserve stories private. Its owner-gated admin and MCP publisher
+are deployed. Site version 4 (`appgver_5f3600578d98819183e629fe4c3991b4`), source
+`62c6f55044c5b7dff9605000fe9c52af0b56b98d`, adds an owner-only story evidence view
+with the latest version, source and claim ledgers, checks, disclosure, and image rights.
+The local authenticated fixture passed, including anonymous/non-owner denial and private
+reader isolation. Hosted anonymous review denial and another 60-check reader regression passed.
+Site version 5 (`appgver_bd0ec9d35f188191a5bf66903ce046d9`), source
+`b61561338efa18c49759b4d5fb35b44fa89ac5ea`, binds every reviewed reserve story to
+its complete evidence ledger and repeats mutable evidence checks atomically when claiming
+the daily slot. The focused gate fixture passed twice, the production build passed, and all
+seven live evidence digests matched before deployment. Post-deployment checks retained four
+public stories, seven private reserve stories, zero publication slots, and all three switches off.
+See docs/audits/2026-10-07-site-evidence-attestation.md.
+Earlier two consecutive hosted reader/access passes each passed 60 checks. An isolated Worker/D1
+fixture verified concurrent publish, retry and separate readback. Production-authenticated
+write/readback, real hosted owner session, unattended connection, model provider, full hosted
+failure suite, and mobile viewport remain incomplete. No schedule was activated; production
+and publication switches are off.
+On 2026-10-07 a schema-only D1 transfer artifact and a private content exporter/importer
+were added. An isolated SQLite round trip passed with 16 articles, 19 versions, 88 sources,
+including seven unpublished ready drafts. See docs/verification/site-migration-boundary.md.
+This advances data portability but does not change the BLOCKED deployed acceptance result.
+A read-only D1-shape reader fixture also passed legacy URL forms, five author pages,
+and private reserve isolation. Its Worker packaging and live D1 binding are now deployed.
+
+## Stage 08 â€” Operations doc, activation & delivery
+Status: BLOCKED (2026-10-07)
+Evidence: docs/verification/acceptance-report.md; docs/verification/site-migration-boundary.md.
+Notes: Stage 07 is not fully green. The linked schedule stays inactive by the Stage 08 gate.
+
+
+
+## Vercel progress, 2026-10-08 UTC
+
+All recent work is synced to main/master; branch inventory contains only those
+two branches. Owner sign-in has user-reported live success and the protected
+read-only dashboard is deployed. Durable model budgets and scoped RPCs are
+installed and verified with isolated hosted concurrency; caps remain zero.
+GA4 read-only collector/private snapshot foundations now exist, disabled by
+default. See verification/analytics-foundation-2026-10-08.md for tests and limits.
+GA4 property 558035708 is configured, disabled, in Supabase and production
+Vercel. Read-only Google token wiring and scoped analytics credential remain
+missing. Property/stream matching and timezone verification remain pending. No live Google report/model calls or new cron ran.
+Complete old Site export, content migration/commit/readback, worker credentials,
+MFA, restore/recovery and full deployed acceptance remain pending. Security
+advisor still reports disabled leaked-password protection in Supabase Auth.
+All autonomous production/publication/schedule switches remain false.
+
+
+## Analytics evidence safeguards, 2026-10-08 UTC
+
+Per-article evaluation now requires 100 views and 14 observed days, both
+conservative heuristics. Stale/immature windows, malformed observations and
+qualified reports remain observe-only. See verification/analytics-evidence-2026-10-08.md.
+No live Google access or automatic content revision was enabled.
+
+## Contact and contributor intake, 2026-10-08 UTC
+
+About contact form and protected read-only owner inbox implemented. Bounded
+private Blob writes, validation, same-origin checks, honeypot and storage-failure
+handling are tested. See verification/contact-2026-10-08.md. No email delivery,
+newsletter enrollment or publication controls are added. Google Cloud setup
+is deferred at Noahâ€™s request; all autonomous switches remain off.
+
+## Owner inbox pagination, 2026-10-08 UTC
+
+Protected cursor pagination now reaches messages beyond the first 20, with
+first/next controls, per-page owner/session verification, cursor bounds and
+stale-response suppression after sign-out. Full hosted authenticated paging
+remains pending. See verification/contact-pagination-2026-10-08.md.
+
+## Direct editorial wording, 2026-10-08 UTC
+
+Recorded Noahâ€™s preference in platform/EDITORIAL-STYLE.md, updated two public
+paragraphs to remove â€œFolkly readsâ€¦â€ framing, and added the rule to the model
+system prompt. Private reserve evidence is untouched. Mobile acceptance retry
+remains under verification; publication/schedules remain off.
+
+## Owner-authorized manual release, 2026-10-08 UTC
+
+Noah requested publishing the seven reviewed extra articles. Seven Vercel public
+routes and homepage/archive links are prepared from the hash-verified original
+bundle. See verification/manual-seven-release-2026-10-08.md and the manual
+release manifest. Original Site records remain unchanged, but these stories
+are now designated public and no longer constitute an unpublished reserve for
+a future migrated pipeline. All autonomous switches remain off.
+
+
+## Public discovery and SEO, 2026-10-08 UTC
+
+The 11 published stories now have descriptive search titles and contextual
+related-story links. Homepage/archive cards, place/topic lists and counts,
+and persona publication histories derive from the published catalog. Seven
+missing place routes are generated, with active discovery pages in the sitemap;
+empty topic pages stay accessible but noindex. Article metadata credits Folkly
+editorial as an Organization and preserves persona credits without claiming
+human authors. See verification/seo-discovery-progress-2026-10-08.md and
+seo/audit-2026-10-08.md. Build and full tests pass. Article H1s and researched
+bodies/source lists remain unchanged. Search Console, responsive image work,
+mobile measurements, duplicate-host redirects, and source-checked editorial
+revisions remain pending. No autonomous switches or acceptance gates changed.
+
+
+## Responsive public images, 2026-10-08 UTC
+
+All ten illustrated public stories now have verified smaller JPEG candidates,
+srcset/sizes selection, and reserved dimensions across hero/cards/article images.
+Oaxaca's EXIF portrait dimensions are corrected; originals, credits, article text,
+and private boundaries remain intact. Build and full tests pass; see
+verification/responsive-images-2026-10-08.md for download-byte evidence and limits.
+No model calls, migrations, credentials, releases, or autonomous switches changed.
+Measured mobile performance and the separate deployed Stage 7 gates remain pending.
+
+### Responsive image deployment follow-up â€” October 8, 2026
+
+Implementation commit 2daa1d26613f7acb421e59891c16eedf4a584517 is synced to main
+and master and has a successful Vercel GitHub status. Live acceptance is pending:
+16 public routes returned 200, but all 14 affected pages still lacked srcset and
+differed from the verified local output, including a cache-busted homepage probe.
+Scoped Vercel deployment/alias reads returned 404/not_found. Noah needs to reconnect
+Vercel with access to optagens-projects / folk and verify the main production
+branch, npm run build command, dist output, and custom-domain deployment. See the
+responsive image verification report and its live JSON evidence. The observation
+is not attributed to a specific build/caching cause without deployment access.
+Autonomous switches, release manifest, article bodies, and licenses are unchanged.
+
+## Xochimilco editorial clarification, 2026-10-08
+
+Clarified the published article opening and exported deck/description: chinampas
+are raised fields surrounded by canals, secured with stakes and trees, rather
+than floating rafts. Checked FAO's detailed construction account and a UNAM
+journal discussion; added UNAM as source 6. All later body paragraphs and existing
+references are unchanged. The manual release manifest remains the historical
+approved version; export before/after hashes are recorded separately in
+verification/xochimilco-editorial-revision-2026-10-08.json. No private reserve
+records, new releases, migrations, or autonomous settings were changed.
+Build (73 routes), full regression suite, and focused correction/provenance checks
+passed. Deployed readback remains pending.
+
+## Owner-requested article length and image rhythm, 2026-10-08
+
+All eleven public stories meet the Tokushima reference's 1,187 narrative-word
+minimum. Seven shorter stories have substantive source-linked expansions;
+longer prose and all linked source sections are retained. The offline export
+inserts 93 credited lazy images after every second narrative paragraph, updates
+reading times and Article wordCount/dateModified, and includes inline credits in
+the image index. Future public exports fail on short prose or missing/duplicate
+media. See verification/article-length-images-2026-10-08.md and its revision JSON.
+Build and full regressions pass. Thirty-six selected image downloads have decoded
+byte/hash evidence; 57 are Commons-metadata-only after network timeouts. Remaining
+image downloads/visual checks, browser mobile checks and deployed readback are
+pending. The Vercel project is known to Noah as folkly; inspect that existing
+project when the connection exposes it. Historical manual releases/private
+reserve remain unchanged; production/publication/schedule remain off.
+
+## Public article tags and filters, 2026-10-08
+
+Published catalog tags now appear as topic links on grid cards. Homepage/archive
+and active topic/place grids add any-tag selection, place narrowing, newest/oldest
+and title sorting, live counts, empty state and clear/reset. Shareable URL state
+preserves unrelated query parameters. Native accessible controls enhance otherwise
+complete static grids; no-JavaScript topic navigation works. Options/new article
+metadata populate automatically from each grid's published entries. Build and
+regression evidence is in verification/article-filters-2026-10-08.md. Full browser
+visual/deployed acceptance remains pending; private reserve and paused switches
+are unchanged.
+
+## First-use reader context, 2026-10-08
+
+Owner requested contextual introductions for unfamiliar/non-English vocabulary.
+Drafting, revision and review instructions now require sourced meaning and
+geographic/cultural orientation woven into the prose. Shared model instructions
+preserve names/diacritics, allow evidence-supported lyrical/anthropological depth,
+and prohibit invented etymologies, symbolism and homogenized cultural claims.
+See platform/EDITORIAL-STYLE.md and TODOs/READER-CONTEXT-WRITING-PROMPTS.md for
+term-by-term orientation and a source-checked Matariki/Puanga teaching example.
+The model fixture confirms the new instructions reach the generation request;
+no live generation or semantic quality acceptance is claimed. Build and public
+article layout checks pass. Published articles/private attestations and disabled
+production/publication/schedule settings remain unchanged.
+
+## Existing-story context and related cards, 2026-10-08
+
+All eleven published stories now introduce unfamiliar cultural/geographic and
+technical terms within the prose. Regional Puanga/Matariki visibility wording is
+corrected and linked to Te Papa/Te Aka evidence. Every story is at least the
+revised Tokushima length of 1,228 narrative words and retains exact two-paragraph
+image cadence (93 images). Related panels show four distinct public image cards,
+with curated links first and deterministic topic/place fallback. Detroit uses
+its credited inline portrait as a preview. Shared footer subtitle/project text
+matches the owner's supplied wording. See verification/reader-context-related-stories-
+2026-10-08.md and its JSON for hashes, counts and checks. Release manifest/private
+reserve and paused switches remain unchanged. Hosted acceptance is still pending.
+
+Public follow-up: implementation 2ba61c4 is live on Vercel. All eleven articles,
+homepage and archive match the verified build byte for byte; About matches apart
+from its final newline, with both new footer strings verified. Live evidence is
+in verification/reader-context-related-stories-live-2026-10-08.json.
+
+## Subscriber automation and weekly digest, 2026-10-08
+
+Existing subscribers are automatically stored in private Vercel Blob JSON records.
+Weekly newsletter code now reuses that list, adds Friday 16:00 UTC digest cron,
+private duplicate-send claims, provider-neutral worker and signed unsubscribe/suppression.
+Article disclaimers are removed from public build output; sources/licenses remain.
+Focused/full regression evidence is in verification/newsletter-2026-10-08.md.
+Activation is blocked on owner approval of a sending provider, its adapter,
+verified sending domain, RESEND_API_KEY, NEWSLETTER_FROM,
+NEWSLETTER_POSTAL_ADDRESS, CRON_SECRET, NEWSLETTER_SECRET and enabling the separate
+NEWSLETTER_ENABLED flag after a hosted test. See platform/NEWSLETTER.md. Connected
+Vercel project metadata access returns 404; reconnect project access or configure
+its dashboard directly. No emails sent, subscriber records changed or article
+production/publication/schedule switches enabled. Google Cloud remains deferred.
+
+Automatic approval review rejected the proposed Resend adapter for transmitting
+private subscriber addresses to an unapproved provider. The committed newsletter
+API has no sending transport and fails closed even if NEWSLETTER_ENABLED is true.
+
+Resend follow-up: Noah explicitly approved the sending provider on 2026-10-08.
+The adapter is implemented with fixed HTTPS destination, bearer/idempotency
+headers, bounded timeout and receipt-only responses. Mock provider and newsletter
+checks pass; no real mail sent. The prior approval blocker is resolved. Sender,
+credentials/address/secrets, Vercel project access and hosted acceptance remain
+pending; NEWSLETTER_ENABLED still defaults off.
+
+## Header alignment and multilingual design, 2026-10-08
+
+The owner's screenshot identified compact navigation links aligned to the top of
+the padded Subscribe action. Shared CSS now centers all header links/actions,
+provides 44px targets, wraps narrow headers and retains Archives on small screens.
+The seven-language architecture and implementation backlog are documented in
+platform/MULTILINGUAL.md and TODOs/MULTILINGUAL-IMPLEMENTATION.md: translate public
+approved content once per revision, cache in Git and serve static Vercel locale
+pages, sharing image assets. Arabic RTL, script-aware context, approval/stale
+hashes, locale SEO and budgeted review are included. No translations or paid calls
+were run. Vercel inspection still returns 404 for the known project/team; GitHub
+remains the deployment path. Browser installation was unavailable due invalid
+Chromium downloads, so full visual/mobile acceptance is not claimed.
+
+## Owner workspace and translation prompts, 2026-10-08
+
+Added seven sequential implementation prompts in
+TODOs/MULTILINGUAL-IMPLEMENTATION-PROMPTS.md. Owner navigation now connects
+Overview, Editor chat, Article ideas, Drafts and Inbox. Private ideas have explicit
+row saves and optimistic revisions. A protected draft viewer reads the latest
+migrated Supabase version. Editor chat uses the existing OpenAI provider, defaults
+off, has durable attempt claims and a 20-request UTC daily reservation limit.
+See platform/OWNER-WORKSPACE.md for storage, configuration and hosted checks.
+No draft migration, model call, paid translation or publication occurred.
+
+## Privacy controls, 2026-10-08
+
+/privacy and first-party analytics consent controls replace unconditional tracking.
+Every generated page links the policy; optional analytics starts denied, saved
+choices expire after 180 days and withdrawal reloads. Owner pages have no tags.
+Advertising is blocked until certified CMP account setup and deployed consent
+acceptance pass. See verification/privacy-consent-2026-10-08.md for exact AdSense
+and GA4 account actions, sources and tests. No new service, mail or publication.
+
+## Stage 7 transactional content import, 2026-10-08
+
+Hosted Supabase read confirms zero article, version and source rows and all three
+switches false. The original Site reader still truncates version JSON to 2,000
+characters at limit 1. No partial import was attempted. Added an offline private
+SQL compiler with independent source checksum/counts, complete-column and version
+checks, current manual-release classification, transactional readback and conflict
+rejection. See platform/SUPABASE-CONTENT-IMPORT.md. The old seven releases are public
+and cannot be counted as reserve. Full source export remains the required owner
+artifact; no schema change, publisher activation or private content commit.
+
+## Blob-backed editorial content, 2026-10-08
+
+Owner-approved hybrid implemented: private immutable version JSON and snapshot
+backups in existing Vercel Blob, transaction/review metadata in Supabase. New
+folkly_content_objects reference table is applied; RLS/client denial and server
+append-only grants verified live. Owner draft reads verify private Blob checksums
+and sizes, preserving SQL compatibility without fallback on corrupt references.
+The --blob import path uploads/readbacks first, then compiles one metadata/reference
+transaction. No real content uploaded or imported; complete original export remains
+required. Tests and limits: verification/blob-editorial-content-2026-10-08.md.
+
+## Protected subscriber readback, 2026-10-08
+
+The owner dashboard now includes a private paginated Subscribers section backed by
+the existing Vercel Blob records. It shows email, consent version/source, signup
+time and current subscribed/unsubscribed state without exposing Blob paths or
+unsubscribe tokens. Every page revalidates the owner session and membership;
+records, path hashes, sizes and continuation cursors are bounded and validated.
+Malformed or partially readable pages fail closed rather than reporting a false
+delivery state. Full regression and focused security fixtures pass. See
+verification/subscriber-readback-2026-10-08.md. This closes the code-side
+authenticated readback gap, but hosted owner-session readback and Resend delivery
+acceptance still require the existing Vercel project connection and configured
+provider secrets. NEWSLETTER_ENABLED and all three autonomous switches remain off.
+The implementation deployment succeeded; public owner HTML includes the section,
+and an anonymous subscriber-view request returned 401/no-store. Authenticated
+record readback was deliberately not attempted without Noah's owner session.
+
+## Owner contact reply workflow, 2026-10-08
+
+Each validated contact row now includes a Reply link that opens the owner's email
+application with a fixed Folkly subject and encoded greeting. It never sends or
+marks a reply automatically. The private inbox reader now rejects malformed email
+addresses and blank names before any `mailto:` target can be rendered; message
+content remains text-only. Focused contact and full regression checks pass. See
+verification/contact-reply-2026-10-08.md. No mail credentials, subscriber state,
+publication controls or autonomous switches changed.
+
+## Translation foundation and reader telemetry, 2026-10-09 UTC
+
+Completed public-only segment extraction for all eleven published stories, a
+cultural glossary and strict schema, source/glossary/prompt hashes, review-bound
+translation payload hashes, approved-only static locale rendering, reciprocal
+article language links/hreflang/self canonicals/sitemap and script/RTL CSS. Empty
+approval leaves English locale navigation unchanged. Draft/stale/private output,
+path traversal, unknown locales, HTML payloads and changed-after-review payloads
+are denied. All source credits, bibliography, numeric citations, responsive media
+and two-paragraph image positions remain in the trusted source template.
+
+Added consent-gated article source-version IDs and bounded reading/related/music
+events plus subscription success only after private storage acknowledgement.
+Preview hosts do not load GA; pre-consent scroll milestones are discarded;
+withdrawal immediately blocks event emission. The public current-release registry
+contains only published IDs/hashes/declared dates, not a verified historical
+activation timeline. No owner/session/form values enter the explicit events.
+
+Build, full regression and two focused debug/security runs pass. Extraction
+produced eleven contracts outside public dist without paid calls. Tests use
+ephemeral synthetic AR/FR payloads, not actual translated prose or reviewers.
+Chromium is unavailable, so viewport/keyboard/browser visual acceptance remains
+unverified. Localized discovery/shared UI and translation-specific budget/job
+adapter remain open code work; real pilot/backfill needs an approved cap/model
+and competent language review. Live GA stream/custom-dimension/DebugView account
+checks and deferred read-only credentials remain separate requirements.
+The Vercel connector still returns 404 for the exact authorized project/team;
+reconnect it to optagens-projects and project prj_d93TLitMYu8uYjqfgvgANuwsRJVK
+for protected configuration and logs. Public HTTP and GitHub deployment checks
+remain available. No newsletter/autonomous production/publication/article
+schedule switch was enabled.
+
+Deployed follow-up: implementation 49e98ea838eeb5482c5299931cfe1afa7f6f22f4
+completed on Vercel; 45 reader checks plus 13 exact-asset/unapproved-route/private
+API checks passed. All eleven articles match the tested build, the public release
+registry contains only current published metadata, unapproved AR/FR paths are
+404, and anonymous private views remain 401. Live evidence is recorded in
+verification/translation-reader-events-live-2026-10-09.json. No live GA delivery,
+language-quality or viewport acceptance is inferred.
+Production readback passed for the homepage graph, representative Article
+publisher identity and exact 512Ã—512 logo bytes after the Vercel deployment.
+The implementation deployed successfully; production serves the reply workflow,
+while anonymous contact-inbox access remains 401 with no-store caching.
+
+## Search identity and publisher logo, 2026-10-08
+
+Added a crawlable 512Ã—512 Folkly brand asset, homepage Organization/WebSite JSON-LD,
+consistent `og:site_name`, and a descriptive homepage search title. All Article
+publisher objects now reuse the same Folkly organization ID and logo while visible
+Folkly-editorial and persona attribution stays unchanged. Build and full regression
+checks pass; see verification/search-identity-2026-10-08.md. Search Console/Rich
+Results validation remains external. No stories, credits, private records,
+publication controls or autonomous switches changed.

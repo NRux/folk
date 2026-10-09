@@ -1,4 +1,5 @@
 import { validateImageVariants } from './responsive-images.mjs';
+import {validateGeography} from './geography.mjs';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 export const escapeHtml = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -26,6 +27,7 @@ export function publishedArticles(catalog, routes) {
   const published = catalog.filter(item => item.status === 'published');
   const seen = new Set();
   for (const item of published) {
+    validateGeography(item);
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(item.slug) || seen.has(item.slug) || !routes[`/${item.slug}`]) throw new Error('Invalid or duplicate published article route');
     seen.add(item.slug);
     for (const field of ['title','summary','place']) if (typeof item[field] !== 'string' || !item[field].trim()) throw new Error(`Missing article ${field}`);
@@ -61,7 +63,7 @@ const credit = image => `${escapeHtml(image.caption)} Photo: <a href="${escapeHt
 const topicLabels = {'making-inheritance':'Making & inheritance','ritual-belonging':'Ritual & belonging','sound-invention':'Sound & invention','sound-memory':'Sound & memory','mutual-aid':'Mutual aid','material-knowledge':'Material knowledge','craft-economies':'Craft economies','community-kitchens':'Community kitchens','urban-space':'Urban space'};
 export const topicLabel = slug => topicLabels[slug] || slug.replaceAll('-', ' ').replace(/^./, c=>c.toUpperCase());
 export function renderGrid(items) {
-  return items.map(item => `<article class="story-card" data-article="${item.slug}" data-title="${escapeHtml(item.title)}" data-place="${escapeHtml(item.placeSlug)}" data-topics="${escapeHtml(item.topics.join(' '))}" data-published="${item.publishedAt}"><a class="picture${item.image ? '' : ' text-picture'}" href="/${item.slug}" aria-label="Read ${escapeHtml(item.title)}">${item.image ? `<img src="${escapeHtml(item.image.src)}" alt="${escapeHtml(item.image.alt)}" width="${item.image.width}" height="${item.image.height}" loading="lazy" decoding="async">` : `<span>${escapeHtml(item.place.split(' · ')[0])}<br>Cultural essay</span>`}</a>${item.image?.sha256 ? `<small class="grid-credit"><a href="/image-credits#${item.slug}">Photo: ${escapeHtml(item.image.creator)}</a></small>` : ''}<p class="eyebrow">${escapeHtml(item.place)}</p><h3><a href="/${item.slug}">${escapeHtml(item.title)}</a></h3><p>${escapeHtml(item.summary)}</p><div class="article-tags" aria-label="Article tags">${item.topics.map(tag=>`<a href="/archive/topic/${escapeHtml(tag)}">${escapeHtml(topicLabel(tag))}</a>`).join('')}</div></article>`).join('\n');
+  return items.map(item => `<article class="story-card" data-article="${item.slug}" data-title="${escapeHtml(item.title)}" data-country="${escapeHtml(item.countrySlug)}" data-region="${escapeHtml(item.regionSlug)}" data-topics="${escapeHtml(item.topics.join(' '))}" data-published="${item.publishedAt}"><a class="picture${item.image ? '' : ' text-picture'}" href="/${item.slug}" aria-label="Read ${escapeHtml(item.title)}">${item.image ? `<img src="${escapeHtml(item.image.src)}" alt="${escapeHtml(item.image.alt)}" width="${item.image.width}" height="${item.image.height}" loading="lazy" decoding="async">` : `<span>${escapeHtml(item.place.split(' · ')[0])}<br>Cultural essay</span>`}</a>${item.image?.sha256 ? `<small class="grid-credit"><a href="/image-credits#${item.slug}">Photo: ${escapeHtml(item.image.creator)}</a></small>` : ''}<p class="eyebrow">${escapeHtml(item.place)}</p><h3><a href="/${item.slug}">${escapeHtml(item.title)}</a></h3><p>${escapeHtml(item.summary)}</p><div class="article-tags" aria-label="Article tags">${item.topics.map(tag=>`<a href="/archive/topic/${escapeHtml(tag)}">${escapeHtml(topicLabel(tag))}</a>`).join('')}</div></article>`).join('\n');
 }
 export function populateHomepage(html, items) {
   const start = html.indexOf('<div class="story-grid">');

@@ -23,12 +23,23 @@ export function validateInlineImage(image) {
     const hosts = key === 'src' ? ['upload.wikimedia.org','thumb.wikimedia.org'] : key === 'source' ? ['commons.wikimedia.org'] : ['creativecommons.org'];
     if (u.protocol !== 'https:' || !hosts.includes(u.hostname) || u.username || u.password || u.port || /[\s<>"']/.test(image[key])) throw new Error('Unsafe inline image URL');
   }
-  if (!/^(?:CC BY(?:-SA)? [1-4]\.0|CC BY(?:-SA)? 2\.5|CC0|Public domain)$/.test(image.license)) throw new Error('Unapproved inline image license');
+  if (!/^(?:CC BY(?:-SA)? [1-4]\.0|CC BY 3\.0 DE|CC BY(?:-SA)? 2\.5|CC0|Public domain)$/.test(image.license)) throw new Error('Unapproved inline image license');
   for (const key of ['width','height','commonsPageId']) if (!Number.isSafeInteger(image[key]) || image[key] < 1) throw new Error('Invalid inline image evidence');
   if (!/^\d{4}-\d{2}-\d{2}$/.test(image.checkedAt || '') || !Number.isFinite(Date.parse(image.checkedAt))) throw new Error('Missing image review date');
   if (!['commons-metadata','download-decoded'].includes(image.verification)) throw new Error('Missing inline image verification');
   if (image.verification === 'download-decoded' && (!Number.isSafeInteger(image.bytes) || image.bytes < 1 || !/^[a-f0-9]{64}$/.test(image.sha256 || ''))) throw new Error('Invalid download evidence');
   if (!image.creator?.trim() || !image.caption?.trim() || !image.alt?.trim()) throw new Error('Missing inline image credit/evidence');
+  if(image.visualReview){
+    const r=image.visualReview;
+    if(!['group','object','place','individual-wide'].includes(r.composition)||typeof r.subject!=='string'||!/^[a-z]+(?:-[a-z]+)*$/.test(r.subject)||typeof r.note!=='string'||!r.note.trim()||r.note.length>1000)throw Error('Invalid image visual review; individual closeups are excluded');
+  }
+}
+export function validateImageSequence(images,slug){
+  if(slug!=='detroit-future-frequency')return;
+  if(images.some(image=>!image.visualReview))throw Error('Detroit sequence needs visual reviews');
+  if(images.filter(image=>image.visualReview.subject==='instruments').length>1)throw Error('Repeated instruments in Detroit sequence');
+  if(images.filter(image=>image.visualReview.composition==='group').length<Math.ceil(images.length/2))throw Error('Prioritize groups in Detroit sequence');
+  if(images.some((image,i)=>i>0&&image.visualReview.subject===images[i-1].visualReview.subject))throw Error('Vary adjacent image subjects');
 }
 export function inlineFigure(image, afterParagraph) {
   validateInlineImage(image);
@@ -46,6 +57,7 @@ export function decorateArticleLayout(html, item, media) {
   if (!Array.isArray(images) || images.length !== required) throw new Error(`Inline image count mismatch: ${item.slug}, needs ${required}`);
   const ids = new Set();
   images.forEach(image => { validateInlineImage(image); if (ids.has(image.commonsPageId)) throw new Error('Repeated inline image'); ids.add(image.commonsPageId); });
+  validateImageSequence(images,item.slug);
   let n = 0;
   const body = parts.body.replace(/<p\b[^>]*>[\s\S]*?<\/p>/g, paragraph => {
     n++;

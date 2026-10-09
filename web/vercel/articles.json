@@ -1,6 +1,8 @@
 [
   {
     "slug": "new-orleans-second-line",
+    "countrySlug": "united-states",
+    "regionSlug": "north-america",
     "status": "published",
     "title": "The city that dances together.",
     "summary": "Behind New Orleans’ second lines is a remarkable social invention: a community that turns looking after one another into a public celebration.",
@@ -56,6 +58,8 @@
   },
   {
     "slug": "lisbon-fado",
+    "countrySlug": "portugal",
+    "regionSlug": "europe",
     "status": "published",
     "title": "A city finds its voice.",
     "summary": "Fado carries the intimacy of Lisbon’s neighborhoods into a much larger world. Its history reveals how a local form can change and still sound unmistakably like home.",
@@ -111,6 +115,8 @@
   },
   {
     "slug": "oaxaca-living-color",
+    "countrySlug": "mexico",
+    "regionSlug": "north-america",
     "status": "published",
     "title": "A living language of color.",
     "summary": "In Oaxaca’s Zapotec weaving traditions, color carries knowledge of land, family, and material. Keeping that knowledge alive also means finding new things to say with it.",
@@ -166,6 +172,8 @@
   },
   {
     "slug": "detroit-future-frequency",
+    "countrySlug": "united-states",
+    "regionSlug": "north-america",
     "status": "published",
     "title": "The future had a Detroit frequency.",
     "summary": "A radio signal, a circle of friends, and a willingness to hear connections: the cultural conditions behind Detroit techno reach beyond the familiar story of machines.",
@@ -192,6 +200,8 @@
   },
   {
     "slug": "bonwire-kente",
+    "countrySlug": "ghana",
+    "regionSlug": "africa",
     "status": "published",
     "title": "The Thread That Holds: Kente, Identity, and the Fight for Survival in Bonwire",
     "summary": "In Bonwire, Ghana, kente weaving carries proverbs and identity through changing markets, family workshops, and debates about the craft’s future.",
@@ -257,6 +267,8 @@
   },
   {
     "slug": "castells-tarragona",
+    "countrySlug": "spain",
+    "regionSlug": "europe",
     "status": "published",
     "title": "The Weight of the Square: Castells in Tarragona",
     "summary": "In Tarragona, Catalonia, castells turn human towers into a shared practice of trust, training, and belonging in the public square.",
@@ -322,6 +334,8 @@
   },
   {
     "slug": "kimjang-seoul",
+    "countrySlug": "south-korea",
+    "regionSlug": "asia",
     "status": "published",
     "title": "The Hands That Remember: Kimjang in a Changing Seoul",
     "summary": "Kimjang brings Seoul households and neighbors together to make winter kimchi, passing food knowledge through a changing city.",
@@ -387,6 +401,8 @@
   },
   {
     "slug": "matariki-puanga",
+    "countrySlug": "new-zealand",
+    "regionSlug": "oceania",
     "status": "published",
     "title": "The Star That Wins the Year",
     "summary": "Matariki and Puanga mark the Māori new year through distinct regional traditions of remembrance, seasonal knowledge, and renewal.",
@@ -452,6 +468,8 @@
   },
   {
     "slug": "nowruz-tajikistan",
+    "countrySlug": "tajikistan",
+    "regionSlug": "asia",
     "status": "published",
     "title": "The Stirring Pot: How Sumanak Anchors Belonging in Dushanbe",
     "summary": "In Dushanbe, Tajikistan, preparing sumanak for Navruz brings neighbors together around a shared pot and the arrival of spring.",
@@ -517,6 +535,8 @@
   },
   {
     "slug": "tokushima-aizome",
+    "countrySlug": "japan",
+    "regionSlug": "asia",
     "status": "published",
     "title": "The Weight of Blue: Indigo, Labor, and the Living Economy of Tokushima",
     "summary": "In Tokushima, Japan, aizome indigo dyeing connects fermentation, skilled labor, and the livelihoods that sustain a living craft.",
@@ -575,6 +595,8 @@
   },
   {
     "slug": "xochimilco-chinampas",
+    "countrySlug": "mexico",
+    "regionSlug": "north-america",
     "status": "published",
     "title": "The Living Soil of Xochimilco",
     "summary": "Xochimilco’s chinampas connect canal agriculture, living soil, and local livelihoods in southern Mexico City.",
