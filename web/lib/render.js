@@ -68,11 +68,11 @@ class Page {
   }
 
   homeHeader(issueLabel) {
-    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell"><div class="topline"><span>A journal of culture, place &amp; belonging</span><span>Independent perspectives. Interconnected worlds.</span></div><a class="masthead" href="/" aria-label="Folkly home">folkly</a><nav class="nav" aria-label="Main navigation"><div class="navlinks"><a href="/#stories">The journal</a><a href="/#places">Places</a><a href="/archive">Archives</a><a href="/perspective">Our perspective</a><a href="/about">About</a></div><span class="issue">${esc(issueLabel)}</span></nav></header>`;
+    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell"><div class="topline"><span>A journal of culture, place &amp; belonging</span><span>Independent perspectives. Interconnected worlds.</span></div><a class="masthead" href="/" aria-label="Folkly home">folkly</a><nav class="nav" aria-label="Main navigation"><div class="navlinks"><a href="/#stories">The journal</a><a href="/#places">Places</a><a href="/map">Map</a><a href="/archive">Archives</a><a href="/perspective">Our perspective</a><a href="/about">About</a></div><span class="issue">${esc(issueLabel)}</span></nav></header>`;
   }
 
   compactHeader() {
-    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell compact-head"><a class="compact-logo" href="/" aria-label="Folkly home">folkly</a><nav aria-label="Main navigation"><a href="/#stories">The journal</a><a href="/archive">Archives</a><a href="/perspective">Our perspective</a><a href="/about">About</a></nav></header>`;
+    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell compact-head"><a class="compact-logo" href="/" aria-label="Folkly home">folkly</a><nav aria-label="Main navigation"><a href="/#stories">The journal</a><a href="/map">Map</a><a href="/archive">Archives</a><a href="/perspective">Our perspective</a><a href="/about">About</a></nav></header>`;
   }
 
   footer() {

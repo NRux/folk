@@ -24,6 +24,7 @@ const {
   slugify,
   esc,
 } = require("./lib/render");
+const { renderMapPage } = require("./lib/map-page");
 
 const DB_FILE = process.env.FOLKLY_DB || path.join(__dirname, "folkly.db");
 const STATIC = path.join(__dirname, "static");
@@ -211,9 +212,16 @@ const server = http.createServer((req, res) => {
     return send(res, 200, "text/html; charset=utf-8", html);
   }
 
+  // map (new scope: every published story pinned to its place, filterable)
+  if (p === "/map" || p === "/map.html") {
+    const html = page.head("Map | Folkly", "Every Folkly story on one map, filtered by region and thread.", { type: "website", canonicalSlug: "map" }) +
+      page.compactHeader() + renderMapPage(page) + page.footer();
+    return send(res, 200, "text/html; charset=utf-8", html);
+  }
+
   // articles (both URL forms)
   let slug = p.replace(/^\/+|\/+$/g, "").replace(/\.html$/, "");
-  if (slug && !["perspective", "about", "index", "archive"].includes(slug) && !slug.includes("/")) {
+  if (slug && !["perspective", "about", "index", "archive", "map"].includes(slug) && !slug.includes("/")) {
     const art = articleBySlug(slug);
     if (art && art.status === "published") {
       const content = articleContentJson(slug);
