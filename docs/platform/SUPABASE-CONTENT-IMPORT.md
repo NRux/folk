@@ -2,11 +2,36 @@
 
 The original Site is appgprj_6abfc9a424f881918070e39a237ecc83 (DB binding). The destination is the existing Folkly Supabase project vxmyggasjgsiohqzzwzh. Do not create a replacement Site or database. Publishing stays disabled.
 
-## Source prerequisite
+## Recovered source (2026-10-09)
+
+Codex recovered the original Site source repository, deployed a fixed read-only
+editorial export, and retrieved the complete live D1 snapshot twice. Both copies
+match. The original Site remains public with unchanged story content. The temporary
+export secret was revoked and the revoked configuration redeployed; anonymous
+requests and the former authorized credential now receive 404/no-store.
+
+The source snapshot/independent source receipt are saved privately as
+folkly-editorial-source-export-2026-10-09.zip. Payload SHA-256:
+`f284367ddd8455fe6907983bd39a6b48e3d5a7209ea98ede24a66304afdacd5d`.
+All 11 tables, 11 articles, 15 complete versions, 63 sources, 147 claim links and
+63 checks pass the current import compiler. The current release manifest marks
+all 11 stories public; the seven previous releases are not private reserve.
+Noah does not need to export anything. See
+[full evidence](../verification/original-site-export-2026-10-09.md).
+
+The real Blob upload, Supabase import and independent hosted readback remain
+pending. Existing BLOB_READ_WRITE_TOKEN and server-only Supabase credentials
+must be supplied to the private import runner by the trusted provider environment;
+do not resubmit them in chat or Git. Their presence in Vercel was reported by the
+owner, but they are not available in this execution environment. The Vercel
+connector remains deferred at the owner's request. Generated SQL has been reviewed
+offline; it has not been applied, and no Blob upload has occurred.
+
+## Export contract
 
 Obtain a complete private editorial export from the original Site database/settings or a complete SQLite backup. The connected table reader truncates article_versions.content_json at 2,000 characters even with limit 1; its output cannot be imported. Do not reconstruct the missing bytes from public HTML, summaries or truncated records. Export all 11 editorial tables required by the existing web/site-runtime/export-snapshot.cjs (personas, persona_briefs, pitches, articles, article_versions, assignments, page_blocks, sources, claim_citations, media_assets, editorial_checks). The export uses folkly-d1-snapshot-v1 and release_state unpublished as its transfer-format marker, not a promise that all articles are private.
 
-Noah's required action: provide the complete export/backup privately. For an available complete SQLite backup, run the existing exporter outside the repository and retain its independently printed sha256 and table counts as a separate receipt JSON containing {"sha256":"...","counts":{...}}. The receipt must come from the complete source export, not be manufactured from truncated data. A raw database backup first needs the existing exporter conversion; it is not accepted as JSON. Avoid posting any keys or private draft text in chat or committing the snapshot/SQL.
+Codex owns source extraction; do not require Noah to locate or export ChatGPT-generated source. For a future complete SQLite backup, run the existing exporter outside the repository and retain its independently printed sha256 and table counts as a separate receipt JSON containing {"sha256":"...","counts":{...}}. The receipt must come from the complete source export, not be manufactured from truncated data. A raw database backup first needs the existing exporter conversion; it is not accepted as JSON. Avoid posting any keys or private draft text in chat or committing the snapshot/SQL.
 
 ## Compile and review
 

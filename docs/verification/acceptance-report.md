@@ -1,5 +1,23 @@
 # Stage 07 — Acceptance report
 
+## Original source export gate completed, 2026-10-09 UTC
+
+PASS for complete source extraction: Codex recovered the original ChatGPT Site
+source, deployed a bounded read-only authenticated export and captured two matching
+live D1 snapshots with a source-generated checksum/count receipt. All 11 editorial
+tables and 15 full version bodies pass the current import compiler; all 11 articles
+are already public under the release manifest. Temporary export access was revoked
+and redeployed; anonymous/former-token requests receive 404/no-store. The verified
+private archive is saved outside Git. Noah has no source-export action remaining.
+See [source export evidence](original-site-export-2026-10-09.md).
+
+Stage 7 remains BLOCKED for actual private Blob upload, metadata commit, independent
+hosted readback, owner draft/recovery and remaining provider/newsletter/language
+acceptance. This run did not import content or enable any autonomous switch. Existing
+provider secrets need access from the trusted import runner, rather than being
+recreated or shared in chat; Vercel connector work remains deferred as requested.
+This addendum supersedes all older missing-source-export requirements below.
+
 ## Current owner and transfer verification, 2026-10-09 UTC
 
 The latest owner-hosted-acceptance report supersedes older editor/idea-save
@@ -48,7 +66,7 @@ public stories, including seven already manually released; they are not reserve.
 | Translation source/review boundary | PASS local and isolated build fixtures; stale/unreviewed/tampered/private denial, complete coverage and immutable credits. Empty production manifest. |
 | Real translation launch | BLOCKED pending paid pilot authorization, translation job adapter, competent six-language review, localized discovery/shared UI and actual browser/hosted checks. |
 | Consent-aware reader events | PASS offline event-wiring/privacy/signup timing tests. Live GA property/stream/dimension/DebugView and enhanced-measurement settings are not verified. |
-| Editorial content import | BLOCKED on complete untruncated original version/evidence export; SQL/Blob hybrid compiler and append-only/checksum readback exist. No partial private transfer. |
+| Editorial content import | Complete original export PASS (2026-10-09). BLOCKED for actual private Blob upload, transactional metadata import and independent hosted readback. No partial private transfer. |
 | Funded unattended generation | BLOCKED pending scoped provider/worker credentials, approved budget/pricing and live usage/redaction/persona evidence. Local paused/budget/ledger tests pass. |
 | Hosted recovery and publication | Earlier scoped hosted component fixtures exist; full Vercel commit/readback/backup/failure recovery gates remain pending. |
 | Resend newsletter acceptance | Adapter, suppression/unsubscribe and private subscriber readback code exist. Secure provider setup and authenticated hosted delivery/recovery evidence remain pending; delivery stays off. |
