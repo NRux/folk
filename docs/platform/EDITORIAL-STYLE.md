@@ -46,13 +46,24 @@ Visually inspect the image bytes, not just filenames or source descriptions.
 The pictured scene must support the caption: buses outside an event are not a
 view of its arena. Keep concise creator/license links and exact source evidence.
 Newly curated records include visual composition, subject and review notes.
-The Detroit sequence enforces group priority, one instrument image and varied
-adjacent subjects; automated validation does not replace visual judgement.
+
+Every newly published story must also have a machine-readable relevance review.
+Score each cover and inline image on geography (0–4), subject (0–4), placement
+(0–2), and visible prominence (0–2). The minimum is 8 of 12. Reject an image
+regardless of score when it depicts an unmentioned location or specific event,
+when its claimed subject is only incidental, or when its review is missing from
+the release manifest. “Same genre” is not enough. The depicted person, practice,
+infrastructure, place, or named event must support the article, and the review
+must identify the two paragraphs beside an inline image. The Detroit sequence
+enforces this threshold in addition to group priority, one instrument image and
+varied adjacent subjects. Automated validation cannot replace visual judgement.
 
 The public offline export enforces both rules in `scripts/article-layout.mjs`.
 A future authorized release requires its body template, catalog entry, and
 `web/vercel/article-media.json` records together. Missing/duplicate images,
 unsafe URLs, unsupported licenses, or short narratives fail the build. Metadata
+and relevance reviews live in `web/vercel/image-relevance.json`; new publication
+dates after October 9, 2026 fail closed without a complete review.
 verification and decoded-download evidence are recorded separately; metadata
 alone does not establish image-byte availability or browser performance.
 Private drafts/reserve and their historical attestations stay unchanged until

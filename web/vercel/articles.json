@@ -179,6 +179,44 @@
     "summary": "A radio signal, a circle of friends, and a willingness to hear connections: the cultural conditions behind Detroit techno reach beyond the familiar story of machines.",
     "place": "Detroit & Belleville, United States · Sound & invention",
     "publishedAt": "2026-10-07",
+    "image": {
+      "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png/1280px-The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png",
+      "width": 1280,
+      "height": 851,
+      "alt": "Juan Atkins, Derrick May, and Kevin Saunderson performing together at the Detroit Masonic Temple",
+      "caption": "The Belleville Three performing at the Detroit Masonic Temple, 2017.",
+      "creator": "PeRshGo",
+      "source": "https://commons.wikimedia.org/wiki/File:The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "originalUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png",
+      "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png/1280px-The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png",
+      "sha256": "8393e98571bcf476185225dd738cfb3d3dc99b45e9134c37e53c0b7554376346",
+      "changes": "Wikimedia-provided resized copy; homepage thumbnail cropped with CSS. Article image displayed without cropping.",
+      "variants": [
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png/330px-The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png",
+          "width": 330,
+          "height": 219,
+          "bytes": 106435,
+          "sha256": "90834c87adbd390ba47be6b6cd6ffb858d62fd7d9bd6694d1590fd814cca7fee"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png/960px-The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png",
+          "width": 960,
+          "height": 638,
+          "bytes": 760930,
+          "sha256": "511026c309e024a688ec4ceaed237786ae0883e7f278d025895b313975ee8cfc"
+        },
+        {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png/1280px-The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png",
+          "width": 1280,
+          "height": 851,
+          "bytes": 1315814,
+          "sha256": "8393e98571bcf476185225dd738cfb3d3dc99b45e9134c37e53c0b7554376346"
+        }
+      ]
+    },
     "searchTitle": "Detroit Techno: Radio, Belleville, and a New Musical Language",
     "placeSlug": "detroit-belleville-united-states",
     "placeName": "Detroit & Belleville, United States",

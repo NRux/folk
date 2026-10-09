@@ -9,6 +9,12 @@ the caption to what is visible, not merely its filename. Keep the one-image-per-
 two-paragraph rule and all source/creator/license credits. Follow
 `../platform/EDITORIAL-STYLE.md` for the full policy.
 
+Before proposing an image, score its geography, subject, paragraph placement,
+and visible prominence using the 12-point relevance rubric. Require at least 8.
+Reject any unmentioned place or specific event, any frame where the claimed
+subject is incidental, and any image justified only because it shares a genre or
+mood. Record the exact adjacent paragraph pair and a concrete visual observation.
+
 Apply alongside the existing persona brief, source/claim requirements, article
 length and image rules in `../platform/EDITORIAL-STYLE.md`. Preserve each persona's
 voice. Explain unfamiliar English vocabulary as well as non-English terms.

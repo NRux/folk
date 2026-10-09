@@ -2,6 +2,16 @@
 
 ## Priority TODO
 
+Latest Detroit reader correction, 2026-10-09 UTC: the story now has a
+Belleville Three cover in every article grid and four irrelevant images are
+removed (three Berlin Love Parade scenes and one incidental waterfront frame).
+Source-checked Detroit radio, artist and festival images replace them. A new
+8-of-12 relevance gate scores geography, subject, paragraph placement and visible
+prominence, with hard denials for outside places, unmentioned events, incidental
+subjects and missing evidence. Future published stories fail closed without a
+complete relevance manifest. Full regression passes; no article or private
+reserve release changed. See verification/detroit-image-relevance-2026-10-09.md.
+
 Latest analytics durability follow-up, 2026-10-09 UTC: Prompt 3 collection
 orchestration now has a private RLS-protected run ledger, five-minute fenced
 leases, validated per-page checkpoints, bounded retry/backoff evidence and atomic,

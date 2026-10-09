@@ -6,9 +6,9 @@ const routes=JSON.parse(await readFile('web/vercel/routes.json','utf8'));
 const catalog=JSON.parse(await readFile('web/vercel/articles.json','utf8'));
 const items=publishedArticles(catalog,routes);
 const pictures=items.filter(item=>item.image);
-assert.equal(pictures.length,10);
+assert.equal(pictures.length,11);
 const home=await readFile('dist/index.html','utf8');
-assert.equal((home.match(/srcset=/g)||[]).length,11); // Hero plus the ten illustrated grid cards.
+assert.equal((home.match(/srcset=/g)||[]).length,12); // Hero plus the eleven illustrated grid cards.
 const hero=home.match(/<img[^>]*fetchpriority="high"[^>]*>/)[0];
 assert(!hero.includes('loading="lazy"'));
 assert(hero.includes('sizes=')&&hero.includes('srcset='));

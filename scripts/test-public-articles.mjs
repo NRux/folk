@@ -6,7 +6,7 @@ const catalog = JSON.parse(await readFile('web/vercel/articles.json','utf8'));
 const released = JSON.parse(await readFile('web/vercel/manual-releases.json','utf8')).articles;
 const articles = publishedArticles(catalog,routes);
 await verifyImageFiles(articles);
-assert.equal(articles.filter(item=>item.image).length,10);
+assert.equal(articles.filter(item=>item.image).length,11);
 const home = await readFile('dist/index.html','utf8');
 const sitemap=await readFile('dist/sitemap.xml','utf8');
 for (const item of articles) {

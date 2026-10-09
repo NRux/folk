@@ -1,0 +1,146 @@
+{
+  "format": "folkly-image-relevance-v1",
+  "threshold": 8,
+  "enforcePublishedAfter": "2026-10-09",
+  "articles": {
+    "detroit-future-frequency": {
+      "coverCommonsPageId": 59390516,
+      "coverTitle": "The Belleville Three at The Detroit Masonic Temple 2017 2.png",
+      "coverSource": "https://commons.wikimedia.org/wiki/File:The_Belleville_Three_at_The_Detroit_Masonic_Temple_2017_2.png",
+      "reviews": {
+        "cover": {
+          "commonsPageId": 59390516,
+          "paragraphs": [0, 0],
+          "geography": "article-place",
+          "subject": "named-entity",
+          "placement": "cover",
+          "prominence": "primary",
+          "event": "not-event",
+          "evidence": "All three named Belleville Three members are visibly performing together at a Detroit venue; no unrelated place or event dominates the frame.",
+          "reviewedAt": "2026-10-09"
+        },
+        "3564714": {
+          "commonsPageId": 3564714,
+          "paragraphs": [1, 2],
+          "geography": "article-place",
+          "subject": "direct-practice",
+          "placement": "article",
+          "prominence": "clear",
+          "event": "named-in-story",
+          "evidence": "A Detroit Electronic Music Festival performance visibly joins electronic musicians and listeners, supporting the article's people-first opening.",
+          "reviewedAt": "2026-10-09"
+        },
+        "4241584": {
+          "commonsPageId": 4241584,
+          "paragraphs": [3, 4],
+          "geography": "article-place",
+          "subject": "direct-practice",
+          "placement": "article",
+          "prominence": "clear",
+          "event": "named-in-story",
+          "evidence": "Two electronic musicians perform together at the named Detroit festival; the people and shared practice are visually clear.",
+          "reviewedAt": "2026-10-09"
+        },
+        "98729564": {
+          "commonsPageId": 98729564,
+          "paragraphs": [5, 6],
+          "geography": "article-place",
+          "subject": "story-infrastructure",
+          "placement": "exact-pair",
+          "prominence": "primary",
+          "event": "not-event",
+          "evidence": "The WGPR name and broadcast tower are visually primary beside the paragraph describing Mojo's Detroit radio circulation.",
+          "reviewedAt": "2026-10-09"
+        },
+        "3562221": {
+          "commonsPageId": 3562221,
+          "paragraphs": [7, 8],
+          "geography": "article-place",
+          "subject": "named-entity",
+          "placement": "section",
+          "prominence": "clear",
+          "event": "named-in-story",
+          "evidence": "Juan Atkins performs as Model 500 in Detroit while audience silhouettes remain visible; both the artist and public circulation are in the frame.",
+          "reviewedAt": "2026-10-09"
+        },
+        "59390514": {
+          "commonsPageId": 59390514,
+          "paragraphs": [9, 10],
+          "geography": "article-place",
+          "subject": "named-entity",
+          "placement": "article",
+          "prominence": "primary",
+          "event": "not-event",
+          "evidence": "The three named makers perform together in Detroit, directly supporting the discussion of authorship and collective invention.",
+          "reviewedAt": "2026-10-09"
+        },
+        "15256009": {
+          "commonsPageId": 15256009,
+          "paragraphs": [11, 12],
+          "geography": "article-place",
+          "subject": "story-infrastructure",
+          "placement": "article",
+          "prominence": "primary",
+          "event": "named-in-story",
+          "evidence": "The named Detroit festival entrance is visually primary and documents a public institution through which the music reached listeners.",
+          "reviewedAt": "2026-10-09"
+        },
+        "50520636": {
+          "commonsPageId": 50520636,
+          "paragraphs": [13, 14],
+          "geography": "not-location",
+          "subject": "direct-practice",
+          "placement": "exact-pair",
+          "prominence": "primary",
+          "event": "not-event",
+          "evidence": "The single equipment image is placed beside the paragraph explaining electronic instruments and does not claim use by a named artist.",
+          "reviewedAt": "2026-10-09"
+        },
+        "4241594": {
+          "commonsPageId": 4241594,
+          "paragraphs": [15, 16],
+          "geography": "article-place",
+          "subject": "direct-practice",
+          "placement": "article",
+          "prominence": "clear",
+          "event": "named-in-story",
+          "evidence": "A duo performs at the named Detroit festival, returning visual attention from the instrument to people making electronic music together.",
+          "reviewedAt": "2026-10-09"
+        },
+        "3562458": {
+          "commonsPageId": 3562458,
+          "paragraphs": [17, 18],
+          "geography": "article-place",
+          "subject": "named-entity",
+          "placement": "section",
+          "prominence": "clear",
+          "event": "named-in-story",
+          "evidence": "Juan Atkins performs as Model 500 with a Detroit audience visibly surrounding the stage, connecting a named maker to the wider scene.",
+          "reviewedAt": "2026-10-09"
+        },
+        "65076128": {
+          "commonsPageId": 65076128,
+          "paragraphs": [19, 20],
+          "geography": "article-place",
+          "subject": "story-infrastructure",
+          "placement": "section",
+          "prominence": "primary",
+          "event": "named-in-story",
+          "evidence": "The Detroit Electronic Music Festival stage is the primary subject; the nearby paragraph names the festival and there is no unrelated waterfront foreground.",
+          "reviewedAt": "2026-10-09"
+        },
+        "65076170": {
+          "commonsPageId": 65076170,
+          "paragraphs": [21, 22],
+          "geography": "article-place",
+          "subject": "direct-practice",
+          "placement": "section",
+          "prominence": "primary",
+          "event": "named-in-story",
+          "evidence": "The Detroit festival audience and stage fill the frame, showing listeners gathered around the locally rooted musical practice.",
+          "reviewedAt": "2026-10-09"
+        }
+      }
+    }
+  }
+}
