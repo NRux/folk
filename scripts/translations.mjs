@@ -34,7 +34,7 @@ const voidTags=new Set(['area','base','br','col','embed','hr','img','input','lin
 function ranges(html){
   const stack=[],found=[];let count=0;
   const tokens=/<!--[\s\S]*?-->|<![^>]*>|<\/?[a-zA-Z][^>]*>|[^<]+|</g;
-  const skipped=()=>stack.some(t=>['script','style','noscript','code','sup'].includes(t.name)||t.a.id==='sources'||/\bbyline\b/.test(t.a.class||'')||t.name==='a'&&stack.some(p=>p.name==='figcaption')||t.name==='small'&&stack.some(p=>/\brelated-stories\b/.test(p.a.class||''))||t.a.class==='grid-credit');
+  const skipped=()=>stack.some(t=>['script','style','noscript','code','sup'].includes(t.name)||t.a.id==='sources'||t.a.id==='folkly-language-menu'||/\bbyline\b/.test(t.a.class||'')||t.name==='a'&&stack.some(p=>p.name==='figcaption')||t.name==='small'&&stack.some(p=>/\brelated-stories\b/.test(p.a.class||''))||t.a.class==='grid-credit');
   const push=(start,end,kind,text)=>{if(text.trim())found.push({id:`s${String(++count).padStart(4,'0')}`,start,end,kind,text:plain(text)});};
   for(const match of html.matchAll(tokens)){
     const token=match[0],start=match.index;
@@ -43,7 +43,11 @@ function ranges(html){
     if(token.startsWith('<')){
       const name=token.match(/^<([\w-]+)/)?.[1]?.toLowerCase();if(!name)throw Error('Unsupported source markup');
       const a=attrs(token);
-      if(!skipped())for(const attribute of ['alt','aria-label','placeholder','data-title',...(name==='optgroup'?['label']:[]),...(name==='meta'&&(['description'].includes(a.name)||['og:title','og:description','og:image:alt'].includes(a.property))?['content']:[])]){
+      // The language menu is chrome, not content: its own attributes (and, via the
+      // stack below, all its children) stay out of the translation segments so
+      // the translation build can find and upgrade the byte-constant shell.
+      const menu=a.id==='folkly-language-menu';
+      if(!skipped()&&!menu)for(const attribute of ['alt','aria-label','placeholder','data-title',...(name==='optgroup'?['label']:[]),...(name==='meta'&&(['description'].includes(a.name)||['og:title','og:description','og:image:alt'].includes(a.property))?['content']:[])]){
         const m=token.match(new RegExp(`\\s${attribute}="([^"]*)"`));if(m){const offset=m.index+m[0].indexOf('"')+1;push(start+offset,start+offset+m[1].length,attribute,m[1]);}
       }
       if(!voidTags.has(name)&&!token.endsWith('/>'))stack.push({name,a});continue;
@@ -111,13 +115,30 @@ export function alternateLinks(slug,approved,origin,pages=UI_PAGES){
   const paths=[['en',pagePath(slug,'en',pages)],...Object.keys(LOCALES).filter(l=>l!=='en'&&approved.has(`${l}/${slug}`)).map(l=>[l,pagePath(slug,l,pages)]),['x-default',pagePath(slug,'en',pages)]];
   return paths.map(([locale,path])=>`<link rel="alternate" hreflang="${locale}" href="${escapeHtml(origin+path)}">`).join('');
 }
-export function languageSelector(slug,locale,approved,pages=UI_PAGES){
-  const available=Object.keys(LOCALES).filter(l=>l==='en'||approved.has(`${l}/${slug}`));if(available.length===1)return '';
-  return `<nav class="language-switcher" aria-label="${escapeHtml(LOCALES[locale])}">${available.map(l=>`<a lang="${l}" hreflang="${l}" href="${pagePath(slug,l,pages)}"${l===locale?' aria-current="page"':''}>${LOCALES[l]}</a>`).join('')}</nav>`;
+// Language dropdown: always discoverable for non-English readers. The base build
+// injects the shell on every public page (English current, other locales shown as
+// disabled "translation in progress" rows); the translation build upgrades the
+// shell in place, enabling rows only where an approved translation of THIS page
+// exists, so the site never links to a page it does not serve. Locale labels are
+// endonyms by design and the menu is excluded from translation segments.
+export function languageMenu(slug, locale = 'en', approved, pages = UI_PAGES) {
+  const rows = Object.keys(LOCALES).map((l) => {
+    const label = LOCALES[l];
+    if (l === locale) return `<span class="language-option is-current" lang="${l}" aria-current="page">${label}</span>`;
+    if (l === 'en' || approved?.has(`${l}/${slug}`)) return `<a class="language-option" lang="${l}" hreflang="${l}" href="${escapeHtml(pagePath(slug, l, pages))}">${label}</a>`;
+    return `<span class="language-option is-unavailable" lang="${l}" aria-disabled="true" title="Translation in progress">${label}</span>`;
+  }).join('');
+  return `<nav class="language-menu" id="folkly-language-menu" aria-label="Language"><details id="folkly-language-menu-details"><summary aria-haspopup="listbox">${escapeHtml(LOCALES[locale])}</summary><div class="language-options" role="listbox">${rows}</div></details></nav>`;
+}
+// Shell has no page-specific hrefs, so it is a byte-constant the build can inject
+// and the translation layer can replace with a fully enabled menu.
+export const LANGUAGE_MENU_SHELL = languageMenu('ui-home', 'en', new Map());
+export function languageSelector(slug, locale, approved, pages = UI_PAGES) {
+  return languageMenu(slug, locale, approved, pages);
 }
 export function decorateEnglish(html,slug,approved,origin,pages=UI_PAGES){
-  if(!Object.keys(LOCALES).some(l=>approved.has(`${l}/${slug}`)))return html;
-  return html.replace('</head>',`${alternateLinks(slug,approved,origin,pages)}<link rel="stylesheet" href="/locales.css"><script defer src="/language.js"></script></head>`).replace('<main ',`${languageSelector(slug,'en',approved,pages)}<main `);
+  const head=Object.keys(LOCALES).some(l=>approved.has(`${l}/${slug}`))?alternateLinks(slug,approved,origin,pages):'';
+  return html.replace(LANGUAGE_MENU_SHELL,languageMenu(slug,'en',approved,pages)).replace('</head>',`${head}</head>`);
 }
 export function renderTranslation(html,value,contract,approved,origin,pages=UI_PAGES){
   validateTranslation(value,contract);if(hash(html)!==contract.sourceHash)throw Error('Source template changed');
@@ -138,7 +159,7 @@ export function renderTranslation(html,value,contract,approved,origin,pages=UI_P
   // Source templates may use root-relative shorthand; locale directories must not change asset resolution.
   output=output.replace(/\b(src|href)="(assets\/[^\"]*)"/g,'$1="/$2"');
   const notice=fallback?`<p class="language-fallback" id="locale-fallback">${escapeHtml(value.fallbackLabel)}</p>`:'';
-  return output.replace('</head>',`${alternateLinks(contract.slug,approved,origin,pages)}<link rel="stylesheet" href="/locales.css"><script defer src="/language.js"></script></head>`).replace('<main ',`${languageSelector(contract.slug,locale,approved,pages)}${notice}<main `);
+  return output.replace(LANGUAGE_MENU_SHELL,languageMenu(contract.slug,locale,approved,pages)).replace('</head>',`${alternateLinks(contract.slug,approved,origin,pages)}</head>`).replace('<main ',`${notice}<main `);
 }
 
 export function attachMessages(html,locale,messages){

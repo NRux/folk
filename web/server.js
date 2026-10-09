@@ -42,6 +42,7 @@ const MIME = {
   ".webp": "image/webp",
   ".html": "text/html; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".js": "text/javascript; charset=utf-8",
   ".ico": "image/x-icon",
 };
 
@@ -141,9 +142,12 @@ const server = http.createServer((req, res) => {
   const p = url.pathname;
 
   // static
-  if (p === "/style.css" || p.startsWith("/assets/")) {
-    const file = path.normalize(path.join(STATIC, p));
-    if (!file.startsWith(STATIC)) return send(res, 403, "text/plain", "forbidden");
+  if (p === "/style.css" || p === "/locales.css" || p === "/language.js" || p.startsWith("/assets/")) {
+    // Locale assets are shared verbatim with the deployed build (single source of truth).
+    const file = p === "/locales.css" || p === "/language.js"
+      ? path.join(__dirname, "vercel", p.slice(1))
+      : path.normalize(path.join(STATIC, p));
+    if (!file.startsWith(STATIC) && !(p === "/locales.css" || p === "/language.js")) return send(res, 403, "text/plain", "forbidden");
     fs.readFile(file, (err, data) => {
       if (err) return send(res, 404, "text/plain", "not found");
       res.writeHead(200, { "Content-Type": MIME[path.extname(file)] || "application/octet-stream", "Cache-Control": "public, max-age=3600" });

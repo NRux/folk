@@ -1,5 +1,6 @@
 import {privacyControls,privacyPage} from './privacy-pages.mjs';
 import { mapPage } from './build-map.mjs';
+import { LANGUAGE_MENU_SHELL } from './translations.mjs';
 import {buildTranslations} from './build-translations.mjs';
 import {hash} from './translations.mjs';
 import { addArticleFilters } from './article-filters.mjs';
@@ -80,6 +81,10 @@ for (const [route, file] of Object.entries(routes)) {
   html = html.replace(/>Archives<\/a>/g, '>Archive</a>');
   if (!html.includes('href="/map"')) html = html.replace('</nav>', '<a href="/map">Places</a></nav>');
   html = html.replace('</nav>', '<a class="subscribe-button" href="/subscribe">Subscribe</a></nav>');
+  // Language dropdown shell + assets: always visible for non-English readers; the
+  // translation build upgrades rows in place when approved translations exist.
+  if (html.includes('<main ') && !html.includes('id="folkly-language-menu"')) html = html.replace('<main ', `${LANGUAGE_MENU_SHELL}<main `);
+  html = html.replace('</head>', '<link rel="stylesheet" href="/locales.css"><script defer src="/language.js"></script></head>');
   if(article){
     const narrative=html.match(/<article>([\s\S]*?)<\/article>/)?.[1];if(!narrative)throw Error('Missing analytics story boundary');
     const version=hash(narrative);releaseRegistry.push({article_id:article.slug,content_version:version,published_at:article.publishedAt,declared_modified_at:JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]).dateModified});
@@ -93,9 +98,11 @@ for (const [route, file] of Object.entries(routes)) {
 }
 await cp('web/static/assets', 'dist/assets', { recursive: true });
 await cp('web/static/style.css', 'dist/style.css');
+// Standalone public UI pages get the same language dropdown shell + assets.
+const withLanguageMenu=(html)=>html.includes('<main ')?html.replace('<main ',`${LANGUAGE_MENU_SHELL}<main `).replace('</head>','<link rel="stylesheet" href="/locales.css"><script defer src="/language.js"></script></head>'):html;
 await cp('web/vercel/ads.txt', 'dist/ads.txt');
 await cp('web/vercel/article-grid.css', 'dist/article-grid.css');
-await writeFile('dist/image-credits.html', addAdsense(imageCreditsPage(articles, canonical.origin).replace('</main>', `${inlineImageCredits(articles, articleMedia)}</main>`)));
+await writeFile('dist/image-credits.html', withLanguageMenu(addAdsense(imageCreditsPage(articles, canonical.origin).replace('</main>', `${inlineImageCredits(articles, articleMedia)}</main>`))));
 // Sitemap includes curated discovery pages and explicitly published articles only.
 const indexed = ['/', '/privacy', '/about', '/archive', '/map', ...articles.map(item => `/${item.slug}`), ...groups.keys()];
 await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${indexed.map(route => `<url><loc>${escapeHtml(canonical.origin + route)}</loc></url>`).join('')}</urlset>`);
@@ -103,7 +110,7 @@ await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /owner\nD
 for (const file of ['subscribe.css', 'subscribe.js', 'owner.js', 'contact.js', 'contact.css']) await cp(`web/vercel/${file}`, `dist/${file}`);
 const ownerSource=await readFile('web/vercel/owner.html', 'utf8');
 await writeFile('dist/owner.html', addAdsense(ownerSource,true));
-await writeFile('dist/subscribe.html', addAdsense(await readFile('web/vercel/subscribe.html', 'utf8')));
+await writeFile('dist/subscribe.html', withLanguageMenu(addAdsense(await readFile('web/vercel/subscribe.html', 'utf8'))));
 await writeFile('dist/404.html', addAdsense('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Page not found | Folkly</title></head><body><h1>Page not found</h1><a href="/">Return to Folkly</a></body></html>'));
 console.log(`Built ${Object.keys(routes).length} public pages and journal assets for Vercel; publisher disabled.`);
 
@@ -112,7 +119,7 @@ await cp('web/vercel/article-filters.mjs', 'dist/article-filters.js');
 await cp('web/vercel/owner-workspace.js', 'dist/owner-workspace.js');
 await cp('web/vercel/owner-translations.js', 'dist/owner-translations.js');
 
-await writeFile('dist/privacy.html', addAdsense(privacyPage()));
+await writeFile('dist/privacy.html', withLanguageMenu(addAdsense(privacyPage())));
 for (const file of ['privacy.js','privacy.css']) await cp(`web/vercel/${file}`,`dist/${file}`);
 await cp('web/vercel/reader-events.mjs','dist/reader-events.js');
 await writeFile('dist/article-release-registry.json',JSON.stringify({format:'folkly-public-release-registry-v1',articles:releaseRegistry},null,2)+'\n');

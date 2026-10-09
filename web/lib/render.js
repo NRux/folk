@@ -43,6 +43,10 @@ function jsonLd(obj) {
   return `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, "\\u003c")}</script>`;
 }
 
+// Language dropdown shell (matches scripts/translations.mjs LANGUAGE_MENU_SHELL):
+// always visible; locale rows enable only when the translation pipeline serves them.
+const LANGUAGE_MENU_SHELL = `<nav class="language-menu" id="folkly-language-menu" aria-label="Language"><details id="folkly-language-menu-details"><summary aria-haspopup="listbox">English</summary><div class="language-options" role="listbox"><span class="language-option is-current" lang="en" aria-current="page">English</span><span class="language-option is-unavailable" lang="zh-Hans" aria-disabled="true" title="Translation in progress">简体中文</span><span class="language-option is-unavailable" lang="es" aria-disabled="true" title="Translation in progress">Español</span><span class="language-option is-unavailable" lang="hi" aria-disabled="true" title="Translation in progress">हिन्दी</span><span class="language-option is-unavailable" lang="ar" aria-disabled="true" title="Translation in progress">العربية</span><span class="language-option is-unavailable" lang="fr" aria-disabled="true" title="Translation in progress">Français</span><span class="language-option is-unavailable" lang="ja" aria-disabled="true" title="Translation in progress">日本語</span></div></details></nav>`;
+
 class Page {
   constructor(opts) {
     this.domain = opts.domain;
@@ -64,15 +68,15 @@ class Page {
   head(title, desc, { type = "website", canonicalSlug, ld } = {}) {
     const u = canonicalSlug ? this.absUrl(canonicalSlug) : `https://${this.domain}/`;
     const ldHtml = ld ? jsonLd(ld) : "";
-    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(desc)}"><meta name="theme-color" content="#f8f7f3"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="${type}"><meta property="og:url" content="${esc(u)}"><link rel="canonical" href="${esc(u)}"><link rel="icon" type="image/svg+xml" href="${ICON}"><link rel="stylesheet" href="/style.css">${ldHtml}</head>`;
+    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(desc)}"><meta name="theme-color" content="#f8f7f3"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:type" content="${type}"><meta property="og:url" content="${esc(u)}"><link rel="canonical" href="${esc(u)}"><link rel="icon" type="image/svg+xml" href="${ICON}"><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/locales.css"><script defer src="/language.js"></script>${ldHtml}</head>`;
   }
 
   homeHeader(issueLabel) {
-    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell"><div class="topline"><span>A journal of culture, place &amp; belonging</span><span>Independent perspectives. Interconnected worlds.</span></div><a class="masthead" href="/" aria-label="Folkly home">folkly</a><nav class="nav" aria-label="Main navigation"><div class="navlinks"><a href="/#stories">Culture</a><a href="/map">Places</a><a href="/archive">Archive</a><a href="/perspective">Our perspective</a><a href="/about">About</a></div><span class="issue">${esc(issueLabel)}</span></nav></header>`;
+    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell"><div class="topline"><span>A journal of culture, place &amp; belonging</span><span>Independent perspectives. Interconnected worlds.</span></div><a class="masthead" href="/" aria-label="Folkly home">folkly</a><nav class="nav" aria-label="Main navigation"><div class="navlinks"><a href="/#stories">Culture</a><a href="/map">Places</a><a href="/archive">Archive</a><a href="/perspective">Our perspective</a><a href="/about">About</a></div><span class="issue">${esc(issueLabel)}</span></nav></header>${LANGUAGE_MENU_SHELL}`;
   }
 
   compactHeader() {
-    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell compact-head"><a class="compact-logo" href="/" aria-label="Folkly home">folkly</a><nav aria-label="Main navigation"><a href="/#stories">Culture</a><a href="/map">Places</a><a href="/archive">Archive</a><a href="/perspective">Our perspective</a><a href="/about">About</a></nav></header>`;
+    return `<body><a class="skip" href="#main">Skip to content</a><header class="shell compact-head"><a class="compact-logo" href="/" aria-label="Folkly home">folkly</a><nav aria-label="Main navigation"><a href="/#stories">Culture</a><a href="/map">Places</a><a href="/archive">Archive</a><a href="/perspective">Our perspective</a><a href="/about">About</a></nav></header>${LANGUAGE_MENU_SHELL}`;
   }
 
   footer() {
