@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-09T04:58:01.193767+00:00",
+  "checks": [
+    {
+      "path": "/owner.js",
+      "exactBuiltBytes": true,
+      "sha256": "ab0c5e46a358fed9b1d3aef3c0a44649111e53a7e85952ce38854d5c4ac0b69b"
+    },
+    {
+      "path": "/owner-workspace.js",
+      "exactBuiltBytes": true,
+      "sha256": "883cf1cf8511db72490d4631584c79d3e6267e396a80400f93e9d90592b4cab7"
+    },
+    {
+      "path": "/owner-translations.js",
+      "exactBuiltBytes": true,
+      "sha256": "4eed2382bdc4b409ccb606cee2fe38963e5d069c77f645fcaff5bb950fd2c7b3"
+    },
+    {
+      "path": "/owner",
+      "status": "200",
+      "expectedStatus": "200",
+      "pass": true
+    },
+    {
+      "path": "/api/owner",
+      "status": "401",
+      "expectedStatus": "401",
+      "pass": true
+    },
+    {
+      "path": "/api/owner-workspace",
+      "status": "401",
+      "expectedStatus": "401",
+      "pass": true
+    },
+    {
+      "path": "/api/owner-translations",
+      "status": "401",
+      "expectedStatus": "401",
+      "pass": true
+    },
+    {
+      "path": "/api/newsletter",
+      "status": "401",
+      "expectedStatus": "401",
+      "pass": true
+    }
+  ],
+  "implementationCommit": "96f920be5164a4e462ef9765d7f33ad41acf9be7",
+  "newCodeDeploymentConfirmed": true
+}

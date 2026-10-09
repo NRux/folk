@@ -55,7 +55,13 @@ subscriber storage or article switch was changed.
 - `npm test`: PASS, all 31 regression commands, including new automatic/manual
   expiry tests, workspace and translation 401 propagation, late-response isolation,
   authenticated server denial, newsletter/contact/subscriber and privacy tests.
-- Public deployed asset evidence is recorded below after Git sync.
+- Deployment: PASS, implementation commit `96f920be5164a4e462ef9765d7f33ad41acf9be7`.
+  GitHub reported Vercel deployment completed before syncing master. Three live
+  owner JS assets match the tested build byte-for-byte; /owner returns 200 and
+  anonymous owner/workspace/translation/newsletter APIs return expected 401.
+  Eight HTTP checks are recorded in runtime-log-triage-live-2026-10-09.json.
+  Authenticated browser expiry is covered by controlled client fixtures, not a
+  newly created live owner session.
 - Supabase changelog index and current session documentation were reviewed; no
   Supabase API/schema/dependency change was necessary. Reference:
   https://supabase.com/docs/guides/auth/sessions
