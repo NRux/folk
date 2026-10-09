@@ -2,6 +2,14 @@
 
 ## Priority TODO
 
+Latest reader follow-up, 2026-10-09 UTC: reviewed localization now includes
+five public author profiles and 34 published topic/place archives. Nested locale
+routes, source extraction, reciprocal SEO and reviewed internal links pass all
+31 regressions and six-language synthetic fixtures. Production translations
+remain unreleased; autonomous article switches stay false. Vercel connector
+inspection is deferred at the owner's request. See
+verification/localized-reader-archives-2026-10-09.md for evidence and release limits.
+
 Latest acceptance follow-up, 2026-10-09 UTC: independent capped translation jobs,
 private owner drafts/persistence-only recovery, and reviewed localized discovery,
 forms and shared UI are implemented and deployed. The owner reports pilot/model

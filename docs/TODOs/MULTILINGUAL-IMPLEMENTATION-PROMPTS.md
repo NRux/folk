@@ -8,7 +8,7 @@ Run these in order in NRux/folk. Current implementation and owner-reported appro
 | --- | --- |
 | 1 | DONE: public-only contracts, glossary, strict payload schema and source-version validation. |
 | 2 | DONE for code/isolated fixtures: approved-only static renderer and review-bound translation hashes. No real translations released. |
-| 3 | DONE for implementation: reviewed home/archive/About/Subscribe/Privacy/credits, card/filter labels and message catalog, localized links and explicit accessible English fallback. Main discovery is localized; unreviewed author/topic/country subarchives retain English fallback. No real locale is released. |
+| 3 | DONE for implementation: reviewed home/archive/About/Subscribe/Privacy/credits, card/filter labels and message catalog, localized links and explicit accessible English fallback. Author profiles and published topic/place subarchives now have source-bound contracts and reviewed nested locale routes; any unavailable or stale destination retains English fallback. No real locale is released. |
 | 4 | PARTIAL: six-language structural/RTL/escaping tests pass. Actual viewport/keyboard checks and review of generated language output remain pending. |
 | 5 | DONE for job/usage/recovery code and hosted SQL fixtures. Owner reports capped pilot and provider/model approval completed. Runtime pilot awaits verification of configured model/caps through restored Vercel access; no paid call occurred. |
 | 6 | REVIEWERS PROVIDED per owner. Review of actual generated payloads and bounded backfill remain pending after the pilot. Do not request reviewer provision again. |

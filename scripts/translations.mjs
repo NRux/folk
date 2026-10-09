@@ -1,11 +1,25 @@
 import {createHash} from 'node:crypto';
+import {discoveryGroups} from './article-discovery.mjs';
 import {escapeHtml} from './public-articles.mjs';
 
 export const LOCALES=Object.freeze({en:'English','zh-Hans':'简体中文',es:'Español',hi:'हिन्दी',ar:'العربية',fr:'Français',ja:'日本語'});
 export const TRANSLATION_PROMPT_VERSION='faithful-public-segments-v1';
 export const UI_PAGES=Object.freeze({'ui-home':{path:'/',file:'index.html'},'ui-archive':{path:'/archive',file:'archive.html'},'ui-about':{path:'/about',file:'about.html'},'ui-subscribe':{path:'/subscribe',file:'subscribe.html'},'ui-privacy':{path:'/privacy',file:'privacy.html'},'ui-image-credits':{path:'/image-credits',file:'image-credits.html'}});
+// Derived solely from published discovery groups and known public author routes.
+export function publicUiPages(articles=[],routes={}) {
+ const pages={...UI_PAGES};
+ const add=path=>{
+  if(!/^\/(?:archive\/(?:topic|place)|author)\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(path))throw Error('Unsafe public discovery route');
+  const slug='ui-'+path.slice(1).replaceAll('/','-');
+  if(Object.hasOwn(pages,slug))throw Error('Duplicate public discovery identity');
+  pages[slug]={path,file:path.slice(1)+'.html'};
+ };
+ for(const path of discoveryGroups(articles).keys())add(path);
+ for(const path of Object.keys(routes).filter(path=>path.startsWith('/author/')).sort())add(path);
+ return Object.freeze(pages);
+}
 export const PUBLIC_MESSAGES=Object.freeze({count:'Showing {shown} of {total} {noun}',story:'story',stories:'stories',gpc:'Global Privacy Control detected. Advertising stays disabled; analytics is a separate optional choice.',contactSaving:'Saving your message…',contactSaved:'Thank you. Your message has been saved for Folkly.',contactInvalid:'Check your name, email, reason, message and consent, then try again.',contactUnavailable:'Contact is temporarily unavailable. Please try again later.',contactConnection:'Could not connect. Your message has not been confirmed saved. Please try again.',subscribeSaving:'Saving your subscription…',subscribeSaved:'Thank you. Your subscription has been saved.',subscribeInvalid:'Check your email address and consent, then try again.',subscribeUnavailable:'Subscription is temporarily unavailable. Please try again later.',subscribeConnection:'Could not connect. Please try again.'});
-export const pagePath=(slug,locale='en')=>{const path=Object.hasOwn(UI_PAGES,slug)?UI_PAGES[slug].path:`/${slug}`;return locale==='en'?path:`/${locale}${path==='/'?'':path}`;};
+export const pagePath=(slug,locale='en',pages=UI_PAGES)=>{const path=Object.hasOwn(pages,slug)?pages[slug].path:`/${slug}`;return locale==='en'?path:`/${locale}${path==='/'?'':path}`;};
 export const hash=value=>createHash('sha256').update(typeof value==='string'?value:JSON.stringify(value)).digest('hex');
 const exact=(value,keys)=>value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).sort().join('|')===keys.slice().sort().join('|');
 const entities={amp:'&',lt:'<',gt:'>',quot:'"',apos:"'",nbsp:' ',rsquo:'’',lsquo:'‘',rdquo:'”',ldquo:'“',middot:'·',larr:'←',mdash:'—',ndash:'–'};
@@ -55,8 +69,8 @@ export function extractContract(html,{slug,status='published',glossary,manifest,
     immutable:{links:[...html.matchAll(/\bhref="([^"]*)"/g)].map(m=>m[1]),media:[...html.matchAll(/\bdata-image-id="([^"]*)"/g)].map(m=>m[1])}};
 }
 
-export function extractUiContract(html,{slug,glossary}){
- if(!Object.hasOwn(UI_PAGES,slug))throw Error('Unknown or private UI source');
+export function extractUiContract(html,{slug,glossary,pages=UI_PAGES}){
+ if(!Object.hasOwn(pages,slug))throw Error('Unknown or private UI source');
  return {format:'folkly-public-segments-v1',slug,sourceHash:hash(html),glossaryHash:hash(glossary),promptVersion:TRANSLATION_PROMPT_VERSION,segments:ranges(html).map(({id,kind,text})=>({id,kind,text})),immutable:{links:[...html.matchAll(/\bhref="([^"]*)"/g)].map(m=>m[1]),media:[...html.matchAll(/\bdata-image-id="([^"]*)"/g)].map(m=>m[1])}};
 }
 export function messageContract(glossary){return {format:'folkly-public-segments-v1',slug:'ui-messages',sourceHash:hash(PUBLIC_MESSAGES),glossaryHash:hash(glossary),promptVersion:TRANSLATION_PROMPT_VERSION,segments:Object.entries(PUBLIC_MESSAGES).map(([kind,text],i)=>({id:`s${String(i+1).padStart(4,'0')}`,kind,text})),immutable:{links:[],media:[]}};}
@@ -93,38 +107,38 @@ export function reviewedTranslations(entries,contracts,translations){
   return approved;
 }
 
-export function alternateLinks(slug,approved,origin){
-  const paths=[['en',pagePath(slug)],...Object.keys(LOCALES).filter(l=>l!=='en'&&approved.has(`${l}/${slug}`)).map(l=>[l,pagePath(slug,l)]),['x-default',pagePath(slug)]];
+export function alternateLinks(slug,approved,origin,pages=UI_PAGES){
+  const paths=[['en',pagePath(slug,'en',pages)],...Object.keys(LOCALES).filter(l=>l!=='en'&&approved.has(`${l}/${slug}`)).map(l=>[l,pagePath(slug,l,pages)]),['x-default',pagePath(slug,'en',pages)]];
   return paths.map(([locale,path])=>`<link rel="alternate" hreflang="${locale}" href="${escapeHtml(origin+path)}">`).join('');
 }
-export function languageSelector(slug,locale,approved){
+export function languageSelector(slug,locale,approved,pages=UI_PAGES){
   const available=Object.keys(LOCALES).filter(l=>l==='en'||approved.has(`${l}/${slug}`));if(available.length===1)return '';
-  return `<nav class="language-switcher" aria-label="${escapeHtml(LOCALES[locale])}">${available.map(l=>`<a lang="${l}" hreflang="${l}" href="${pagePath(slug,l)}"${l===locale?' aria-current="page"':''}>${LOCALES[l]}</a>`).join('')}</nav>`;
+  return `<nav class="language-switcher" aria-label="${escapeHtml(LOCALES[locale])}">${available.map(l=>`<a lang="${l}" hreflang="${l}" href="${pagePath(slug,l,pages)}"${l===locale?' aria-current="page"':''}>${LOCALES[l]}</a>`).join('')}</nav>`;
 }
-export function decorateEnglish(html,slug,approved,origin){
+export function decorateEnglish(html,slug,approved,origin,pages=UI_PAGES){
   if(!Object.keys(LOCALES).some(l=>approved.has(`${l}/${slug}`)))return html;
-  return html.replace('</head>',`${alternateLinks(slug,approved,origin)}<link rel="stylesheet" href="/locales.css"><script defer src="/language.js"></script></head>`).replace('<main ',`${languageSelector(slug,'en',approved)}<main `);
+  return html.replace('</head>',`${alternateLinks(slug,approved,origin,pages)}<link rel="stylesheet" href="/locales.css"><script defer src="/language.js"></script></head>`).replace('<main ',`${languageSelector(slug,'en',approved,pages)}<main `);
 }
-export function renderTranslation(html,value,contract,approved,origin){
+export function renderTranslation(html,value,contract,approved,origin,pages=UI_PAGES){
   validateTranslation(value,contract);if(hash(html)!==contract.sourceHash)throw Error('Source template changed');
   const list=ranges(html);if(list.length!==value.segments.length)throw Error('Segment coverage changed');
   let output=html;for(let i=list.length-1;i>=0;i--)output=output.slice(0,list[i].start)+escapeHtml(value.segments[i].text)+output.slice(list[i].end);
-  const locale=value.locale,url=origin+pagePath(contract.slug,locale);
+  const locale=value.locale,url=origin+pagePath(contract.slug,locale,pages);
   output=output.replace(/<html\b[^>]*>/,`<html lang="${locale}" dir="${locale==='ar'?'rtl':'ltr'}">`).replace(/<link rel="canonical" href="[^"]*">/,`<link rel="canonical" href="${url}">`).replace(/<meta property="og:url" content="[^"]*">/,`<meta property="og:url" content="${url}">`);
   const title=plain(output.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]*>/g,'')||''),summary=plain(output.match(/<meta name="description" content="([^"]*)">/)?.[1]||'');
   output=output.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,(match,raw)=>{const data=JSON.parse(raw);if(data['@type']!=='Article')return match;data.url=url;data.mainEntityOfPage=url;data.inLanguage=locale;data.headline=title;data.description=summary;delete data.wordCount;return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g,'\\u003c')}</script>`;});
   let fallback=false;
   output=output.replace(/<a\b([^>]*?)href="(\/[^"]*)"([^>]*)>/g,(match,before,path,after)=>{
     if(path.startsWith('/api/'))return match;
-    const [base,fragment]=path.split('#'),ui=Object.keys(UI_PAGES).find(key=>UI_PAGES[key].path===base),slug=ui||base.slice(1);
-    if(approved.has(`${locale}/${slug}`))return `<a${before}href="${pagePath(slug,locale)}${fragment?'#'+fragment:''}"${after}>`;
+    const [base,fragment]=path.split('#'),ui=Object.keys(pages).find(key=>pages[key].path===base),slug=ui||base.slice(1);
+    if(approved.has(`${locale}/${slug}`))return `<a${before}href="${pagePath(slug,locale,pages)}${fragment?'#'+fragment:''}"${after}>`;
     fallback=true;
     return `<a${before.replace(/\s(?:lang|title|aria-describedby)="[^"]*"/g,'')}href="${path}"${after.replace(/\s(?:lang|title|aria-describedby)="[^"]*"/g,'')} hreflang="en" title="${escapeHtml(value.fallbackLabel)}" aria-describedby="locale-fallback">`;
   });
   // Source templates may use root-relative shorthand; locale directories must not change asset resolution.
   output=output.replace(/\b(src|href)="(assets\/[^\"]*)"/g,'$1="/$2"');
   const notice=fallback?`<p class="language-fallback" id="locale-fallback">${escapeHtml(value.fallbackLabel)}</p>`:'';
-  return output.replace('</head>',`${alternateLinks(contract.slug,approved,origin)}<link rel="stylesheet" href="/locales.css"><script defer src="/language.js"></script></head>`).replace('<main ',`${languageSelector(contract.slug,locale,approved)}${notice}<main `);
+  return output.replace('</head>',`${alternateLinks(contract.slug,approved,origin,pages)}<link rel="stylesheet" href="/locales.css"><script defer src="/language.js"></script></head>`).replace('<main ',`${languageSelector(contract.slug,locale,approved,pages)}${notice}<main `);
 }
 
 export function attachMessages(html,locale,messages){

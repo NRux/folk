@@ -143,6 +143,22 @@ links to unreviewed stories/subarchives retain English destinations with an
 accessible visible fallback notice. Release complete reviewed shared-page/message
 sets alongside the reviewed pilot story so forms and legal choices are coherent.
 
+## Public author and archive routes, 2026-10-09 UTC
+
+The registry derives topic/place routes only from the published catalog and author
+profiles from the existing public route map. Legacy topics without published
+stories, owner routes and private reserve pages are not translation sources.
+Stable identities such as `ui-author-mira-sol` and `ui-archive-topic-music`
+map to `/fr/author/mira-sol` and `/fr/archive/topic/music`; provider payloads
+cannot supply paths. The current registry contains 11 stories, six shared pages,
+five author profiles, 34 topic/place archives and the message catalog (57 sources).
+Export via `scripts/extract-translations.mjs` includes exactly that registry.
+Nested output directories, self canonicals, reciprocal alternates, language
+selectors and sitemap entries use the same trusted map. Reviews remain bound
+to complete source and payload hashes. Empty/draft/stale approval creates no
+locale page; English output stays byte-identical with an empty manifest.
+See verification/localized-reader-archives-2026-10-09.md for fixtures and limits.
+
 ## Outstanding deployed evidence
 
 Owner reports pilot approval/model review, reviewers, GA4 setup and provider secrets

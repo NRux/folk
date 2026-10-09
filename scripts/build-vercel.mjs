@@ -107,4 +107,4 @@ await writeFile('dist/privacy.html', addAdsense(privacyPage()));
 for (const file of ['privacy.js','privacy.css']) await cp(`web/vercel/${file}`,`dist/${file}`);
 await cp('web/vercel/reader-events.mjs','dist/reader-events.js');
 await writeFile('dist/article-release-registry.json',JSON.stringify({format:'folkly-public-release-registry-v1',articles:releaseRegistry},null,2)+'\n');
-await buildTranslations({articles,origin:canonical.origin});
+await buildTranslations({articles,routes,origin:canonical.origin});
