@@ -1,0 +1,123 @@
+{
+  "checkedAt": "2026-10-09T03:34:49.877205+00:00",
+  "commit": "03f07b5bd037d9d6ffcd075b1502d96b04084893",
+  "publicChecks": [
+    {
+      "path": "/owner",
+      "status": 200,
+      "exactBuiltBytes": true,
+      "sha256": "18bb01d81d1ce2bf0381cf386339344a9940ed75e859318646836412d4d206c3"
+    },
+    {
+      "path": "/owner-translations.js",
+      "status": 200,
+      "exactBuiltBytes": true,
+      "sha256": "98994dd11dd29a18cf0b3aa124415b401e02e05d60f3a0c914ac7fc1a4a89fb8"
+    },
+    {
+      "path": "/reader-ui.js",
+      "status": 200,
+      "exactBuiltBytes": true,
+      "sha256": "7ee3e4e28c043402c6ba6a96459154bc8b78ca47be4f9c33ce30f5d68ea8e90e"
+    },
+    {
+      "path": "/article-filters.js",
+      "status": 200,
+      "exactBuiltBytes": true,
+      "sha256": "b47dd6fc0608340b7295d2c86b1d4b2277e254dac08f51eb197f13cf6336817a"
+    },
+    {
+      "path": "/contact.js",
+      "status": 200,
+      "exactBuiltBytes": true,
+      "sha256": "d679f2ef9e82efe2ce6bb62839bb468fffb22f0b6b4385cb73049d4d60df0907"
+    },
+    {
+      "path": "/subscribe.js",
+      "status": 200,
+      "exactBuiltBytes": true,
+      "sha256": "c7a36c9f88af265683dce69616b9c24477e93a4d01cd310acadc5a50e7ed5dfd"
+    },
+    {
+      "path": "/privacy.js",
+      "status": 200,
+      "exactBuiltBytes": true,
+      "sha256": "cd991ae735b815e66d85c2413daa89ab9ed682d3eeebb20c789f9133991f576a"
+    },
+    {
+      "path": "/subscribe",
+      "status": 200,
+      "exactBuiltBytes": true,
+      "sha256": "c6488c7ce2052a812eb335918ae7e24385fb71ddc0c2002438c38d6efa89da4c"
+    },
+    {
+      "path": "/api/owner-translations",
+      "method": "GET",
+      "expectedStatus": 401,
+      "status": 401,
+      "pass": true
+    },
+    {
+      "path": "/api/owner-translations",
+      "method": "POST",
+      "expectedStatus": 401,
+      "status": 401,
+      "pass": true
+    },
+    {
+      "path": "/api/owner-translations",
+      "method": "POST",
+      "expectedStatus": 403,
+      "status": 403,
+      "pass": true
+    },
+    {
+      "path": "/build/translation-contracts/index.json",
+      "method": "GET",
+      "expectedStatus": 404,
+      "status": 404,
+      "pass": true
+    },
+    {
+      "path": "/ar",
+      "method": "GET",
+      "expectedStatus": 404,
+      "status": 404,
+      "pass": true
+    },
+    {
+      "path": "/fr/archive",
+      "method": "GET",
+      "expectedStatus": 404,
+      "status": 404,
+      "pass": true
+    },
+    {
+      "path": "/api/newsletter",
+      "method": "GET",
+      "expectedStatus": 401,
+      "status": 401,
+      "pass": true
+    }
+  ],
+  "scope": "Anonymous public deployment. No credentials, owner session, provider call, email or locale release.",
+  "hostedSql": {
+    "migration": "translation_pilot_ledger",
+    "version": "20261009031924",
+    "rolledBackFixturePassed": true,
+    "remainingJobs": 0,
+    "pilotEnabled": false,
+    "pilotTotalUsd": 0,
+    "articleSwitches": {
+      "production.autonomous_enabled": "false",
+      "publication.autonomous_enabled": "false",
+      "schedule.enabled": "false"
+    }
+  },
+  "limitations": [
+    "Vercel project connector 404; secure configuration not inspectable.",
+    "Original complete export unavailable; editorial import empty.",
+    "Browser owner session signed out; full authenticated provider/Blob/newsletter recovery not run.",
+    "No actual translation payload review or language viewport approval."
+  ]
+}

@@ -75,4 +75,27 @@ translation release, new article publication or outgoing newsletter occurred.
 The newsletter handler remains guarded; runtime delivery configuration is not
 independently verified because project access is blocked.
 
-Public deployment readback will be recorded separately after GitHub synchronization.
+## Deployed readback
+
+Code commit `03f07b5bd037d9d6ffcd075b1502d96b04084893` was synchronized to main/master
+with current-head leases. The GitHub Vercel status is “Deployment has completed.”
+A transient master-branch ignored-build status was not treated as deployment proof.
+
+- `npm run test:hosted` passed 45 checks, including eleven byte-exact article pages,
+  both URL forms, five author pages, subscription navigation and private-route denial.
+- Fifteen additional checks passed: eight exact built pages/assets (owner panel,
+  its translation script, reader dictionary, filters/contact/subscription/privacy
+  scripts and Subscribe); seven auth/CSRF/build-output/locale/newsletter boundaries.
+- `/api/owner-translations`: anonymous GET and same-origin POST return 401;
+  cross-origin POST returns 403. Built source contracts are not publicly accessible.
+  `/ar` and `/fr/archive` return 404 while the real review manifest remains empty.
+  Unauthenticated newsletter requests return 401. No jobs, charges or emails created.
+- Browser inspection reached the actual owner Sign in screen. No authenticated owner
+  session was available; no OTP request was sent. This establishes signed-out behavior,
+  not private draft readback or language layout acceptance.
+
+Machine-readable evidence: `translation-pilot-runtime-live-2026-10-09.json`.
+The complete hosted worker/content-serving and editorial/newsletter/restore flows
+remain open Stage 7 work; foundation adapters and SQL fixtures are not end-to-end
+activation evidence. Verify configured secrets/scopes/caps through restored Vercel
+access and obtain the complete source before those full acceptance runs.

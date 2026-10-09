@@ -1,5 +1,19 @@
 # Stage 07 — Acceptance report
 
+## Latest translation/runtime follow-up, 2026-10-09 UTC
+
+Translation job/usage/recovery code and reviewed shared discovery/form/privacy
+rendering are implemented and deployed. Pilot/model approval, reviewer provision,
+GA4 settings/DebugView work and provider secrets are completed per the owner;
+these are no longer owner setup requests. Full Stage 7 activation remains BLOCKED:
+original lossless content export, Vercel project visibility, authenticated runtime
+provider/newsletter recovery and actual reviewed language output are still needed.
+The 31-command regression, rolled-back hosted SQL ledger tests and 60 public
+readback checks pass. All article switches are false; no paid call, locale release
+or outgoing newsletter occurred. See [current evidence](translation-pilot-runtime-2026-10-09.md).
+This follow-up supersedes older setup/implementation blockers below. Google Cloud
+reporting remains deferred. Local/provider mocks do not establish full hosted gates.
+
 ## Current addendum, 2026-10-09 UTC
 
 Result remains **BLOCKED** for autonomous activation. This addendum supersedes

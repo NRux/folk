@@ -2,6 +2,17 @@
 
 ## Priority TODO
 
+Latest acceptance follow-up, 2026-10-09 UTC: independent capped translation jobs,
+private owner drafts/persistence-only recovery, and reviewed localized discovery,
+forms and shared UI are implemented and deployed. The owner reports pilot/model
+approval, reviewer provision, GA4 setup and provider secrets completed. Treat
+those setup steps as completed reports; actual output review/runtime receipts
+remain separate. Full regression, hosted SQL fixtures and 60 public deployment
+checks pass. No paid calls or locale release; article switches remain false.
+See verification/translation-pilot-runtime-2026-10-09.md for current evidence and
+remaining export, project-access and full deployed Stage 7 gates. This update
+supersedes older dated task/credential assumptions below. Google Cloud stays deferred.
+
 Current reader update, 2026-10-09 UTC: group-first image policy and draft prompts,
 varied Detroit group photography (one equipment detail), correct Tarragona arena
 image, merged About/Perspective at half the original editorial length, and compact
