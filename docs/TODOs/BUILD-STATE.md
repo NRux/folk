@@ -422,3 +422,13 @@ verification/contact-reply-2026-10-08.md. No mail credentials, subscriber state,
 publication controls or autonomous switches changed.
 The implementation deployed successfully; production serves the reply workflow,
 while anonymous contact-inbox access remains 401 with no-store caching.
+
+## Search identity and publisher logo, 2026-10-08
+
+Added a crawlable 512×512 Folkly brand asset, homepage Organization/WebSite JSON-LD,
+consistent `og:site_name`, and a descriptive homepage search title. All Article
+publisher objects now reuse the same Folkly organization ID and logo while visible
+Folkly-editorial and persona attribution stays unchanged. Build and full regression
+checks pass; see verification/search-identity-2026-10-08.md. Search Console/Rich
+Results validation remains external. No stories, credits, private records,
+publication controls or autonomous switches changed.

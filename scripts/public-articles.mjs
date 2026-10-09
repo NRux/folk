@@ -2,6 +2,26 @@ import { validateImageVariants } from './responsive-images.mjs';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 export const escapeHtml = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export const organizationIdentity = origin => ({
+  '@type':'Organization',
+  '@id':`${origin}/#organization`,
+  name:'Folkly',
+  url:`${origin}/`,
+  logo:{'@type':'ImageObject',url:`${origin}/assets/folkly-logo-512.png`,contentUrl:`${origin}/assets/folkly-logo-512.png`,width:512,height:512},
+  parentOrganization:{'@type':'Organization',name:'Then Media inc.'}
+});
+export function addSiteIdentity(html,origin) {
+  if(!html.includes('</head>'))throw new Error('Site identity requires a document head');
+  const graph={
+    '@context':'https://schema.org',
+    '@graph':[
+      organizationIdentity(origin),
+      {'@type':'WebSite','@id':`${origin}/#website`,url:`${origin}/`,name:'Folkly',publisher:{'@id':`${origin}/#organization`}}
+    ]
+  };
+  if(!html.includes('property="og:site_name"'))html=html.replace('</head>','<meta property="og:site_name" content="Folkly"></head>');
+  return html.replace('</head>',`<script type="application/ld+json">${JSON.stringify(graph).replace(/</g,'\\u003c')}</script></head>`);
+}
 export function publishedArticles(catalog, routes) {
   const published = catalog.filter(item => item.status === 'published');
   const seen = new Set();
@@ -72,7 +92,7 @@ export function decorateArticle(html, item, origin) {
     data.url = url;
     // Editorial personas are not human people. Attribute responsibility to Folkly.
     data.author = {'@type':'Organization', name:'Folkly editorial', url:`${origin}/about`};
-    data.publisher = {'@type':'Organization', name:'Folkly', url:origin};
+    data.publisher = organizationIdentity(origin);
     if (item.authorSlug) data.creditText = `${item.authorSlug.split('-').map(word=>word[0].toUpperCase()+word.slice(1)).join(' ')} (Folkly editorial persona)`;
     if (item.image) data.image = new URL(item.image.src, origin).href;
     return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g,'\\u003c')}</script>`;

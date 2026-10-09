@@ -5,7 +5,7 @@ import { applyResponsiveImages } from './responsive-images.mjs';
 import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { gunzipSync } from 'node:zlib';
-import { publishedArticles, verifyImageFiles, populateHomepage, decorateArticle, imageCreditsPage, escapeHtml } from './public-articles.mjs';
+import { publishedArticles, verifyImageFiles, populateHomepage, decorateArticle, imageCreditsPage, escapeHtml, addSiteIdentity } from './public-articles.mjs';
 
 import { discoveryGroups, discoveryRouteFiles, decorateArchive, decorateAuthor, discoveryPage, relatedStories } from './article-discovery.mjs';
 
@@ -45,6 +45,11 @@ for (const [route, file] of Object.entries(routes)) {
   if (route === '/archive') html = decorateArchive(html, articles);
   if (route.startsWith('/author/')) html = decorateAuthor(html, articles, route.split('/')[2]);
   if (route === '/') html = populateHomepage(html, articles);
+  if (route === '/') {
+    html=html.replace(/<title>[\s\S]*?<\/title>/,'<title>Folkly | Stories at the Intersection of Culture and Place</title>');
+    html=html.replace(/<meta property="og:title" content="[^"]*">/,'<meta property="og:title" content="Folkly | Stories at the Intersection of Culture and Place">');
+    html=addSiteIdentity(html,canonical.origin);
+  }
   const article = articles.find(item => route === `/${item.slug}`);
   if (article) {
     html = decorateArticle(html, article, canonical.origin);

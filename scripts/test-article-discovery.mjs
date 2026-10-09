@@ -18,6 +18,7 @@ for(const item of items){
  const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
  assert.equal(schema.author['@type'],'Organization');assert.equal(schema.author.url,'https://www.folkly.com/about');
  assert.equal(schema.publisher.name,'Folkly');
+ assert.equal(schema.publisher.logo.contentUrl,'https://www.folkly.com/assets/folkly-logo-512.png');
  if(item.authorSlug)assert(schema.creditText.includes('editorial persona'));
  assert(html.includes('class="related-stories"'));
  const related = html.match(/<section class="related-stories"[\s\S]*?<\/section>/)[0];

@@ -16,6 +16,9 @@ for (const item of articles) {
   assert(sitemap.includes(`<loc>https://www.folkly.com/${item.slug}</loc>`));
   const schema=JSON.parse(page.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(schema.mainEntityOfPage,`https://www.folkly.com/${item.slug}`);
+  assert.equal(schema.publisher['@id'],'https://www.folkly.com/#organization');
+  assert.equal(schema.publisher.logo.url,'https://www.folkly.com/assets/folkly-logo-512.png');
+  assert.equal(schema.publisher.logo.width,512);assert.equal(schema.publisher.logo.height,512);
   if(item.image){assert.equal(schema.image,new URL(item.image.src,'https://www.folkly.com').href);assert(page.includes('property="og:image"'));}
 }
 for(const item of released){
@@ -41,4 +44,13 @@ assert.throws(()=>publishedArticles([...catalog,{...future,slug:'../owner'}],rou
 assert.throws(()=>publishedArticles([{...future,image:{...future.image,src:'https://untrusted.example/image.jpg'}}],{'/future-approved-story':'future-approved-story.html'}));
 assert(!sitemap.includes('/owner'));
 assert((await readFile('dist/owner.html','utf8')).includes('noindex'));
+const identity=JSON.parse(home.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+const organization=identity['@graph'].find(node=>node['@type']==='Organization');
+const website=identity['@graph'].find(node=>node['@type']==='WebSite');
+assert.equal(organization.name,'Folkly');assert.equal(organization.parentOrganization.name,'Then Media inc.');
+assert.equal(organization.logo.contentUrl,'https://www.folkly.com/assets/folkly-logo-512.png');
+assert.equal(website.name,'Folkly');assert.equal(website.publisher['@id'],organization['@id']);
+assert(home.includes('<title>Folkly | Stories at the Intersection of Culture and Place</title>'));
+assert(home.includes('<meta property="og:site_name" content="Folkly">'));
+const logo=await readFile('dist/assets/folkly-logo-512.png');assert(logo.length>1000);
 console.log('Public article checks passed: automatic additions, draft exclusion, image credits, all grid cards, canonical/schema/sitemap, preserved article bodies.');
