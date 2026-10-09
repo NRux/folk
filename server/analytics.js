@@ -21,6 +21,30 @@ export function analyticsClient(env=process.env,factory=createClient) {
 }
 const MAX_REPORT_BYTES=1000000;
 const QUOTA_FIELDS=['tokensPerDay','tokensPerHour','tokensPerProjectPerHour','concurrentRequests','serverErrorsPerProjectPerHour','potentiallyThresholdedRequestsPerHour'];
+const UUID=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
+const HEX=/^[a-f0-9]{64}$/;
+const REPORT_VERSION='page-daily-v1';
+export function analyticsLedger(db) {
+  return {
+    async claim({jobId,propertyId,window}) {
+      const {data,error}=await db.rpc('folkly_claim_analytics_run',{job_key:jobId,analytics_property:propertyId,first_day:window.startDate,last_day:window.endDate,query_version:REPORT_VERSION});
+      if(error||!data||typeof data!=='object')throw Error('Analytics run claim unavailable');
+      return data;
+    },
+    async checkpoint({jobId,leaseToken,digest,value}) {
+      const {data,error}=await db.rpc('folkly_checkpoint_analytics_run',{job_key:jobId,lease_token:leaseToken,checkpoint_digest:digest,checkpoint_value:value});
+      if(error||data!==true)throw Error('Analytics checkpoint unavailable');
+    },
+    async finish({jobId,leaseToken,digest,snapshot}) {
+      const {data,error}=await db.rpc('folkly_finish_analytics_run',{job_key:jobId,lease_token:leaseToken,checkpoint_digest:digest,snapshot});
+      if(error||data!==true)throw Error('Analytics snapshot not persisted; collection disabled or unavailable');
+    },
+    async fail({jobId,leaseToken,failure,retryAfterSeconds}) {
+      const {data,error}=await db.rpc('folkly_fail_analytics_run',{job_key:jobId,lease_token:leaseToken,failure,retry_seconds:retryAfterSeconds??null});
+      if(error||data!==true)throw Error('Analytics failure evidence unavailable');
+    }
+  };
+}
 function quotaEvidence(value) {
   if(value===undefined)return null;
   if(!value||typeof value!=='object'||Array.isArray(value))throw Error('Invalid GA4 quota evidence');
@@ -47,12 +71,47 @@ async function readReport(response) {
   let report;try{report=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(Buffer.concat(chunks)));}catch{throw Error('Invalid GA4 report response');}
   if(!report||typeof report!=='object'||Array.isArray(report))throw Error('Invalid GA4 report response');return report;
 }
-export async function collectAnalytics({env=process.env,tokenProvider,client,fetcher=fetch,at=new Date()}) {
+function analyticsFailure(error) {
+  if(error?.message==='GA4 authentication unavailable')return {failure:'auth_unavailable',retryAfterSeconds:300};
+  if(error?.message==='GA4 report request unavailable')return {failure:'request_unavailable',retryAfterSeconds:300};
+  if(error?.message==='GA4 report request failed (429)')return {failure:'rate_limited',retryAfterSeconds:error.retryAfterSeconds||300};
+  if(error?.message?.startsWith('GA4 report request failed (5'))return {failure:'request_unavailable',retryAfterSeconds:300};
+  if(error?.message?.includes('quota exhausted'))return {failure:'quota_exhausted',retryAfterSeconds:3600};
+  if(error?.message?.includes('incompatible'))return {failure:'incompatible'};
+  if(error?.message?.includes('timezone mismatch'))return {failure:'property_mismatch'};
+  if(error?.message?.includes('checkpoint')||error?.message?.includes('persisted'))return {failure:'persistence_unavailable',retryAfterSeconds:300};
+  return {failure:'invalid_report'};
+}
+function checkpointDigest(value){return createHash('sha256').update(JSON.stringify(value)).digest('hex');}
+function restoreCheckpoint(value,{propertyId,window,maximumRows}) {
+  if(value===null||value===undefined)return {rows:[],quality:[],quotas:[],hashes:[],expected:undefined,previousKey:undefined};
+  if(!value||typeof value!=='object'||Array.isArray(value)||value.format!=='folkly-ga4-checkpoint-v1'||value.propertyId!==propertyId||value.startDate!==window.startDate||value.endDate!==window.endDate||value.version!==REPORT_VERSION||!Number.isSafeInteger(value.nextOffset)||!Number.isSafeInteger(value.expectedRows)||value.nextOffset<0||value.nextOffset>value.expectedRows||value.expectedRows>Math.min(10000,maximumRows)||!Array.isArray(value.rows)||value.rows.length!==value.nextOffset||!Array.isArray(value.quality)||!Array.isArray(value.quotas)||!Array.isArray(value.responseHashes)||value.quality.length>5||value.quotas.length!==value.quality.length||value.responseHashes.length!==value.quality.length||Buffer.byteLength(JSON.stringify(value))>MAX_REPORT_BYTES)throw Error('Invalid analytics checkpoint');
+  const seen=new Set();let previousKey;
+  for(const row of value.rows){
+    if(!row||typeof row!=='object'||Array.isArray(row)||typeof row.rawDate!=='string'||typeof row.rawPath!=='string'||typeof row.date!=='string'||typeof row.path!=='string'||!Number.isSafeInteger(row.views)||row.views<0||!Number.isFinite(row.engagementSeconds)||row.engagementSeconds<0)throw Error('Invalid analytics checkpoint');
+    const date=/^\d{8}$/.test(row.rawDate)?`${row.rawDate.slice(0,4)}-${row.rawDate.slice(4,6)}-${row.rawDate.slice(6,8)}`:'';
+    const key=row.rawDate+'|'+row.rawPath;
+    if(date!==row.date||canonicalArticlePath(row.rawPath)!==row.path||!paths.includes(row.rawPath)||civilDate(row.date)===null||row.date<window.startDate||row.date>window.endDate||seen.has(key)||(previousKey!==undefined&&key<previousKey))throw Error('Invalid analytics checkpoint');
+    seen.add(key);previousKey=key;
+  }
+  for(const hash of value.responseHashes)if(typeof hash!=='string'||!HEX.test(hash))throw Error('Invalid analytics checkpoint');
+  for(const q of value.quotas)quotaEvidence(q===null?undefined:q);
+  for(const q of value.quality)if(!q||typeof q!=='object'||Array.isArray(q)||typeof q.thresholded!=='boolean'||typeof q.sampled!=='boolean'||typeof q.otherRows!=='boolean'||typeof q.truncated!=='boolean'||!(q.emptyReason===null||typeof q.emptyReason==='string'))throw Error('Invalid analytics checkpoint');
+  return {rows:value.rows.map(row=>({...row})),quality:value.quality.map(row=>({...row})),quotas:value.quotas.map(row=>row===null?null:structuredClone(row)),hashes:[...value.responseHashes],expected:value.expectedRows,previousKey};
+}
+export async function collectAnalytics({env=process.env,tokenProvider,client,ledger,jobId,fetcher=fetch,at=new Date()}) {
   if(env.FOLKLY_ANALYTICS_ENABLED!=='true')return {state:'paused'};
-  if(!/^[0-9]{1,20}$/.test(env.GA4_PROPERTY_ID||'')||!env.GA4_TIME_ZONE||typeof tokenProvider!=='function')throw Error('GA4 property, timezone and read-only authentication required');
+  if(!UUID.test(jobId||'')||!/^[0-9]{1,20}$/.test(env.GA4_PROPERTY_ID||'')||!env.GA4_TIME_ZONE||typeof tokenProvider!=='function')throw Error('GA4 job, property, timezone and read-only authentication required');
   const window=analyticsWindow(at,env.GA4_TIME_ZONE);
-  let token;try{token=await tokenProvider({scope:'https://www.googleapis.com/auth/analytics.readonly'});}catch{throw Error('GA4 authentication unavailable');}
-  if(typeof token!=='string'||!token||token.length>8192)throw Error('GA4 authentication unavailable');
+  const runLedger=ledger||analyticsLedger(client||analyticsClient(env));
+  const claim=await runLedger.claim({jobId,propertyId:env.GA4_PROPERTY_ID,window});
+  if(claim.state==='completed')return {state:'already_collected',hash:claim.snapshotHash};
+  if(['paused','busy','backoff','held'].includes(claim.state))return {state:claim.state};
+  if(claim.state!=='claimed'||!UUID.test(claim.leaseToken||''))throw Error('Invalid analytics run claim');
+  const leaseToken=claim.leaseToken;
+  let token;
+  try{token=await tokenProvider({scope:'https://www.googleapis.com/auth/analytics.readonly'});}catch{const error=Error('GA4 authentication unavailable');await runLedger.fail({jobId,leaseToken,...analyticsFailure(error)}).catch(()=>{});throw error;}
+  if(typeof token!=='string'||!token||token.length>8192){const error=Error('GA4 authentication unavailable');await runLedger.fail({jobId,leaseToken,...analyticsFailure(error)}).catch(()=>{});throw error;}
   const base=`https://analyticsdata.googleapis.com/v1beta/properties/${env.GA4_PROPERTY_ID}`;
   const request={dimensions:[{name:'date'},{name:'pagePath'}],metrics:[{name:'screenPageViews'},{name:'userEngagementDuration'}],dimensionFilter:{andGroup:{expressions:[{filter:{fieldName:'hostName',inListFilter:{values:['www.folkly.com','folkly.com']}}},{filter:{fieldName:'pagePath',inListFilter:{values:paths}}}]}}};
   async function post(method,body) {
@@ -63,11 +122,17 @@ export async function collectAnalytics({env=process.env,tokenProvider,client,fet
     }
     return readReport(response);
   }
-  const compatible=await post('checkCompatibility',{...request,compatibilityFilter:'COMPATIBLE'});
-  if(!Array.isArray(compatible.dimensionCompatibilities)||!Array.isArray(compatible.metricCompatibilities)||!request.dimensions.every(d=>compatible.dimensionCompatibilities?.some(x=>x.dimensionMetadata?.apiName===d.name&&x.compatibility==='COMPATIBLE'))||!request.metrics.every(m=>compatible.metricCompatibilities?.some(x=>x.metricMetadata?.apiName===m.name&&x.compatibility==='COMPATIBLE')))throw Error('GA4 report dimensions/metrics incompatible');
-  const records=new Map(),seen=new Set(),quality=[],quotas=[],hashes=[];let offset=0,expected,previousKey;
   const maximumRows=paths.length*((Date.parse(window.endDate)-Date.parse(window.startDate))/86400000+1);
-  for(let page=0;page<5;page++) {
+  let restored;
+  try{restored=restoreCheckpoint(claim.checkpoint,{propertyId:env.GA4_PROPERTY_ID,window,maximumRows});}
+  catch(error){await runLedger.fail({jobId,leaseToken,...analyticsFailure(error)}).catch(()=>{});throw error;}
+  const records=new Map(),seen=new Set(),checkpointRows=restored.rows,quality=restored.quality,quotas=restored.quotas,hashes=restored.hashes;
+  let offset=checkpointRows.length,expected=restored.expected,previousKey=restored.previousKey,lastDigest=claim.checkpoint?checkpointDigest(claim.checkpoint):undefined;
+  for(const row of checkpointRows){const rawKey=row.rawDate+'|'+row.rawPath;seen.add(rawKey);const key=row.date+row.path,prior=records.get(key)||{date:row.date,path:row.path,views:0,engagementSeconds:0};prior.views+=row.views;prior.engagementSeconds+=row.engagementSeconds;if(!Number.isSafeInteger(prior.views)||!Number.isFinite(prior.engagementSeconds))throw Error('Analytics checkpoint aggregate exceeds bound');records.set(key,prior);}
+  try {
+   const compatible=await post('checkCompatibility',{...request,compatibilityFilter:'COMPATIBLE'});
+   if(!Array.isArray(compatible.dimensionCompatibilities)||!Array.isArray(compatible.metricCompatibilities)||!request.dimensions.every(d=>compatible.dimensionCompatibilities?.some(x=>x.dimensionMetadata?.apiName===d.name&&x.compatibility==='COMPATIBLE'))||!request.metrics.every(m=>compatible.metricCompatibilities?.some(x=>x.metricMetadata?.apiName===m.name&&x.compatibility==='COMPATIBLE')))throw Error('GA4 report dimensions/metrics incompatible');
+   for(let page=quality.length;offset!==expected&&page<5;page++) {
     const report=await post('runReport',{...request,dateRanges:[window],offset:String(offset),limit:'2000',orderBys:[{dimension:{dimensionName:'date'}},{dimension:{dimensionName:'pagePath'}}],returnPropertyQuota:true});
     hashes.push(createHash('sha256').update(JSON.stringify(report)).digest('hex'));
     if(report.metadata?.timeZone!==env.GA4_TIME_ZONE)throw Error('GA4 property timezone mismatch');
@@ -88,14 +153,18 @@ export async function collectAnalytics({env=process.env,tokenProvider,client,fet
       const rawKey=rawDate+'|'+rawPath;if(seen.has(rawKey))throw Error('Duplicate GA4 report row');
       if(previousKey!==undefined&&rawKey<previousKey)throw Error('Invalid GA4 report order');seen.add(rawKey);previousKey=rawKey;
       const key=date+path,prior=records.get(key)||{date,path,views:0,engagementSeconds:0};prior.views+=values[0];prior.engagementSeconds+=values[1];if(!Number.isSafeInteger(prior.views)||!Number.isFinite(prior.engagementSeconds))throw Error('GA4 aggregate exceeds bound');records.set(key,prior);
+      checkpointRows.push({rawDate,rawPath,date,path,views:values[0],engagementSeconds:values[1]});
     }
-    offset+=rows.length;if(offset===expected)break;if(offset>expected||page===4)throw Error('GA4 pagination incomplete');
+    offset+=rows.length;
+    const checkpoint={format:'folkly-ga4-checkpoint-v1',propertyId:env.GA4_PROPERTY_ID,...window,version:REPORT_VERSION,nextOffset:offset,expectedRows:expected,rows:checkpointRows,quality,quotas,responseHashes:hashes};
+    lastDigest=checkpointDigest(checkpoint);await runLedger.checkpoint({jobId,leaseToken,digest:lastDigest,value:checkpoint});
+    if(offset===expected)break;if(offset>expected||page===4)throw Error('GA4 pagination incomplete');
     if(['tokensPerDay','tokensPerHour','tokensPerProjectPerHour','serverErrorsPerProjectPerHour'].some(field=>quota?.[field]?.remaining===0))throw Error('GA4 quota exhausted; incomplete report not persisted');
-  }
-  const snapshot={propertyId:env.GA4_PROPERTY_ID,...window,version:'page-daily-v1',hash:createHash('sha256').update(JSON.stringify(hashes)).digest('hex'),report:{timeZone:env.GA4_TIME_ZONE,rows:[...records.values()],quality,quotas}};
-  const db=client||analyticsClient(env);const saved=await db.rpc('folkly_save_analytics_snapshot',{snapshot});
-  if(saved.error||saved.data!==true)throw Error('Analytics snapshot not persisted; collection disabled or unavailable');
-  return {state:'collected',rows:snapshot.report.rows.length,startDate:window.startDate,endDate:window.endDate};
+   }
+   const snapshot={propertyId:env.GA4_PROPERTY_ID,...window,version:REPORT_VERSION,hash:createHash('sha256').update(JSON.stringify(hashes)).digest('hex'),report:{timeZone:env.GA4_TIME_ZONE,rows:[...records.values()],quality,quotas}};
+   await runLedger.finish({jobId,leaseToken,digest:lastDigest,snapshot});
+   return {state:'collected',rows:snapshot.report.rows.length,startDate:window.startDate,endDate:window.endDate};
+  }catch(error){await runLedger.fail({jobId,leaseToken,...analyticsFailure(error)}).catch(()=>{});throw error;}
 }
 function civilDate(value) {
   if(typeof value!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(value))return null;

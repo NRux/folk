@@ -2,6 +2,16 @@
 
 ## Priority TODO
 
+Latest analytics durability follow-up, 2026-10-09 UTC: Prompt 3 collection
+orchestration now has a private RLS-protected run ledger, five-minute fenced
+leases, validated per-page checkpoints, bounded retry/backoff evidence and atomic,
+idempotent snapshot completion. The additive migration is applied to the connected
+Supabase project; a rollback-only hosted claim/checkpoint/finish exercise passed
+and left zero runs/snapshots. Full regression passed. Analytics collection,
+production, publication and scheduling remain disabled. Additional scoped report
+groups, release mapping and authorized live Google receipts remain open. See
+verification/analytics-checkpoints-2026-10-09.md.
+
 Latest runtime-log follow-up, 2026-10-09 UTC: all 98 supplied records were
 triaged; 75 succeeded, 21 required authentication, one rejected origin and one
 rejected contact input. No 5xx or rate-limit failure appears. The owner expiry

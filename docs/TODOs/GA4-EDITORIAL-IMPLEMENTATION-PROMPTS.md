@@ -6,12 +6,15 @@ Latest collector follow-up, 2026-10-09 UTC: strict report/calendar/metric/path
 validation, cross-page duplicate and ordering denial, bounded streaming reads,
 quota-aware pagination and redacted 429 retry hints are implemented. Invalid or
 incomplete reports never reach the snapshot RPC; valid alias rows still merge.
-Prompt 3 remains PARTIAL: durable sync-run/checkpoint recovery, additional report
-groups, runtime token wiring and live readback remain open. Prompt 4 still permits
+Prompt 3 remains PARTIAL: additional report groups, release/cohort mapping,
+runtime token wiring and live readback remain open. Durable fenced run claims,
+per-page recovery checkpoints, retry/backoff evidence and atomic completion are
+implemented and applied to hosted Supabase. Prompt 4 still permits
 only qualified descriptive observations. No reporting call, schedule or AI revision
 was activated. Owner-reported GA4 setup and provider secrets remain completed
 setup reports; Google Cloud/reporting access stays deferred. See
-verification/analytics-report-integrity-2026-10-09.md for tests and limits.
+verification/analytics-report-integrity-2026-10-09.md and
+verification/analytics-checkpoints-2026-10-09.md for tests and limits.
 
 Run prompts in order. Each prompt inherits the shared constraints below.
 
