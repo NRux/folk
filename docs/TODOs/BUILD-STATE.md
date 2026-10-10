@@ -1,5 +1,25 @@
 # Folkly Build State
 
+## Isolated hosted newsletter storage recovery, 2026-10-10 UTC
+
+Implemented an administrative single-use, ten-minute, deployed-code-bound recovery
+check. It reuses the existing private Vercel Blob store, maps every path under a
+separate acceptance/newsletter grant namespace, accepts no subscriber/path/provider
+input, and imports no mail adapter. Eleven checks cover five competing claims,
+immutable claims/separate receipts, lost-write replies, interrupted claims,
+receipt-only and complete restored copies, first-timestamp suppression, corrupt
+suppression denial, synthetic subscriber enumeration and independent inventory
+readback. No evidence is deleted or overwritten, and no email can be sent.
+
+The new private grant migration is applied in existing Supabase. Administrative
+issuance only, private RLS/client denial, single-use/expiry/lease and paused-state
+fences, rollback-only hosted claim/completion, zero leftover fixture grants and all
+three production switches false pass. Build is 73 pages/11 public stories; all 39
+regression commands pass. Concurrent translation drafts stay unapproved. Actual
+Vercel fixture execution is pending deployment at this checkpoint; full provider/
+mailbox/owner and publisher recovery gates remain open. Newsletter delivery and
+autonomous publishing stay off. See verification/newsletter-hosted-storage-recovery-2026-10-10.md.
+
 ## Owner newsletter readiness and digest preview, 2026-10-10 UTC
 
 Noah configured the signing secret. Live invalid-token unsubscribe GET now returns
@@ -787,3 +807,4 @@ Folkly-editorial and persona attribution stays unchanged. Build and full regress
 checks pass; see verification/search-identity-2026-10-08.md. Search Console/Rich
 Results validation remains external. No stories, credits, private records,
 publication controls or autonomous switches changed.
+

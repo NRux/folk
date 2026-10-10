@@ -34,6 +34,10 @@
     }
   ],
   "functions": {
+    "api/newsletter-recovery.js": {
+      "maxDuration": 180,
+      "includeFiles": "server/newsletter-{recovery,store,records}.js"
+    },
     "api/editorial-import.js": {
       "maxDuration": 300,
       "includeFiles": "{supabase/migrations/20261007220625_folkly_editorial.sql,web/vercel/{articles,manual-releases}.json}"
