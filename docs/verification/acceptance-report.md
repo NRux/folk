@@ -18,6 +18,13 @@ needed for authenticated readback; isolated consented-recipient acceptance must
 precede any weekly delivery activation. See newsletter-persistence-recovery-2026-10-10.md
 and ../platform/NEWSLETTER.md. No article, schema, cron or activation switch changed.
 
+Deployed code fd7ccf5 is successful; 45 reader checks and anonymous 401/no-store
+newsletter/owner denial pass. Unsubscribe runtime prerequisite remains BLOCKED:
+live invalid-token GET returns 503 because production NEWSLETTER_SECRET is missing
+or shorter than 32 characters. Verify the existing signing value in Production
+and redeploy without rotating valid links. No credential value is requested in
+chat. Evidence: newsletter-public-denial-2026-10-10.json.
+
 ## Saved-version UI prerequisite and design handoff, 2026-10-10 UTC
 
 Protected metadata-only history and exact article/version body selection now support
@@ -139,7 +146,7 @@ public stories, including seven already manually released; they are not reserve.
 | Editorial content import | PASS complete source export, actual private Blob upload/transactional metadata import, exact two-sweep readback and independent administrative comparison (2026-10-09). Owner draft/recovery remains a separate gate. |
 | Funded unattended generation | BLOCKED pending scoped provider/worker credentials, approved budget/pricing and live usage/redaction/persona evidence. Local paused/budget/ledger tests pass. |
 | Hosted recovery and publication | Earlier scoped hosted component fixtures exist; full Vercel commit/readback/backup/failure recovery gates remain pending. |
-| Resend newsletter acceptance | Verified immutable claim/receipt/suppression and complete listing implementation passes local recovery tests. Noah reports provider secrets set; authenticated isolated provider/mailbox/restore evidence remains pending and delivery stays off. |
+| Resend newsletter acceptance | Immutable persistence/recovery passes local tests. Live unsubscribe is BLOCKED by production NEWSLETTER_SECRET missing/short; verify its Production scope/value without exposing it, then redeploy. Isolated provider/mailbox/restore evidence remains pending; delivery stays off. |
 | Vercel protected inspection | Connector inspection deferred at Noah's request. Existing project and GitHub deployment remain in use; public checks do not establish protected runtime/provider gates. |
 
 Production/autonomous publication/article scheduling stay disabled. Google Cloud

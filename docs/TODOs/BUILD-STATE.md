@@ -20,6 +20,14 @@ previously configured secrets are not requested again and the Vercel connector
 stays deferred. See verification/newsletter-persistence-recovery-2026-10-10.md and
 platform/NEWSLETTER.md for the current acceptance/recovery procedure.
 
+Deployment follow-up: code fd7ccf5 passes Vercel and all 45 reader checks; anonymous
+newsletter/owner requests deny 401/no-store. Live unsubscribe returns 503/no-store
+before token validation: production NEWSLETTER_SECRET is absent or shorter than
+32 characters. Verify the existing signing value in the exact project Production
+environment and redeploy without rotating existing links; no secrets in chat/Git.
+See verification/newsletter-public-denial-2026-10-10.json. This is the current
+newsletter runtime blocker, superseding the older generic setup assumptions.
+
 ## Owner version browsing and designer handoff, 2026-10-10 UTC
 
 Added protected saved-version selection for published articles and drafts, bounded

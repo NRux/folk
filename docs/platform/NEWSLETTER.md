@@ -70,6 +70,13 @@ use a ten-second abort deadline; oversized or interrupted streams are cancelled.
 ## Hosted acceptance in the existing project
 
 Noah approved Resend and reported the provider secrets configured on 2026-10-08.
+Live check on 2026-10-10 found invalid-token unsubscribe GET returning 503 before
+token validation. In this handler that means production `NEWSLETTER_SECRET` is
+absent or shorter than 32 characters. Verify the existing signing value in the
+**Production** environment of project `prj_d93TLitMYu8uYjqfgvgANuwsRJVK` and
+redeploy. Preserve any existing valid signing key; do not rotate old reader links.
+If never configured, generate a dedicated high-entropy value in provider settings.
+Then invalid-token GET must return 400/no-store. Do not put the value in chat/Git.
 Do not request those secrets again or copy them into chat/Git. Existing Vercel Blob
 credentials were independently exercised by the completed editorial import.
 Newsletter provider configuration and end-to-end delivery have separate gates;

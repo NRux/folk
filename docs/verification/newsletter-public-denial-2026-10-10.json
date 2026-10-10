@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-10T00:40:23.544469+00:00",
+  "codeCommit": "fd7ccf5a31f417327ef7faa410f2bf5197cf8a9e",
+  "origin": "https://www.folkly.com",
+  "readerChecksPassed": 45,
+  "privateWrites": 0,
+  "providerCalls": 0,
+  "checks": [
+    {
+      "path": "/api/newsletter",
+      "method": "GET",
+      "status": 401,
+      "cacheControl": "no-store",
+      "referrerPolicy": "no-referrer",
+      "safeResponse": "{\"message\":\"Unauthorized\"}"
+    },
+    {
+      "path": "/api/unsubscribe?token=invalid",
+      "method": "GET",
+      "status": 503,
+      "cacheControl": "no-store",
+      "referrerPolicy": "no-referrer",
+      "safeResponse": "Unsubscribe temporarily unavailable"
+    },
+    {
+      "path": "/api/owner",
+      "method": "GET",
+      "status": 401,
+      "cacheControl": "no-store",
+      "referrerPolicy": "strict-origin-when-cross-origin",
+      "safeResponse": "{\"message\":\"Sign in to view owner status.\"}"
+    },
+    {
+      "path": "/api/owner?subscribers=1",
+      "method": "GET",
+      "status": 401,
+      "cacheControl": "no-store",
+      "referrerPolicy": "strict-origin-when-cross-origin",
+      "safeResponse": "{\"message\":\"Sign in to view owner status.\"}"
+    }
+  ],
+  "newsletterGate": "blocked: production NEWSLETTER_SECRET absent or shorter than 32 characters",
+  "autonomousSettings": {
+    "production.autonomous_enabled": "false",
+    "publication.autonomous_enabled": "false",
+    "schedule.enabled": "false"
+  }
+}

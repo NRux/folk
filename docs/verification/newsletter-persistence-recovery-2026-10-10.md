@@ -73,13 +73,30 @@ values, cron configuration, existing subscriber records or private evidence.
 
 ## Hosted acceptance and remaining work
 
-GitHub deployment/public denial readback will be recorded below after sync.
+Code commit `fd7ccf5a31f417327ef7faa410f2bf5197cf8a9e` is synced to main/master.
+GitHub Vercel status is success for the existing project:
+https://vercel.com/optagens-projects/folk/9V8TJmfbLpXD9HEpShvdnjXXhGEJ.
+All 45 deployed reader checks pass, including byte-exact public articles/credits.
+Anonymous newsletter and owner/subscriber-page requests return 401/no-store.
 No live signed unsubscribe POST or authenticated cron run is used as a test.
 Local tests and anonymous HTTP checks do not prove actual subscriber persistence,
 Resend sender acceptance, mailbox delivery or hosted interruption/restore recovery.
 
-Noah already reported provider secrets configured. No secret is requested again;
-the Vercel connector and Google Cloud task remain deferred. A fresh secure owner
+The live invalid-token unsubscribe GET returns **503/no-store**, with
+`Unsubscribe temporarily unavailable`, instead of reaching token validation. In the
+deployed handler this response is only produced when `NEWSLETTER_SECRET` is absent
+or shorter than 32 characters. This is a production runtime configuration blocker,
+not a failed Blob read. No signed token or subscriber preference was exercised.
+Aggregate public evidence: [denial checks](newsletter-public-denial-2026-10-10.json).
+
+Noah already reported provider secrets configured. Do not reveal or re-send them.
+The exact action is to verify the existing `NEWSLETTER_SECRET` in **Production**
+for project `prj_d93TLitMYu8uYjqfgvgANuwsRJVK`, ensure the signing value is at least
+32 characters and redeploy; do not rotate an existing signing key or invalidate
+previous links. If it was never set, create a dedicated high-entropy signing secret
+inside provider settings. An invalid-token GET should then return 400/no-store.
+No new Resend account, Blob store, database or unrelated provider setup is needed.
+Vercel connector inspection and Google Cloud remain deferred. A fresh secure owner
 sign-in is needed for actual authenticated owner readback. Then use an explicitly
 isolated consenting test recipient and hosted runtime configuration without
 exposing credentials or invoking the production list. Full deployed acceptance
