@@ -692,6 +692,21 @@
       }
     },
     {
+      "slug": "xochimilco-chinampas",
+      "locale": "ja",
+      "status": "draft",
+      "sourceHash": "b639adff6d39d47128c8950cde7bf195a7eb21b332ab96c75c000b399e4c1637",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "1e4a7991b0450d2d9808c85ab560d0531972873725f1d1df48ecd9ae46670a6e",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
       "slug": "bonwire-kente",
       "locale": "zh-Hans",
       "status": "draft",
@@ -819,6 +834,21 @@
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "a27b54af321ea4f5f349fbfaebc33e05d71f254c48e1f94a6a070d0177d9d99e",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "xochimilco-chinampas",
+      "locale": "zh-Hans",
+      "status": "draft",
+      "sourceHash": "b639adff6d39d47128c8950cde7bf195a7eb21b332ab96c75c000b399e4c1637",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "5ca9fa9e48e2dba5fea4ee78c449ea170449efc7d69b03a9e166e782f0284a02",
       "review": {
         "reviewer": null,
         "reviewedAt": null,
