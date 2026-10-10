@@ -19,7 +19,7 @@
   controller?.abort();controller=new AbortController();const current=++sequence;
   el('newsletter-preview-refresh').disabled=true;el('newsletter-preview-status').textContent='Loading newsletter status and preview…';
   try {
-   const response=await fetch('/api/owner-newsletter',{cache:'no-store',signal:controller.signal});
+   const response=await (window.ownerFetch||fetch)('/api/owner-newsletter',{cache:'no-store',signal:controller.signal});
    const data=await response.json();if(!active||current!==sequence)return;
    if(response.status===401){clear();if(typeof window.expireOwnerSession==='function')window.expireOwnerSession();else if(typeof window.signedIn==='function')window.signedIn(false);return;}
    if(!response.ok||!data.owner||!data.newsletter)throw Error();

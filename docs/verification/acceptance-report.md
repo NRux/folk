@@ -1,5 +1,36 @@
 # Stage 07 — Acceptance report
 
+## Remembered owner sign-in and explicit delivery test, 2026-10-10 UTC
+
+Implemented a checked Keep me signed in choice, short secure HttpOnly access
+cookies and a rotating, host-only 30-day renewal cookie. Private API preflight
+restores the session without sending an OTP email; owner identity, private
+membership and native active-session/revocation checks still run. Same-origin
+refresh, no-store responses, serialized renewals and logout races fail closed.
+Private writes and paid actions are never replayed automatically. Sign-out clears
+both cookies and retains existing global session revocation. One new code sign-in
+is necessary because older sign-ins never stored a refresh token. Unchecking the
+choice retains the short-lived behavior; account policies can end access earlier.
+
+The next newsletter gate now has an owner-only, explicit consent test in Subscribers:
+one message to the configured owner email per UTC day, immutable private claim and
+verified provider receipt, then a separate I received the test email attestation.
+Startup/status reads send nothing. Ambiguous attempts remain held; neither automatic
+retry nor subscriber enumeration is possible. Both article switches and weekly
+mailing must remain paused. This transactional test does not replace newsletter
+signed-unsubscribe or hosted publisher/recovery acceptance.
+
+Build is 73 pages/11 stories; all 41 regression commands pass. Security fixtures
+cover cookies/rotation/revocation/outages, GET-only recovery, no POST replay,
+explicit mail consent, fixed recipient, concurrency/ambiguous outcomes, secret
+redaction and stale/logout response isolation. Native inventory is 11 articles,
+15 versions/references and all three autonomous switches false. No actual email,
+paid provider call, subscriber mutation or publication occurred in these checks.
+Authenticated remembered-session and actual provider/mailbox acceptance remain
+OPEN until the owner performs the new controls. See
+verification/owner-remembered-session-2026-10-10.md and
+verification/owner-newsletter-delivery-test-2026-10-10.md.
+
 ## Isolated hosted newsletter storage recovery, 2026-10-10 UTC
 
 Implemented an administrative single-use, ten-minute, deployed-code-bound recovery

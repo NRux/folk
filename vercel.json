@@ -55,6 +55,11 @@
     },
     "api/owner-workspace.js": {
       "maxDuration": 60
+    },
+    "api/owner-newsletter-test.js": {
+      "maxDuration": 60,
+      "includeFiles": "web/vercel/{articles,routes}.json"
     }
   }
 }
+

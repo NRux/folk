@@ -32,3 +32,25 @@ JSON before returning text through the existing owner endpoint. There is no publ
 Blob URL or arbitrary file-access route. SQL-backed versions remain compatible;
 indexed but missing/corrupt Blob files fail closed. Hosted authenticated viewing
 still requires the complete content migration.
+
+## Remember this browser
+
+On a trusted browser, leave Keep me signed in checked when verifying a fresh code.
+The browser stores the access and renewal credentials in separate host-only,
+Secure, HttpOnly, SameSite=Strict cookies; JavaScript and response JSON receive no
+credential. The access cookie lasts at most 15 minutes. The remembered credential
+rotates through Supabase and lasts up to 30 days between renewals; provider account
+policies, removal of owner membership or session revocation can end it earlier.
+
+Private panel requests preflight same-origin renewal, sharing one pending operation
+and serializing tabs with Web Locks when supported. Only failed read-only GETs may
+be retried once after renewal. Editor writes, paid batches and mail actions are
+never replayed. Supabase Auth uses its normal bounded transport retries; paid action
+adapters retain their separate no-retry policy. A temporary renewal outage retains
+the cookie for a later explicit retry. Revoked/invalid credentials are cleared.
+
+Sign out clears both cookies even if the provider is unavailable; confirmed sign-out
+retains existing global session revocation, including other devices. An outage
+shows that revocation was not confirmed. A previously expired short-only session
+needs one new code sign-in before browser remembrance can work. No new environment
+variable, database or optional-cookie consent is required for this essential feature.

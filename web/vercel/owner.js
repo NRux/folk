@@ -1,5 +1,6 @@
 const el = id => document.getElementById(id);
 const status = el('owner-status');
+const ownerRequestFetch=(...args)=>typeof window!=='undefined'&&window.ownerFetch?window.ownerFetch(...args):fetch(...args);
 let sessionGeneration=0, nextContactCursor=null, nextSubscriberCursor=null;
 function signedIn(value) {
   if(!value){sessionGeneration++;nextContactCursor=null;nextSubscriberCursor=null;el('owner-contact-next').disabled=true;el('owner-subscriber-next').disabled=true;}
@@ -46,7 +47,7 @@ async function loadSubscribers(cursor) {
   el('owner-subscriber-next').disabled=true;el('owner-subscriber-first').disabled=true;
   try {
     const query=cursor?'&cursor='+encodeURIComponent(cursor):'';
-    const response=await fetch('/api/owner?view=subscribers'+query,{cache:'no-store'});
+    const response=await ownerRequestFetch('/api/owner?view=subscribers'+query,{cache:'no-store'});
     const data=await response.json();
     if(generation!==sessionGeneration||el('owner-dashboard').hidden)return;
     if(response.status===401){expireOwnerSession();return;}
@@ -67,7 +68,7 @@ async function loadContacts(cursor) {
   el('owner-contact-next').disabled=true;el('owner-contact-first').disabled=true;
   try {
     const query=cursor?'&cursor='+encodeURIComponent(cursor):'';
-    const response=await fetch('/api/owner?view=contacts'+query,{cache:'no-store'});
+    const response=await ownerRequestFetch('/api/owner?view=contacts'+query,{cache:'no-store'});
     const data=await response.json();
     if(generation!==sessionGeneration||el('owner-dashboard').hidden)return;
     if(response.status===401){expireOwnerSession();return;}
@@ -83,7 +84,7 @@ el('owner-subscriber-next').addEventListener('click',()=>{if(nextSubscriberCurso
 el('owner-subscriber-first').addEventListener('click',()=>loadSubscribers());
 async function loadStatus() {
   const generation=sessionGeneration, wasSignedIn=!el('owner-dashboard').hidden;
-  const response=await fetch('/api/owner',{cache:'no-store'});const data=await response.json();
+  const response=await ownerRequestFetch('/api/owner',{cache:'no-store'});const data=await response.json();
   if(generation!==sessionGeneration)return false;
   if(response.ok&&data.owner&&data.dashboard){render(data);return true;}
   if(response.status===401&&wasSignedIn)expireOwnerSession();
@@ -91,7 +92,7 @@ async function loadStatus() {
   return false;
 }
 async function send(body) {
-  const response=await fetch('/api/owner',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const response=await ownerRequestFetch('/api/owner',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
   const data=await response.json();status.textContent=data.message;
   if(body.action==='logout')signedIn(false);
   else if(response.ok&&body.action==='verify')await loadStatus();
@@ -100,10 +101,10 @@ el('owner-form').addEventListener('submit',async event=>{
  event.preventDefault();const action=event.submitter?.value||'login',code=el('owner-code').value.trim();
  if(action==='verify'&&!/^\d{6,10}$/.test(code)){status.textContent='Enter the sign-in code from your email first.';el('owner-code').focus();return;}
  const buttons=[...event.currentTarget.querySelectorAll('button')];buttons.forEach(b=>b.disabled=true);
- try{await send({action,email:el('owner-email').value,code});if(action==='verify')el('owner-code').value='';}catch{status.textContent='Connection unavailable. Please try again.';}finally{buttons.forEach(b=>b.disabled=false);}
+ try{await send({action,email:el('owner-email').value,code,remember:el('owner-remember').checked});if(action==='verify')el('owner-code').value='';}catch{status.textContent='Connection unavailable. Please try again.';}finally{buttons.forEach(b=>b.disabled=false);}
 });
 el('owner-logout').addEventListener('click',async()=>{signedIn(false);try{await send({action:'logout'});}catch{signedIn(false);status.textContent='Sign-out could not be confirmed. Close this page and retry sign-out.';}});
-el('owner-refresh').addEventListener('click',async()=>{try{if(await loadStatus())status.textContent='Dashboard refreshed.';}catch{signedIn(false);status.textContent='Dashboard unavailable. Please sign in again.';}});
+el('owner-refresh').addEventListener('click',async()=>{try{if(await loadStatus())status.textContent='Dashboard refreshed.';}catch{signedIn(false);status.textContent='Session status unavailable. Refresh to try again.';}});
 loadStatus().catch(()=>{signedIn(false);status.textContent='Connection unavailable.';});
 
-setInterval(()=>{if(!el('owner-dashboard').hidden)loadStatus().catch(()=>{signedIn(false);status.textContent='Session status unavailable. Sign in again.';});},60000);
+setInterval(()=>{if(!el('owner-dashboard').hidden)loadStatus().catch(()=>{signedIn(false);status.textContent='Session status unavailable. Refresh to try again.';});},60000);

@@ -107,7 +107,7 @@ await writeFile('dist/image-credits.html', withLanguageMenu(addAdsense(imageCred
 const indexed = ['/', '/privacy', '/about', '/archive', '/map', ...articles.map(item => `/${item.slug}`), ...groups.keys()];
 await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${indexed.map(route => `<url><loc>${escapeHtml(canonical.origin + route)}</loc></url>`).join('')}</urlset>`);
 await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /owner\nDisallow: /api/\nDisallow: /admin\nDisallow: /mcp\nSitemap: ${canonical.origin}/sitemap.xml\n`);
-for (const file of ['subscribe.css', 'subscribe.js', 'owner.js', 'owner-newsletter.js', 'contact.js', 'contact.css']) await cp(`web/vercel/${file}`, `dist/${file}`);
+for (const file of ['subscribe.css', 'subscribe.js', 'owner.js', 'owner-session.js', 'owner-newsletter.js', 'owner-newsletter-test.js', 'contact.js', 'contact.css']) await cp(`web/vercel/${file}`, `dist/${file}`);
 const ownerSource=await readFile('web/vercel/owner.html', 'utf8');
 await writeFile('dist/owner.html', addAdsense(ownerSource,true));
 await writeFile('dist/subscribe.html', withLanguageMenu(addAdsense(await readFile('web/vercel/subscribe.html', 'utf8'))));

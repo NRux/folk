@@ -151,3 +151,28 @@ Actual hosted delivery and recovery remain open; no email was sent for this work
 - https://resend.com/docs/api-reference/emails/send-email
 - https://resend.com/changelog/idempotency-keys
 - https://www.resend.com/changelog/custom-email-headers
+
+## Explicit owner delivery test
+
+Subscribers now offers a separate transactional test at /api/owner-newsletter-test.
+Sign in, refresh test status, check the one-email consent box and click Send one test
+email. The recipient comes only from FOLKLY_OWNER_EMAIL; requests cannot choose an
+address. The test uses the existing private Blob store, RESEND_API_KEY,
+NEWSLETTER_FROM and NEWSLETTER_POSTAL_ADDRESS. NEWSLETTER_ENABLED and the three
+autonomous controls must stay off. This path does not need cron or unsubscribe
+signing keys because it does not enroll a subscriber or send the weekly digest.
+
+One immutable attempt is allowed per owner per UTC day. Claims, provider receipts
+and mailbox attestations stay in an isolated newsletter/owner-tests namespace,
+never the real subscriber/suppression/digest namespace. A provider acceptance is
+read back exactly and displayed as accepted, not delivered. Check the actual
+mailbox, then click I received the test email to save the separate owner attestation.
+Status refresh and sign-in never send; duplicate clicks, provider errors and lost
+responses never trigger a second automatic attempt. If held, inspect Resend before
+resolving the outcome; never delete a claim and resend. The next UTC day is a new
+explicit test, not automatic recovery of a held attempt.
+
+This records one-recipient delivery evidence only. Full signed unsubscribe,
+subscription suppression, hosted editorial/model/publisher interruption recovery
+and fresh browser owner acceptance remain separate gates. Weekly delivery stays
+off until they pass. No live test was sent by the implementation checks.
