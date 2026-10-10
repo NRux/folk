@@ -272,6 +272,21 @@
       }
     },
     {
+      "slug": "xochimilco-chinampas",
+      "locale": "es",
+      "status": "draft",
+      "sourceHash": "b639adff6d39d47128c8950cde7bf195a7eb21b332ab96c75c000b399e4c1637",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "1b2fa3dc020f8e5c2a282ae8a46ab5cad302209fc545d8d11059ffd157b2af6a",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
       "slug": "bonwire-kente",
       "locale": "fr",
       "status": "draft",
