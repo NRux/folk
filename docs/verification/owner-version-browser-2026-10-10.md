@@ -60,3 +60,14 @@ secret or Vercel connector is required for that step. Full isolated hosted
 publisher/newsletter/provider outage/restore and language acceptance remain separate.
 No schema, source data, public story, credits, model budget, paid provider job,
 newsletter or autonomous production/publication/article schedule setting changed.
+
+## Deployed shell and private-route readback
+
+Implementation and designer brief commit [a9b2920](https://github.com/NRux/folk/commit/a9b2920fd19e8b22d7319450b7f15b6a6cd3febb) synced to main/master.
+[Vercel deployment](https://vercel.com/optagens-projects/folk/3YNuJVe57zx9JUpxgkH4q1myH56Y)
+reported success. Fresh production `/owner` and `/owner-workspace.js` returned 200;
+the shell has the new version navigation/preview copy and the script matches the
+verified source exactly. Anonymous workspace GET and article/version GET both
+returned 401/no-store. A final independent SQL check confirms all three article
+switches false. These checks establish deployed assets/private denial, not a
+signed-in version read. The session-expiry limitation above remains.
