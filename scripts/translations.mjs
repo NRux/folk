@@ -64,20 +64,27 @@ function ranges(html){
   return found;
 }
 
+// sourceHash stability: the English template bytes differ between platforms
+// (git autocrlf checks out CRLF on Windows, LF on Linux/CI), so the raw HTML and
+// PUBLIC_MESSAGES strings are hashed with carriage returns stripped - the
+// sourceHash recorded in the manifest must match regardless of which machine
+// rendered dist/.
+const stableText = (value) => value.replace(/\r/g, '');
+
 export function extractContract(html,{slug,status='published',glossary,manifest,catalog}={}){
   if(status!=='published'||slug?.startsWith('ui-')||!catalog?.some(a=>a.slug===slug&&a.status==='published')||! /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))throw Error('Only catalogued public stories can be translated');
   if(manifest?.articles?.some(a=>a.slug===slug)&&!manifest.articles.find(a=>a.slug===slug).contentHash)throw Error('Missing release provenance');
   const segments=ranges(html).map(({id,kind,text})=>({id,kind,text}));
   if(!segments.length)throw Error('Empty translation source');
-  return {format:'folkly-public-segments-v1',slug,sourceHash:hash(html),glossaryHash:hash(glossary),promptVersion:TRANSLATION_PROMPT_VERSION,segments,
+  return {format:'folkly-public-segments-v1',slug,sourceHash:hash(stableText(html)),glossaryHash:hash(glossary),promptVersion:TRANSLATION_PROMPT_VERSION,segments,
     immutable:{links:[...html.matchAll(/\bhref="([^"]*)"/g)].map(m=>m[1]),media:[...html.matchAll(/\bdata-image-id="([^"]*)"/g)].map(m=>m[1])}};
 }
 
 export function extractUiContract(html,{slug,glossary,pages=UI_PAGES}){
  if(!Object.hasOwn(pages,slug))throw Error('Unknown or private UI source');
- return {format:'folkly-public-segments-v1',slug,sourceHash:hash(html),glossaryHash:hash(glossary),promptVersion:TRANSLATION_PROMPT_VERSION,segments:ranges(html).map(({id,kind,text})=>({id,kind,text})),immutable:{links:[...html.matchAll(/\bhref="([^"]*)"/g)].map(m=>m[1]),media:[...html.matchAll(/\bdata-image-id="([^"]*)"/g)].map(m=>m[1])}};
+ return {format:'folkly-public-segments-v1',slug,sourceHash:hash(stableText(html)),glossaryHash:hash(glossary),promptVersion:TRANSLATION_PROMPT_VERSION,segments:ranges(html).map(({id,kind,text})=>({id,kind,text})),immutable:{links:[...html.matchAll(/\bhref="([^"]*)"/g)].map(m=>m[1]),media:[...html.matchAll(/\bdata-image-id="([^"]*)"/g)].map(m=>m[1])}};
 }
-export function messageContract(glossary){return {format:'folkly-public-segments-v1',slug:'ui-messages',sourceHash:hash(PUBLIC_MESSAGES),glossaryHash:hash(glossary),promptVersion:TRANSLATION_PROMPT_VERSION,segments:Object.entries(PUBLIC_MESSAGES).map(([kind,text],i)=>({id:`s${String(i+1).padStart(4,'0')}`,kind,text})),immutable:{links:[],media:[]}};}
+export function messageContract(glossary){return {format:'folkly-public-segments-v1',slug:'ui-messages',sourceHash:hash(stableText(JSON.stringify(PUBLIC_MESSAGES))),glossaryHash:hash(glossary),promptVersion:TRANSLATION_PROMPT_VERSION,segments:Object.entries(PUBLIC_MESSAGES).map(([kind,text],i)=>({id:`s${String(i+1).padStart(4,'0')}`,kind,text})),immutable:{links:[],media:[]}};}
 export function translatedMessages(value,contract){validateTranslation(value,contract);if(contract.slug!=='ui-messages')throw Error('Message source required');return Object.fromEntries(contract.segments.map((segment,i)=>[segment.kind,value.segments[i].text]));}
 
 export function validateTranslation(value,contract){
@@ -141,7 +148,7 @@ export function decorateEnglish(html,slug,approved,origin,pages=UI_PAGES){
   return html.replace(LANGUAGE_MENU_SHELL,languageMenu(slug,'en',approved,pages)).replace('</head>',`${head}</head>`);
 }
 export function renderTranslation(html,value,contract,approved,origin,pages=UI_PAGES){
-  validateTranslation(value,contract);if(hash(html)!==contract.sourceHash)throw Error('Source template changed');
+  validateTranslation(value,contract);if(hash(stableText(html))!==contract.sourceHash)throw Error('Source template changed');
   const list=ranges(html);if(list.length!==value.segments.length)throw Error('Segment coverage changed');
   let output=html;for(let i=list.length-1;i>=0;i--)output=output.slice(0,list[i].start)+escapeHtml(value.segments[i].text)+output.slice(list[i].end);
   const locale=value.locale,url=origin+pagePath(contract.slug,locale,pages);
