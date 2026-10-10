@@ -36,7 +36,7 @@ requires the complete redacted proof and writes a new mode-0600 private receipt.
 | Check | Required evidence |
 | --- | --- |
 | Five concurrent claims | Exactly one claim succeeds; four are held. |
-| Immutable original claim | Separate accepted receipt does not alter claim bytes/content. |
+| Immutable original claim | Separate accepted receipt does not alter the original claim content. |
 | Terminal receipt | Exact uncached readback, including idempotent finish. |
 | Lost receipt-write reply | Actual persisted write followed by injected reply loss is reconciled by exact readback. |
 | Interrupted claim reply | Actual persisted claim followed by injected reply loss stays held across a fresh store instance. |
@@ -75,9 +75,32 @@ setting separately. No Auth settings were changed for this storage work.
 References: https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy
 and https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection.
 
-Actual Vercel storage execution is pending deployment at this checkpoint. Do not
-infer hosted storage PASS from local fixtures or SQL alone. The following deployed
-receipt addendum will record the actual result and independently retired grant.
+## Actual hosted storage result PASS
+
+Code `6dd0757de587b8809d31afc0cdb43f3ff8d6a9c3` deployed successfully:
+https://vercel.com/optagens-projects/folk/2hzLLAsGqmwcF9oXtaK7K7q8CZne.
+The actual hosted checker completed at **2026-10-10 02:11:55 UTC**. All eleven
+checks passed against the existing private Blob store, with exactly ten isolated
+objects. The local hidden-stdin runner validated and saved the complete proof.
+There were **zero emails and zero paid/provider calls**.
+
+An independent native Supabase connection verified the exact same aggregate
+receipt, verified grant status and cleared lease. All three article switches
+remained false; the original inventory stayed at 11 articles/15 versions/15 private
+content references. Actual retired-token POST replay returned **401/no-store**,
+as did anonymous GET. The one-use local bearer token was then removed. Fixture
+objects and the private retired grant remain preserved for reviewed inspection.
+
+All **45 deployed reader checks** pass, including exact existing article content
+and credits, private-route exclusion and both public URL forms. Concurrent
+translation drafts were preserved on both branches; a refreshed 59-draft baseline
+passed build and focused translation/shared-UI/recovery tests. None was approved
+or released. The Vercel connector was not used.
+
+Redacted aggregate evidence: [hosted receipt](newsletter-hosted-storage-live-2026-10-10.json).
+This closes the **isolated hosted newsletter storage recovery component**, not
+Resend acceptance, inbox delivery, the public signed-unsubscribe route, actual
+owner sessions or the full publisher/Stage 7 gate.
 
 ## Reproduction and remaining gates
 

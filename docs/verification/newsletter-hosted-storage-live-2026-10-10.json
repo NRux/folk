@@ -1,0 +1,58 @@
+{
+  "verifiedAt": "2026-10-10T02:11:55.021Z",
+  "codeCommit": "6dd0757de587b8809d31afc0cdb43f3ff8d6a9c3",
+  "vercelDeployment": "https://vercel.com/optagens-projects/folk/2hzLLAsGqmwcF9oXtaK7K7q8CZne",
+  "scope": "isolated-private-newsletter-storage-only",
+  "receipt": {
+    "format": "folkly-newsletter-storage-recovery-v1",
+    "projectId": "vxmyggasjgsiohqzzwzh",
+    "contractSha": "26625275aeec9511a6f35fd906dfcf2b3d8dbae078ec2679758201e191708f44",
+    "grantId": "9e428c2c-37f2-4b67-907d-434c277c869c",
+    "verifiedAt": "2026-10-10T02:11:55.021Z",
+    "checks": {
+      "concurrentClaim": true,
+      "immutableClaim": true,
+      "terminalReadback": true,
+      "lostWriteReply": true,
+      "interruptionHeld": true,
+      "receiptOnlyRestore": true,
+      "fullRestoreHeld": true,
+      "suppressionStable": true,
+      "corruptSuppressionDenied": true,
+      "subscriberReadback": true,
+      "inventoryReadback": true
+    },
+    "objects": 10,
+    "inventorySha": "5a81d36526b6cd3ec34797f48648a1f1dce89080c75aedb087dddd0504f90bdd",
+    "emailsSent": 0,
+    "switchesPaused": true,
+    "deliveryPaused": true
+  },
+  "independentDatabase": {
+    "verified": true,
+    "leaseCleared": true,
+    "receiptMatches": true,
+    "switchesPaused": true,
+    "articles": 11,
+    "versions": 15,
+    "references": 15
+  },
+  "publicChecks": {
+    "anonymous": {
+      "status": 401,
+      "noStore": true
+    },
+    "retiredGrantReplay": {
+      "status": 401,
+      "noStore": true
+    },
+    "reader": {
+      "checks": 45,
+      "passed": true
+    }
+  },
+  "paidCalls": 0,
+  "providerOrMailboxAcceptance": false,
+  "ownerReadbackAcceptance": false
+}
+

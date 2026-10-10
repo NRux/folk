@@ -16,8 +16,10 @@ issuance only, private RLS/client denial, single-use/expiry/lease and paused-sta
 fences, rollback-only hosted claim/completion, zero leftover fixture grants and all
 three production switches false pass. Build is 73 pages/11 public stories; all 39
 regression commands pass. Concurrent translation drafts stay unapproved. Actual
-Vercel fixture execution is pending deployment at this checkpoint; full provider/
-mailbox/owner and publisher recovery gates remain open. Newsletter delivery and
+Vercel execution PASS at 02:11:55 UTC: all eleven checks/ten isolated objects,
+independent exact receipt/retired-grant verification and actual replay 401/no-store.
+All 45 deployed reader checks pass. Full provider/mailbox/owner and publisher
+recovery gates remain open. Newsletter delivery and
 autonomous publishing stay off. See verification/newsletter-hosted-storage-recovery-2026-10-10.md.
 
 ## Signing-secret runtime prerequisite and owner newsletter preview, 2026-10-10 UTC

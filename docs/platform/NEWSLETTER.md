@@ -125,7 +125,10 @@ administrative database operation, bound to the deployed checker/store hash and
 ten-minute expiry; the runtime cannot issue one. A failed ticket is not replayed.
 See ../verification/newsletter-hosted-storage-recovery-2026-10-10.md for exact
 checks, the hidden-stdin runner, independent receipt verification and gate limits.
-Storage evidence alone does not authorize delivery or prove mailbox acceptance.
+The actual isolated hosted storage drill passed on 2026-10-10, with eleven checks,
+ten private fixture objects, independently verified receipt/retirement and replay
+401/no-store. No email or provider call occurred. Storage evidence alone does not
+authorize delivery or prove mailbox acceptance.
 
 This is a reviewed recovery procedure, not an automatic resend endpoint. Never
 delete claims, receipts or suppressions to rerun a job. Restore immutable evidence
