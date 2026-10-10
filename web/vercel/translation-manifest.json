@@ -137,6 +137,21 @@
       }
     },
     {
+      "slug": "castells-tarragona",
+      "locale": "es",
+      "status": "draft",
+      "sourceHash": "4ebd8f26a8eb2c2f450102aa8be65eea46bd39e6d7b9fe9c3047a57c3d7b12a3",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "b6dd46508b84cda874e00f721e0ccfa368711b939414dc8b26c634303c7d9065",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
       "slug": "ui-about",
       "locale": "es",
       "status": "draft",

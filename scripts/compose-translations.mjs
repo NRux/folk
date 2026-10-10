@@ -1,29 +1,41 @@
-// Compose per-locale translation scratch files from unique-string maps.
-// Usage: node scripts/compose-translations.mjs <slug> <mapsDir> <outDir>
-// Maps: <mapsDir>/map-<locale>.json { sourceText: translatedText }; unmapped -> identity.
-// Apostrophe variants (’/') are normalized on lookup. Warns on map keys not in the contract.
+// Compose per-locale translation scratch files by merging unique-string maps.
+// Usage: node scripts/compose-translations.mjs <slug> <outDir> <mapDir1> [<mapDir2> ...]
+// Precedence: later dirs override earlier. Unmapped keys pass through as identity.
+// Each mapDir may contain map-<locale>.json ({ sourceText: translatedText }) and an
+// optional fallbacks.json ({ locale: label }); the first fallbacks.json found wins.
+// Reports per-locale how many segments stayed identical (untranslated).
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadContracts } from './translation-contracts.mjs';
 
-const slug = process.argv[2], mapsDir = process.argv[3], outDir = process.argv[4];
-if (!slug || !mapsDir || !outDir) { console.error('usage: compose-translations.mjs <slug> <mapsDir> <outDir>'); process.exit(1); }
+const slug = process.argv[2], outDir = process.argv[3];
+const mapDirs = process.argv.slice(4);
+if (!slug || !outDir || !mapDirs.length) { console.error('usage: compose-translations.mjs <slug> <outDir> <mapDir>...'); process.exit(1); }
 const { contracts } = await loadContracts();
 const contract = contracts.get(slug);
 if (!contract) { console.error('unknown slug', slug); process.exit(1); }
-const fallbacks = JSON.parse(await readFile(join(mapsDir, 'fallbacks.json'), 'utf8'));
 const LOCALES = ['zh-Hans', 'es', 'hi', 'ar', 'fr', 'ja'];
 const norm = (s) => s.replace(/\u2019/g, "'");
-const texts = new Set(contract.segments.map((s) => s.text));
+let fallbacks = {};
+for (const dir of mapDirs) {
+  const raw = await readFile(join(dir, 'fallbacks.json'), 'utf8').catch(() => null);
+  if (raw) { fallbacks = JSON.parse(raw); break; }
+}
 for (const locale of LOCALES) {
-  const raw = await readFile(join(mapsDir, `map-${locale}.json`), 'utf8').catch(() => null);
-  if (!raw) { console.log(`[skip] ${locale}: no map`); continue; }
-  const map = JSON.parse(raw);
+  const map = {};
+  for (const dir of mapDirs) {
+    const raw = await readFile(join(dir, `map-${locale}.json`), 'utf8').catch(() => null);
+    if (!raw) continue;
+    for (const [k, v] of Object.entries(JSON.parse(raw))) if (!(k in map)) map[k] = v;
+  }
   const normMap = new Map(Object.entries(map).map(([k, v]) => [norm(k), v]));
-  for (const key of Object.keys(map)) if (!texts.has(key) && !texts.has(key.replace(/'/g, '\u2019'))) console.warn(`[warn] ${locale} key not in contract: ${key.slice(0, 90)}`);
-  const value = { locale, fallbackLabel: fallbacks[locale], segments: contract.segments.map((s) => ({ id: s.id, text: map[s.text] ?? normMap.get(norm(s.text)) ?? s.text })) };
+  const byId = new Map(contract.segments.map((s) => [s.id, s.text]));
+  const segs = contract.segments.map((s) => ({ id: s.id, text: map[s.text] ?? normMap.get(norm(s.text)) ?? s.text }));
+  let identity = 0;
+  for (const s of segs) if (s.text === byId.get(s.id)) identity++;
+  const value = { locale, fallbackLabel: fallbacks[locale] ?? '', segments: segs };
   const out = join(outDir, `${locale}-${slug}.json`);
   await mkdir(dirname(out), { recursive: true });
   await writeFile(out, JSON.stringify(value));
-  console.log(`[ok] ${locale}/${slug}: ${value.segments.length} segments -> ${out}`);
+  console.log(`[ok] ${locale}/${slug}: ${segs.length} segments (${identity} untranslated) -> ${out}`);
 }
