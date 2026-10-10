@@ -8,12 +8,12 @@ const id=createHash('sha256').update(record.email).digest('hex'),env={BLOB_STORE
 let lists=0;
 const storage={
   list:async args=>{lists++;assert.equal(args.prefix,'subscribers/');assert.equal(args.limit,20);return {blobs:[{pathname:`subscribers/${id}.json`,size:200}],hasMore:true,cursor:'page2'};},
-  get:async(path,args)=>{assert.deepEqual(args,{access:'private',useCache:false});if(path===`subscribers/${id}.json`)return {statusCode:200,stream:new Response(JSON.stringify(record)).body};return null;},
+  get:async(path,args)=>{assert.equal(args.access,'private');assert.equal(args.useCache,false);assert(args.abortSignal);if(path===`subscribers/${id}.json`)return {statusCode:200,stream:new Response(JSON.stringify(record)).body};return null;},
 };
 const first=await readSubscriberInbox({env,storage});
 assert.deepEqual(first.rows,[{email:record.email,status:'Subscribed',subscribedAt:record.subscribedAt,consentVersion:record.consentVersion,source:record.source}]);
 assert.equal(first.nextCursor,'page2');assert.equal(first.hasMore,true);assert(!JSON.stringify(first).includes(id));
-const suppressed=await readSubscriberInbox({env,storage:{...storage,get:async(path,args)=>path.startsWith('newsletter/suppressed/')?{statusCode:200,stream:new Response('{}').body}:storage.get(path,args)}});
+const suppressed=await readSubscriberInbox({env,storage:{...storage,get:async(path,args)=>path.startsWith('newsletter/suppressed/')?{statusCode:200,stream:new Response(JSON.stringify({unsubscribedAt:'2026-10-08T12:30:00.000Z'})).body}:storage.get(path,args)}});
 assert.equal(suppressed.rows[0].status,'Unsubscribed');
 assert.equal((await readSubscriberInbox({env:{},storage:{list:()=>assert.fail('unconfigured access')}})).available,false);
 assert.equal((await readSubscriberInbox({env,storage,cursor:'bad\nvalue'})).available,false);assert.equal(lists,2);
@@ -25,6 +25,8 @@ for(const bad of [
 const malformed={...record,email:'bad'};
 assert.equal((await readSubscriberInbox({env,storage:{...storage,list:async()=>({blobs:[{pathname:`subscribers/${id}.json`,size:100}],hasMore:false}),get:async path=>path.startsWith('subscribers/')?{statusCode:200,stream:new Response(JSON.stringify(malformed)).body}:null}})).available,false);
 assert.equal((await readSubscriberInbox({env,storage:{...storage,list:async()=>({blobs:[],hasMore:true,cursor:'same'})},cursor:'same'})).available,false);
+for(const body of ['{}','null','[]',JSON.stringify({unsubscribedAt:'bad'}),'x'.repeat(4097)])assert.equal((await readSubscriberInbox({env,storage:{...storage,get:async(path,args)=>path.startsWith('newsletter/suppressed/')?{statusCode:200,stream:new Response(body).body}:storage.get(path,args)}})).available,false,'Do not guess status from unreadable suppression');
+assert.equal((await readSubscriberInbox({env,storage:{...storage,list:async()=>({blobs:[{pathname:`subscribers/${id}.json`,size:200},{pathname:`subscribers/${id}.json`,size:200}],hasMore:false})}})).available,false,'Duplicate listing is unavailable');
 const ownerHtml=await readFile('dist/owner.html','utf8');
 const ids=[...ownerHtml.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
 assert.equal(new Set(ids).size,ids.length,'Deployed owner controls must have unique IDs');

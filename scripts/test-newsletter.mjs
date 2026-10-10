@@ -42,17 +42,17 @@ const response=await outage(new Request(url,{method:'POST'}));assert.equal(respo
 console.log('Newsletter passed: authorization, disabled/config guards, weekly window, public-only digest, escaped HTML, single-recipient privacy, concurrent/retry claims, ambiguous-send hold, suppression, signed unsubscribe, scanner-safe GET and storage outage. No email sent.');
 
 const {createNewsletterStore}=await import('../server/newsletter-store.js');
-const blobs=new Map();let pages=0;
+const blobs=new Map();let pages=0;const secondId=subscriberId('second@example.com');
 const privateStore=createNewsletterStore({
  get:async(path,options)=>{assert.equal(options.access,'private');assert.equal(options.useCache,false);return blobs.has(path)?{statusCode:200,stream:new Response(blobs.get(path)).body}:null;},
  put:async(path,value,options)=>{assert.equal(options.access,'private');assert.equal(options.addRandomSuffix,false);if(options.allowOverwrite===false&&blobs.has(path))throw Error('exists');blobs.set(path,value);},
- list:async(options)=>{assert.equal(options.prefix,'subscribers/');pages++;return {blobs:[{pathname:`subscribers/${id}.json`},{pathname:'subscribers/unsafe.json'}],hasMore:pages===1,cursor:pages===1?'next':undefined};}
+ list:async(options)=>{assert.equal(options.prefix,'subscribers/');pages++;return {blobs:[{pathname:`subscribers/${pages===1?id:secondId}.json`}],hasMore:pages===1,cursor:pages===1?'next':undefined};}
 });
-blobs.set(`subscribers/${id}.json`,JSON.stringify({email:'reader@example.com',consent:true}));
+for(const email of ['reader@example.com','second@example.com'])blobs.set(`subscribers/${subscriberId(email)}.json`,JSON.stringify({email,consent:true,consentVersion:'2026-10-07',subscribedAt:'2026-10-08T12:00:00.000Z',source:'folkly-web'}));
 assert.equal((await privateStore.subscribers(200))[0].id,id);
 assert.equal(pages,2);
-assert(await privateStore.claim('newsletter/delivery/test.json',{state:'claimed'}));
-assert(!await privateStore.claim('newsletter/delivery/test.json',{state:'claimed'}));
+assert(await privateStore.claim(`newsletter/delivery/2026-10-09/${id}.json`,{state:'claimed',createdAt:date.toISOString()}));
+assert(!await privateStore.claim(`newsletter/delivery/2026-10-09/${id}.json`,{state:'claimed',createdAt:date.toISOString()}));
 await privateStore.suppress(id);assert(await privateStore.suppressed(id));
 console.log('Private newsletter adapter passed: paginated prefix, validated path IDs, cache bypass, private/create-only writes and suppression readback. Fixture only.');
 

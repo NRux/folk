@@ -13,7 +13,7 @@ it is not wired to this newsletter service.
 
 The authenticated owner dashboard has a read-only Subscribers section. It reads
 at most 20 private records per page, revalidates the owner session for each page,
-and reports whether a matching suppression record exists. It does not expose
+and validates the matching suppression record before reporting status. It does not expose
 Blob path hashes or unsubscribe tokens, and it cannot subscribe, unsubscribe,
 delete or send to anyone. Any malformed record or incomplete storage read makes
 the page unavailable instead of guessing at delivery status.
@@ -32,52 +32,85 @@ publication and the article schedule, which remain disabled.
 Private Blob lists are paginated and bounded before any delivery. The initial
 worker supports up to 200 subscriber records; larger lists fail closed and need
 queued/batched fanout rather than silently omitting readers. Private records are
-read without cache, email/hash/consent are checked, and the historical acceptance
-address is excluded. The worker sends a separate Resend API email for each reader, HTML and
+read without cache; email/hash/consent, signup metadata, every page and cursor are
+checked. Duplicate paths, missing/repeated continuation cursors, missing bodies and
+malformed records stop the job before its first provider call. The historical
+acceptance address is excluded. The worker sends a separate Resend API email for each reader, HTML and
 plain text, story links, a signed unsubscribe link and List-Unsubscribe headers.
 No recipient addresses or tokens are returned in job responses or logged.
 
 A create-only private claim at `newsletter/delivery/<week>/<subscriber-id>.json`
-prevents concurrent jobs and retries from resending. Accepted provider receipts
-are retained. A failed or ambiguous request leaves its claim held: compare that
-record with the provider dashboard before resolving it. Do not blindly delete
-claims and retry. Provider idempotency keys are prepared as an additional safeguard; the durable
-claim remains the duplicate guard. API acceptance is not an assertion
-of inbox delivery. Bounces and complaints must be monitored in the sending service.
+is verified by uncached exact-content readback before sending. It stays immutable,
+preventing concurrent jobs and retries from resending. Terminal acceptance or
+pre-send suppression is written separately, create-only and verified, at
+`newsletter/receipts/<week>/<subscriber-id>.json`. Older terminal records stored
+in the claim path remain valid guards and are never rewritten. A surviving receipt
+also blocks a send when an incomplete restore omitted its original claim.
+
+A failed or ambiguous claim, provider request or receipt save leaves delivery held:
+compare the record with the provider dashboard before resolving it. Do not delete
+claims and retry. Provider idempotency keys are an additional safeguard; the durable
+claim remains the duplicate guard. API acceptance is not an assertion of inbox
+delivery. Bounces and complaints must be monitored in the sending service.
 
 Unsubscribe GET displays confirmation without changing state, protecting against
 email link scanners. A signed POST, including provider one-click POST, durably
-writes `newsletter/suppressed/<subscriber-id>.json`. Both pre-claim and pre-send
+writes and reads back `newsletter/suppressed/<subscriber-id>.json`, create-only.
+Repeated or concurrent requests preserve the first valid unsubscribe timestamp.
+Malformed existing suppression is preserved and fails closed; it is not repaired
+by overwriting it. Both pre-claim and pre-send
 checks consult that suppression. Signing keys stay server-only. Signup does not
 silently clear suppression; a previously unsubscribed reader requires explicit
 re-enrollment work before restoring delivery. A request already in flight cannot
-be recalled. Unsubscribe failures display a retry message, never false success.
+be recalled. Unsubscribe failures display a retry message, never false success. GET, POST and
+error responses are non-cacheable and prevent referrer disclosure. Private JSON
+reads are bounded to 4 KiB during streaming, reject invalid UTF-8, bypass cache and
+use a ten-second abort deadline; oversized or interrupted streams are cancelled.
 
-## Required setup in the existing Vercel production project
+## Hosted acceptance in the existing project
 
-Owner approved Resend on 2026-10-08. The production adapter is now implemented.
+Noah approved Resend and reported the provider secrets configured on 2026-10-08.
+Do not request those secrets again or copy them into chat/Git. Existing Vercel Blob
+credentials were independently exercised by the completed editorial import.
+Newsletter provider configuration and end-to-end delivery have separate gates;
+the import does not prove them. Vercel connector inspection remains deferred at
+Noah's request. GitHub deployment and public denial checks remain available.
 
-1. Create/use a Resend account and verify the Folkly sending domain using its DNS
-   instructions. Add `RESEND_API_KEY` as a server-only production secret.
-2. Set `NEWSLETTER_FROM` to a verified sender, such as
-   `Folkly <updates@folkly.com>`, and `NEWSLETTER_POSTAL_ADDRESS` to the business
-   mailing address that should appear in each newsletter.
-3. Generate separate high-entropy secrets for `CRON_SECRET` and
-   `NEWSLETTER_SECRET` (at least 32 characters). Preserve the signing secret so
-   existing unsubscribe links remain valid. Never put these values in GitHub or chat.
-4. Keep the existing private Blob connection (`BLOB_STORE_ID` or
-   `BLOB_READ_WRITE_TOKEN`). Check an existing subscriber record in Vercel Storage;
-   do not create a second store or move the existing records.
-5. Redeploy with delivery paused, verify storage and unsubscribe using a consented
-   test address, then set `NEWSLETTER_ENABLED=true` and redeploy to activate the
-   owner-authorized weekly newsletter. Confirm sender receipt, unsubscribe and
-   suppression before treating hosted delivery as accepted.
+Keep `NEWSLETTER_ENABLED` disabled. Production, publication and article scheduling
+also remain disabled until full deployed acceptance passes. No activation follows
+automatically from local tests. A fresh secure owner session is needed for actual
+authenticated owner readback. An authorized, isolated test must then establish:
 
-The connected Vercel API currently returns project-not-found for both `folkly`
-and `prj_d93TLitMYu8uYjqfgvgANuwsRJVK` in the existing team. Noah can reconnect
-Vercel with access to that project or enter the environment variables directly
-in its dashboard. No sending key or verified sender was available to this run;
-no subscribers were contacted. GitHub deployment is available independently.
+1. Private subscriber enumeration/readback and scanner-safe GET, followed by a
+   signed POST for a specifically consenting test recipient, with independently
+   verified first suppression timestamp and no change to other readers.
+2. The existing verified sender, mailing address and server-only Resend/cron/signing
+   configuration inside the hosted runtime, without revealing values. Preserve
+   `NEWSLETTER_SECRET` so existing unsubscribe links remain valid.
+3. One test-recipient provider acceptance and actual mailbox result, plus duplicate
+   and concurrent invocation denial, immediate suppression and isolated outage,
+   interruption and restore behavior. Do not run the production mailing list as a test.
+4. Independent claim/receipt/suppression readback and a documented recovery receipt.
+   API acceptance alone does not prove mailbox delivery. Enable weekly delivery
+   only after the complete deployed gates and applicable owner authorization.
+
+## Held-delivery recovery
+
+This is a reviewed recovery procedure, not an automatic resend endpoint. Never
+delete claims, receipts or suppressions to rerun a job. Restore immutable evidence
+before restarting workers; leave delivery paused throughout reconciliation.
+
+| Evidence | Interpretation and action |
+| --- | --- |
+| Verified original claim and separate accepted receipt | Provider API acceptance is recorded; check provider/mailbox outcome, do not resend. |
+| Legacy accepted/suppressed state in the original claim | Preserve it as the permanent guard; do not migrate by overwriting. |
+| Claim without a verified receipt | Outcome is held, including an interruption before send or a lost response after provider acceptance. Reconcile the existing idempotency key in Resend; never assume unsent or retry. |
+| Receipt surviving without a restored claim | Incomplete restore; receipt still blocks sending. Restore the original verified evidence. |
+| Corrupt/missing readback, conflicting terminal state or incomplete listing | Processing is unavailable; preserve bytes and investigate storage/restore completeness. No false success or partial mailing. |
+| Verified suppression | Reader remains unsubscribed; retain the first timestamp and require a separate explicit re-enrollment process. |
+
+Implementation and fixture evidence: ../verification/newsletter-persistence-recovery-2026-10-10.md.
+Actual hosted delivery and recovery remain open; no email was sent for this work.
 
 ## Provider references
 

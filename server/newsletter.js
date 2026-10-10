@@ -27,15 +27,16 @@ export function digestEmail(items, unsubscribe, postalAddress) {
  return {subject:'Folkly: this week’s stories',text,html};
 }
 export function createNewsletterHandler({config, catalog, store, send, now=()=>new Date(), pause=()=>new Promise(r=>setTimeout(r,600))}) {
+ const reply=(body,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'no-store','Referrer-Policy':'no-referrer'}});
  return async request => {
   const cfg=config();
-  if(request.method!=='GET')return Response.json({message:'Method not allowed'},{status:405});
-  if(!cfg.cronSecret || request.headers.get('authorization')!==`Bearer ${cfg.cronSecret}`)return Response.json({message:'Unauthorized'},{status:401});
-  if(!cfg.enabled)return Response.json({paused:true});
-  if(!cfg.apiKey || !cfg.from || /[\r\n]/.test(cfg.from) || !cfg.postalAddress || !cfg.secret || cfg.secret.length<32 || !cfg.storage)return Response.json({message:'Newsletter configuration incomplete'},{status:503});
+  if(request.method!=='GET')return reply({message:'Method not allowed'},405);
+  if(!cfg.cronSecret || request.headers.get('authorization')!==`Bearer ${cfg.cronSecret}`)return reply({message:'Unauthorized'},401);
+  if(!cfg.enabled)return reply({paused:true});
+  if(!cfg.apiKey || !cfg.from || /[\r\n]/.test(cfg.from) || !cfg.postalAddress || !cfg.secret || cfg.secret.length<32 || !cfg.storage)return reply({message:'Newsletter configuration incomplete'},503);
   try {
    const date=now(),window=digestWindow(date),stories=digestStories(await catalog(),date);
-   if(!stories.length)return Response.json({sent:0,reason:'No newly published stories'});
+   if(!stories.length)return reply({sent:0,reason:'No newly published stories'});
    // Read the whole bounded list before sending; never silently omit later pages.
    const subscribers=await store.subscribers(200); let accepted=0,held=0,skipped=0;
    for(const {id,record} of subscribers) {
@@ -54,7 +55,7 @@ export function createNewsletterHandler({config, catalog, store, send, now=()=>n
     }catch {held++;} // No recipient/provider details in responses or logs.
     await pause();
    }
-   return Response.json({accepted,held,skipped},{headers:{'Cache-Control':'no-store'}});
-  }catch{return Response.json({message:'Newsletter processing unavailable'},{status:503});}
+   return reply({accepted,held,skipped});
+  }catch{return reply({message:'Newsletter processing unavailable'},503);}
  };
 }

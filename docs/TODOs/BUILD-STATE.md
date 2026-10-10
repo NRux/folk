@@ -1,5 +1,25 @@
 # Folkly Build State
 
+## Newsletter persistence and recovery prerequisite, 2026-10-10 UTC
+
+Fixed a reproduced false claim acknowledgment and unverified unsubscribe/receipt
+writes. Private claims stay immutable; terminal receipts are separately create-only
+and read back. Repeated suppression preserves the first timestamp. Legacy delivery
+guards and receipts surviving an incomplete restore block resends. Full bounded
+subscriber enumeration rejects duplicate/unknown paths, broken cursors and invalid
+records before any send. Worker and owner inbox share bounded uncached UTF-8 reads;
+the inbox cannot infer status from corrupt suppression. All responses are no-store.
+
+Build (73 pages/11 stories) and all 37 regression commands pass. Tests include
+concurrency, lost claim/receipt responses, unchanged legacy evidence, cancelled
+oversize streams, false unsubscribe acknowledgment and no resend after receipt loss.
+Native read-only Supabase check confirms all three autonomous switches false.
+No public article, private record, provider job, newsletter configuration or cron
+changed. No email sent. Hosted delivery/recovery remains a separate open gate;
+previously configured secrets are not requested again and the Vercel connector
+stays deferred. See verification/newsletter-persistence-recovery-2026-10-10.md and
+platform/NEWSLETTER.md for the current acceptance/recovery procedure.
+
 ## Owner version browsing and designer handoff, 2026-10-10 UTC
 
 Added protected saved-version selection for published articles and drafts, bounded

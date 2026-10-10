@@ -1,5 +1,23 @@
 # Stage 07 — Acceptance report
 
+## Newsletter persistence/recovery prerequisite, 2026-10-10 UTC
+
+PASS implementation/local evidence: verified create-only claims, separate immutable
+terminal receipts, first-timestamp suppression, legacy/partial-restore resend guards
+and complete bounded subscriber validation before delivery. Private stream reads
+are size/time bounded and strict UTF-8; corrupt suppression makes the owner inbox
+unavailable. Error and denial responses are no-store. Build and all 37 regressions
+pass, including actual adapter concurrency and simulated persistence/transport loss.
+Read-only hosted Supabase confirms all three autonomous switches remain false.
+
+Full hosted newsletter/provider/restore acceptance remains OPEN. No mail or actual
+subscriber mutation was used to test this change; fixtures do not establish hosted
+delivery. Noah reported secrets configured, so no new credential setup is requested.
+Vercel connector inspection remains deferred. A fresh secure owner session is still
+needed for authenticated readback; isolated consented-recipient acceptance must
+precede any weekly delivery activation. See newsletter-persistence-recovery-2026-10-10.md
+and ../platform/NEWSLETTER.md. No article, schema, cron or activation switch changed.
+
 ## Saved-version UI prerequisite and design handoff, 2026-10-10 UTC
 
 Protected metadata-only history and exact article/version body selection now support
@@ -121,8 +139,8 @@ public stories, including seven already manually released; they are not reserve.
 | Editorial content import | PASS complete source export, actual private Blob upload/transactional metadata import, exact two-sweep readback and independent administrative comparison (2026-10-09). Owner draft/recovery remains a separate gate. |
 | Funded unattended generation | BLOCKED pending scoped provider/worker credentials, approved budget/pricing and live usage/redaction/persona evidence. Local paused/budget/ledger tests pass. |
 | Hosted recovery and publication | Earlier scoped hosted component fixtures exist; full Vercel commit/readback/backup/failure recovery gates remain pending. |
-| Resend newsletter acceptance | Adapter, suppression/unsubscribe and private subscriber readback code exist. Secure provider setup and authenticated hosted delivery/recovery evidence remain pending; delivery stays off. |
-| Vercel protected inspection | Connector GET for exact project/team still returns 404. Reconnect the existing Folkly project in optagens-projects; no replacement project required. |
+| Resend newsletter acceptance | Verified immutable claim/receipt/suppression and complete listing implementation passes local recovery tests. Noah reports provider secrets set; authenticated isolated provider/mailbox/restore evidence remains pending and delivery stays off. |
+| Vercel protected inspection | Connector inspection deferred at Noah's request. Existing project and GitHub deployment remain in use; public checks do not establish protected runtime/provider gates. |
 
 Production/autonomous publication/article scheduling stay disabled. Google Cloud
 remains deferred. No new public story, translated story or outgoing email was
