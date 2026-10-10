@@ -1,5 +1,25 @@
 # Stage 07 — Acceptance report
 
+## Signing-secret runtime prerequisite and owner newsletter preview, 2026-10-10 UTC
+
+PASS signing-secret presence prerequisite: after Noah saved the production value,
+invalid-token GET returns 400/no-store instead of 503. This proves the configured
+signing guard passes, not signed-link verification, persistence or mailbox delivery.
+No actual token, subscriber write or outgoing email was used.
+
+PASS implementation/local checks: protected read-only readiness and upcoming-digest
+preview, shared worker configuration/catalog, public-only bounded fields, exact
+next-Friday/date-only/DST windows, safe preview text and logout/late-response privacy.
+Build and all 38 regression commands pass. All three hosted autonomous switches
+remain false. Existing public content and concurrent unreviewed translations are
+preserved; no approval, locale release, provider job, subscriber mutation or cron
+change occurred. Evidence: owner-newsletter-preview-2026-10-10.md.
+
+Actual owner browser inspection still shows an expired session. Fresh secure
+sign-in and isolated provider/mailbox/persistence/restore acceptance remain OPEN.
+No further NEWSLETTER_SECRET action is currently required. Configuration presence
+is not verified credentials or accepted delivery; all activation remains off.
+
 ## Newsletter persistence/recovery prerequisite, 2026-10-10 UTC
 
 PASS implementation/local evidence: verified create-only claims, separate immutable
@@ -146,7 +166,7 @@ public stories, including seven already manually released; they are not reserve.
 | Editorial content import | PASS complete source export, actual private Blob upload/transactional metadata import, exact two-sweep readback and independent administrative comparison (2026-10-09). Owner draft/recovery remains a separate gate. |
 | Funded unattended generation | BLOCKED pending scoped provider/worker credentials, approved budget/pricing and live usage/redaction/persona evidence. Local paused/budget/ledger tests pass. |
 | Hosted recovery and publication | Earlier scoped hosted component fixtures exist; full Vercel commit/readback/backup/failure recovery gates remain pending. |
-| Resend newsletter acceptance | Immutable persistence/recovery passes local tests. Live unsubscribe is BLOCKED by production NEWSLETTER_SECRET missing/short; verify its Production scope/value without exposing it, then redeploy. Isolated provider/mailbox/restore evidence remains pending; delivery stays off. |
+| Resend newsletter acceptance | Signing-secret runtime guard now passes (400/no-store on invalid token); read-only owner readiness/preview and immutable persistence pass local checks. Fresh authenticated owner and isolated provider/mailbox/persistence/restore evidence remain pending; delivery stays off. |
 | Vercel protected inspection | Connector inspection deferred at Noah's request. Existing project and GitHub deployment remain in use; public checks do not establish protected runtime/provider gates. |
 
 Production/autonomous publication/article scheduling stay disabled. Google Cloud
@@ -310,4 +330,3 @@ cases against the deployed Site, including a controlled authenticated write and 
 production readback, OAuth expiry, failure recovery, and mobile viewport checks. The Site
 connection and model-provider plugin were surfaced for connection; a suggestion is not a
 connection. Keep both autonomous switches and the recurring schedule inactive until accepted.
-

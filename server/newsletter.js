@@ -1,4 +1,5 @@
 import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
+import {newsletterMissingConfig} from './newsletter-config.js';
 export const subscriberId = email => createHash('sha256').update(email.trim().toLowerCase()).digest('hex');
 const escape = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function unsubscribeToken(id, secret) { return `${id}.${createHmac('sha256',secret).update(`unsubscribe:${id}`).digest('hex')}`; }
@@ -33,7 +34,7 @@ export function createNewsletterHandler({config, catalog, store, send, now=()=>n
   if(request.method!=='GET')return reply({message:'Method not allowed'},405);
   if(!cfg.cronSecret || request.headers.get('authorization')!==`Bearer ${cfg.cronSecret}`)return reply({message:'Unauthorized'},401);
   if(!cfg.enabled)return reply({paused:true});
-  if(!cfg.apiKey || !cfg.from || /[\r\n]/.test(cfg.from) || !cfg.postalAddress || !cfg.secret || cfg.secret.length<32 || !cfg.storage)return reply({message:'Newsletter configuration incomplete'},503);
+  if(newsletterMissingConfig(cfg).length)return reply({message:'Newsletter configuration incomplete'},503);
   try {
    const date=now(),window=digestWindow(date),stories=digestStories(await catalog(),date);
    if(!stories.length)return reply({sent:0,reason:'No newly published stories'});

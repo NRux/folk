@@ -42,6 +42,9 @@
       "maxDuration": 60,
       "includeFiles": "{build/translation-contracts/**,web/vercel/translation-glossary.json}"
     },
+    "api/owner-newsletter.js": {
+      "includeFiles": "web/vercel/{articles,routes}.json"
+    },
     "api/newsletter.js": {
       "maxDuration": 300,
       "includeFiles": "web/vercel/{articles,routes}.json"

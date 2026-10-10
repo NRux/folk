@@ -1,5 +1,28 @@
 # Folkly Build State
 
+## Owner newsletter readiness and digest preview, 2026-10-10 UTC
+
+Noah configured the signing secret. Live invalid-token unsubscribe GET now returns
+400/no-store, closing the previous missing/short NEWSLETTER_SECRET runtime blocker.
+No credential value, signed token, subscriber mutation or email was used to check it.
+
+Added an owner-protected read-only newsletter status/next-digest preview in
+Subscribers. Worker and preview share fixed configuration checks and a validated
+public/routed catalog. Only missing-setting names are returned, never values,
+sender/address data, subscribers or unsubscribe tokens. Presence is distinct from
+provider/mailbox acceptance. Preview uses the strictly next Friday 16:00 UTC run,
+the same completed-calendar-day selection, public story links and safe text with
+personal/address placeholders. It sends nothing and changes no delivery switch.
+
+Build (73 pages/11 stories) and all 38 regressions pass, including private owner
+membership/live-session denial, date/DST bounds, private/unrouted story exclusion,
+secret redaction, partial preview failure, loading/refresh and late-response/logout
+isolation. The actual owner browser still has an expired session, so signed-in
+visual/readback acceptance remains open. All three native Supabase switches are
+false. Concurrent translation drafts were preserved, without approval or release.
+See verification/owner-newsletter-preview-2026-10-10.md. Newsletter delivery, full
+hosted isolated provider/mailbox/restore tests and autonomous activation remain off.
+
 ## Newsletter persistence and recovery prerequisite, 2026-10-10 UTC
 
 Fixed a reproduced false claim acknowledgment and unverified unsubscribe/receipt

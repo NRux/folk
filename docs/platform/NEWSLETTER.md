@@ -67,16 +67,31 @@ error responses are non-cacheable and prevent referrer disclosure. Private JSON
 reads are bounded to 4 KiB during streaming, reject invalid UTF-8, bypass cache and
 use a ten-second abort deadline; oversized or interrupted streams are cancelled.
 
+## Owner readiness and preview
+
+The Subscribers section now has read-only newsletter status and Refresh digest
+preview. Each `/api/owner-newsletter` GET revalidates the owner identity, private
+membership and active session before reading configuration/public catalog data.
+There is no send, activation, subscriber mutation or provider-call operation.
+Only fixed missing-setting names and the delivery switch state are exposed. The
+sender, mailing address, secret values and personal unsubscribe tokens are absent.
+Configuration presence is not credential validity or hosted delivery acceptance.
+
+The preview uses the strictly next Friday 16:00 UTC boundary and the delivery
+worker's same completed UTC calendar dates. Stories published on a Friday wait for
+the following week. It lists public/routed titles and links, subject and safe email
+text with personal unsubscribe/address placeholders. Empty weeks are identified;
+refreshing a preview never sends a message. Catalog failures show unavailable while
+readiness remains independent. Sign-out or session expiry clears the preview and
+rejects late responses. Actual authenticated hosted readback remains an open gate.
+
 ## Hosted acceptance in the existing project
 
 Noah approved Resend and reported the provider secrets configured on 2026-10-08.
-Live check on 2026-10-10 found invalid-token unsubscribe GET returning 503 before
-token validation. In this handler that means production `NEWSLETTER_SECRET` is
-absent or shorter than 32 characters. Verify the existing signing value in the
-**Production** environment of project `prj_d93TLitMYu8uYjqfgvgANuwsRJVK` and
-redeploy. Preserve any existing valid signing key; do not rotate old reader links.
-If never configured, generate a dedicated high-entropy value in provider settings.
-Then invalid-token GET must return 400/no-store. Do not put the value in chat/Git.
+Follow-up on 2026-10-10: Noah configured the signing value; live invalid-token GET
+now returns 400/no-store. The prior missing/short `NEWSLETTER_SECRET` guard is
+resolved. No signed token, subscriber write or email was used. Preserve that value
+so previously issued links remain valid; no further signing-secret action is needed.
 Do not request those secrets again or copy them into chat/Git. Existing Vercel Blob
 credentials were independently exercised by the completed editorial import.
 Newsletter provider configuration and end-to-end delivery have separate gates;
