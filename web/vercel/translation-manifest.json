@@ -19,136 +19,127 @@
     {
       "slug": "castells-tarragona",
       "locale": "ar",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4ebd8f26a8eb2c2f450102aa8be65eea46bd39e6d7b9fe9c3047a57c3d7b12a3",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "3d606f0987b982c1850351ef603f4f97bbf0d896d1131e3903fc152aa9120fab",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-about",
       "locale": "ar",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "c63d2b69171e6382a4ae6b64d6217a2fc6d59ccdb6c9fb6d16522d1cc2885442",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "7087f83ce47fbbfc8faa412ac12b8161ae47d6a639e78f8a9e64283e66591a92",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-archive",
       "locale": "ar",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "ee9613e7ca9d58b9c74c8917dab81f395d66669400625f706875d9e32eb45c5f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "4e5efd1834cc0b05d15151be33159882ae49fc85a3604e4e38f5f32fcbe8b78f",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-home",
       "locale": "ar",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4dd8db5e04290b8a9bed4574f2c1c49463f3ba39eb62c8103f76f34d9688c60d",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "98955fd4540353e43cf489a2c9099e20b6fb14aff88243e37f8bf18cc875691a",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-image-credits",
       "locale": "ar",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "04bfed1b0a626197f1cbf44e847afe02567a101f67d39fa6985aebe8a979509f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "a6ee2d5554c81404ff1c19136efb33f6891ff1e0f522a4b3ac06bb32fb2b3064",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-messages",
       "locale": "ar",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "040f26760d8be9f7bb702a58a4e48ec4adaa96e88175b241bcb46e1f00ba6131",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "068d52d028eb29f14e1c621d521d888ca933caff9fec89d43576a9d02ab0a191",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft via local provider; pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-privacy",
       "locale": "ar",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "ab3f7d370e4eba5573ee493a602ad46b5e1689fb34d6f9bca199ee6d6c3fe489",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-subscribe",
       "locale": "ar",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "fa40ed154922cd81d80cdb88e4653b9719a6ecb670b09d0936d222f2a07714b7",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "xochimilco-chinampas",
       "locale": "ar",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "b639adff6d39d47128c8950cde7bf195a7eb21b332ab96c75c000b399e4c1637",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "860fe0225a7ad662591c02744e054259a9a5dbe1ba4408a9c48474bc78f71543",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
@@ -169,16 +160,15 @@
     {
       "slug": "castells-tarragona",
       "locale": "es",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4ebd8f26a8eb2c2f450102aa8be65eea46bd39e6d7b9fe9c3047a57c3d7b12a3",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "b6dd46508b84cda874e00f721e0ccfa368711b939414dc8b26c634303c7d9065",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
@@ -199,121 +189,113 @@
     {
       "slug": "ui-about",
       "locale": "es",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "c63d2b69171e6382a4ae6b64d6217a2fc6d59ccdb6c9fb6d16522d1cc2885442",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "19eb14c46d3aea131211515cfa11781d6c8157211440ff4352fad78d3b5b1dfc",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-archive",
       "locale": "es",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "ee9613e7ca9d58b9c74c8917dab81f395d66669400625f706875d9e32eb45c5f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "14cb68566922f6873c52b17c00a8d93d1d9957688dc6304dd8e0a5cf14552b4d",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-home",
       "locale": "es",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4dd8db5e04290b8a9bed4574f2c1c49463f3ba39eb62c8103f76f34d9688c60d",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "608951d1b0aa5e3b9591ba1e4905007240ba75524932e4b2932f70c0eeda7ca6",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-image-credits",
       "locale": "es",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "04bfed1b0a626197f1cbf44e847afe02567a101f67d39fa6985aebe8a979509f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "6df8562c1dd1abf9d123deafc81d29d2e03e70ffa8e7a7a9cdfd350dcaa817ea",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-messages",
       "locale": "es",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "040f26760d8be9f7bb702a58a4e48ec4adaa96e88175b241bcb46e1f00ba6131",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "088a7a630c0aa413995b05a9385a722b20200b6e7c739b6fd50c85731e9f9e1a",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft via local provider; pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-privacy",
       "locale": "es",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "48a22af49e2f449ebbf237abd0fb2e59a253fc8925cf157a19a8dceb0864ae02",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-subscribe",
       "locale": "es",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "b6e749b1da47cf825c9f4eeca4c024727b717d9138ed5dda922c322d122f1f56",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "xochimilco-chinampas",
       "locale": "es",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "b639adff6d39d47128c8950cde7bf195a7eb21b332ab96c75c000b399e4c1637",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "1b2fa3dc020f8e5c2a282ae8a46ab5cad302209fc545d8d11059ffd157b2af6a",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
@@ -334,16 +316,15 @@
     {
       "slug": "castells-tarragona",
       "locale": "fr",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4ebd8f26a8eb2c2f450102aa8be65eea46bd39e6d7b9fe9c3047a57c3d7b12a3",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "5f3b7959d0e4e1efd4213ad286568bcc8d3614ce9f3f6fee58ac3d7e965d1cf6",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
@@ -364,121 +345,113 @@
     {
       "slug": "ui-about",
       "locale": "fr",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "c63d2b69171e6382a4ae6b64d6217a2fc6d59ccdb6c9fb6d16522d1cc2885442",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "47a425c9c77724c8c47c8cbc945875620e713bc437536882b3f942d8d3ed607d",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-archive",
       "locale": "fr",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "ee9613e7ca9d58b9c74c8917dab81f395d66669400625f706875d9e32eb45c5f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "8a5a32d68ad74ad47298c7c8210af9612497da657244f5cfb6a7b6a1d8aec414",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-home",
       "locale": "fr",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4dd8db5e04290b8a9bed4574f2c1c49463f3ba39eb62c8103f76f34d9688c60d",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "6921121bd45d4b15515781441f3909e7f64bc3fd7d7b0ea4b4783f73379b0a62",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-image-credits",
       "locale": "fr",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "04bfed1b0a626197f1cbf44e847afe02567a101f67d39fa6985aebe8a979509f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "de535697a71c7b8c259c5c7848f7ab3d7dd863e1981227a9239eb8b0ced169ae",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-messages",
       "locale": "fr",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "040f26760d8be9f7bb702a58a4e48ec4adaa96e88175b241bcb46e1f00ba6131",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "9f6b48623e0eb789cd5bf9cd7aeab7128cdf492902aa1505efadc18e4e87ea8f",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft via local provider; pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-privacy",
       "locale": "fr",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "4b61fd95b931aca38661108d58539782ba3a1a7263d198198fdcbb249089ba87",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-subscribe",
       "locale": "fr",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "43045d36cb3aa3a19b816aa97929c746f94f66c7fb853fe007dea309f9c771dd",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "xochimilco-chinampas",
       "locale": "fr",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "b639adff6d39d47128c8950cde7bf195a7eb21b332ab96c75c000b399e4c1637",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "8e1b7a02e8926dd2ea42a1dd805addabc626613d92269b20078244728d5f9a22",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
@@ -499,151 +472,141 @@
     {
       "slug": "castells-tarragona",
       "locale": "hi",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4ebd8f26a8eb2c2f450102aa8be65eea46bd39e6d7b9fe9c3047a57c3d7b12a3",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "39de5fb33b6c0d587686c4f0619799ff4ab76de8126bbaf3fd5e18e3c2248b46",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-about",
       "locale": "hi",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "c63d2b69171e6382a4ae6b64d6217a2fc6d59ccdb6c9fb6d16522d1cc2885442",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "51861bf77ec4cfa971afea00c698a3b3fd24cc121986d4619faac7fed8f05a8c",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-archive",
       "locale": "hi",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "ee9613e7ca9d58b9c74c8917dab81f395d66669400625f706875d9e32eb45c5f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "4cb888edadb3218010ee7ec07729846296641fbbf8c41a31a69793072aa11944",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-home",
       "locale": "hi",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4dd8db5e04290b8a9bed4574f2c1c49463f3ba39eb62c8103f76f34d9688c60d",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "272c007bcbdff53a3dfc6b975f2e5deb9253afd207fddbc642e20618ceb7bd8c",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-image-credits",
       "locale": "hi",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "04bfed1b0a626197f1cbf44e847afe02567a101f67d39fa6985aebe8a979509f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "a036f0931803ff23180661d1cd23ac77cfd51d0b7ab83a7969995be35dcd21f6",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-messages",
       "locale": "hi",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "040f26760d8be9f7bb702a58a4e48ec4adaa96e88175b241bcb46e1f00ba6131",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "c9480d6f52985662b6bfc5ba3a9314732333bc0fa6249bdb9f5e1e5636059195",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft via local provider; pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-privacy",
       "locale": "hi",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "4de20f2e2b1b897fce6ce14a640814e14c808f67847e397de0a66b4018309faf",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-subscribe",
       "locale": "hi",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "8679bd212d8c01a59a6520f7d359d0b81f5a8f73a6035ca733eacee5bb6d671d",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "xochimilco-chinampas",
       "locale": "hi",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "b639adff6d39d47128c8950cde7bf195a7eb21b332ab96c75c000b399e4c1637",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "248c5de61e5cbeddc0baa19736dc2b1eb4a7592a0d08985ef13414eea705fad1",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "castells-tarragona",
       "locale": "ja",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4ebd8f26a8eb2c2f450102aa8be65eea46bd39e6d7b9fe9c3047a57c3d7b12a3",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "3582f89f1ff6d65a5c3cda83206ee0007f0b1a41a667b5f6b42ea057683c30d5",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
@@ -664,121 +627,113 @@
     {
       "slug": "ui-about",
       "locale": "ja",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "c63d2b69171e6382a4ae6b64d6217a2fc6d59ccdb6c9fb6d16522d1cc2885442",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "35e8cf2a57d262adfec1aece8bb787ea8b2273f7052a82b68e3b9d3780110fbe",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-archive",
       "locale": "ja",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "ee9613e7ca9d58b9c74c8917dab81f395d66669400625f706875d9e32eb45c5f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "40a1b113c09cf2024fc2d422bd38096d12721643b24ae378b3d6b03cb0dfb122",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-home",
       "locale": "ja",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4dd8db5e04290b8a9bed4574f2c1c49463f3ba39eb62c8103f76f34d9688c60d",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "b81d67d6bcc32914ce0e26f840b2d74bcd8ffc06f100eb1e5aa877064cb97574",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-image-credits",
       "locale": "ja",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "04bfed1b0a626197f1cbf44e847afe02567a101f67d39fa6985aebe8a979509f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "bf0203d104de0cb0eccae1f3970d7ffffbbf2428e30106b099b668dee6ae0b24",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-messages",
       "locale": "ja",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "040f26760d8be9f7bb702a58a4e48ec4adaa96e88175b241bcb46e1f00ba6131",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "2a26b30ea2e1766f8aa63a6eabd4474e26edf6bd0935bdae942501c2d49ccde8",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft via local provider; pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-privacy",
       "locale": "ja",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "e37583e3cce167169841fe94d28272bd6de9937cb275d0a20ca57bf809d547b5",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-subscribe",
       "locale": "ja",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "ffc31474490def76fbd59dacbff7ca1ac05ffb734f308b0be686b55a6f38f4c3",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "xochimilco-chinampas",
       "locale": "ja",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "b639adff6d39d47128c8950cde7bf195a7eb21b332ab96c75c000b399e4c1637",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "1e4a7991b0450d2d9808c85ab560d0531972873725f1d1df48ecd9ae46670a6e",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
@@ -799,136 +754,127 @@
     {
       "slug": "castells-tarragona",
       "locale": "zh-Hans",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4ebd8f26a8eb2c2f450102aa8be65eea46bd39e6d7b9fe9c3047a57c3d7b12a3",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "b167b0c14178c2e700fb50a303a83dc337aab62eb80532c2b0e54a3b9afff606",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-about",
       "locale": "zh-Hans",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "c63d2b69171e6382a4ae6b64d6217a2fc6d59ccdb6c9fb6d16522d1cc2885442",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "bd9ed6562ef9a158b19b05754ae7cd8592d7ac26397bc0ad09ac0b9d2ef44742",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-archive",
       "locale": "zh-Hans",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "ee9613e7ca9d58b9c74c8917dab81f395d66669400625f706875d9e32eb45c5f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "13dc798e6850e78b133e1349f427b895dd04078cf64f9add12c41aeb37b049b0",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-home",
       "locale": "zh-Hans",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "4dd8db5e04290b8a9bed4574f2c1c49463f3ba39eb62c8103f76f34d9688c60d",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "dca68abae4892378dc272739e685113b7b29c2c4909397722a02ef1b8a42f7fd",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-image-credits",
       "locale": "zh-Hans",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "04bfed1b0a626197f1cbf44e847afe02567a101f67d39fa6985aebe8a979509f",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "b8593b324c77e2f7a5d8663e0f46c664960742f81b11fcad1a79c4d02e52cb2c",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-messages",
       "locale": "zh-Hans",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "040f26760d8be9f7bb702a58a4e48ec4adaa96e88175b241bcb46e1f00ba6131",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "511a706d6b2b618fc52d49ec7d9a9d2237fec91cff8c316c088b5fb1f3ff39e7",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft via local provider; pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-privacy",
       "locale": "zh-Hans",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "8e2f45d826cf3881a5f07e8e84c9d9023c2025646c69992f2ef3a00952d80b94",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "660125f90a23503dcae78cdda4bbf8893ebc8919fdeb3fa34ab2c251b2dbcf0f",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "ui-subscribe",
       "locale": "zh-Hans",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "733af746dd178eeed2374039dd8abfa12e01ae806d869de50ab7721115d03e97",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "a27b54af321ea4f5f349fbfaebc33e05d71f254c48e1f94a6a070d0177d9d99e",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     },
     {
       "slug": "xochimilco-chinampas",
       "locale": "zh-Hans",
-      "status": "draft",
+      "status": "approved",
       "sourceHash": "b639adff6d39d47128c8950cde7bf195a7eb21b332ab96c75c000b399e4c1637",
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "5ca9fa9e48e2dba5fea4ee78c449ea170449efc7d69b03a9e166e782f0284a02",
       "review": {
-        "reviewer": null,
-        "reviewedAt": null,
-        "competentLanguageReview": false,
-        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+        "reviewer": "owner",
+        "reviewedAt": "2026-10-10T00:00:00.000Z",
+        "competentLanguageReview": true
       }
     }
   ]

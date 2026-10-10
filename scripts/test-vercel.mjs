@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFile, readdir } from 'node:fs/promises';
+import { readFile, readdir, access } from 'node:fs/promises';
 const routes = JSON.parse(await readFile('web/vercel/routes.json', 'utf8'));
 const { discoveryRouteFiles } = await import('./article-discovery.mjs');
 const { publishedArticles } = await import('./public-articles.mjs');
@@ -32,17 +32,29 @@ for (const route of Object.keys(routes)) {
   const html = await readFile(route === '/' ? 'dist/index.html' : `dist${route}.html`, 'utf8');
   for (const [, href] of html.matchAll(/href="(\/[^"]*)"/g)) {
     const path = href.split(/[?#]/)[0].replace(/\.html$/, '');
-    if (path && !path.startsWith('/assets/') && !['/style.css', '/subscribe.css', '/contact.css', '/article-grid.css', '/image-credits', '/subscribe', '/privacy', '/privacy.css', '/locales.css', '/language.js'].includes(path)) assert(routes[path], `Broken link: ${href} on ${route}`);
+    // Approved locale pages (zh-Hans/es/hi/ar/fr/ja) are served straight from dist by the
+    // translation build and are deliberately outside routes.json's English route table:
+    // a locale link is checked against the built file instead.
+    const locale = path.match(/^\/(zh-Hans|es|hi|ar|fr|ja)(\/.*)?$/);
+    const localeTarget = locale ? `dist/${locale[1]}${locale[2] ?? ''}.html` : null;
+    if (path && !path.startsWith('/assets/') && !['/style.css', '/subscribe.css', '/contact.css', '/article-grid.css', '/image-credits', '/subscribe', '/privacy', '/privacy.css', '/locales.css', '/language.js'].includes(path)) {
+      if (localeTarget) assert(await access(localeTarget).then(() => true, () => false), `Broken locale link: ${href} on ${route}`);
+      else assert(routes[path], `Broken link: ${href} on ${route}`);
+    }
   }
 }
-const files = await readdir('dist', { recursive: true });
+const files = (await readdir('dist', { recursive: true })).map(p => p.replaceAll('\\', '/'));
+const LOCALE_FILE = /^(zh-Hans|es|hi|ar|fr|ja)(\.html|\/)/;
 for (const file of files.filter(p => p.endsWith('.html'))) {
   const html = await readFile(`dist/${file}`, 'utf8');
   const head = html.match(/<head>[\s\S]*?<\/head>/)?.[0] || '';
   assert(!html.includes('adsbygoogle.js'), file);
   assert(!html.includes('googletagmanager.com'), file);
   assert(head.includes('name="google-adsense-account"'), file);
-  assert(html.includes('href="/privacy"'), file);
+  // Translated pages link to their own locale's approved privacy page
+  // (e.g. /es/privacy) rather than the English /privacy.
+  const privacyHref = file.match(LOCALE_FILE) ? `href="/${file.match(LOCALE_FILE)[1]}/privacy"` : 'href="/privacy"';
+  assert(html.includes(privacyHref), file);
   assert.equal(html.includes('src="/privacy.js"'),file!=='owner.html',file);
   assert(!html.includes('Neighborhood context, not a pictured'));
   assert(!html.includes('. Displayed with a responsive crop; original image retained.'));
