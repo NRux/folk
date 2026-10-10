@@ -78,7 +78,11 @@ before exposing readiness; invalid unsubscribe is 400/no-store; unauthenticated
 cron is 401/no-store. All 45 deployed public reader checks pass, including exact
 article bodies/credits. Aggregate GET evidence: [public checks](owner-newsletter-public-2026-10-10.json).
 The final startup-timing fix passes build and the expanded owner-newsletter suite;
-its deployed asset readback is checked separately after sync. Existing source
+startup fix commit `757a1c0621511219915d5a43900847fc1b7081d2` also deployed
+successfully: https://vercel.com/optagens-projects/folk/8dEVU4jrQPuWNo6nsmw6vT5byzHP.
+Public owner HTML contains the real controls and script; the public client asset
+matches the current local source byte-for-byte, including late-session bootstrap.
+This proves deployed code/asset presence, not authenticated browser interaction. Existing source
 recovery, import and signing-secret setup do not need to be repeated.
 Vercel connector inspection and Google Cloud setup remain deferred.
 

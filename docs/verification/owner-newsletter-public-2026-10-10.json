@@ -36,5 +36,12 @@
   "providerCalls": 0,
   "authenticatedBrowser": "blocked: available owner session expired",
   "newsletterSigningGuard": "passes",
-  "fullHostedNewsletterAcceptance": "pending"
+  "fullHostedNewsletterAcceptance": "pending",
+  "startupFixCommit": "757a1c0621511219915d5a43900847fc1b7081d2",
+  "startupFixDeployment": "https://vercel.com/optagens-projects/folk/8dEVU4jrQPuWNo6nsmw6vT5byzHP",
+  "ownerHtmlControlsPresent": true,
+  "publicClientExactReadback": true,
+  "readerChecksPassed": 45,
+  "startupReadbackAt": "2026-10-10T01:45:40.390380+00:00",
+  "publicClientSha256": "03d9821079388431da6c7b1fbd28990f712cdc8b756af97181da095ac8d9b551"
 }
