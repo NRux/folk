@@ -31,6 +31,12 @@ OPEN until the owner performs the new controls. See
 verification/owner-remembered-session-2026-10-10.md and
 verification/owner-newsletter-delivery-test-2026-10-10.md.
 
+Deployment follow-up: c46c392 is live, with 45 reader and eleven new public safety
+checks PASS. Actual owner browser shows the checked remembered-sign-in control;
+no live authenticated session was available. Provider/mailbox and real renewal
+acceptance remain open; no email sent. See
+verification/owner-session-newsletter-public-2026-10-10.json.
+
 ## Isolated hosted newsletter storage recovery, 2026-10-10 UTC
 
 Implemented an administrative single-use, ten-minute, deployed-code-bound recovery

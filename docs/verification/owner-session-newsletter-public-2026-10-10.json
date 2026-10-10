@@ -1,0 +1,96 @@
+{
+  "checkedAt": "2026-10-10T02:50:10.624914+00:00",
+  "origin": "https://www.folkly.com",
+  "commit": "c46c392920b55588f6ab86672662b5a81c721992",
+  "checks": [
+    {
+      "path": "/owner?verify=remember-20261010",
+      "method": "GET",
+      "status": 200,
+      "rememberAndExplicitTestControls": true
+    },
+    {
+      "path": "/owner-session.js",
+      "method": "GET",
+      "status": 200,
+      "sha256": "5d3aeee610c47ea3319896809df2e9f7dc9878283697426e7c5bd59602adbfae"
+    },
+    {
+      "path": "/owner-newsletter-test.js",
+      "method": "GET",
+      "status": 200,
+      "sha256": "27368701c3aee0b45f980bd9fd21e518e236951785413cb779fed6a143fca6ae"
+    },
+    {
+      "path": "/privacy",
+      "method": "GET",
+      "status": 200,
+      "essentialCookieDisclosure": true
+    },
+    {
+      "path": "/api/owner-newsletter-test",
+      "method": "GET",
+      "status": 401,
+      "noStore": true
+    },
+    {
+      "path": "/api/owner-newsletter-test",
+      "method": "POST",
+      "status": 401,
+      "noStore": true
+    },
+    {
+      "path": "/api/owner",
+      "method": "POST",
+      "status": 401,
+      "noStore": true,
+      "bothHostCookiesClearedSecurely": true
+    },
+    {
+      "path": "/api/owner",
+      "method": "POST",
+      "status": 403,
+      "noStore": true
+    },
+    {
+      "path": "/api/owner-newsletter",
+      "method": "GET",
+      "status": 401,
+      "noStore": true
+    },
+    {
+      "path": "/api/newsletter",
+      "method": "GET",
+      "status": 401,
+      "noStore": true
+    },
+    {
+      "path": "/api/unsubscribe?token=invalid",
+      "method": "GET",
+      "status": 400,
+      "noStore": true
+    }
+  ],
+  "actualMailSent": false,
+  "authenticatedRememberedSession": "not yet owner-verified",
+  "providerMailboxAcceptance": "requires explicit owner test and mailbox confirmation",
+  "vercelStatus": "success",
+  "deploymentStatusUrl": "https://vercel.com/optagens-projects/folk/7kZe9RZTiXmQhcnGiHfdo5bhxqy9",
+  "readerChecks": 45,
+  "nativeInventory": {
+    "articles": 11,
+    "versions": 15,
+    "contentObjects": 15
+  },
+  "nativeSwitches": {
+    "production.autonomous_enabled": "false",
+    "publication.autonomous_enabled": "false",
+    "schedule.enabled": "false"
+  },
+  "browserObserved": {
+    "url": "https://www.folkly.com/owner",
+    "rememberCheckboxVisible": true,
+    "rememberCheckboxChecked": true,
+    "freshCodeSignInRequired": true
+  }
+}

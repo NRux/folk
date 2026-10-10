@@ -45,3 +45,21 @@ email, then verify sign-out and provider revocation deny access. Fixture results
 are not evidence that Noah completed this live authenticated sequence. Provider
 account policies or browser cookie clearing can require another code sooner.
 No live owner credentials were generated, copied or published for these checks.
+
+## Public deployment follow-up
+
+Code c46c392920b55588f6ab86672662b5a81c721992 passed Vercel and is live on
+https://www.folkly.com. All 45 reader checks pass, including all 11 byte-exact
+article pages, both URL forms, credits and private-route exclusion. Eleven added
+public checks verify exact deployed session/test script bytes, visible owner
+controls, essential-cookie disclosure, anonymous mail/status/worker denial and
+no-store headers. Anonymous same-origin refresh returns 401 and clears both host
+cookies with Secure/HttpOnly/SameSite=Strict/Path=/; wrong Origin returns 403.
+Anonymous test-mail POST returns 401, so no provider request was made.
+
+The actual owner browser was reloaded and visibly shows the checked Keep me signed
+in control, but has no current authenticated session. Fresh login, 15-minute/browser
+restart renewal and revocation acceptance still require the owner's real sign-in;
+no test credential or OTP was created. Actual provider/mailbox acceptance remains
+open until the explicit Subscribers test and mailbox attestation. No email sent.
+Evidence: owner-session-newsletter-public-2026-10-10.json.
