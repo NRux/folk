@@ -167,6 +167,21 @@
       }
     },
     {
+      "slug": "ui-image-credits",
+      "locale": "es",
+      "status": "draft",
+      "sourceHash": "04bfed1b0a626197f1cbf44e847afe02567a101f67d39fa6985aebe8a979509f",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "6df8562c1dd1abf9d123deafc81d29d2e03e70ffa8e7a7a9cdfd350dcaa817ea",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
       "slug": "ui-messages",
       "locale": "es",
       "status": "draft",
@@ -264,6 +279,21 @@
       "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
       "promptVersion": "faithful-public-segments-v1",
       "translationHash": "6921121bd45d4b15515781441f3909e7f64bc3fd7d7b0ea4b4783f73379b0a62",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
+      "slug": "ui-image-credits",
+      "locale": "fr",
+      "status": "draft",
+      "sourceHash": "04bfed1b0a626197f1cbf44e847afe02567a101f67d39fa6985aebe8a979509f",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "de535697a71c7b8c259c5c7848f7ab3d7dd863e1981227a9239eb8b0ced169ae",
       "review": {
         "reviewer": null,
         "reviewedAt": null,
