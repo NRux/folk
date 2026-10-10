@@ -347,6 +347,21 @@
       }
     },
     {
+      "slug": "nowruz-tajikistan",
+      "locale": "fr",
+      "status": "draft",
+      "sourceHash": "d53caad0276cfc72ab93e08e390a73d92dd72833c11de919ad458a8d8fd93ff1",
+      "glossaryHash": "cc47218883939911ed62c5ed9601d828e2f83ff73ba3ce5b90d6bd7c910f796a",
+      "promptVersion": "faithful-public-segments-v1",
+      "translationHash": "cbff9328c81cf32b26708555d72fcdae105ccc3e91ddefad8c882919dd12ccc9",
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "competentLanguageReview": false,
+        "note": "machine draft by glm-5.3 (Hermes agent translation); pending owner competent-language review"
+      }
+    },
+    {
       "slug": "ui-about",
       "locale": "fr",
       "status": "draft",
