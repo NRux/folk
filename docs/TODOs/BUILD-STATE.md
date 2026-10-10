@@ -1,5 +1,23 @@
 # Folkly Build State
 
+## Owner version browsing and designer handoff, 2026-10-10 UTC
+
+Added protected saved-version selection for published articles and drafts, bounded
+metadata-only history, exact article/version body binding and verified private Blob
+resolution. Preview offers version/date selection with safe text rendering, loading
+status, keyboard focus and late-response/logout isolation. Dashboard import status
+now comes from a verified aggregate receipt rather than hard-coded pending copy.
+All 36 regressions and the 73-page/11-story build pass. Read-only hosted inventory
+is 11 articles/15 versions and references, zero unpublished articles, switches false.
+The available owner browser session expired; actual signed-in viewing remains open
+and is not replaced by fixture tests. No new credentials/source export are needed.
+See verification/owner-version-browser-2026-10-10.md.
+
+Noah requested a designer handoff: design/OWNER-PANEL-REDESIGN-HANDOFF.md maps the
+existing workflows, proposed navigation, desktop/mobile states, components and
+engineering constraints. Future actions are clearly separate from existing APIs.
+No public story, provider job, schema or autonomous switch changed.
+
 ## Original editorial transfer completed, 2026-10-09 UTC
 
 PASS: the recovered complete source has been imported into existing Supabase and

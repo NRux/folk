@@ -1,5 +1,22 @@
 # Stage 07 — Acceptance report
 
+## Saved-version UI prerequisite and design handoff, 2026-10-10 UTC
+
+Protected metadata-only history and exact article/version body selection now support
+latest and older saved-version previews, including already-published stories. The
+UI has verified-content loading, safe text rendering, keyboard focus and stale/late
+response rejection. Dashboard source-import status comes from the private verified
+aggregate receipt. All 36 regressions and the 73-page build pass; hosted inventory
+remains 11 articles/15 versions/references with all three switches false.
+
+Actual authenticated draft viewing remains BLOCKED by the expired browser owner
+session. No source export or new provider secret is required: use secure owner
+sign-in to establish a fresh session, then inspect latest and historical versions.
+Full isolated publisher/newsletter/provider outage/restore and reviewed-language
+acceptance remain pending. Design brief: ../design/OWNER-PANEL-REDESIGN-HANDOFF.md.
+Evidence: owner-version-browser-2026-10-10.md. No paid call, publication, delivery
+or publisher/schedule activation occurred.
+
 ## Actual editorial transfer and hosted readback PASS, 2026-10-09 UTC
 
 The complete source was transferred inside existing Vercel using existing server

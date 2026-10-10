@@ -24,8 +24,14 @@ export function createWorkspaceHandlers({authorize,store,drafts,chat,configured,
  async GET(request){
   const owner=await access(request);if(!owner)return reply(401,{message:'Owner sign-in required.'});
   try{
-   const id=new URL(request.url).searchParams.get('draft');
-   if(id){if(!/^[a-z0-9_-]{1,100}$/i.test(id))return reply(400,{message:'Invalid draft.'});return reply(200,{draft:await drafts(owner.db,id)});}
+   const params=new URL(request.url).searchParams,id=params.get('draft');
+   if(params.has('draft')||params.has('version')){
+    const version=params.get('version');
+    if(!/^[a-z0-9_-]{1,100}$/i.test(id||'')||[...params.keys()].some(k=>!['draft','version'].includes(k))||params.getAll('draft').length!==1||params.getAll('version').length>1||
+     (params.has('version')&&(!/^[1-9]\d{0,3}$/.test(version)||Number(version)>9999)))return reply(400,{message:'Choose an article and a valid saved version.'});
+    try{return reply(200,{draft:await drafts(owner.db,id,undefined,{version:params.has('version')?Number(version):undefined})});}
+    catch(error){return reply(error?.code==='DRAFT_NOT_FOUND'?404:503,{message:error?.code==='DRAFT_NOT_FOUND'?'That article or saved version is unavailable. Refresh the article list.':'Private saved content could not be verified. No records were changed.'});}
+   }
    const [ideas,history]=await Promise.allSettled([store.list('ideas'),store.list('chat')]);
    const readiness=configuration();
    return reply(200,{ideas:ideas.status==='fulfilled'?ideas.value:[],chat:history.status==='fulfilled'?history.value:[],ideasAvailable:ideas.status==='fulfilled',chatHistoryAvailable:history.status==='fulfilled',chatAvailable:readiness.available&&history.status==='fulfilled',configuration:readiness,ideasMessage:ideas.status==='fulfilled'?'':'Idea storage unavailable. Unsaved text is retained in this page.',chatMessage:history.status==='fulfilled'?readiness.message:'Editor history storage unavailable. Refresh before sending.'});
@@ -73,15 +79,28 @@ export function createWorkspaceHandlers({authorize,store,drafts,chat,configured,
  }
  };
 }
-export async function readDraft(db,id,contentStore=createContentStore()){
- const article=await db.from('folkly_articles').select('id,title,status').eq('id',id).maybeSingle();if(article.error||!article.data)throw Error('Draft unavailable');
- const versions=await db.from('folkly_article_versions').select('id,version,content_json,created_at').eq('article_id',id).order('version',{ascending:false}).limit(1);
- if(versions.error||!versions.data?.length)throw Error('Draft content not migrated');
- const version=versions.data[0];
+export async function readDraft(db,id,contentStore=createContentStore(),{version:selectedVersion}={}){
+ if(selectedVersion!==undefined&&(!Number.isSafeInteger(selectedVersion)||selectedVersion<1||selectedVersion>9999))throw Error('Invalid saved version');
+ const notFound=()=>Object.assign(Error('Saved version unavailable'),{code:'DRAFT_NOT_FOUND'});
+ const article=await db.from('folkly_articles').select('id,title,status').eq('id',id).maybeSingle();if(article.error)throw Error('Private article metadata unavailable');if(!article.data)throw notFound();
+ // Read only bounded history metadata; fetch one body and one private pointer.
+ const history=await db.from('folkly_article_versions').select('id,version,created_at').eq('article_id',id).order('version',{ascending:false}).limit(101);
+ if(history.error||!Array.isArray(history.data)||history.data.length>100)throw Error('Private version history unavailable');
+ if(!history.data.length)throw notFound();
+ const identities=new Set(),numbers=new Set();
+ for(const item of history.data){
+  if(typeof item.id!=='string'||!item.id||!Number.isSafeInteger(item.version)||item.version<1||item.version>9999||!Number.isFinite(Date.parse(item.created_at))||identities.has(item.id)||numbers.has(item.version))throw Error('Invalid saved version history');
+  identities.add(item.id);numbers.add(item.version);
+ }
+ const rows=history.data.slice().sort((a,b)=>b.version-a.version),target=selectedVersion===undefined?rows[0]:rows.find(v=>v.version===selectedVersion);
+ if(!target)throw notFound();
+ const result=await db.from('folkly_article_versions').select('id,version,content_json,created_at').eq('article_id',id).eq('id',target.id).maybeSingle();
+ const version=result.data;if(result.error||!version||version.id!==target.id||version.version!==target.version||version.created_at!==target.created_at)throw Error('Saved version changed during read');
  const pointer=await db.from('folkly_content_objects').select('pathname,sha256,byte_size,verified_at').eq('article_version_id',version.id).maybeSingle();
  if(pointer.error)throw Error('Private content index unavailable');
  const content=pointer.data?await contentStore.read(pointer.data):version.content_json;
  if(typeof content!=='string'||!content.length||Buffer.byteLength(content)>200000)throw Error('Invalid draft');
  JSON.parse(content);
- return {title:article.data.title,status:article.data.status,version:version.version,content};
+ return {title:article.data.title,status:article.data.status,version:version.version,versionId:version.id,createdAt:version.created_at,
+  versions:rows.map(row=>({version:row.version,createdAt:row.created_at})),content};
 }
