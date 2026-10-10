@@ -35,7 +35,9 @@ signed-link verification, persistence, provider acceptance or mailbox delivery.
   upcoming run/window, story links, empty/unavailable states and expandable plain
   email text. Text renders with `textContent`; links use the fixed public origin.
   Each refresh replaces the prior request, and old responses cannot overwrite
-  newer selection or restore private UI after sign-out/expiry.
+  newer selection or restore private UI after sign-out/expiry. An already-rendered
+  session also loads immediately when the deferred script starts after sign-in; a
+  separate startup regression covers the missed-event timing case.
 - Explicit Vercel function catalog inclusion and static client asset copying ensure
   deployment contains the API inputs and actual UI script. The existing weekly
   cron is unchanged. No delivery/autonomous setting is altered.
@@ -56,7 +58,7 @@ without provider, private Blob or live subscriber calls.
 | Empty week / catalog outage | Empty unsent preview; catalog failure does not falsely erase or validate configuration. |
 | Real HTML and client assets | Control IDs, copied script and explicit function input inclusion pass. |
 | Client rendering / progress / links | Safe literal text, fixed public links, refresh progress and subject/body preview pass. |
-| Response ordering / sign-out / expiry | Earlier response cannot replace later preview; sign-out clears content; 401 invokes shared secure reauthentication notice. |
+| Response ordering / sign-out / expiry / startup | Earlier response cannot replace later preview; sign-out clears content; 401 invokes secure reauthentication; a late-starting script detects an already-rendered session. |
 | Regression | Existing auth/RLS, private versions/import, subscriber suppression/claims, translation/batch budgets, public stories/credits and consent checks pass. |
 
 Read-only native Supabase check confirms `production.autonomous_enabled`,
@@ -68,8 +70,16 @@ none and includes no translation file in its commit scope.
 
 ## Deployment and remaining gates
 
-Deployment/public evidence will be appended after concurrent-safe sync. Existing
-source recovery, import and signing-secret setup do not need to be repeated.
+Feature commit `bd0c4827c6f7f668326ce11316a4f7fd367ad1b6` was synced to main/master
+with expected-SHA leases on top of concurrent translation drafts. Vercel reported
+success for https://vercel.com/optagens-projects/folk/7LyxYpLaUUbhC67GGS4gsCH5Boxw.
+Anonymous preview GET, including a caller-supplied run date, returns 401/no-store
+before exposing readiness; invalid unsubscribe is 400/no-store; unauthenticated
+cron is 401/no-store. All 45 deployed public reader checks pass, including exact
+article bodies/credits. Aggregate GET evidence: [public checks](owner-newsletter-public-2026-10-10.json).
+The final startup-timing fix passes build and the expanded owner-newsletter suite;
+its deployed asset readback is checked separately after sync. Existing source
+recovery, import and signing-secret setup do not need to be repeated.
 Vercel connector inspection and Google Cloud setup remain deferred.
 
 Fresh secure owner sign-in is needed to inspect actual private readiness and

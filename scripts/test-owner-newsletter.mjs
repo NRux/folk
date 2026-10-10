@@ -72,6 +72,7 @@ const html=await readFile('web/vercel/owner.html','utf8'),source=await readFile(
 const elements=new Map(),listeners={},pending=[];
 function element(tag='div'){return {tag,children:[],textContent:'',disabled:false,replaceChildren(...children){this.children=children;this.textContent='';},append(...children){this.children.push(...children);},addEventListener(name,fn){this[name]=fn;}};}
 for(const [,id] of html.matchAll(/\bid="([^"]+)"/g))elements.set(id,element());
+elements.get('owner-dashboard').hidden=true;
 for(const [,id] of source.matchAll(/\bel\('([^']+)'\)/g))assert(elements.has(id),`Missing HTML control ${id}`);
 let expirations=0;
 const document={getElementById:id=>elements.get(id),createElement:element,addEventListener:(name,fn)=>listeners[name]=fn};
@@ -86,6 +87,11 @@ resolve(body);await first;assert.match(elements.get('newsletter-preview-status')
 const late=elements.get('newsletter-preview-refresh').click();listeners['owner-session']({detail:{signedIn:false}});resolve(body);await late;assert.equal(elements.get('newsletter-digest').textContent,'');assert.equal(elements.get('newsletter-stories').children.length,0);assert.equal(elements.get('newsletter-preview-refresh').disabled,true);
 listeners['owner-session']({detail:{signedIn:true}});pending.shift()({ok:false,status:401,json:async()=>({message:'Sign in'})});await tick();assert.equal(expirations,1);assert.equal(elements.get('newsletter-readiness').children.length,0);
 assert(!source.includes('innerHTML'));assert(!source.includes('method:'));
+elements.get('owner-dashboard').hidden=false;
+vm.runInNewContext(source,{document,AbortController,Date,window:{},fetch:()=>new Promise(resolve=>pending.push(resolve))});
+assert.equal(pending.length,1,'Already-rendered session loads immediately when this deferred script starts late');
+resolve(body);await tick();assert.equal(elements.get('newsletter-preview-refresh').disabled,false);
+assert.match(elements.get('newsletter-preview-status').textContent,/Preview loaded/);
 const dist=await readFile('dist/owner.html','utf8');assert(dist.includes('src="/owner-newsletter.js"'));assert.equal(await readFile('dist/owner-newsletter.js','utf8'),source);
 const vercel=JSON.parse(await readFile('vercel.json','utf8'));assert.equal(vercel.functions['api/owner-newsletter.js'].includeFiles,'web/vercel/{articles,routes}.json');
 console.log('Owner newsletter client passed: actual controls/assets, loading/refresh, safe text and public links, empty state, late refresh/logout denial, session expiry and GET-only interaction. No mail sent.');

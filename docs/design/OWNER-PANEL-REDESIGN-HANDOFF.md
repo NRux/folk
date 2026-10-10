@@ -31,7 +31,7 @@ boundaries. Do not invent data, capabilities or an alternative hosting platform.
 | Ideas | Editable spreadsheet-like rows with Title, Place, Angle, Sources, Notes, Priority and Status. Explicit per-row Save and verified readback. | Make unsaved/saving/saved/conflict states unmistakable. |
 | Drafts and versions | Protected saved-content reader. Version-history selection ships with this handoff; latest is the default. | Separate article status from the selected historical version. No article editor, diff, rollback or publish action exists in this flow. |
 | Translations | Public-source and language selection, private Batch jobs, progress/recovery, private draft viewing and an owner-controlled budget. | Make paid submission a deliberate action, distinct from saving settings or reviewing output. |
-| Subscribers | Private email/status/consent/source records with bounded paging. | Use a readable private list, clear page controls and truthful delivery status. |
+| Subscribers | Private email/status/consent/source records with bounded paging; read-only newsletter readiness and upcoming-digest preview. | Use a readable private list and truthful delivery status. Configuration presence does not establish delivery acceptance; preview sends nothing. |
 | Inbox | Contact details, reason, contributor interest, message and a mailto reply link. | Highlight the reason and contributor interest. “Reply in email” opens an email app; it does not send or track a reply. |
 
 The original source transfer passed: 11 already-published stories and 15 historical
@@ -139,7 +139,7 @@ release remain required. No “Publish all” shortcut.
 
 Make email, status and consent details easy to scan, with readable paging and an
 explicit empty state. Do not infer a total count from one page. Weekly delivery is
-not represented as running until its hosted acceptance and activation pass.
+not represented as running until its hosted acceptance and activation pass. The\ncurrent read-only newsletter panel reports missing setting names and previews\nthe next Friday digest with recipient/address placeholders. Keep Refresh preview\ndistinct from sending or enabling delivery; there is no send action.
 
 In Inbox, make the contact reason and contributor interest prominent. Use a message
 reading pane or mobile detail screen. Label the existing action “Reply in email.”

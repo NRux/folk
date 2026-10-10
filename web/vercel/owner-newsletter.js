@@ -31,4 +31,8 @@
  el('newsletter-preview-refresh').addEventListener('click',load);
  document.addEventListener('owner-session',event=>{const previous=active;active=event.detail.signedIn;if(!active)clear();else if(!previous)load();});
  clear();
+ // A fast owner response can arrive before this deferred script attaches its
+ // listener. Bootstrap from the already-rendered dashboard rather than waiting
+ // for the next session poll.
+ if(!el('owner-dashboard').hidden){active=true;load();}
 })();

@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-10T01:41:28.408520+00:00",
+  "codeCommit": "bd0c4827c6f7f668326ce11316a4f7fd367ad1b6",
+  "origin": "https://www.folkly.com",
+  "checks": [
+    {
+      "path": "/api/owner-newsletter",
+      "method": "GET",
+      "status": 401,
+      "cacheControl": "no-store",
+      "safeResponse": "{\"message\":\"Owner sign-in required.\"}"
+    },
+    {
+      "path": "/api/owner-newsletter?runAt=2026-10-09",
+      "method": "GET",
+      "status": 401,
+      "cacheControl": "no-store",
+      "safeResponse": "{\"message\":\"Owner sign-in required.\"}"
+    },
+    {
+      "path": "/api/unsubscribe?token=invalid",
+      "method": "GET",
+      "status": 400,
+      "cacheControl": "no-store",
+      "safeResponse": "Invalid unsubscribe link"
+    },
+    {
+      "path": "/api/newsletter",
+      "method": "GET",
+      "status": 401,
+      "cacheControl": "no-store",
+      "safeResponse": "{\"message\":\"Unauthorized\"}"
+    }
+  ],
+  "privateWrites": 0,
+  "providerCalls": 0,
+  "authenticatedBrowser": "blocked: available owner session expired",
+  "newsletterSigningGuard": "passes",
+  "fullHostedNewsletterAcceptance": "pending"
+}

@@ -23,6 +23,11 @@ false. Concurrent translation drafts were preserved, without approval or release
 See verification/owner-newsletter-preview-2026-10-10.md. Newsletter delivery, full
 hosted isolated provider/mailbox/restore tests and autonomous activation remain off.
 
+Deployment: bd0c482 passes Vercel and all 45 public reader checks. Preview/cron
+requests deny 401/no-store; invalid unsubscribe is 400/no-store. A startup timing
+fix makes the preview load if sign-in renders before its deferred script attaches;
+expanded client regression passes. See verification/owner-newsletter-public-2026-10-10.json.
+
 ## Newsletter persistence and recovery prerequisite, 2026-10-10 UTC
 
 Fixed a reproduced false claim acknowledgment and unverified unsubscribe/receipt

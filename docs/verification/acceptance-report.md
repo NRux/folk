@@ -20,6 +20,11 @@ sign-in and isolated provider/mailbox/persistence/restore acceptance remain OPEN
 No further NEWSLETTER_SECRET action is currently required. Configuration presence
 is not verified credentials or accepted delivery; all activation remains off.
 
+Feature commit bd0c482 deployed successfully; 45 reader checks, anonymous protected
+preview/cron 401/no-store and invalid unsubscribe 400/no-store pass. Late deferred
+script startup is explicitly fixed/tested. Actual authenticated viewing and full
+provider/mailbox/restore gates remain open. See owner-newsletter-public-2026-10-10.json.
+
 ## Newsletter persistence/recovery prerequisite, 2026-10-10 UTC
 
 PASS implementation/local evidence: verified create-only claims, separate immutable
